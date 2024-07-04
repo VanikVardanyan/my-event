@@ -3,9 +3,6 @@ import Image from 'next/image'
 import useStyles from './styles'
 import { ICardProps } from './types'
 
-import { SlateGreyLighten10 } from '@/shared/consts/colors'
-// import { PeopleIcon } from '@/shared/icons'
-
 export const Card = (props: ICardProps) => {
   const { classes } = useStyles()
   const { username, subscribers, channelClickHandler } = props

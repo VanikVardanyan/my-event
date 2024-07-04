@@ -10,7 +10,7 @@ import { Box } from '@mui/material'
 import useStyles from './styles'
 
 const UserPage = () => {
-  const router = useParams()
+  const router: { slug: string } = useParams()
   const [userData, setUserData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const { classes } = useStyles()
