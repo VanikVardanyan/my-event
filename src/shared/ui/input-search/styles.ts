@@ -26,6 +26,8 @@ export default tss
       display: 'flex',
       visibility: 'hidden',
       gap: 8,
+      zIndex: 1000,
+      background: White,
 
       [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
         position: 'relative',

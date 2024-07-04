@@ -1,6 +1,7 @@
 import { styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
 import { SlateGreyBase } from '@/shared/consts/colors'
+import { BreakPoints } from '../../../../shared/consts/common'
 
 export default tss.withName('ProviderForm').create({
   root: {
@@ -22,18 +23,29 @@ export default tss.withName('ProviderForm').create({
   avatar: {
     width: 147,
     height: 147,
+    objectFit: 'cover',
     borderRadius: '50%',
     border: `1px solid ${SlateGreyBase}`,
+    margin: 'auto',
   },
   nameSection: {
     display: 'flex',
     justifyContent: 'space-between',
     gap: 10,
+    flexDirection: 'column',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      flexDirection: 'row',
+    },
   },
   network: {
     display: 'grid',
     gap: 15,
-    gridTemplateColumns: '1fr 1fr',
+    gridTemplateColumns: '1fr',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      gridTemplateColumns: '1fr 1fr',
+    },
   },
   avatarWrapper: {
     display: 'flex',

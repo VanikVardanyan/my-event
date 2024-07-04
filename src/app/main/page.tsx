@@ -4,9 +4,9 @@ import { ServicePost } from '@/shared/ui/service-post'
 import useStyles from './styles'
 import { useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '../../lib/firebaseConfig'
+import { db } from '../../shared/lib/firebaseConfig'
 
-export const MainPage = () => {
+const MainPage = () => {
   const { classes } = useStyles()
 
   const [providerUsers, setProviderUsers] = useState<any>([])
@@ -45,3 +45,5 @@ export const MainPage = () => {
     </div>
   )
 }
+
+export default MainPage

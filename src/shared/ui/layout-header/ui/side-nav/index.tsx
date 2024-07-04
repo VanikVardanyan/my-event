@@ -1,6 +1,6 @@
 'use client'
 import { Drawer, useMediaQuery, useTheme } from '@mui/material'
-import { DarkGreen } from '@/shared/consts/colors'
+import { DarkGreen, White } from '@/shared/consts/colors'
 import { Routes } from '@/shared/routes'
 import useStyles from './styles'
 import Link from 'next/link'
@@ -12,39 +12,58 @@ import { useAuth } from '../../../../lib/auth-context'
 import { useSelector } from 'react-redux'
 import { getProfile } from '../../../../../store/selectors'
 import { UserType } from '../../../../types/user.types'
+import HomeIcon from '@mui/icons-material/Home'
+import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos'
+import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
+import MusicNoteIcon from '@mui/icons-material/MusicNote'
+import SpeakerIcon from '@mui/icons-material/Speaker'
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
+import StorefrontIcon from '@mui/icons-material/Storefront'
+import CampaignIcon from '@mui/icons-material/Campaign'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import ListAltIcon from '@mui/icons-material/ListAlt'
+import Image from 'next/image'
 
 const initialLinks = [
   {
     title: 'Главная',
     url: Routes.Main,
+    icon: <HomeIcon />,
   },
   {
     title: 'Шоумены',
     url: Routes.Showman,
+    icon: <CampaignIcon />,
   },
   {
     title: 'Фотографы',
     url: Routes.Photographer,
+    icon: <MonochromePhotosIcon />,
   },
   {
     title: 'Диджеи',
     url: Routes.Dj,
+    icon: <HeadsetMicIcon />,
   },
   {
     title: 'Музыканты',
     url: Routes.Musicians,
+    icon: <MusicNoteIcon />,
   },
   {
     title: 'Аренда оборудования',
     url: Routes.EquipmentRental,
+    icon: <SpeakerIcon />,
   },
   {
     title: 'Аренда автомобилей',
     url: Routes.CarsRental,
+    icon: <DirectionsCarIcon />,
   },
   {
     title: 'Аренда костюмов',
     url: Routes.CostumeRental,
+    icon: <StorefrontIcon />,
   },
 ]
 
@@ -60,13 +79,16 @@ export const SideNav = (props: ISideNavProps) => {
 
   const content = (
     <div>
-      <div className={classes.logoSection}>Logo</div>
+      <div className={classes.logoSection}>
+        <Image src="/logo.png" alt="logo" width={200} height={100} />
+      </div>
       <div className={classes.linkWrapper}>
         {user && (
           <Link
             href={Routes.Profile}
             className={cn(classes.link, { [classes.linkActive]: pathname == Routes.Profile })}
           >
+            <AccountCircleIcon />
             Мой профиль
           </Link>
         )}
@@ -76,6 +98,7 @@ export const SideNav = (props: ISideNavProps) => {
             href={Routes.RequestList}
             className={cn(classes.link, { [classes.linkActive]: pathname == Routes.RequestList })}
           >
+            <ListAltIcon />
             Список заказов
           </Link>
         )}
@@ -86,6 +109,7 @@ export const SideNav = (props: ISideNavProps) => {
               className={cn(classes.link, { [classes.linkActive]: pathname == item.url })}
               key={item.title}
             >
+              {item.icon && item.icon}
               {item.title}
             </Link>
           )
@@ -102,7 +126,7 @@ export const SideNav = (props: ISideNavProps) => {
         PaperProps={{
           sx: {
             width: 280,
-            background: DarkGreen,
+            background: White,
           },
         }}
         variant="permanent"
@@ -120,7 +144,7 @@ export const SideNav = (props: ISideNavProps) => {
       PaperProps={{
         sx: {
           width: 280,
-          background: DarkGreen,
+          background: White,
         },
       }}
       sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}

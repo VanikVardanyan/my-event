@@ -1,6 +1,6 @@
-import { FontBody1Accent } from '@/shared/consts/fontStyles'
+import { FontBody1, FontBody1Accent } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
-import { White } from '@/shared/consts/colors'
+import { GreyBase, SlateGreyBase, TextSlateGreyBase, White } from '@/shared/consts/colors'
 
 export default tss.withName('SideNav').create({
   root: {},
@@ -16,15 +16,31 @@ export default tss.withName('SideNav').create({
     gap: 5,
   },
   link: {
-    ...FontBody1Accent,
-    color: White,
-    padding: '14px 14px',
+    ...FontBody1,
+    color: GreyBase,
+    padding: '9px 14px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+
+    '& svg': {
+      fill: GreyBase,
+    },
 
     '&:hover': {
-      background: '#1c3c21',
+      color: TextSlateGreyBase,
+
+      '& svg': {
+        fill: TextSlateGreyBase,
+      },
     },
   },
   linkActive: {
-    background: '#1c3c21',
+    ...FontBody1Accent,
+    color: TextSlateGreyBase,
+
+    '& svg': {
+      fill: TextSlateGreyBase,
+    },
   },
 })
