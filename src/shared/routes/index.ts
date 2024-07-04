@@ -1,0 +1,16 @@
+export enum Routes {
+  Main = '/',
+  Showman = '/showman',
+  Photographer = '/photographer',
+  Dj = '/dj',
+  Musicians = '/musicians',
+  EquipmentRental = '/equipment-rental',
+  CarsRental = '/cars-rental',
+  CostumeRental = '/costume-rental',
+  Signin = '/signin',
+  Register = '/register',
+  Setting = '/setting',
+  ProfileSetting = '/profile-setting',
+  Profile = '/profile',
+  RequestList = '/request-list',
+}
