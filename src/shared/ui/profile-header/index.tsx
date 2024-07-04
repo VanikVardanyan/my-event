@@ -13,6 +13,7 @@ import EmailIcon from '@mui/icons-material/Email'
 import { Routes } from '@/shared/routes'
 import { IProfile } from '@/store/features/profile-slice/types'
 import { Networks } from '../profile-networks'
+import Link from 'next/link'
 
 export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const { classes } = useStyles()
@@ -77,7 +78,7 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
             {props?.profession?.map((profession) => <Chip label={profession} key={profession} />)}
           </div>
           {props.isMe && (
-            <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting}>
+            <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>
               Редактировать профиль
             </Button>
           )}

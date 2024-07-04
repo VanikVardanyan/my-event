@@ -5,10 +5,9 @@ export const Empty = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.imgSection}>no results</div>
       <div className={classes.contentWrapper}>
-        <h5 className={classes.title}>Oops! No Channels Found</h5>
-        <div className={classes.description}>We couldn’t find any Telegram channels that match your search</div>
+        <h5 className={classes.title}>Оупс!!!</h5>
+        <div className={classes.description}>К сожалению нечего не найдено</div>
       </div>
     </div>
   )

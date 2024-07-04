@@ -1,7 +1,7 @@
 'use client'
 
 import { doc, getDoc } from 'firebase/firestore'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { db } from '@/shared/lib/firebaseConfig'
 import { ProfileHeader } from '@/shared/ui/profile-header'
@@ -11,6 +11,7 @@ import useStyles from './styles'
 
 const UserPage = () => {
   const router: { slug: string } = useParams()
+  const history = useRouter()
   const [userData, setUserData] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const { classes } = useStyles()
@@ -21,6 +22,9 @@ const UserPage = () => {
         const userDoc = await getDoc(doc(db, 'profiles', router.slug))
         if (userDoc.exists()) {
           setUserData(userDoc.data())
+        } else {
+          console.log('No such document!')
+          history.push('/404')
         }
         setLoading(false)
       }

@@ -3,27 +3,28 @@ import toast from 'react-hot-toast'
 import { debounce } from '@mui/material'
 import { AxiosError } from 'axios'
 import cn from 'classnames'
-import { useRouter } from 'next/navigation'
 import SearchIcon from '@mui/icons-material/Search'
 import { SlateGreyDarken7, SlateGreyLighten10 } from '../../consts/colors'
 import CloseIcon from '@mui/icons-material/Close'
-import { Routes } from '../../routes'
 import { HTTPResponseStatusCodes } from '../../utils/error-message-by-code'
-import { createQueryParams } from '../../utils/requestUtils'
 import useStyles from './styles'
 import { Card } from './ui/card'
 import { Empty } from './ui/empty'
 import { Loader } from './ui/loader'
-
+import 'firebase/database'
 import errorToast from '@/shared/utils/error-toast'
+import { collection, where, query, getDocs } from 'firebase/firestore'
+import { db } from '../../lib/firebaseConfig'
+import { UserType } from '../../types/user.types'
+import { IProfile } from '@/store/features/profile-slice/types'
+import { useRouter } from 'next/navigation'
 
 export const InputSearch = () => {
-  const { push } = useRouter()
-
-  const [query, setQuery] = useState('')
+  const [queryParams, setQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+  const history = useRouter()
 
-  const [results, setResults] = useState<string[] | []>([])
+  const [results, setResults] = useState<any[] | []>([])
   const [loading, setLoading] = useState(false)
   const [isShowInput, setIsShowInput] = useState(false)
 
@@ -49,8 +50,16 @@ export const InputSearch = () => {
     () =>
       debounce(async (value: string) => {
         try {
-          // const response = await ChannelsApiRequest.getChannels(createQueryParams({ search: value }))
-          // setResults(response.data.results)
+          const usersRef = collection(db, 'profiles')
+          const q = query(usersRef, where('role', '==', UserType.PROVIDER), where('name', '==', value))
+
+          const querySnapshot = await getDocs(q)
+          const usersList: any = []
+          querySnapshot.forEach((doc) => {
+            usersList.push({ id: doc.id, ...doc.data() })
+          })
+
+          setResults(usersList)
           setLoading(false)
         } catch (error) {
           const e = error as AxiosError
@@ -77,8 +86,9 @@ export const InputSearch = () => {
     debouncedRequest(event.target.value)
   }
 
-  const channelClickHandler = (userName: string) => {
+  const channelClickHandler = (id: string) => {
     return () => {
+      history.push(`/user/${id}`)
       closeInput()
     }
   }
@@ -92,13 +102,13 @@ export const InputSearch = () => {
           </div>
           <input
             type="text"
-            value={query}
+            value={queryParams}
             onChange={handleSearch}
             placeholder="Search a channel"
             className={classes.input}
             ref={inputRef}
           />
-          {query.length > 0 && (
+          {queryParams.length > 0 && (
             <button className={classes.closeButton} onClick={closeInput}>
               <CloseIcon style={{ width: 16, height: 16, fill: SlateGreyLighten10 }} />
             </button>
@@ -107,8 +117,14 @@ export const InputSearch = () => {
         <button className={classes.mobileCloseButton} onClick={closeInput}>
           <CloseIcon style={{ width: 28, height: 28, fill: SlateGreyDarken7 }} />
         </button>
-        {query.length > 0 && (
-          <div className={cn(classes.channelsList, { [classes.channelListEmpty]: !results.length && !loading })}></div>
+        {queryParams.length > 0 && (
+          <div className={cn(classes.channelsList, { [classes.channelListEmpty]: !results.length && !loading })}>
+            {loading && <Loader />}
+            {!!results.length &&
+              !loading &&
+              results.map((item) => <Card key={item.id} {...item} channelClickHandler={channelClickHandler} />)}
+            {!results.length && !loading && <Empty />}
+          </div>
         )}
       </div>
       <button className={classes.mobileInputButton} onClick={showInputHandler}>
@@ -117,10 +133,3 @@ export const InputSearch = () => {
     </>
   )
 }
-// {loading && <Loader />}
-// {!!results.length &&
-//   !loading &&
-//   results.map((channel) => (
-//     <Card key={channel.username} {...channel} channelClickHandler={channelClickHandler} />
-//   ))}
-// {!results.length && !loading && <Empty />}
