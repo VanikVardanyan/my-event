@@ -1,5 +1,5 @@
-import { IChannelItem } from '@/store/features/channels-slice/types'
-
-export interface ICardProps extends IChannelItem {
+export interface ICardProps {
   channelClickHandler: (userName: string) => () => void
+  username: string
+  subscribers: string
 }
