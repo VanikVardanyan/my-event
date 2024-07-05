@@ -1,9 +1,8 @@
 import './globals.css'
-import { LayoutHeader } from '../shared/ui/layout-header'
-import { ReduxProvider } from '../store/provider'
+import { LayoutHeader } from '@/shared/ui/layout-header'
+import { ReduxProvider } from '@/store/provider'
 import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir'
-import { styled } from '@mui/material'
-import { AuthProvider } from '../shared/lib/auth-context'
+import { AuthProvider } from '@/shared/lib/auth-context'
 import { Metadata } from 'next'
 import { LayoutContainer, LayoutRoot } from './styles'
 
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default function ({
   children,
 }: Readonly<{
   children: React.ReactNode

@@ -10,13 +10,13 @@ export const RequestList = () => {
 
   const [requests, setRequests] = useState<(IRequestTypes[] & { responses: any[] }) | []>([])
 
-  useEffect(() => {
-    const fetchRequests = async () => {
-      const querySnapshot = await getDocs(collection(db, 'requests'))
-      const requestsData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-      setRequests(requestsData as any)
-    }
+  const fetchRequests = async () => {
+    const querySnapshot = await getDocs(collection(db, 'requests'))
+    const requestsData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    setRequests(requestsData as any)
+  }
 
+  useEffect(() => {
     fetchRequests()
   }, [])
 
@@ -24,7 +24,7 @@ export const RequestList = () => {
     <div className={classes.root}>
       <div className={classes.requestCards}>
         {requests.map((request: any) => (
-          <RequestCard key={request.id} {...request} />
+          <RequestCard key={request.id} {...request} updateAll={fetchRequests} />
         ))}
       </div>
     </div>

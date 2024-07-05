@@ -11,14 +11,16 @@ import { ProviderForm } from './ui/provider-form'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { db, storage } from '../../shared/lib/firebaseConfig'
+import { db, storage } from '@/shared/lib/firebaseConfig'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { useAuth } from '../../shared/lib/auth-context'
+import { useAuth } from '@/shared/lib/auth-context'
 import { useSelector } from 'react-redux'
-import { getProfile } from '../../store/selectors'
-import { Routes } from '../../shared/routes'
+import { getProfile } from '@/store/selectors'
+import { Routes } from '@/shared/routes'
 import { useRouter } from 'next/navigation'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { asyncSetProfileThunk } from '@/store/features/profile-slice'
+import { Dispatch } from '@/store/store'
 interface IFormValues {
   name: string
   role: string
@@ -40,6 +42,7 @@ const ProfileSetting = () => {
 
   const userAuth = useAuth()
   const { profile, loading } = useSelector(getProfile)
+  const dispatch = Dispatch()
 
   const [userType, setUserType] = useState<UserType | ''>('')
 
@@ -128,6 +131,7 @@ const ProfileSetting = () => {
       }
 
       await setDoc(doc(db, 'profiles', userAuth.user.uid), updatedProfile)
+      await dispatch(asyncSetProfileThunk())
       router.push(Routes.Profile)
     } catch (error) {
       console.error('Error submitting form:', error)

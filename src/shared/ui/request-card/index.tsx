@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { IRequestTypes } from '@/app/profile/ui/request-create-modal/types'
 import useStyles from './styles'
 import { Box, Button, Card } from '@mui/material'
 import { useAuth } from '../../lib/auth-context'
@@ -12,8 +11,11 @@ import { deleteDoc } from 'firebase/firestore'
 import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { IRequestTypes } from '@/app/profile/ui/request-create-modal/types'
 
-export const RequestCard = (props: IRequestTypes & { responses: any[]; id: string; isMe?: boolean }) => {
+export const RequestCard = (
+  props: IRequestTypes & { responses: any[]; id: string; isMe?: boolean; updateAll: () => void }
+) => {
   const { service, city, amount, date, personQuantity, location, responses, id, isMe } = props
   const { profile } = useSelector(getProfile)
   const { classes } = useStyles()
@@ -35,6 +37,9 @@ export const RequestCard = (props: IRequestTypes & { responses: any[]; id: strin
             userAvatar: profile?.avatar || '', // ссылка на аватар пользователя
           }),
         })
+      }
+      if (props.updateAll) {
+        props.updateAll()
       }
       setLoading(false)
     } catch (error) {

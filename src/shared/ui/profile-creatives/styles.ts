@@ -1,5 +1,6 @@
 import { styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
+import { SlateGreyLighten46 } from '../../consts/colors'
 
 export default tss.withName('ProfileCreatives').create({
   root: {},
@@ -8,6 +9,9 @@ export default tss.withName('ProfileCreatives').create({
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
     gap: 5,
+  },
+  imageWrapper: {
+    position: 'relative',
   },
   image: {
     objectFit: 'cover',
