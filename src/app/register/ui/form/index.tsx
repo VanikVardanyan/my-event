@@ -10,6 +10,7 @@ import * as yup from 'yup'
 import { useRouter } from 'next/navigation'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/shared/lib/firebaseConfig'
+import { useTranslations } from 'next-intl'
 
 interface IFormValues {
   email: string
@@ -21,16 +22,19 @@ interface IFormValues {
   password: string
   password_confirmation: string
 }
-const schema = yup.object().shape({
-  email: yup.string().email('Неверный email').required('Обязательное поле'),
-  password: yup.string().min(6, 'пароль должен быть минимум 6 символа').required('Обязательное поле'),
-  password_confirmation: yup
-    .string()
-    .oneOf([yup.ref('password'), ''], 'Пароли должны совпадать')
-    .required('Обязательное поле'),
-})
 
 export const Register = () => {
+  const t = useTranslations('Register')
+
+  const schema = yup.object().shape({
+    email: yup.string().email(t('invalid_email')).required(t('required_field')),
+    password: yup.string().min(6, t('password_min_length')).required(t('required_field')),
+    password_confirmation: yup
+      .string()
+      .oneOf([yup.ref('password'), ''], t('password_match'))
+      .required(t('required_field')),
+  })
+
   const { classes } = useStyles()
   const route = useRouter()
 
@@ -59,11 +63,11 @@ export const Register = () => {
   return (
     <div className={classes.root}>
       <button className={classes.googleBtn}>
-        <GmailIcon /> Зарегистрироваться с помощю email
+        <GmailIcon /> {t('sign_up_with_email')}
       </button>
       <div className={classes.withEmail}>
         <div className={classes.line} />
-        <div className={classes.withEmailText}>Зарегистрироваться с помощю email</div>
+        <div className={classes.withEmailText}>{t('sign_up_with_email')}</div>
         <div className={classes.line} />
       </div>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -72,7 +76,7 @@ export const Register = () => {
           {...register('email')}
           fullWidth
           variant="outlined"
-          label="email"
+          label={t('email')}
           error={!!errors.email}
           helperText={errors.email?.message}
           autoFocus
@@ -82,7 +86,7 @@ export const Register = () => {
           {...register('password')}
           fullWidth
           variant="outlined"
-          label="пароль"
+          label={t('password')}
           error={!!errors.password}
           helperText={errors.password?.message}
           autoFocus
@@ -92,7 +96,7 @@ export const Register = () => {
           {...register('password_confirmation')}
           fullWidth
           variant="outlined"
-          label="повторите пароль"
+          label={t('confirm_password')}
           error={!!errors.password}
           helperText={errors.password_confirmation?.message}
           autoFocus
@@ -106,14 +110,14 @@ export const Register = () => {
           className={classes.signInButton}
           onSubmit={handleSubmit(onSubmit)}
         >
-          Регистрация
+          {t('register')}
         </Button>
       </form>
 
       <div className={classes.footer}>
-        Уже есьт аккаунта?{' '}
+        {t('already_have_account')}{' '}
         <Link href={Routes.Signin} className={classes.linkRegister}>
-          Войти
+          {t('sign_in')}
         </Link>{' '}
       </div>
     </div>

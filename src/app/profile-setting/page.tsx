@@ -21,6 +21,7 @@ import { useRouter } from 'next/navigation'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
+import { useTranslations } from 'next-intl'
 interface IFormValues {
   name: string
   role: string
@@ -40,6 +41,8 @@ const ProfileSetting = () => {
   const { classes } = useStyles()
   const router = useRouter()
 
+  const t = useTranslations('ProfileSetting')
+
   const userAuth = useAuth()
   const { profile, loading } = useSelector(getProfile)
   const dispatch = Dispatch()
@@ -49,21 +52,21 @@ const ProfileSetting = () => {
   const [step, setStep] = useState<number>(1)
 
   const schema = yup.object().shape({
-    name: yup.string().min(2, 'минимум 2 символа').required('Обязательное поле'),
-    role: yup.string().required('Обязательное поле'),
+    name: yup.string().min(2, t('minimum_characters')).required(t('required_field')),
+    role: yup.string().required(t('required_field')),
     profession: yup.array().when('role', {
       is: UserType.PROVIDER,
-      then: () => yup.array().required('Обязательное поле'),
+      then: () => yup.array().required(t('required_field')),
       otherwise: () => yup.array(),
     }),
     nickname: yup.string(),
-    email: yup.string().email('Неверный email'),
+    email: yup.string().email(t('invalid_email')),
     phone: yup.string(),
     avatar: yup.mixed(),
-    facebook: yup.string().url('Неверный формат'),
-    instagram: yup.string().url('Неверный формат'),
-    youtube: yup.string().url('Неверный формат'),
-    tiktok: yup.string().url('Неверный формат'),
+    facebook: yup.string().url(t('invalid_format')),
+    instagram: yup.string().url(t('invalid_format')),
+    youtube: yup.string().url(t('invalid_format')),
+    tiktok: yup.string().url(t('invalid_format')),
     description: yup.string(),
   })
 
@@ -177,19 +180,19 @@ const ProfileSetting = () => {
         <div className={classes.stepSection}>
           {step !== 1 && (
             <Button variant="outlined" color="success" onClick={onPrevStep}>
-              Назад
+              {t('back')}
             </Button>
           )}
           {!profile?.role && <ProgressBar currentStep={step} totalStep={2} />}
 
           {step === 1 && (
             <Button variant="outlined" color="success" onClick={onNextStep} disabled={!userType}>
-              Далее
+              {t('next')}
             </Button>
           )}
           {step === 2 && (
             <Button type="submit" variant="outlined" color="success" onClick={methods.handleSubmit(onSubmit)}>
-              Завершить
+              {t('finish')}
             </Button>
           )}
         </div>

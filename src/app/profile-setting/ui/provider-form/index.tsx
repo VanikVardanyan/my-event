@@ -10,6 +10,7 @@ import makeAnimated from 'react-select/animated'
 import { Professions, UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
+import { useTranslations } from 'next-intl'
 
 const WithStyledFlag = styled(MuiTelInput)`
   .${classes.flagContainer} {
@@ -32,6 +33,8 @@ export const ProviderForm = () => {
   const { classes } = useStyles()
   const animatedComponents = makeAnimated()
   const { profile } = useSelector(getProfile)
+
+  const t = useTranslations('ProfileSetting')
 
   const [avatarPreview, setAvatarPreview] = useState<string | null>(profile?.avatar || null)
 
@@ -103,7 +106,7 @@ export const ProviderForm = () => {
             startIcon={<CloudUploadIcon />}
             fullWidth
           >
-            Загрузить аватар
+            {t('upload_avatar')}
             <VisuallyHiddenInput type="file" onChange={handleAvatarChange} />
           </Button>
         </div>
@@ -114,8 +117,8 @@ export const ProviderForm = () => {
             fullWidth
             autoCorrect="off"
             {...register('name')}
-            label={'Имя'}
-            placeholder="Введите имя"
+            label={t('name')}
+            placeholder={t('enter_name')}
             type="text"
             autoComplete="off"
             error={!!errors.name}
@@ -126,8 +129,8 @@ export const ProviderForm = () => {
             fullWidth
             autoCorrect="off"
             {...register('nickname')}
-            label={'Никнэйм'}
-            placeholder="Введите никнэйм"
+            label={t('nickname')}
+            placeholder={t('enter_nickname')}
             type="text"
             autoComplete="off"
             error={!!errors.nickname}
@@ -137,8 +140,8 @@ export const ProviderForm = () => {
             fullWidth
             autoCorrect="off"
             {...register('email')}
-            label={'email'}
-            placeholder="email"
+            label={t('email')}
+            placeholder={t('enter_email')}
             type="text"
             autoComplete="off"
             error={!!errors.email}
@@ -152,7 +155,7 @@ export const ProviderForm = () => {
           components={animatedComponents}
           isMulti
           options={professionsOptions}
-          placeholder="Выберите тип услуги (макс. 2)"
+          placeholder={t('select_profession')}
           onChange={professionsSelectHandler}
           isOptionDisabled={() => professionWatcher && professionWatcher.length >= 2}
           value={professionWatcher?.map((item: any) => ({ label: item, value: item }))}
@@ -163,8 +166,8 @@ export const ProviderForm = () => {
         fullWidth
         autoCorrect="off"
         {...register('description')}
-        label={'Опишите себя'}
-        placeholder="Опишите себя"
+        label={t('describe_yourself')}
+        placeholder={t('enter_description')}
         type="text"
         autoComplete="off"
         rows={4}
@@ -175,8 +178,8 @@ export const ProviderForm = () => {
           fullWidth
           autoCorrect="off"
           {...register('facebook')}
-          label={'Ссылка на ваш facebook'}
-          placeholder="Ссылка на ваш facebook"
+          label={t('facebook_link')}
+          placeholder={t('enter_facebook_link')}
           type="text"
           autoComplete="off"
           size="small"
@@ -187,8 +190,8 @@ export const ProviderForm = () => {
           fullWidth
           autoCorrect="off"
           {...register('instagram')}
-          label={'Ссылка на ваш instagram'}
-          placeholder="Ссылка на ваш instagram"
+          label={t('instagram_link')}
+          placeholder={t('enter_instagram_link')}
           type="text"
           autoComplete="off"
           size="small"
@@ -199,8 +202,8 @@ export const ProviderForm = () => {
           fullWidth
           autoCorrect="off"
           {...register('youtube')}
-          label={'Ссылка на ваш youtube'}
-          placeholder="Ссылка на ваш youtube"
+          label={t('youtube_link')}
+          placeholder={t('enter_youtube_link')}
           type="text"
           autoComplete="off"
           size="small"
@@ -211,8 +214,8 @@ export const ProviderForm = () => {
           fullWidth
           autoCorrect="off"
           {...register('tiktok')}
-          label={'Ссылка на ваш tiktok'}
-          placeholder="Ссылка на ваш tiktok"
+          label={t('tiktok_link')}
+          placeholder={t('enter_tiktok_link')}
           type="text"
           autoComplete="off"
           size="small"

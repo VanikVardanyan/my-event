@@ -8,14 +8,17 @@ import { UserType } from '@/shared/types/user.types'
 import { ProfileHeader } from '@/shared/ui/profile-header'
 import { ProfileCreatives } from '@/shared/ui/profile-creatives'
 import { ProtectedRoute } from '@/shared/lib/protected-router'
+import { useTranslations } from 'next-intl'
 
 const Profile = () => {
   const { profile, loading } = useSelector(getProfile)
+  const t = useTranslations('Shared')
 
   const { classes } = useStyles()
   const isBusiness = profile?.role === UserType.PROVIDER
 
   if (loading || !profile) {
+    // TODO: Add loading spinner
     return <div>Loadingooo...</div>
   }
 

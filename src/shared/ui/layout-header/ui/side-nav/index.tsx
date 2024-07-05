@@ -23,55 +23,58 @@ import CampaignIcon from '@mui/icons-material/Campaign'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import Image from 'next/image'
-
-const initialLinks = [
-  {
-    title: 'Главная',
-    url: Routes.Main,
-    icon: <HomeIcon />,
-  },
-  {
-    title: 'Шоумены',
-    url: Routes.Showman,
-    icon: <CampaignIcon />,
-  },
-  {
-    title: 'Фотографы',
-    url: Routes.Photographer,
-    icon: <MonochromePhotosIcon />,
-  },
-  {
-    title: 'Диджеи',
-    url: Routes.Dj,
-    icon: <HeadsetMicIcon />,
-  },
-  {
-    title: 'Музыканты',
-    url: Routes.Musicians,
-    icon: <MusicNoteIcon />,
-  },
-  {
-    title: 'Аренда оборудования',
-    url: Routes.EquipmentRental,
-    icon: <SpeakerIcon />,
-  },
-  {
-    title: 'Аренда автомобилей',
-    url: Routes.CarsRental,
-    icon: <DirectionsCarIcon />,
-  },
-  {
-    title: 'Аренда костюмов',
-    url: Routes.CostumeRental,
-    icon: <StorefrontIcon />,
-  },
-]
+import { useTranslations } from 'next-intl'
 
 export const SideNav = (props: ISideNavProps) => {
   const { profile, loading } = useSelector(getProfile)
   const { isOpen, setOpen } = props
   const pathname = usePathname()
+
+  const t = useTranslations('Menu')
   const { user } = useAuth()
+
+  const initialLinks = [
+    {
+      title: t('home'),
+      url: Routes.Main,
+      icon: <HomeIcon />,
+    },
+    {
+      title: t('showmen'),
+      url: Routes.Showman,
+      icon: <CampaignIcon />,
+    },
+    {
+      title: t('photographers'),
+      url: Routes.Photographer,
+      icon: <MonochromePhotosIcon />,
+    },
+    {
+      title: t('djs'),
+      url: Routes.Dj,
+      icon: <HeadsetMicIcon />,
+    },
+    {
+      title: t('musicians'),
+      url: Routes.Musicians,
+      icon: <MusicNoteIcon />,
+    },
+    {
+      title: t('equipment_rental'),
+      url: Routes.EquipmentRental,
+      icon: <SpeakerIcon />,
+    },
+    {
+      title: t('cars_rental'),
+      url: Routes.CarsRental,
+      icon: <DirectionsCarIcon />,
+    },
+    {
+      title: t('costume_rental'),
+      url: Routes.CostumeRental,
+      icon: <StorefrontIcon />,
+    },
+  ]
 
   const theme = useTheme()
   const lgUp = useMediaQuery(theme.breakpoints.up('lg'))
@@ -89,7 +92,7 @@ export const SideNav = (props: ISideNavProps) => {
             className={cn(classes.link, { [classes.linkActive]: pathname == Routes.Profile })}
           >
             <AccountCircleIcon />
-            Мой профиль
+            {t('my_profile')}
           </Link>
         )}
 
@@ -99,7 +102,7 @@ export const SideNav = (props: ISideNavProps) => {
             className={cn(classes.link, { [classes.linkActive]: pathname == Routes.RequestList })}
           >
             <ListAltIcon />
-            Список заказов
+            {t('request_list')}
           </Link>
         )}
         {initialLinks.map((item) => {

@@ -6,6 +6,7 @@ export default tss.withName('SignIn').create({
   root: {
     maxWidth: 400,
     margin: 'auto',
+    minWidth: 300,
   },
   googleBtn: {
     ...FontBody1Accent,

@@ -12,9 +12,12 @@ import { getProfile } from '@/store/selectors'
 
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
+import { useTranslations } from 'next-intl'
 
 export const UserInfo = () => {
   const { classes } = useStyles()
+  const t = useTranslations('Profile')
+
   const [openModal, setOpenModal] = useState(false)
   const handleCloseModal = () => setOpenModal(false)
   const handleOpenModal = () => setOpenModal(true)
@@ -44,11 +47,11 @@ export const UserInfo = () => {
           className={classes.avatar}
         />
         <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting}>
-          Редактировать профиль
+          {t('edit_profile')}
         </Button>
         <div className={classes.name}>{profile?.name}</div>
         <Button variant="contained" endIcon={<AddCircleOutlineIcon />} onClick={handleOpenModal}>
-          добавить запрос
+          {t('add_request')}
         </Button>
       </div>
 
