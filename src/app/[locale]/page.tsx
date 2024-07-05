@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import useStyles from './styles'
 import { Button } from '@mui/material'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/navigation'
 import { Routes } from '../../shared/routes'
 import { useTranslations } from 'next-intl'
 

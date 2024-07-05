@@ -12,6 +12,7 @@ import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
 import { useState } from 'react'
 import { ImageAction } from './ui/image-action'
+import { useTranslations } from 'next-intl'
 
 interface IImages {
   images: string[] | []
@@ -25,6 +26,8 @@ export const ProfileCreatives = (props: IImages) => {
   const dispatch = Dispatch()
   const { profile } = useSelector(getProfile)
   const [loading, setLoading] = useState(false)
+
+  const t = useTranslations('Profile')
 
   // const [userImages, setUserImages] = useState<string[]>([])
 
@@ -88,8 +91,8 @@ export const ProfileCreatives = (props: IImages) => {
     <div>
       {isMe && (
         <Button component="label" variant="contained" startIcon={<LibraryAddIcon />} sx={{ mb: 2 }}>
-          {loading && 'Загрузка...'}
-          {!loading && 'Загрузить изображения'}
+          {loading && 'loading...'}
+          {!loading && t('add_image')}
           <VisuallyHiddenInput multiple type="file" onChange={handleChangeMultipleFile} />
         </Button>
       )}

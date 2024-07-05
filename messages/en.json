@@ -40,7 +40,8 @@
     "Profile": {
         "profile": "Profile",
         "edit_profile": "Edit profile",
-        "add_request": "Add a service request"
+        "add_request": "Add a service request",
+        "add_image": "Add image"
     },
     "Request": {
         "required_field": "This field is required",

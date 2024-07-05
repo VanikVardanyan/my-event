@@ -6,7 +6,8 @@ import { MenuItem as BaseMenuItem, menuItemClasses } from '@mui/base/MenuItem'
 import { styled } from '@mui/system'
 import { CssTransition } from '@mui/base/Transitions'
 import { PopupContext } from '@mui/base/Unstable_Popup'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 
@@ -26,13 +27,7 @@ function removeLanguageFromURL(url: string) {
 export const SwitchLanguage = () => {
   const router = useRouter()
   const pathname = usePathname()
-  const t = useTranslations('Language')
   const locale = useLocale()
-
-  const Language = {
-    en: t('en'),
-    ru: t('ru'),
-  }
 
   const createHandleMenuClick = (lng: string) => {
     return () => {

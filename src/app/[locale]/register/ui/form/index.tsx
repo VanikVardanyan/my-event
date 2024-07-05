@@ -49,8 +49,8 @@ export const Register = () => {
   const onSubmit: SubmitHandler<IFormValues> = async (data: any) => {
     if (data) {
       try {
-        await createUserWithEmailAndPassword(auth, data.email, data.password).then((resp) => {
-          route.push(Routes.Profile)
+        await createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
+          route.push(Routes.ProfileSetting)
         })
       } catch (error) {
         console.error(error)
