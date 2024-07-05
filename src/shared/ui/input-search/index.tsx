@@ -18,8 +18,10 @@ import { db } from '../../lib/firebaseConfig'
 import { UserType } from '../../types/user.types'
 import { IProfile } from '@/store/features/profile-slice/types'
 import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl'
 
 export const InputSearch = () => {
+  const t = useTranslations('Shared')
   const [queryParams, setQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const history = useRouter()
@@ -104,7 +106,7 @@ export const InputSearch = () => {
             type="text"
             value={queryParams}
             onChange={handleSearch}
-            placeholder="Search a channel"
+            placeholder={t('search')}
             className={classes.input}
             ref={inputRef}
           />

@@ -14,9 +14,11 @@ import { Routes } from '@/shared/routes'
 import { IProfile } from '@/store/features/profile-slice/types'
 import { Networks } from '../profile-networks'
 import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 
 export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const { classes } = useStyles()
+  const t = useTranslations('Profile')
 
   const getNetworksContent = () => {
     const networks = []
@@ -79,7 +81,7 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
           </div>
           {props.isMe && (
             <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>
-              Редактировать профиль
+              {t('edit_profile')}
             </Button>
           )}
         </div>

@@ -11,15 +11,7 @@ import { getProfile } from '../../../../store/selectors'
 import { IRequestTypes } from './types'
 import { asyncSetProfileThunk } from '../../../../store/features/profile-slice'
 import { Dispatch } from '../../../../store/store'
-
-const schema = yup.object().shape({
-  service: yup.string().required('Обязательное поле'),
-  location: yup.string().required('Обязательное поле'),
-  city: yup.string().required('Обязательное поле'),
-  personQuantity: yup.number().required('Обязательное поле'),
-  amount: yup.string().required('Обязательное поле'),
-  date: yup.string().required('Обязательное поле'),
-})
+import { useTranslations } from 'next-intl'
 
 const categories = Object.keys(Professions).map((item) => ({
   value: item,
@@ -43,6 +35,16 @@ const style = {
 
 export const RequestCreateModal = (props: Iprops) => {
   const { handleClose } = props
+  const t = useTranslations('Request')
+
+  const schema = yup.object().shape({
+    service: yup.string().required(t('required_field')),
+    location: yup.string().required(t('required_field')),
+    city: yup.string().required(t('required_field')),
+    personQuantity: yup.number().required(t('required_field')),
+    amount: yup.string().required(t('required_field')),
+    date: yup.string().required(t('required_field')),
+  })
 
   const [category, setCategory] = useState('')
   const { userId } = useSelector(getProfile)
@@ -95,7 +97,7 @@ export const RequestCreateModal = (props: Iprops) => {
             <TextField
               required
               id="city"
-              label={'Город'}
+              label={t('city')}
               {...register('city')}
               fullWidth
               size="small"
@@ -109,7 +111,7 @@ export const RequestCreateModal = (props: Iprops) => {
             <TextField
               required
               id="location"
-              label={'Название заведение'}
+              label={t('location')}
               {...register('location')}
               fullWidth
               size="small"
@@ -121,14 +123,14 @@ export const RequestCreateModal = (props: Iprops) => {
           </Grid>
           <Grid item xs={12} sm={7}>
             <FormControl fullWidth size="small">
-              <InputLabel id="demo-simple-select-label">тип услуги</InputLabel>
+              <InputLabel id="demo-simple-select-label">{t('service')}</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={category}
                 {...register('service')}
                 error={!!errors.service}
-                label={'выберите услугу'}
+                label={t('select_service')}
                 onChange={handleChange}
                 fullWidth
               >
@@ -144,7 +146,7 @@ export const RequestCreateModal = (props: Iprops) => {
             <TextField
               required
               id="personQuantity"
-              label={'количество гостей'}
+              label={t('person_quantity')}
               {...register('personQuantity')}
               type="number"
               fullWidth
@@ -164,7 +166,7 @@ export const RequestCreateModal = (props: Iprops) => {
                   required
                   id="amount"
                   type="text"
-                  label="бюджет"
+                  label={t('budget')}
                   onChange={(e) => {
                     const onlyNumbers = e.target.value.replace(/\D/g, '') // Удаляет все нецифровые символы
                     onChange(formatNumber(onlyNumbers))
@@ -186,7 +188,7 @@ export const RequestCreateModal = (props: Iprops) => {
             <TextField
               required
               id="data"
-              label={'дата'}
+              label={t('date')}
               type="date"
               {...register('date')}
               fullWidth
@@ -200,7 +202,7 @@ export const RequestCreateModal = (props: Iprops) => {
         </Grid>
         <Grid item xs={12} sm={4}>
           <Button variant="contained" type="submit">
-            <Typography variant="button">создать</Typography>
+            <Typography variant="button">{t('create_request')}</Typography>
           </Button>
         </Grid>
       </Box>

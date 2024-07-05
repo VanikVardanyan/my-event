@@ -7,10 +7,12 @@ import { useFormContext } from 'react-hook-form'
 import { UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
 import { getProfile } from '../../../../store/selectors'
+import { useTranslations } from 'next-intl'
 
 export const ClientForm = () => {
   const { classes } = useStyles()
   const { profile } = useSelector(getProfile)
+  const t = useTranslations('ProfileSetting')
 
   const [avatarPreview, setAvatarPreview] = useState<string | null>(profile?.avatar || null)
 
@@ -53,8 +55,8 @@ export const ClientForm = () => {
           fullWidth
           autoCorrect="off"
           {...register('name')}
-          label={'Имя'}
-          placeholder="Введите имя"
+          label={t('name')}
+          placeholder={t('enter_name')}
           type="text"
           autoComplete="off"
           error={!!errors.name}
@@ -69,7 +71,7 @@ export const ClientForm = () => {
           startIcon={<CloudUploadIcon />}
           fullWidth
         >
-          Загрузить аватар
+          {t('upload_avatar')}
           <VisuallyHiddenInput type="file" onChange={handleAvatarChange} />
         </Button>
       </div>

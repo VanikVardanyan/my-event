@@ -16,9 +16,12 @@ import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Dispatch } from '@/store/store'
 import { setProfile } from '@/store/features/profile-slice'
+import { useTranslations } from 'next-intl'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
+  const t = useTranslations('Menu')
+
   const [isOpenMenu, setOpenMenu] = useState(false)
   const { user, setUser, loading } = useAuth()
   const { profile, loading: ProfileLoading } = useSelector(getProfile)
@@ -43,6 +46,10 @@ export const LayoutHeader = () => {
       dispatch(setProfile({}))
       setUser(null)
     })
+  }
+
+  const handleLanguageChange = (e: any) => {
+    console.log(e.target.value)
   }
   const isLoading = loading || ProfileLoading
 
@@ -71,10 +78,10 @@ export const LayoutHeader = () => {
         {!user && (
           <>
             <Button variant="outlined">
-              <Link href={'/signin'}>Вход</Link>
+              <Link href={'/signin'}>{t('login')}</Link>
             </Button>
             <Button variant="outlined">
-              <Link href={'/register'}>Регистрация</Link>
+              <Link href={'/register'}>{t('register')}</Link>
             </Button>
           </>
         )}
@@ -85,11 +92,15 @@ export const LayoutHeader = () => {
               <Avatar alt="Remy Sharp" src={profile?.avatar || '/default.jpg'} />
             </Link>
             <Button variant="outlined" onClick={signOutHandler}>
-              Выйти
+              {t('sign_out')}
             </Button>
           </>
         )}
       </div>
+      <select name="" id="" onChange={handleLanguageChange}>
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+      </select>
       <SideNav setOpen={menuClickHandler} isOpen={isOpenMenu} />
     </header>
   )

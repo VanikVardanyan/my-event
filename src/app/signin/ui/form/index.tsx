@@ -23,18 +23,21 @@ import * as yup from 'yup'
 import { useRouter } from 'next/navigation'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/shared/lib/firebaseConfig'
+import { useTranslations } from 'next-intl'
 
 interface IFormValues {
   email: string
   password: string
 }
 
-const schema = yup.object().shape({
-  email: yup.string().email('Неверный email').required('Обязательное поле'),
-  password: yup.string().min(6, 'минимум 6 символов').required('Обязательное поле'),
-})
-
 export const SignIn = () => {
+  const t = useTranslations('Signin')
+
+  const schema = yup.object().shape({
+    email: yup.string().email(t('invalid_email')).required(t('required')),
+    password: yup.string().min(6, t('password_min_length')).required(t('required')),
+  })
+
   const { classes } = useStyles()
   const route = useRouter()
 
@@ -72,11 +75,11 @@ export const SignIn = () => {
   return (
     <div className={classes.root}>
       <button className={classes.googleBtn} onClick={signInWithGoogle}>
-        <GmailIcon /> Войти с помощю email
+        <GmailIcon /> {t('sign_in_with_email')}
       </button>
       <div className={classes.withEmail}>
         <div className={classes.line} />
-        <div className={classes.withEmailText}>Войти с помощю email</div>
+        <div className={classes.withEmailText}>{t('sign_in_with_email')}</div>
         <div className={classes.line} />
       </div>
       <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -91,7 +94,7 @@ export const SignIn = () => {
           autoFocus
         />
         <FormControl variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password">{t('password')}</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
             type={showPassword ? 'text' : 'password'}
@@ -110,15 +113,15 @@ export const SignIn = () => {
                 </IconButton>
               </InputAdornment>
             }
-            label="Passworsd"
+            label={t('password')}
           />
           <FormHelperText error>{errors.password?.message}</FormHelperText>
 
-          <FormHelperText id="filled-weight-helper-text">
+          {/* <FormHelperText id="filled-weight-helper-text">
             <Link href="#" className={classes.linkForgot}>
               Забыли пароль?
             </Link>
-          </FormHelperText>
+          </FormHelperText> */}
         </FormControl>
         <Button
           type="submit"
@@ -129,15 +132,15 @@ export const SignIn = () => {
           className={classes.signInButton}
           onSubmit={handleSubmit(onSubmit)}
         >
-          Вход
+          {t('sign_in')}
         </Button>
       </form>
 
       <div className={classes.footer}>
-        У вас еще нет аккаунта?{' '}
+        {t('no_account')}{' '}
         <Link href={Routes.Register} className={classes.linkRegister}>
-          Зарегистрироваться
-        </Link>{' '}
+          {t('register')}
+        </Link>
       </div>
     </div>
   )

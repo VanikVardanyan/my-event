@@ -3,6 +3,7 @@ import { IUserTypeSelection } from './types'
 import { UserType } from '@/shared/types/user.types'
 import useStyles from './styles'
 import cn from 'classnames'
+import { useTranslations } from 'next-intl'
 
 interface ICard {
   onSelectUserType: (type: UserType) => () => void
@@ -12,19 +13,9 @@ interface ICard {
   type: UserType
 }
 
-const userTypeData = {
-  [UserType.PROVIDER]: {
-    title: 'Поставщик услуг',
-    description: 'Предлагаю услуги для мероприятий',
-  },
-  [UserType.CLIENT]: {
-    title: 'Клиент',
-    description: 'Ищу услуги и организовываю мероприятия',
-  },
-}
-
 const Card = (props: ICard) => {
   const { classes } = useStyles()
+
   const { onSelectUserType, currentUserType, title, description, type } = props
 
   return (
@@ -42,7 +33,20 @@ const Card = (props: ICard) => {
 
 const UserTypeSelection = (props: IUserTypeSelection) => {
   const { onSelectUserType, currentUserType } = props
+  const t = useTranslations('ProfileSetting')
+
   const { classes } = useStyles()
+
+  const userTypeData = {
+    [UserType.PROVIDER]: {
+      title: t('provider_title'),
+      description: t('provider_description'),
+    },
+    [UserType.CLIENT]: {
+      title: t('client_title'),
+      description: t('client_description'),
+    },
+  }
 
   return (
     <div className={classes.container}>

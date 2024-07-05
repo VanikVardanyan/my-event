@@ -12,6 +12,7 @@ import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { IRequestTypes } from '@/app/profile/ui/request-create-modal/types'
+import { useTranslations } from 'next-intl'
 
 export const RequestCard = (
   props: IRequestTypes & { responses: any[]; id: string; isMe?: boolean; updateAll: () => void }
@@ -20,6 +21,8 @@ export const RequestCard = (
   const { profile } = useSelector(getProfile)
   const { classes } = useStyles()
   const { user } = useAuth()
+
+  const t = useTranslations('RequestList')
 
   const [loading, setLoading] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -74,29 +77,29 @@ export const RequestCard = (
       <h3 className={classes.title}>{service}</h3>
       <div className={classes.content}>
         <div className={classes.label}>
-          Город: <span className={classes.description}>{city}</span>
+          {t('city')}: <span className={classes.description}>{city}</span>
         </div>
         <div>
-          Количество гостей: <span className={classes.description}>{personQuantity}</span>
+          {t('guests_count')}: <span className={classes.description}>{personQuantity}</span>
         </div>
         <div>
-          Место: <span className={classes.description}>{location}</span>
+          {t('location')}: <span className={classes.description}>{location}</span>
         </div>
         <div>
-          Дата: <span className={classes.description}>{date}</span>
+          {t('date')}: <span className={classes.description}>{date}</span>
         </div>
         <div>
-          Бюджет: <span className={classes.description}>{amount}dram</span>
+          {t('budget')}: <span className={classes.description}>{amount}dram</span>
         </div>
       </div>
       <div>
-        Количество откликов: <span className={classes.description}>{responses.length}</span>
+        {t('responses_count')}: <span className={classes.description}>{responses.length}</span>
       </div>
       {isMe && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           {responses.length > 0 && (
             <Button variant="contained" onClick={handleOpenModal}>
-              Посмотреть отклики
+              {t('view_responses')}
             </Button>
           )}
 
@@ -107,13 +110,13 @@ export const RequestCard = (
             startIcon={<DeleteIcon />}
             disabled={loading}
           >
-            Удалить
+            {t('delete')}
           </Button>
         </Box>
       )}
       {!isMe && (
         <Button variant="contained" color="success" onClick={handleRespond}>
-          Откликнуться
+          {t('respond')}
         </Button>
       )}
 

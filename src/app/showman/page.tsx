@@ -7,9 +7,11 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../../shared/lib/firebaseConfig'
 import { Professions } from '../../shared/types/user.types'
 import { IPostProps } from '../../shared/ui/service-post/types'
+import { useTranslations } from 'next-intl'
 
 const ShowMan = () => {
   const { classes } = useStyles()
+  const t = useTranslations('Shared')
 
   const [providerUsers, setProviderUsers] = useState<any>([])
   const [loading, setLoading] = useState(true)
@@ -47,7 +49,7 @@ const ShowMan = () => {
         {providerUsers.map((service: any) => (
           <ServicePost key={service.id} {...service} />
         ))}
-        {providerUsers.length === 0 && !loading && <div>Нет данных</div>}
+        {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
       </div>
     </div>
   )
