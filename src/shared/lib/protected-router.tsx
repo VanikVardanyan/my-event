@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ReactNode, useEffect, useLayoutEffect } from 'react'
+import { ReactNode, useLayoutEffect } from 'react'
 import { useAuth } from './auth-context'
 import { UserType } from '../types/user.types'
 import { Routes } from '../routes'

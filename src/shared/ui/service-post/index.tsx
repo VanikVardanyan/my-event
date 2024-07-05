@@ -15,18 +15,24 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   return (
     <div className={classes.root}>
       <Link href={`/user/${id}`} className={classes.header}>
-        <Image src={avatar || '/default.jpg'} alt={`${name}`} width={42} height={42} className={classes.avatar} />
+        <Image src={avatar || '/default.jpg'} alt={'image'} width={42} height={42} className={classes.avatar} />
         <div className={classes.userName}>
           {name} <span className={classes.profession}>({profession.map((item) => item).join(', ')})</span>
         </div>
       </Link>
       <div className={classes.carouselWrapper}>
-        {images.length === 0 && <Image src={'/default.jpg'} alt={`default`} width={468} height={468} />}
-        {images.length > 1 && (
+        {images.length === 0 && <Image src={'/default.jpg'} alt={'default'} width={468} height={468} />}
+        {images.length > 0 && (
           <Carousel showThumbs={false}>
             {images.map((url) => (
               <div key={url}>
-                <Image src={url} alt={name} width={468} height={468} className={classes.carouselImage} />
+                <Image
+                  src={url || '/default.jpg'}
+                  alt={name}
+                  width={468}
+                  height={468}
+                  className={classes.carouselImage}
+                />
               </div>
             ))}
           </Carousel>

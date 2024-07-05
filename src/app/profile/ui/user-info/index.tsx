@@ -13,6 +13,7 @@ import { getProfile } from '@/store/selectors'
 import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
+import Link from 'next/link'
 
 export const UserInfo = () => {
   const { classes } = useStyles()
@@ -46,7 +47,7 @@ export const UserInfo = () => {
           height={150}
           className={classes.avatar}
         />
-        <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting}>
+        <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>
           {t('edit_profile')}
         </Button>
         <div className={classes.name}>{profile?.name}</div>
