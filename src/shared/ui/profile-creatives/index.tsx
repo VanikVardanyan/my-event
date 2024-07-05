@@ -11,6 +11,7 @@ import { getProfile } from '@/store/selectors'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
 import { useState } from 'react'
+import { ImageAction } from './ui/image-action'
 
 interface IImages {
   images: string[] | []
@@ -94,7 +95,12 @@ export const ProfileCreatives = (props: IImages) => {
       )}
       <div className={classes.imagesWrapper}>
         {images.map((item, i) => {
-          return <Image src={item} alt="image" width={307} height={307} key={i} className={classes.image} />
+          return (
+            <div key={i} className={classes.imageWrapper}>
+              <Image src={item} alt="image" width={307} height={307} className={classes.image} />
+              {isMe && <ImageAction item={item} loading={loading} setLoading={setLoading} userAuth={userAuth} />}
+            </div>
+          )
         })}
       </div>
     </div>

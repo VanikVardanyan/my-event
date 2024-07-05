@@ -1,13 +1,13 @@
 'use client'
 
 import { Box, Grid, Typography, Card, CardContent, CardMedia } from '@mui/material'
-import { db } from '../../shared/lib/firebaseConfig'
-import { RequestCard } from '../../shared/ui/request-card'
+import { db } from '@/shared/lib/firebaseConfig'
+import { RequestCard } from '@/shared/ui/request-card'
 import { RequestList } from './ui/list'
-import { ProtectedRoute } from '../../shared/lib/protected-router'
-import { UserType } from '../../shared/types/user.types'
+import { ProtectedRoute } from '@/shared/lib/protected-router'
+import { UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
-import { getProfile } from '../../store/selectors'
+import { getProfile } from '@/store/selectors'
 
 const RequestsList = () => {
   const { loading } = useSelector(getProfile)
