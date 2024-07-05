@@ -24,6 +24,7 @@ export default tss.withName('ProfileHeader').create({
   },
   avatar: {
     borderRadius: '50%',
+    objectFit: 'cover',
   },
   name: {
     ...FontBody1,

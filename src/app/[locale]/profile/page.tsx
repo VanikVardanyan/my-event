@@ -16,8 +16,8 @@ import { Loader } from '@/shared/ui/Loader'
 
 const Profile = () => {
   const { profile, loading } = useSelector(getProfile)
-  const { loading: authLoading } = useAuth()
-  const t = useTranslations('Shared')
+  const { loading: authLoading, role } = useAuth()
+
   const router = useRouter()
 
   const { classes } = useStyles()
@@ -26,6 +26,7 @@ const Profile = () => {
   if (loading || authLoading) {
     return <Loader />
   }
+
   if (!profile?.role) {
     router.push(Routes.ProfileSetting)
     return null

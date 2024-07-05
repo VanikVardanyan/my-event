@@ -99,7 +99,7 @@ export const RequestCard = (
       {isMe && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
           {responses.length > 0 && (
-            <Button variant="contained" onClick={handleOpenModal}>
+            <Button variant="contained" onClick={handleOpenModal} sx={{ mt: 1 }}>
               {t('view_responses')}
             </Button>
           )}
@@ -110,6 +110,7 @@ export const RequestCard = (
             onClick={handleDelete}
             startIcon={<DeleteIcon />}
             disabled={loading}
+            sx={{ mt: 1 }}
           >
             {t('delete')}
           </Button>

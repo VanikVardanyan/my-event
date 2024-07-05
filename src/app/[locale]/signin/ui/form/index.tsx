@@ -24,6 +24,8 @@ import { useRouter } from '@/navigation'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
+import { Dispatch } from '../../../../../store/store'
+import { asyncSetProfileThunk } from '../../../../../store/features/profile-slice'
 
 interface IFormValues {
   email: string
@@ -32,6 +34,7 @@ interface IFormValues {
 
 export const SignIn = () => {
   const t = useTranslations('Signin')
+  const dispatch = Dispatch()
 
   const schema = yup.object().shape({
     email: yup.string().email(t('invalid_email')).required(t('required_field')),
@@ -52,8 +55,8 @@ export const SignIn = () => {
   const onSubmit: SubmitHandler<IFormValues> = async (data: any) => {
     if (data) {
       try {
-        await signInWithEmailAndPassword(auth, data.email, data.password).then(() => {
-          route.push(Routes.Profile)
+        await signInWithEmailAndPassword(auth, data.email, data.password).then(async () => {
+          await dispatch(asyncSetProfileThunk()).then(() => route.push(Routes.Profile))
         })
       } catch (error) {
         console.error(error)

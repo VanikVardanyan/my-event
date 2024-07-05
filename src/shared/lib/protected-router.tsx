@@ -5,6 +5,8 @@ import { ReactNode, useLayoutEffect } from 'react'
 import { useAuth } from './auth-context'
 import { UserType } from '../types/user.types'
 import { Routes } from '../routes'
+import { useSelector } from 'react-redux'
+import { getProfile } from '../../store/selectors'
 
 interface IProtectedRoute {
   children: ReactNode
@@ -13,13 +15,14 @@ interface IProtectedRoute {
 
 export const ProtectedRoute = ({ children, requiredRole }: IProtectedRoute) => {
   const { user, loading, role } = useAuth()
+  const { profile } = useSelector(getProfile)
   const router = useRouter()
 
   useLayoutEffect(() => {
     if (!loading) {
       if (!user) {
         router.push(Routes.Signin)
-      } else if (requiredRole && role !== requiredRole) {
+      } else if (requiredRole && profile?.role !== requiredRole) {
         router.push(Routes.Profile)
       }
     }

@@ -41,10 +41,9 @@ export const LayoutHeader = () => {
 
   const signOutHandler = async () => {
     await signOut(auth).then(async () => {
-      await dispatch(setProfile(null))
-      await setUser(null)
-      await router.push(Routes.Main)
-      await window.location.reload()
+      dispatch(setProfile(null))
+      setUser(null)
+      router.push(Routes.Main)
     })
   }
 
