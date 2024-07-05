@@ -23,7 +23,7 @@ const AuthContext = createContext<{
 
 export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<any>(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [role, setRole] = useState<UserType | null>(null)
 
   const dispatch = useDispatch()

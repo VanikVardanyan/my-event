@@ -27,7 +27,7 @@ export const LayoutHeader = () => {
   const { profile, loading: ProfileLoading } = useSelector(getProfile)
   const dispatch = Dispatch()
 
-  const route = useRouter()
+  const router = useRouter()
 
   const theme = useTheme()
   const lgUp = useMediaQuery(theme.breakpoints.up('lg'))
@@ -42,7 +42,7 @@ export const LayoutHeader = () => {
 
   const signOutHandler = async () => {
     await signOut(auth).then(() => {
-      route.push(Routes.Main)
+      router.push(Routes.Main)
       dispatch(setProfile({}))
       setUser(null)
     })
@@ -50,6 +50,8 @@ export const LayoutHeader = () => {
 
   const handleLanguageChange = (e: any) => {
     console.log(e.target.value)
+    const locale = e.target.value
+    router.replace(`/${locale}`)
   }
   const isLoading = loading || ProfileLoading
 
