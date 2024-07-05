@@ -6,18 +6,20 @@ import { IPostProps } from './types'
 import useStyles from './styles'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
-import Link from 'next/link'
+import { Link } from '@/navigation'
+import { useTranslations } from 'next-intl'
 
 export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const { profession, description, name, avatar, images, likeCount, id } = props
   const { classes } = useStyles()
+  const p = useTranslations('Professions')
 
   return (
     <div className={classes.root}>
       <Link href={`/user/${id}`} className={classes.header}>
         <Image src={avatar || '/default.jpg'} alt={'image'} width={42} height={42} className={classes.avatar} />
         <div className={classes.userName}>
-          {name} <span className={classes.profession}>({profession.map((item) => item).join(', ')})</span>
+          {name} <span className={classes.profession}>({profession.map((item) => p(item)).join(', ')})</span>
         </div>
       </Link>
       <div className={classes.carouselWrapper}>

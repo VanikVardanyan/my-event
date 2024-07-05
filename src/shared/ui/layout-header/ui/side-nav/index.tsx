@@ -1,13 +1,12 @@
 'use client'
 import { Drawer, useMediaQuery, useTheme } from '@mui/material'
-import { DarkGreen, White } from '@/shared/consts/colors'
+import { White } from '@/shared/consts/colors'
 import { Routes } from '@/shared/routes'
 import useStyles from './styles'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { ISideNavProps } from './types'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/navigation'
 import cn from 'classnames'
-import { useState } from 'react'
 import { useAuth } from '../../../../lib/auth-context'
 import { useSelector } from 'react-redux'
 import { getProfile } from '../../../../../store/selectors'
@@ -26,7 +25,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 
 export const SideNav = (props: ISideNavProps) => {
-  const { profile, loading } = useSelector(getProfile)
+  const { profile } = useSelector(getProfile)
   const { isOpen, setOpen } = props
   const pathname = usePathname()
 
@@ -40,7 +39,7 @@ export const SideNav = (props: ISideNavProps) => {
       icon: <HomeIcon />,
     },
     {
-      title: t('showmen'),
+      title: t('showman'),
       url: Routes.Showman,
       icon: <CampaignIcon />,
     },

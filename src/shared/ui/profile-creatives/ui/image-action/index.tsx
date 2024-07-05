@@ -69,9 +69,6 @@ export const ImageAction = (props: ImageActionProps) => {
     setOpen((prev) => !prev)
   }
 
-  const canBeOpen = open && Boolean(anchorEl)
-  const id = canBeOpen ? 'spring-popper' : undefined
-
   return (
     <div>
       <IconButton className={classes.menuIcon} onClick={handleClick} disabled={loading}>

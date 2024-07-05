@@ -5,10 +5,10 @@ export enum UserType {
 
 export enum Professions {
   Showman = 'showman',
-  Photographer = 'photographer',
-  Dj = 'dj',
+  Photographers = 'photographers',
+  Djs = 'djs',
   Musicians = 'musicians',
-  EquipmentRental = 'equipmentRental',
-  CarsRental = 'carsRental',
-  CostumeRental = 'costumerental',
+  EquipmentRental = 'equipment_rental',
+  CarsRental = 'cars_rental',
+  CostumeRental = 'costume_rental',
 }

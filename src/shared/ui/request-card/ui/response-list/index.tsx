@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Modal, Box, List, ListItem, ListItemText, Typography, Button, Avatar } from '@mui/material'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/navigation'
 
 interface IResponses {
   userId: string

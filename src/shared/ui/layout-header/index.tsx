@@ -6,21 +6,24 @@ import useStyles from './styles'
 import { SideNav } from './ui/side-nav'
 import { Avatar, Button, useMediaQuery, useTheme } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebaseConfig'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { useRouter } from '@/navigation'
 import { Routes } from '../../routes'
 import { useAuth } from '../../lib/auth-context'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Dispatch } from '@/store/store'
-import { setProfile } from '@/store/features/profile-slice'
+import { asyncSetProfileThunk, setProfile } from '@/store/features/profile-slice'
 import { useTranslations } from 'next-intl'
+import { SwitchLanguage } from '../switch-language'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
   const t = useTranslations('Menu')
+  const pathname = usePathname()
 
   const [isOpenMenu, setOpenMenu] = useState(false)
   const { user, setUser, loading } = useAuth()
@@ -36,23 +39,15 @@ export const LayoutHeader = () => {
     setOpenMenu(!isOpenMenu)
   }
 
-  const linkClickHandler = () => {
-    setOpenMenu(false)
-  }
-
   const signOutHandler = async () => {
-    await signOut(auth).then(() => {
-      router.push(Routes.Main)
-      dispatch(setProfile({}))
-      setUser(null)
+    await signOut(auth).then(async () => {
+      await dispatch(setProfile(null))
+      await setUser(null)
+      await router.push(Routes.Main)
+      await window.location.reload()
     })
   }
 
-  const handleLanguageChange = (e: any) => {
-    console.log(e.target.value)
-    const locale = e.target.value
-    router.replace(`/${locale}`)
-  }
   const isLoading = loading || ProfileLoading
 
   if (isLoading) {
@@ -77,13 +72,15 @@ export const LayoutHeader = () => {
 
       <div className={classes.searchSection}>
         <InputSearch />
+        <SwitchLanguage />
+
         {!user && (
           <>
-            <Button variant="outlined">
-              <Link href={'/signin'}>{t('login')}</Link>
+            <Button variant="outlined" LinkComponent={Link} href={Routes.Signin}>
+              {t('login')}
             </Button>
-            <Button variant="outlined">
-              <Link href={'/register'}>{t('register')}</Link>
+            <Button variant="outlined" LinkComponent={Link} href={Routes.Register}>
+              {t('register')}
             </Button>
           </>
         )}
@@ -99,10 +96,10 @@ export const LayoutHeader = () => {
           </>
         )}
       </div>
-      <select name="" id="" onChange={handleLanguageChange}>
+      {/* <select name="" id="" onChange={handleLanguageChange}>
         <option value="ru">RU</option>
         <option value="en">EN</option>
-      </select>
+      </select> */}
       <SideNav setOpen={menuClickHandler} isOpen={isOpenMenu} />
     </header>
   )

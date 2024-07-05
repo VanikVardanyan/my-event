@@ -98,7 +98,7 @@
     },
     "Menu": {
         "home": "Home",
-        "showmen": "Showmen",
+        "showman": "Showman",
         "photographers": "Photographers",
         "djs": "DJs",
         "musicians": "Musicians",
@@ -110,5 +110,18 @@
         "login": "Login",
         "register": "Register",
         "sign_out": "Sign Out"
+    },
+    "Professions": {
+        "showman": "Showman",
+        "photographers": "Photographer",
+        "djs": "DJ",
+        "musicians": "Musician",
+        "equipment_rental": "Equipment Rental",
+        "cars_rental": "Car Rental",
+        "costume_rental": "Costume Rental"
+    },
+    "Language": {
+        "ru": "Rus",
+        "en": "Eng"
     }
 }
