@@ -1,0 +1,127 @@
+{
+    "Main": {
+        "organize_your_events": "Կազմակերպեք ձեր միջոցառումները հեշտությամբ և արդյունավետորեն",
+        "organize_your_events_quickly": "Կազմակերպեք ձեր միջոցառումները հեշտությամբ և արագ։ Մեր հարթակում դուք կգտնեք լավագույն մասնագետներին լուսանկարչության, երաժշտության, սարքավորումների վարձույթի և շատ այլ բաների համար։ Գրանցվեք այսօր՝ ձեր ծառայությունները առաջարկելու կամ ձեր միջոցառման համար կատարյալ կատարող գտնելու համար:",
+        "start": "Սկսել"
+    },
+    "Shared": {
+        "current_list_is_empty": "Այժմ այս ցուցակը դեռ դատարկ է",
+        "search": "Փնտրել",
+        "step": "Քայլ",
+        "oops": "Վա՜յ!",
+        "something_went_wrong": "Ցավոք, ոչինչ չի գտնվել"
+    },
+    "Signin": {
+        "invalid_email": "Անվավեր էլ․ հասցե",
+        "required_field": "Պարտադիր դաշտ",
+        "password_min_length": "Առնվազն 6 նիշ",
+        "sign_in_with_email": "Մուտք գործել էլ․ հասցեով",
+        "sign_in_with_google": "Մուտք գործել Google-ով",
+        "sign_in": "Մուտք գործել",
+        "forgot_password": "Մոռացել եք գաղտնաբառը?",
+        "no_account": "Դեռ չունե՞ք հաշիվ:",
+        "register": "Գրանցվել",
+        "email": "Էլ․ հասցե",
+        "password": "Գաղտնաբառ"
+    },
+    "Register": {
+        "invalid_email": "Անվավեր էլ․ հասցե",
+        "required_field": "Այս դաշտը պարտադիր է",
+        "password_min_length": "Գաղտնաբառը պետք է լինի առնվազն 6 նիշ",
+        "password_match": "Գաղտնաբառերը պետք է համընկնեն",
+        "sign_up_with_email": "Գրանցվել էլ․ հասցեով",
+        "register": "Գրանցվել",
+        "already_have_account": "Արդեն ունե՞ք հաշիվ:",
+        "sign_in": "Մուտք գործել",
+        "email": "Էլ․ հասցե",
+        "password": "Գաղտնաբառ",
+        "confirm_password": "Հաստատել գաղտնաբառը"
+    },
+    "Profile": {
+        "profile": "Պրոֆիլ",
+        "edit_profile": "Խմբագրել պրոֆիլը",
+        "add_request": "Ավելացնել ծառայության պահանջ"
+    },
+    "Request": {
+        "required_field": "Այս դաշտը պարտադիր է",
+        "city": "Քաղաք",
+        "location": "Վայրը",
+        "service": "Ծառայության տեսակ",
+        "select_service": "Ընտրեք ծառայություն",
+        "person_quantity": "Հյուրերի քանակը",
+        "budget": "Բյուջե",
+        "date": "Ամսաթիվ",
+        "create_request": "Ստեղծել պահանջ"
+    },
+    "ProfileSetting": {
+        "required_field": "Այս դաշտը պարտադիր է",
+        "minimum_characters": "Առնվազն 2 նիշ",
+        "invalid_email": "Անվավեր էլ․ հասցե",
+        "invalid_format": "Անվավեր ձևաչափ",
+        "back": "Հետ",
+        "next": "Առաջ",
+        "finish": "Ավարտել",
+        "name": "Անուն",
+        "enter_name": "Մուտքագրեք անուն",
+        "upload_avatar": "Վերբեռնել ավատարը",
+        "nickname": "Մականուն",
+        "enter_nickname": "Մուտքագրեք մականուն",
+        "email": "Էլ․ հասցե",
+        "enter_email": "Մուտքագրեք էլ․ հասցե",
+        "select_profession": "Ընտրեք մասնագիտություն (առավելագույնը 2)",
+        "describe_yourself": "Նկարագրեք ինքներդ",
+        "enter_description": "Մուտքագրեք նկարագրություն",
+        "facebook_link": "Հղում ձեր facebook-ի վրա",
+        "enter_facebook_link": "Մուտքագրեք հղում ձեր facebook-ի վրա",
+        "instagram_link": "Հղում ձեր instagram-ի վրա",
+        "enter_instagram_link": "Մուտքագրեք հղում ձեր instagram-ի վրա",
+        "youtube_link": "Հղում ձեր youtube-ի վրա",
+        "enter_youtube_link": "Մուտքագրեք հղում ձեր youtube-ի վրա",
+        "tiktok_link": "Հղում ձեր tiktok-ի վրա",
+        "enter_tiktok_link": "Մուտքագրեք հղում ձեր tiktok-ի վրա",
+        "provider_title": "Ծառայության մատակարար",
+        "provider_description": "Առաջարկեք ծառայություններ միջոցառումների համար",
+        "client_title": "Հաճախորդ",
+        "client_description": "Փնտրեք ծառայություններ և կազմակերպեք միջոցառումներ"
+    },
+    "RequestList": {
+        "all_requests": "Բոլոր պահանջները",
+        "respond": "Արձագանքել",
+        "view_responses": "Դիտել արձագանքները",
+        "delete": "Հեռացնել",
+        "responses_count": "Արձագանքների քանակը",
+        "guests_count": "Հյուրերի քանակը",
+        "location": "Վայրը",
+        "date": "Ամսաթիվ",
+        "budget": "Բյուջե",
+        "city": "Քաղաք"
+    },
+    "Menu": {
+        "home": "Գլխավոր",
+        "showman": "Շոումեններ",
+        "photographers": "Լուսանկարիչներ",
+        "djs": "Դիջեյներ",
+        "musicians": "Երաժիշտներ",
+        "equipment_rental": "Սարքավորումների վարձույթ",
+        "cars_rental": "Ավտոմեքենաների վարձույթ",
+        "costume_rental": "Հագուստի վարձույթ",
+        "my_profile": "Իմ պրոֆիլը",
+        "request_list": "Պահանջների ցանկ",
+        "login": "Մուտք գործել",
+        "register": "Գրանցվել",
+        "sign_out": "Դուրս գալ"
+    },
+    "Professions": {
+        "showman": "Շոումեն",
+        "photographers": "Լուսանկարիչ",
+        "djs": "DJ",
+        "musicians": "Երաժիշտ",
+        "equipment_rental": "Սարքավորումների վարձույթ",
+        "cars_rental": "Ավտոմեքենաների վարձույթ",
+        "costume_rental": "Կոստյումների վարձույթ"
+    },
+    "Language": {
+        "ru": "Ռուս",
+        "en": "Անգլերեն"
+    }
+}

@@ -98,7 +98,7 @@
     },
     "Menu": {
         "home": "Главная",
-        "showmen": "Шоумены",
+        "showman": "Шоумены",
         "photographers": "Фотографы",
         "djs": "Диджеи",
         "musicians": "Музыканты",
@@ -110,5 +110,18 @@
         "login": "Вход",
         "register": "Регистрация",
         "sign_out": "Выйти"
+    },
+    "Professions": {
+        "showman": "Шоумен",
+        "photographers": "Фотограф",
+        "djs": "Диджей",
+        "musicians": "Музыкант",
+        "equipment_rental": "Аренда оборудования",
+        "cars_rental": "Аренда автомобилей",
+        "costume_rental": "Аренда костюмов"
+    },
+    "Language": {
+        "ru": "Рус",
+        "en": "Англ"
     }
 }

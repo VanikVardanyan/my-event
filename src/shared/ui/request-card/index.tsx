@@ -11,8 +11,8 @@ import { deleteDoc } from 'firebase/firestore'
 import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import DeleteIcon from '@mui/icons-material/Delete'
-import { IRequestTypes } from '@/app/profile/ui/request-create-modal/types'
 import { useTranslations } from 'next-intl'
+import { IRequestTypes } from '@/app/[locale]/profile/ui/request-create-modal/types'
 
 export const RequestCard = (
   props: IRequestTypes & { responses: any[]; id: string; isMe?: boolean; updateAll: () => void }
@@ -23,6 +23,7 @@ export const RequestCard = (
   const { user } = useAuth()
 
   const t = useTranslations('RequestList')
+  const p = useTranslations('Professions')
 
   const [loading, setLoading] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -74,7 +75,7 @@ export const RequestCard = (
 
   return (
     <Card className={classes.root}>
-      <h3 className={classes.title}>{service}</h3>
+      <h3 className={classes.title}>{p(service)}</h3>
       <div className={classes.content}>
         <div className={classes.label}>
           {t('city')}: <span className={classes.description}>{city}</span>
@@ -115,7 +116,7 @@ export const RequestCard = (
         </Box>
       )}
       {!isMe && (
-        <Button variant="contained" color="success" onClick={handleRespond}>
+        <Button variant="contained" color="success" onClick={handleRespond} sx={{ mt: 2 }}>
           {t('respond')}
         </Button>
       )}

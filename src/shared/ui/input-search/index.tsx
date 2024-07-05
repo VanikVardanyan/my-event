@@ -17,7 +17,7 @@ import { collection, where, query, getDocs } from 'firebase/firestore'
 import { db } from '../../lib/firebaseConfig'
 import { UserType } from '../../types/user.types'
 import { IProfile } from '@/store/features/profile-slice/types'
-import { useRouter } from 'next/navigation'
+import { useRouter } from '@/navigation'
 import { useTranslations } from 'next-intl'
 
 export const InputSearch = () => {

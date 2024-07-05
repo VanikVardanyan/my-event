@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { IProfileState } from './types'
 import { doc, getDoc } from 'firebase/firestore'
-import { auth, db } from '../../../shared/lib/firebaseConfig'
+import { auth, db } from '@/shared/lib/firebaseConfig'
 import { onAuthStateChanged } from 'firebase/auth'
 
 const initialState: IProfileState = {

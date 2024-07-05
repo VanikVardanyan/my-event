@@ -13,12 +13,13 @@ import EmailIcon from '@mui/icons-material/Email'
 import { Routes } from '@/shared/routes'
 import { IProfile } from '@/store/features/profile-slice/types'
 import { Networks } from '../profile-networks'
-import Link from 'next/link'
+import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 
 export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const { classes } = useStyles()
   const t = useTranslations('Profile')
+  const p = useTranslations('Professions')
 
   const getNetworksContent = () => {
     const networks = []
@@ -77,7 +78,7 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
         <div className={classes.settingSection}>
           <div className={classes.name}>{props?.name}</div>
           <div className={classes.chips}>
-            {props?.profession?.map((profession) => <Chip label={profession} key={profession} />)}
+            {props?.profession?.map((profession) => <Chip label={p(profession)} key={profession} />)}
           </div>
           {props.isMe && (
             <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>

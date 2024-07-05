@@ -1,9 +1,11 @@
-const NotFoundPage = () => {
+'use client'
+
+export default function NotFound() {
   return (
-    <>
-      <p>Этой страницы не существует</p>
-    </>
+    <html>
+      <body className="text-center">
+        <h1>Something went wrong!</h1>
+      </body>
+    </html>
   )
 }
-
-export default NotFoundPage
