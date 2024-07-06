@@ -14,6 +14,7 @@ import { useState } from 'react'
 import { ImageAction } from './ui/image-action'
 import { useTranslations } from 'next-intl'
 import { LoadingOverlay } from '../loading-overlay'
+import axios from 'axios'
 
 interface IImages {
   images: string[] | []
