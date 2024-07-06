@@ -5,6 +5,7 @@ import useStyles from './styles'
 import { useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
+import { Loader } from '@/shared/ui/Loader'
 
 const MainPage = () => {
   const { classes } = useStyles()
@@ -34,6 +35,8 @@ const MainPage = () => {
 
     fetchProviderUsers()
   }, [])
+
+  if (loading) return <Loader />
 
   return (
     <div className={classes.root}>

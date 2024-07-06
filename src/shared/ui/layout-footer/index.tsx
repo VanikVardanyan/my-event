@@ -75,7 +75,7 @@ export const LayoutFooter = () => {
           <MenuIcon />
         </button>
       )}
-      <InputSearch />
+      <InputSearch classNameList={classes.searchList} />
 
       {user && (
         <>

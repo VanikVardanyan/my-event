@@ -56,4 +56,8 @@ export default tss.withName('LayoutHeader').create({
       background: SlateGreyLighten49,
     },
   },
+  searchList: {
+    bottom: 46,
+    top: 'inherit',
+  },
 })
