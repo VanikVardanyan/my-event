@@ -5,6 +5,8 @@ import { tss } from 'tss-react/mui'
 export default tss.withName('ServicePost').create({
   root: {
     maxWidth: 470,
+    width: '100%',
+    overflow: 'hidden',
     borderBottom: `1px solid ${SlateGreyLighten13}`,
     paddingBottom: 16,
   },
@@ -34,6 +36,7 @@ export default tss.withName('ServicePost').create({
   description: {
     ...FontBody1,
     color: SlateGreyBase,
+    marginTop: 24,
   },
   profession: {
     ...FontBody1,
@@ -41,5 +44,9 @@ export default tss.withName('ServicePost').create({
   },
   carouselImage: {
     objectFit: 'cover',
+    width: '100%',
+  },
+  slider: {
+    width: '100%',
   },
 })
