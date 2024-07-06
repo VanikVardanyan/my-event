@@ -16,11 +16,16 @@ import errorToast from '@/shared/utils/error-toast'
 import { collection, where, query, getDocs } from 'firebase/firestore'
 import { db } from '../../lib/firebaseConfig'
 import { UserType } from '../../types/user.types'
-import { IProfile } from '@/store/features/profile-slice/types'
 import { useRouter } from '@/navigation'
 import { useTranslations } from 'next-intl'
 
-export const InputSearch = () => {
+interface InputSearchProps {
+  classNameList?: string
+}
+
+export const InputSearch = (props: InputSearchProps) => {
+  const { classNameList } = props
+
   const t = useTranslations('Shared')
   const [queryParams, setQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
@@ -53,15 +58,18 @@ export const InputSearch = () => {
       debounce(async (value: string) => {
         try {
           const usersRef = collection(db, 'profiles')
-          const q = query(usersRef, where('role', '==', UserType.PROVIDER), where('name', '==', value))
+          const q = query(usersRef, where('role', '==', UserType.PROVIDER))
 
           const querySnapshot = await getDocs(q)
           const usersList: any = []
           querySnapshot.forEach((doc) => {
             usersList.push({ id: doc.id, ...doc.data() })
           })
+          const filteredUsersList = usersList.filter(
+            (user: { name: string }) => user.name.toLowerCase().startsWith(value.toLowerCase()) // замените 'someProperty' на свойство, по которому нужно фильтровать
+          )
 
-          setResults(usersList)
+          setResults(filteredUsersList)
           setLoading(false)
         } catch (error) {
           const e = error as AxiosError
@@ -120,7 +128,11 @@ export const InputSearch = () => {
           <CloseIcon style={{ width: 28, height: 28, fill: SlateGreyDarken7 }} />
         </button>
         {queryParams.length > 0 && (
-          <div className={cn(classes.channelsList, { [classes.channelListEmpty]: !results.length && !loading })}>
+          <div
+            className={cn(classes.channelsList, classNameList, {
+              [classes.channelListEmpty]: !results.length && !loading,
+            })}
+          >
             {loading && <Loader />}
             {!!results.length &&
               !loading &&

@@ -5,6 +5,7 @@ import { Register } from './ui/form'
 import { useAuth } from '@/shared/lib/auth-context'
 import { useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
+import { Loader } from '@/shared/ui/Loader'
 
 const RegisterInPage = () => {
   const { user, loading } = useAuth()
@@ -20,6 +21,8 @@ const RegisterInPage = () => {
       }
     }
   }, [loading])
+
+  if (loading) return <Loader />
 
   return (
     <div>

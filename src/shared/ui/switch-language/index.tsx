@@ -46,7 +46,7 @@ export const SwitchLanguage = () => {
       <MenuButton sx={{ padding: '5px', display: 'flex' }}>
         <Image src={`/flag-${locale}.png`} alt="flag" width={30} height={30} />
       </MenuButton>
-      <Menu slots={{ listbox: AnimatedListbox }}>
+      <Menu slots={{ listbox: AnimatedListbox }} style={{ zIndex: 1000 }}>
         <MenuItem onClick={createHandleMenuClick('ru')} disabled={locale === 'ru'}>
           Rus
         </MenuItem>

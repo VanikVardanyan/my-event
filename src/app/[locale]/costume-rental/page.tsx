@@ -8,6 +8,7 @@ import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
 import { IPostProps } from '@/shared/ui/service-post/types'
 import { useTranslations } from 'next-intl'
+import { Loader } from '@/shared/ui/Loader'
 
 const ShowMan = () => {
   const { classes } = useStyles()
@@ -42,6 +43,8 @@ const ShowMan = () => {
 
     fetchProviderUsers()
   }, [])
+
+  if (loading) return <Loader />
 
   return (
     <div className={classes.root}>

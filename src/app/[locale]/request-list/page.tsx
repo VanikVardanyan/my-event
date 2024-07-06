@@ -6,13 +6,12 @@ import { ProtectedRoute } from '@/shared/lib/protected-router'
 import { UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
+import { Loader } from '@/shared/ui/Loader'
 
 const RequestsList = () => {
   const { loading } = useSelector(getProfile)
 
-  if (loading) {
-    return <div>Loadingooo...</div>
-  }
+  if (loading) return <Loader />
 
   return (
     <ProtectedRoute requiredRole={UserType.PROVIDER}>

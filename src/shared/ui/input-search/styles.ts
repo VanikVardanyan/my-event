@@ -141,7 +141,7 @@ export default tss
       maxHeight: 267,
       overflowY: 'auto',
       position: 'absolute',
-      bottom: 46,
+      top: 46,
       borderRadius: 10,
       border: `1px solid ${SlateGreyLighten45}`,
       background: White,
