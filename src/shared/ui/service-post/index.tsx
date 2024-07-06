@@ -11,13 +11,37 @@ import { useTranslations } from 'next-intl'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { IconButton } from '@mui/material'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+
+const NextArrow = (props: any) => {
+  const { className, style, onClick } = props
+  return (
+    <IconButton className={className} style={{ ...style, display: 'block', right: '0' }} onClick={onClick}>
+      <ArrowForwardIosIcon />
+    </IconButton>
+  )
+}
+
+const PrevArrow = (props: any) => {
+  const { className, style, onClick } = props
+  return (
+    <IconButton className={className} style={{ ...style, display: 'block', left: '0', zIndex: 1 }} onClick={onClick}>
+      <ArrowBackIosIcon />
+    </IconButton>
+  )
+}
 
 const settings = {
   dots: true,
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
+  // arrow: true,
+  // nextArrow: <NextArrow />,
+  // prevArrow: <PrevArrow />,
 }
 
 export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
@@ -38,7 +62,7 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
           <Image src={'/default.jpg'} alt={'default'} width={468} height={468} className={classes.carouselImage} />
         )}
         {images && images.length > 0 && (
-          <Slider {...settings} className={classes.slider}>
+          <Slider {...settings} className={classes.slider} arrows={true}>
             {images.map((url) => (
               <div key={url}>
                 <Image

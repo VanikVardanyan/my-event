@@ -125,5 +125,9 @@
     "Language": {
         "ru": "Рус",
         "en": "Англ"
+    },
+    "Errors": {
+        "invalid_email_or_password": "Неверный email или пароль",
+        "unexpected_error": "Произошла ошибка"
     }
 }

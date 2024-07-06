@@ -11,6 +11,9 @@ import { useRouter } from '@/navigation'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
+import { LoadingOverlay } from '../../../../../shared/ui/loading-overlay'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 interface IFormValues {
   email: string
@@ -25,6 +28,9 @@ interface IFormValues {
 
 export const Register = () => {
   const t = useTranslations('Register')
+  const err = useTranslations('Errors')
+
+  const [loading, setLoading] = useState(false)
 
   const schema = yup.object().shape({
     email: yup.string().email(t('invalid_email')).required(t('required_field')),
@@ -48,12 +54,15 @@ export const Register = () => {
 
   const onSubmit: SubmitHandler<IFormValues> = async (data: any) => {
     if (data) {
+      setLoading(true)
       try {
         await createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
           route.push(Routes.ProfileSetting)
+          setLoading(false)
         })
       } catch (error) {
-        console.error(error)
+        setLoading(false)
+        toast.error(err('unexpected_error'))
       }
     }
   }
@@ -61,64 +70,66 @@ export const Register = () => {
   const { errors } = formState
 
   return (
-    <div className={classes.root}>
-      <button className={classes.googleBtn}>
-        <GmailIcon /> {t('sign_up_with_email')}
-      </button>
-      <div className={classes.withEmail}>
-        <div className={classes.line} />
-        <div className={classes.withEmailText}>{t('sign_up_with_email')}</div>
-        <div className={classes.line} />
+    <LoadingOverlay loading={loading}>
+      <div className={classes.root}>
+        <button className={classes.googleBtn}>
+          <GmailIcon /> {t('sign_up_with_email')}
+        </button>
+        <div className={classes.withEmail}>
+          <div className={classes.line} />
+          <div className={classes.withEmailText}>{t('sign_up_with_email')}</div>
+          <div className={classes.line} />
+        </div>
+        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+          <TextField
+            required
+            {...register('email')}
+            fullWidth
+            variant="outlined"
+            label={t('email')}
+            error={!!errors.email}
+            helperText={errors.email?.message}
+            autoFocus
+          />
+          <TextField
+            required
+            {...register('password')}
+            fullWidth
+            variant="outlined"
+            label={t('password')}
+            error={!!errors.password}
+            helperText={errors.password?.message}
+            autoFocus
+          />
+          <TextField
+            required
+            {...register('password_confirmation')}
+            fullWidth
+            variant="outlined"
+            label={t('confirm_password')}
+            error={!!errors.password}
+            helperText={errors.password_confirmation?.message}
+            autoFocus
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            size="large"
+            className={classes.signInButton}
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            {t('register')}
+          </Button>
+        </form>
+        <div className={classes.footer}>
+          {t('already_have_account')}{' '}
+          <Link href={Routes.Signin} className={classes.linkRegister}>
+            {t('sign_in')}
+          </Link>{' '}
+        </div>
       </div>
-      <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-        <TextField
-          required
-          {...register('email')}
-          fullWidth
-          variant="outlined"
-          label={t('email')}
-          error={!!errors.email}
-          helperText={errors.email?.message}
-          autoFocus
-        />
-        <TextField
-          required
-          {...register('password')}
-          fullWidth
-          variant="outlined"
-          label={t('password')}
-          error={!!errors.password}
-          helperText={errors.password?.message}
-          autoFocus
-        />
-        <TextField
-          required
-          {...register('password_confirmation')}
-          fullWidth
-          variant="outlined"
-          label={t('confirm_password')}
-          error={!!errors.password}
-          helperText={errors.password_confirmation?.message}
-          autoFocus
-        />
-        <Button
-          type="submit"
-          variant="contained"
-          color="primary"
-          fullWidth
-          size="large"
-          className={classes.signInButton}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          {t('register')}
-        </Button>
-      </form>
-      <div className={classes.footer}>
-        {t('already_have_account')}{' '}
-        <Link href={Routes.Signin} className={classes.linkRegister}>
-          {t('sign_in')}
-        </Link>{' '}
-      </div>
-    </div>
+    </LoadingOverlay>
   )
 }

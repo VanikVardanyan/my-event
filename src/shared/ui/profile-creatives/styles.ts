@@ -1,14 +1,18 @@
 import { styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
-import { SlateGreyLighten46 } from '../../consts/colors'
+import { BreakPoints } from '../../consts/common'
 
 export default tss.withName('ProfileCreatives').create({
   root: {},
   imagesWrapper: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     gap: 5,
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      justifyContent: 'flex-start',
+    },
   },
   imageWrapper: {
     position: 'relative',
