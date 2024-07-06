@@ -13,6 +13,7 @@ import { Dispatch } from '@/store/store'
 import { useState } from 'react'
 import { ImageAction } from './ui/image-action'
 import { useTranslations } from 'next-intl'
+import { LoadingOverlay } from '../loading-overlay'
 
 interface IImages {
   images: string[] | []
@@ -24,12 +25,9 @@ export const ProfileCreatives = (props: IImages) => {
   const { classes } = useStyles()
   const userAuth = useAuth()
   const dispatch = Dispatch()
-  const { profile } = useSelector(getProfile)
   const [loading, setLoading] = useState(false)
 
   const t = useTranslations('Profile')
-
-  // const [userImages, setUserImages] = useState<string[]>([])
 
   const handleChangeMultipleFile = async (event: any) => {
     setLoading(true)
@@ -88,7 +86,7 @@ export const ProfileCreatives = (props: IImages) => {
   }
 
   return (
-    <div>
+    <LoadingOverlay loading={loading}>
       {isMe && (
         <Button component="label" variant="contained" startIcon={<LibraryAddIcon />} sx={{ mb: 2 }}>
           {loading && 'loading...'}
@@ -106,6 +104,6 @@ export const ProfileCreatives = (props: IImages) => {
           )
         })}
       </div>
-    </div>
+    </LoadingOverlay>
   )
 }

@@ -1,5 +1,4 @@
-import { Box, IconButton, Modal, Popper } from '@mui/material'
-import { Dispatch } from '@/store/store'
+import { Box, IconButton, Modal } from '@mui/material'
 import useStyles from './styles'
 import { useState } from 'react'
 import { Link } from '@/navigation'
@@ -7,6 +6,7 @@ import { Routes } from '../../../../routes'
 import { useTranslations } from 'next-intl'
 import LoginSharpIcon from '@mui/icons-material/LoginSharp'
 import LockOpenSharpIcon from '@mui/icons-material/LockOpenSharp'
+import PersonIcon from '@mui/icons-material/Person'
 
 const style = {
   position: 'absolute' as const,
@@ -38,7 +38,7 @@ export const MenuAction = (props: ImageActionProps) => {
   return (
     <div>
       <IconButton className={classes.menuIcon} onClick={handleClick}>
-        <LoginSharpIcon />
+        <PersonIcon />
       </IconButton>
       <Modal
         open={open}

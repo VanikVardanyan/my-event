@@ -26,7 +26,7 @@ import { useTranslations } from 'next-intl'
 
 export const SideNav = (props: ISideNavProps) => {
   const { profile } = useSelector(getProfile)
-  const { isOpen, setOpen } = props
+  const { isOpen, setOpen, linkClickHandler } = props
   const pathname = usePathname()
 
   const t = useTranslations('Menu')
@@ -89,16 +89,17 @@ export const SideNav = (props: ISideNavProps) => {
           <Link
             href={Routes.Profile}
             className={cn(classes.link, { [classes.linkActive]: pathname == Routes.Profile })}
+            onClick={linkClickHandler}
           >
             <AccountCircleIcon />
             {t('my_profile')}
           </Link>
         )}
-
         {user && profile?.role === UserType.PROVIDER && (
           <Link
             href={Routes.RequestList}
             className={cn(classes.link, { [classes.linkActive]: pathname == Routes.RequestList })}
+            onClick={linkClickHandler}
           >
             <ListAltIcon />
             {t('request_list')}
@@ -110,6 +111,7 @@ export const SideNav = (props: ISideNavProps) => {
               href={item.url}
               className={cn(classes.link, { [classes.linkActive]: pathname == item.url })}
               key={item.title}
+              onClick={linkClickHandler}
             >
               {item.icon && item.icon}
               {item.title}

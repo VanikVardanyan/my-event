@@ -125,5 +125,9 @@
     "Language": {
         "ru": "Ռուս",
         "en": "Անգլերեն"
+    },
+    "Errors": {
+        "invalid_email_or_password": "Անվավեր էլ․ հասցե կամ գաղտնաբառ",
+        "unexpected_error": "Ստացվեց սխալ"
     }
 }

@@ -40,6 +40,10 @@ export const LayoutHeader = () => {
     setOpenMenu(!isOpenMenu)
   }
 
+  const linkClickHandler = () => {
+    setOpenMenu(false)
+  }
+
   const signOutHandler = async () => {
     await signOut(auth).then(async () => {
       setUser(null)
@@ -93,17 +97,10 @@ export const LayoutHeader = () => {
             <IconButton onClick={signOutHandler}>
               <LogoutIcon />
             </IconButton>
-            {/* <Button variant="outlined" onClick={signOutHandler} startIcon={<LogoutIcon />}>
-              {t('sign_out')}
-            </Button> */}
           </>
         )}
       </div>
-      {/* <select name="" id="" onChange={handleLanguageChange}>
-        <option value="ru">RU</option>
-        <option value="en">EN</option>
-      </select> */}
-      <SideNav setOpen={menuClickHandler} isOpen={isOpenMenu} />
+      <SideNav setOpen={menuClickHandler} isOpen={isOpenMenu} linkClickHandler={linkClickHandler} />
     </header>
   )
 }

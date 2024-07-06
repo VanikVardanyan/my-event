@@ -8,7 +8,7 @@ export default tss.withName('ServicePost').create({
     width: '100%',
     overflow: 'hidden',
     borderBottom: `1px solid ${SlateGreyLighten13}`,
-    paddingBottom: 16,
+    paddingBottom: 20,
   },
   header: {
     display: 'flex',

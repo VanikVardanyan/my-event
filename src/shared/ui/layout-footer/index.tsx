@@ -64,6 +64,10 @@ export const LayoutFooter = () => {
     )
   }
 
+  const linkClickHandler = () => {
+    setOpenMenu(false)
+  }
+
   return (
     <footer className={classes.root}>
       {!lgUp && (
@@ -87,19 +91,9 @@ export const LayoutFooter = () => {
           <LogoutIcon />
         </IconButton>
       )}
-      {!user && (
-        // <>
-        <MenuAction />
-        //   <Button variant="outlined" LinkComponent={Link} href={Routes.Signin}>
-        //     {t('login')}
-        //   </Button>
-        //   <Button variant="outlined" LinkComponent={Link} href={Routes.Register}>
-        //     {t('register')}
-        //   </Button>
-        // </>
-      )}
+      {!user && <MenuAction />}
 
-      <SideNav setOpen={menuClickHandler} isOpen={isOpenMenu} />
+      <SideNav setOpen={menuClickHandler} isOpen={isOpenMenu} linkClickHandler={linkClickHandler} />
     </footer>
   )
 }

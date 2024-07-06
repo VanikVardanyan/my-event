@@ -1,6 +1,6 @@
 'use client'
 
-import { Player, Controls } from '@lottiefiles/react-lottie-player'
+import { Player } from '@lottiefiles/react-lottie-player'
 import Animater from './loading-animate.json'
 
 export const Loader = () => {
