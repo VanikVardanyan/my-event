@@ -11,6 +11,9 @@ import cn from 'classnames'
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
 const SamplePrevArrow = (props: any) => {
   const { onClick, currentSlide } = props
   const { classes } = useStyles()
