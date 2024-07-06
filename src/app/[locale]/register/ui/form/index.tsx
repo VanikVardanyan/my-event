@@ -8,12 +8,13 @@ import { Routes } from '@/shared/routes'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
 import { useRouter } from '@/navigation'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/shared/lib/firebaseConfig'
+import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { auth, provider } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
-import { LoadingOverlay } from '../../../../../shared/ui/loading-overlay'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { Dispatch } from '@/store/store'
 
 interface IFormValues {
   email: string
@@ -29,6 +30,7 @@ interface IFormValues {
 export const Register = () => {
   const t = useTranslations('Register')
   const err = useTranslations('Errors')
+  const dispatch = Dispatch()
 
   const [loading, setLoading] = useState(false)
 
@@ -69,10 +71,25 @@ export const Register = () => {
 
   const { errors } = formState
 
+  const signInWithGoogle = async () => {
+    setLoading(true)
+    try {
+      signInWithPopup(auth, provider).then(async () => {
+        route.push(Routes.ProfileSetting)
+        setLoading(false)
+      })
+    } catch (e) {
+      setLoading(false)
+      toast.error(err('invalid_email_or_password'))
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <LoadingOverlay loading={loading}>
       <div className={classes.root}>
-        <button className={classes.googleBtn}>
+        <button className={classes.googleBtn} onClick={signInWithGoogle}>
           <GmailIcon /> {t('sign_up_with_email')}
         </button>
         <div className={classes.withEmail}>

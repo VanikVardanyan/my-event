@@ -9,6 +9,7 @@ import {
   OutlinedInput,
   TextField,
 } from '@mui/material'
+import { signInWithPopup } from 'firebase/auth'
 
 import { yupResolver } from '@hookform/resolvers/yup'
 import Visibility from '@mui/icons-material/Visibility'
@@ -17,12 +18,12 @@ import useStyles from './styles'
 import { GmailIcon } from '@/shared/icons'
 import { Link } from '@/navigation'
 import { Routes } from '@/shared/routes'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
 import { useRouter } from '@/navigation'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/shared/lib/firebaseConfig'
+import { auth, provider } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
 import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
@@ -83,7 +84,22 @@ export const SignIn = () => {
     event.preventDefault()
   }
 
-  const signInWithGoogle = () => {}
+  const signInWithGoogle = async () => {
+    setLoading(true)
+    try {
+      signInWithPopup(auth, provider).then(async () => {
+        await dispatch(asyncSetProfileThunk()).then(() => {
+          route.push(Routes.Profile)
+          setLoading(false)
+        })
+      })
+    } catch (e) {
+      setLoading(false)
+      toast.error(err('invalid_email_or_password'))
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <LoadingOverlay loading={loading}>
