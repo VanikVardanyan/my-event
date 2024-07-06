@@ -5,21 +5,20 @@ import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('LayoutHeader').create({
   root: {
-    display: 'none',
+    display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '11px 10px 11px 16px',
+    padding: '11px 10px',
     backgroundColor: White,
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
     position: 'sticky',
-    top: 0,
+    bottom: 0,
     left: 0,
     zIndex: 1000,
     minHeight: 62,
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      padding: '11px 26px 11px 32px',
-      display: 'flex',
+      display: 'none',
     },
   },
   navbarSection: {

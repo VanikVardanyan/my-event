@@ -5,23 +5,28 @@ export const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
   maxWidth: '100%',
+
   [theme.breakpoints.up('lg')]: {
     paddingLeft: 280,
   },
 }))
 
-export const LayoutContainer = styled('div')({
+export const LayoutContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
   flexDirection: 'column',
-  padding: '48px 12px 36px',
+  padding: '12px',
   width: '100%',
-})
+
+  [theme.breakpoints.up('md')]: {
+    padding: '48px 12px 36px',
+  },
+}))
 
 import { tss } from 'tss-react/mui'
 import { SlateGreyLighten45 } from '@/shared/consts/colors'
 import { FontBody2, FontH3 } from '@/shared/consts/fontStyles'
-import { BreakPoints } from '../../shared/consts/common'
+import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('MainPage').create({
   root: {

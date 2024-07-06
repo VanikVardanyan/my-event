@@ -16,12 +16,14 @@ import { useAuth } from '../../lib/auth-context'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Dispatch } from '@/store/store'
-import { asyncSetProfileThunk, setProfile } from '@/store/features/profile-slice'
+import { setProfile } from '@/store/features/profile-slice'
 import { useTranslations } from 'next-intl'
 import { SwitchLanguage } from '../switch-language'
 import LogoutIcon from '@mui/icons-material/Logout'
+import MoreVertSharpIcon from '@mui/icons-material/MoreVertSharp'
+import { MenuAction } from './ui/menu-modal'
 
-export const LayoutHeader = () => {
+export const LayoutFooter = () => {
   const { classes } = useStyles()
   const t = useTranslations('Menu')
   const pathname = usePathname()
@@ -63,47 +65,41 @@ export const LayoutHeader = () => {
   }
 
   return (
-    <header className={classes.root}>
+    <footer className={classes.root}>
       {!lgUp && (
         <button onClick={menuClickHandler} className={classes.hamburgerSection}>
           <MenuIcon />
         </button>
       )}
+      <InputSearch />
 
-      <div className={classes.searchSection}>
-        <InputSearch />
-        <SwitchLanguage />
+      {user && (
+        <>
+          <Link href={Routes.Profile}>
+            <Avatar alt="Remy Sharp" src={profile?.avatar || '/default.jpg'} />
+          </Link>
+        </>
+      )}
+      <SwitchLanguage />
 
-        {!user && (
-          <>
-            <Button variant="outlined" LinkComponent={Link} href={Routes.Signin}>
-              {t('login')}
-            </Button>
-            <Button variant="outlined" LinkComponent={Link} href={Routes.Register}>
-              {t('register')}
-            </Button>
-          </>
-        )}
+      {user && (
+        <IconButton onClick={signOutHandler}>
+          <LogoutIcon />
+        </IconButton>
+      )}
+      {!user && (
+        // <>
+        <MenuAction />
+        //   <Button variant="outlined" LinkComponent={Link} href={Routes.Signin}>
+        //     {t('login')}
+        //   </Button>
+        //   <Button variant="outlined" LinkComponent={Link} href={Routes.Register}>
+        //     {t('register')}
+        //   </Button>
+        // </>
+      )}
 
-        {user && (
-          <>
-            <Link href={Routes.Profile}>
-              <Avatar alt="Remy Sharp" src={profile?.avatar || '/default.jpg'} />
-            </Link>
-            <IconButton onClick={signOutHandler}>
-              <LogoutIcon />
-            </IconButton>
-            {/* <Button variant="outlined" onClick={signOutHandler} startIcon={<LogoutIcon />}>
-              {t('sign_out')}
-            </Button> */}
-          </>
-        )}
-      </div>
-      {/* <select name="" id="" onChange={handleLanguageChange}>
-        <option value="ru">RU</option>
-        <option value="en">EN</option>
-      </select> */}
       <SideNav setOpen={menuClickHandler} isOpen={isOpenMenu} />
-    </header>
+    </footer>
   )
 }

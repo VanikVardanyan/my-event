@@ -16,6 +16,8 @@ export default tss.withName('ServicePost').create({
   },
   avatar: {
     borderRadius: '50%',
+    flexShrink: 0,
+    objectFit: 'cover',
   },
   userName: {
     ...FontBody1Accent,

@@ -21,7 +21,7 @@ export default tss
   .create(({ classes }) => ({
     root: {
       maxWidth: '100%',
-      width: 'calc(100% - 26px)',
+      width: 'calc(100% - 15px)',
       position: 'absolute',
       display: 'flex',
       visibility: 'hidden',
@@ -29,7 +29,7 @@ export default tss
       zIndex: 1000,
       background: White,
 
-      [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         position: 'relative',
         maxWidth: 320,
         display: 'flex',
@@ -84,7 +84,7 @@ export default tss
       cursor: 'pointer',
       borderRadius: 10,
 
-      [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         display: 'none',
       },
     },
@@ -101,7 +101,7 @@ export default tss
       borderRadius: 10,
       flexShrink: 0,
 
-      [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         display: 'none',
       },
     },
@@ -116,7 +116,7 @@ export default tss
       alignItems: 'center',
       cursor: 'pointer',
 
-      [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         display: 'flex',
       },
 
@@ -141,7 +141,7 @@ export default tss
       maxHeight: 267,
       overflowY: 'auto',
       position: 'absolute',
-      top: 46,
+      bottom: 46,
       borderRadius: 10,
       border: `1px solid ${SlateGreyLighten45}`,
       background: White,

@@ -21,7 +21,8 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
+  maxWidth: 400,
+  width: 'calc(100% - 10px)',
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius: 4,
@@ -32,6 +33,7 @@ export const RequestCreateModal = (props: Iprops) => {
   const { handleClose } = props
   const t = useTranslations('Request')
   const m = useTranslations('Menu')
+  const shared = useTranslations('Shared')
 
   const categories = Object.values(Professions).map((item) => ({
     value: item,
@@ -91,7 +93,7 @@ export const RequestCreateModal = (props: Iprops) => {
     <Box sx={style}>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <Typography id="modal-modal-title" variant="h6" component="h2" mb={2}>
-          Создать запрос
+          {t('create_request')}
         </Typography>
         <Grid container spacing={3} mb={2}>
           <Grid item xs={12} sm={10}>
@@ -202,8 +204,11 @@ export const RequestCreateModal = (props: Iprops) => {
           </Grid>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Button variant="contained" type="submit">
+          <Button variant="contained" type="submit" fullWidth>
             <Typography variant="button">{t('create_request')}</Typography>
+          </Button>
+          <Button variant="contained" type="button" onClick={handleClose} fullWidth sx={{ mt: 1 }}>
+            <Typography variant="button">{shared('cancel')}</Typography>
           </Button>
         </Grid>
       </Box>

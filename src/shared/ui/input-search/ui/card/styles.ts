@@ -11,6 +11,7 @@ export default tss.withName('SearchCard').create({
     overflow: 'hidden',
     cursor: 'pointer',
     borderRadius: 6,
+    alignItems: 'center',
 
     '&:hover': {
       background: SlateGreyLighten49,
@@ -18,6 +19,7 @@ export default tss.withName('SearchCard').create({
   },
   avatar: {
     borderRadius: '50%',
+    objectFit: 'cover',
   },
   userName: {
     ...FontBody1Accent,

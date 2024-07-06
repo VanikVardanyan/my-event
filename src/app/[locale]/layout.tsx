@@ -8,6 +8,7 @@ import { LayoutContainer, LayoutRoot } from './styles'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { unstable_setRequestLocale } from 'next-intl/server'
+import { LayoutFooter } from '../../shared/ui/layout-footer'
 
 export const metadata: Metadata = {
   icons: {
@@ -41,10 +42,13 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
           <ReduxProvider>
             <AuthProvider>
               <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
-                <LayoutHeader />
-                <LayoutRoot>
-                  <LayoutContainer>{children}</LayoutContainer>
-                </LayoutRoot>
+                <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+                  <LayoutHeader />
+                  <LayoutRoot>
+                    <LayoutContainer>{children}</LayoutContainer>
+                  </LayoutRoot>
+                  <LayoutFooter />
+                </div>
               </NextAppDirEmotionCacheProvider>
             </AuthProvider>
           </ReduxProvider>
