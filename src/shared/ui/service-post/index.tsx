@@ -23,8 +23,8 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
         </div>
       </Link>
       <div className={classes.carouselWrapper}>
-        {images.length === 0 && <Image src={'/default.jpg'} alt={'default'} width={468} height={468} />}
-        {images.length > 0 && (
+        {(images?.length === 0 || !images) && <Image src={'/default.jpg'} alt={'default'} width={468} height={468} />}
+        {images && images.length > 0 && (
           <Carousel showThumbs={false}>
             {images.map((url) => (
               <div key={url}>
