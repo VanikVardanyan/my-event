@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Modal, Box, List, ListItem, ListItemText, Typography, Button, Avatar } from '@mui/material'
 import { useRouter } from '@/navigation'
 
