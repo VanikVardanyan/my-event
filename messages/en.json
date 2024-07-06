@@ -9,7 +9,8 @@
         "search": "Search",
         "step": "Step",
         "oops": "Oops!",
-        "something_went_wrong": "Unfortunately, nothing was found"
+        "something_went_wrong": "Unfortunately, nothing was found",
+        "cancel": "Cancel"
     },
     "Signin": {
         "invalid_email": "Invalid email",

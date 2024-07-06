@@ -1,6 +1,7 @@
 import { styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
 import { SlateGreyBase } from '@/shared/consts/colors'
+import { BreakPoints } from '../../../../../shared/consts/common'
 
 export default tss.withName('ClientForm').create({
   root: {
@@ -11,6 +12,11 @@ export default tss.withName('ClientForm').create({
     alignItems: 'center',
     gap: 10,
     marginBottom: 20,
+    flexDirection: 'column',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      flexDirection: 'row',
+    },
   },
   avatarSection: {
     width: 147,

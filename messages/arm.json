@@ -9,7 +9,8 @@
         "search": "Փնտրել",
         "step": "Քայլ",
         "oops": "Վա՜յ!",
-        "something_went_wrong": "Ցավոք, ոչինչ չի գտնվել"
+        "something_went_wrong": "Ցավոք, ոչինչ չի գտնվել",
+        "cancel": "Չեղարկել"
     },
     "Signin": {
         "invalid_email": "Անվավեր էլ․ հասցե",

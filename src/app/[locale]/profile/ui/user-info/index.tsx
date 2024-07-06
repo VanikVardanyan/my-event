@@ -41,7 +41,7 @@ export const UserInfo = () => {
     <div>
       <div className={classes.avatarSection}>
         <Image
-          src={profile?.avatar || '/avatar.jpg'}
+          src={profile?.avatar || '/default.jpg'}
           alt="avatar"
           width={150}
           height={150}

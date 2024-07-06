@@ -1,16 +1,23 @@
 import { FontBody1Accent, FontBody2 } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
 import { BackgroundWhite, PurpleLighten25, TextGreyBase, TextSlateGreyLighten8 } from '@/shared/consts/colors'
+import { BreakPoints } from '../../../../../shared/consts/common'
 
 export default tss.withName('UserTypesSelect').create({
   container: {
     textAlign: 'center',
     marginBottom: 20,
+    padding: 10,
   },
   cardContainer: {
     display: 'flex',
     justifyContent: 'space-between',
     gap: 40,
+    flexDirection: 'column',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      flexDirection: 'row',
+    },
   },
   card: {
     flex: 1,
@@ -18,7 +25,7 @@ export default tss.withName('UserTypesSelect').create({
     padding: '20px',
     borderRadius: '10px',
     boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-    width: '150px',
+    width: '100%',
     textAlign: 'center',
     cursor: 'pointer',
     transition: 'transform 0.2s',
@@ -26,6 +33,10 @@ export default tss.withName('UserTypesSelect').create({
 
     '&:hover': {
       transform: 'scale(1.05)',
+    },
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      width: '150px',
     },
   },
   image: {
