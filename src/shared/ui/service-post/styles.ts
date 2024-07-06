@@ -1,4 +1,4 @@
-import { GreyBase, SlateGreyDarken7, SlateGreyBase, SlateGreyLighten13 } from '@/shared/consts/colors'
+import { GreyBase, SlateGreyDarken7, SlateGreyBase, SlateGreyLighten13, White } from '@/shared/consts/colors'
 import { FontBody1Accent, FontBody1 } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
 
@@ -48,5 +48,34 @@ export default tss.withName('ServicePost').create({
   },
   slider: {
     width: '100%',
+  },
+  arrowLeft: {
+    position: 'absolute',
+    width: 28,
+    height: 28,
+    top: '50%',
+    right: 20,
+    zIndex: 1000,
+    transform: 'translate(10px, -50%)',
+    cursor: 'pointer',
+    background: White,
+    borderRadius: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  arrowRight: {
+    position: 'absolute',
+    width: 28,
+    height: 28,
+    top: '50%',
+    zIndex: 1000,
+    transform: 'translate(10px, -50%)',
+    cursor: 'pointer',
+    background: White,
+    borderRadius: '50%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 })
