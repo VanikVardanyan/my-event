@@ -6,11 +6,10 @@ import useStyles from './styles'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+
 import cn from 'classnames'
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 
 const SamplePrevArrow = (props: any) => {
   const { onClick, currentSlide } = props
@@ -21,7 +20,7 @@ const SamplePrevArrow = (props: any) => {
 
   return (
     <div onClick={onClick} className={cn('arrow-btn prev', classes.arrowRight)}>
-      <ArrowBackIosIcon style={{ color: 'black', width: 14, height: 14 }} />
+      <NavigateBeforeIcon style={{ color: 'black' }} />
     </div>
   )
 }
@@ -35,7 +34,7 @@ function SampleNextArrow(props: any) {
   }
   return (
     <div onClick={onClick} className={cn('arrow-btn next', classes.arrowLeft)}>
-      <ArrowForwardIosIcon style={{ color: 'black', width: 14, height: 14 }} />
+      <NavigateNextIcon style={{ color: 'black' }} />
     </div>
   )
 }
