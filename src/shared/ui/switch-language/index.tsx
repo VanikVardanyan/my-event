@@ -17,6 +17,12 @@ function removeLanguageFromURL(url: string) {
   // Регулярное выражение для проверки, что часть строки является кодом языка (2 или 3 символа)
   const langRegex = /^[a-zA-Z]{2,3}$/
 
+  // Если URL состоит из двух частей и вторая часть является кодом языка
+  if (parts.length === 2 && langRegex.test(parts[1])) {
+    return '/'
+  }
+
+  // Если URL состоит из более чем двух частей и вторая часть является кодом языка
   if (parts.length > 2 && langRegex.test(parts[1])) {
     parts.splice(1, 1)
   }
