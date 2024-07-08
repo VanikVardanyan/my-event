@@ -58,6 +58,6 @@ export default tss.withName('LayoutHeader').create({
   },
   searchList: {
     bottom: 46,
-    top: 'inherit',
+    top: 'inherit !important',
   },
 })
