@@ -1,25 +1,28 @@
 'use client'
-import { styled } from '@mui/material'
+import { styled, Theme } from '@mui/material'
 
 export const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
   maxWidth: '100%',
 
-  [theme.breakpoints.up('lg')]: {
-    paddingLeft: 280,
-  },
+  // [theme.breakpoints.up('lg')]: {
+  //   paddingLeft: 280,
+  // },
 }))
 
 export const LayoutContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flex: '1 1 auto',
   flexDirection: 'column',
-  padding: '12px',
   width: '100%',
+}))
+
+export const Container = styled('div')(({ theme }) => ({
+  padding: '12px',
 
   [theme.breakpoints.up('md')]: {
-    padding: '48px 12px 36px',
+    padding: '0 12px 36px',
   },
 }))
 

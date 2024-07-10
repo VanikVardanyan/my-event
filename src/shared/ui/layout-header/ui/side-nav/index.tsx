@@ -123,23 +123,23 @@ export const SideNav = (props: ISideNavProps) => {
     </div>
   )
 
-  if (lgUp) {
-    return (
-      <Drawer
-        anchor="left"
-        open
-        PaperProps={{
-          sx: {
-            width: 280,
-            background: White,
-          },
-        }}
-        variant="permanent"
-      >
-        {content}
-      </Drawer>
-    )
-  }
+  // if (lgUp) {
+  //   return (
+  //     <Drawer
+  //       anchor="left"
+  //       open
+  //       PaperProps={{
+  //         sx: {
+  //           width: 280,
+  //           background: White,
+  //         },
+  //       }}
+  //       variant="permanent"
+  //     >
+  //       {content}
+  //     </Drawer>
+  //   )
+  // }
 
   return (
     <Drawer

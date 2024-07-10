@@ -68,11 +68,11 @@ export const LayoutHeader = () => {
 
   return (
     <header className={classes.root}>
-      {!lgUp && (
-        <button onClick={menuClickHandler} className={classes.hamburgerSection}>
-          <MenuIcon />
-        </button>
-      )}
+      {/* {!lgUp && ( */}
+      <button onClick={menuClickHandler} className={classes.hamburgerSection}>
+        <MenuIcon />
+      </button>
+      {/* )} */}
 
       <div className={classes.searchSection}>
         <InputSearch />

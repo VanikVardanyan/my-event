@@ -1,11 +1,89 @@
-import { FontBody1Accent, FontBody1 } from '@/shared/consts/fontStyles'
+import { FontBody1Accent, FontBody1, FontBody2 } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
-import { Black, PurpleBase, SlateGreyDarken7, White, GreyBase, SlateGreyBase } from '@/shared/consts/colors'
+import {
+  Black,
+  SlateGreyDarken7,
+  White,
+  GreyBase,
+  SlateGreyBase,
+  TextSlateGreyLighten8,
+  TextSlateGreyLighten30,
+} from '@/shared/consts/colors'
+import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('Register').create({
   root: {
+    width: '100%',
+    height: 'calc(100vh - 62px)',
+    display: 'flex',
+  },
+  bgSection: {
+    flex: 1,
+    backgroundImage: `url('/signin/background.png')`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'right',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'none',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      display: 'flex',
+    },
+  },
+  bgContent: {
+    borderRadius: 10,
+    padding: '12px',
+    backgroundColor: 'rgba(0, 0, 0, 0.69)',
+    color: White,
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'center',
+  },
+  formSection: {
+    flex: 1,
+    alignSelf: 'center',
+    padding: '0 10px',
+    backgroundImage: `url('/signin/background.png')`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    height: '100%',
+    display: 'flex',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      backgroundImage: 'none',
+      height: 'initial',
+      display: 'block',
+    },
+  },
+  formWrapper: {
     maxWidth: 400,
+    minWidth: 300,
+    width: '100%',
     margin: 'auto',
+    backgroundColor: 'rgba(0, 0, 0, 0.69)',
+    padding: 25,
+    borderRadius: 10,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'right',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      backgroundColor: White,
+      padding: '0px',
+      borderRadius: '0px',
+    },
+  },
+  formTitle: {
+    ...FontBody2,
+    marginBottom: 25,
+    color: White,
+    display: 'none',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      color: Black,
+      display: 'block',
+    },
   },
   googleBtn: {
     ...FontBody1Accent,
@@ -14,12 +92,12 @@ export default tss.withName('Register').create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 10,
-    border: 'none',
+    gap: 20,
     outline: 'none',
-    background: Black,
-    color: White,
+    background: White,
+    color: TextSlateGreyLighten8,
     cursor: 'pointer',
+    border: `1px solid ${TextSlateGreyLighten30}`,
     borderRadius: 6,
   },
   withEmail: {
@@ -31,8 +109,20 @@ export default tss.withName('Register').create({
   },
   withEmailText: {
     ...FontBody1,
-    color: GreyBase,
+    color: White,
     textAlign: 'center',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      color: GreyBase,
+    },
+  },
+  textField: {
+    background: White,
+    borderRadius: 4,
+
+    '& input': {
+      color: 'black',
+    },
   },
   line: {
     height: 1,
@@ -43,26 +133,29 @@ export default tss.withName('Register').create({
     display: 'flex',
     flexDirection: 'column',
     gap: 25,
-    marginBottom: 24,
   },
-  linkForgot: {
-    ...FontBody1,
-    display: 'flex',
-    justifyContent: 'flex-end',
-
-    '&:hover': {
-      color: PurpleBase,
-    },
-  },
-  signInButton: {
-    marginBottom: 20,
-  },
+  signInButton: {},
   footer: {
     ...FontBody1,
     color: SlateGreyBase,
   },
+  registerSection: {
+    display: 'block',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      display: 'none',
+    },
+  },
+  registerContent: {
+    ...FontBody1,
+    color: White,
+    marginTop: 10,
+  },
   linkRegister: {
     ...FontBody1Accent,
-    color: PurpleBase,
+    textDecoration: 'underline',
+  },
+  title: {
+    ...FontBody1Accent,
   },
 })
