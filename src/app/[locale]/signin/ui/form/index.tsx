@@ -7,6 +7,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  styled,
   TextField,
 } from '@mui/material'
 import { signInWithPopup } from 'firebase/auth'
@@ -29,6 +30,15 @@ import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import toast from 'react-hot-toast'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
+
+const SignInButton = styled(Button)({
+  backgroundColor: '#ECC1C1',
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: '#ECC1C1',
+  },
+})
 
 interface IFormValues {
   email: string
@@ -104,73 +114,87 @@ export const SignIn = () => {
   return (
     <LoadingOverlay loading={loading}>
       <div className={classes.root}>
-        <button className={classes.googleBtn} onClick={signInWithGoogle}>
-          <GmailIcon /> {t('sign_in_with_email')}
-        </button>
-        <div className={classes.withEmail}>
-          <div className={classes.line} />
-          <div className={classes.withEmailText}>{t('sign_in_with_email')}</div>
-          <div className={classes.line} />
+        <div className={classes.bgSection}>
+          <div className={classes.bgContent}>
+            <div className={classes.title}>“My Event”</div>
+            <div className={classes.registerContent}>
+              {t('no_account')}{' '}
+              <Link href={Routes.Register} className={classes.linkRegister}>
+                {t('register')}
+              </Link>
+            </div>
+          </div>
         </div>
-        <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
-          <TextField
-            required
-            {...register('email')}
-            fullWidth
-            variant="outlined"
-            label="email"
-            error={!!errors.email}
-            helperText={errors.email?.message}
-            autoFocus
-          />
-          <FormControl variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">{t('password')}</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={showPassword ? 'text' : 'password'}
-              required
-              error={!!errors.email}
-              {...register('password')}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label={t('password')}
-            />
-            <FormHelperText error>{errors.password?.message}</FormHelperText>
-
-            {/* <FormHelperText id="filled-weight-helper-text">
-            <Link href="#" className={classes.linkForgot}>
-              Забыли пароль?
-            </Link>
-          </FormHelperText> */}
-          </FormControl>
-          <Button
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            size="large"
-            className={classes.signInButton}
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            {t('sign_in')}
-          </Button>
-        </form>
-
-        <div className={classes.footer}>
-          {t('no_account')}{' '}
-          <Link href={Routes.Register} className={classes.linkRegister}>
-            {t('register')}
-          </Link>
+        <div className={classes.formSection}>
+          <div className={classes.formWrapper}>
+            <div className={classes.formTitle}>Մուտք գործել</div>
+            <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+              <TextField
+                required
+                {...register('email')}
+                fullWidth
+                variant="outlined"
+                label="email"
+                error={!!errors.email}
+                helperText={errors.email?.message}
+                autoFocus={false}
+                className={classes.textField}
+              />
+              <FormControl variant="filled">
+                <InputLabel htmlFor="outlined-adornment-password">{t('password')}</InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  error={!!errors.email}
+                  {...register('password')}
+                  className={classes.textField}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+                <FormHelperText error>{errors.password?.message}</FormHelperText>
+                <Link href="#" className={classes.linkForgot}>
+                  Забыли пароль?
+                </Link>
+              </FormControl>
+              <SignInButton
+                type="submit"
+                variant="contained"
+                fullWidth
+                size="large"
+                className={classes.signInButton}
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                {t('sign_in')}
+              </SignInButton>
+            </form>
+            <div className={classes.withEmail}>
+              <div className={classes.line} />
+              <div className={classes.withEmailText}>{t('sign_in_with_email')}</div>
+              <div className={classes.line} />
+            </div>
+            <button className={classes.googleBtn} onClick={signInWithGoogle}>
+              <GmailIcon /> {t('sign_in_with_email')}
+            </button>
+            <div className={classes.registerSection}>
+              <div className={classes.registerContent}>
+                {t('no_account')}{' '}
+                <Link href={Routes.Register} className={classes.linkRegister}>
+                  {t('register')}
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </LoadingOverlay>
