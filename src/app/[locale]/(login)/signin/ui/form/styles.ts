@@ -5,63 +5,16 @@ import {
   SlateGreyDarken7,
   White,
   GreyBase,
-  SlateGreyBase,
-  TextSlateGreyLighten8,
   TextSlateGreyLighten30,
+  TextSlateGreyLighten8,
   PinkBrownBase,
   PinkBrownLighten30,
   PinkBrownDisabled,
 } from '@/shared/consts/colors'
 import { BreakPoints } from '@/shared/consts/common'
-import { styled } from '@mui/system'
-import { Button } from '@mui/material'
+import { Button, styled } from '@mui/material'
 
-export default tss.withName('Register').create({
-  root: {
-    width: '100%',
-    height: 'calc(100vh - 62px)',
-    display: 'flex',
-  },
-  bgSection: {
-    flex: 1,
-    backgroundImage: `url('/register/background.png')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'none',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      display: 'flex',
-    },
-  },
-  bgContent: {
-    borderRadius: 10,
-    padding: '12px',
-    backgroundColor: 'rgba(0, 0, 0, 0.69)',
-    color: White,
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-  },
-  formSection: {
-    flex: 1,
-    alignSelf: 'center',
-    padding: '0 10px',
-    backgroundImage: `url('/register/background.png')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
-    height: '100%',
-    display: 'flex',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      backgroundImage: 'none',
-      height: 'initial',
-      display: 'block',
-    },
-  },
+export default tss.withName('SignIn').create({
   formWrapper: {
     maxWidth: 400,
     minWidth: 300,
@@ -78,6 +31,35 @@ export default tss.withName('Register').create({
       backgroundColor: White,
       padding: '0px',
       borderRadius: '0px',
+    },
+  },
+  textField: {
+    background: White,
+    borderRadius: 4,
+
+    '& input': {
+      color: 'black',
+    },
+
+    '& .Mui-focused': {
+      color: PinkBrownBase,
+      borderColor: PinkBrownBase,
+    },
+  },
+  formSection: {
+    flex: 1,
+    alignSelf: 'center',
+    padding: '0 10px',
+    backgroundImage: `url('/signin/background.png')`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    height: '100%',
+    display: 'flex',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      backgroundImage: 'none',
+      height: 'initial',
+      display: 'block',
     },
   },
   formTitle: {
@@ -122,19 +104,6 @@ export default tss.withName('Register').create({
       color: GreyBase,
     },
   },
-  textField: {
-    background: White,
-    borderRadius: 4,
-
-    '& input': {
-      color: 'black',
-    },
-
-    '& .Mui-focused': {
-      color: PinkBrownBase,
-      borderColor: PinkBrownBase,
-    },
-  },
   line: {
     height: 1,
     background: SlateGreyDarken7,
@@ -145,11 +114,18 @@ export default tss.withName('Register').create({
     flexDirection: 'column',
     gap: 25,
   },
-  signInButton: {},
-  footer: {
+  linkForgot: {
     ...FontBody1,
-    color: SlateGreyBase,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    color: White,
+    textDecoration: 'underline',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      color: GreyBase,
+    },
   },
+  signInButton: {},
   registerSection: {
     display: 'block',
 

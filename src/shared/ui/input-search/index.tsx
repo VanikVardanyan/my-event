@@ -4,7 +4,7 @@ import { debounce } from '@mui/material'
 import { AxiosError } from 'axios'
 import cn from 'classnames'
 import SearchIcon from '@mui/icons-material/Search'
-import { SlateGreyDarken7, SlateGreyLighten10 } from '../../consts/colors'
+import { SlateGreyDarken7, SlateGreyLighten10, White } from '../../consts/colors'
 import CloseIcon from '@mui/icons-material/Close'
 import { HTTPResponseStatusCodes } from '../../utils/error-message-by-code'
 import useStyles from './styles'
@@ -142,7 +142,7 @@ export const InputSearch = (props: InputSearchProps) => {
         )}
       </div>
       <button className={classes.mobileInputButton} onClick={showInputHandler}>
-        <SearchIcon style={{ width: 24, height: 24, fill: SlateGreyDarken7 }} />
+        <SearchIcon style={{ width: 24, height: 24, fill: White }} />
       </button>
     </>
   )

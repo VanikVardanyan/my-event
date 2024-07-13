@@ -2,44 +2,19 @@ import { FontBody1Accent, FontBody1, FontBody2 } from '@/shared/consts/fontStyle
 import { tss } from 'tss-react/mui'
 import {
   Black,
-  PurpleBase,
   SlateGreyDarken7,
   White,
   GreyBase,
   TextSlateGreyLighten30,
   TextSlateGreyLighten8,
+  PinkBrownBase,
+  PinkBrownLighten30,
+  PinkBrownDisabled,
 } from '@/shared/consts/colors'
 import { BreakPoints } from '@/shared/consts/common'
+import { Button, styled } from '@mui/material'
 
 export default tss.withName('SignIn').create({
-  root: {
-    width: '100%',
-    height: 'calc(100vh - 62px)',
-    display: 'flex',
-  },
-  bgSection: {
-    flex: 1,
-    backgroundImage: `url('/signin/background.png')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
-    justifyContent: 'center',
-    alignItems: 'center',
-    display: 'none',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      display: 'flex',
-    },
-  },
-  bgContent: {
-    borderRadius: 10,
-    padding: '12px',
-    backgroundColor: 'rgba(0, 0, 0, 0.69)',
-    color: White,
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'center',
-  },
   formWrapper: {
     maxWidth: 400,
     minWidth: 300,
@@ -64,6 +39,11 @@ export default tss.withName('SignIn').create({
 
     '& input': {
       color: 'black',
+    },
+
+    '& .Mui-focused': {
+      color: PinkBrownBase,
+      borderColor: PinkBrownBase,
     },
   },
   formSection: {
@@ -132,7 +112,7 @@ export default tss.withName('SignIn').create({
   form: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 25,
+    gap: 5,
   },
   linkForgot: {
     ...FontBody1,
@@ -145,24 +125,20 @@ export default tss.withName('SignIn').create({
       color: GreyBase,
     },
   },
-  signInButton: {},
-  registerSection: {
-    display: 'block',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      display: 'none',
-    },
-  },
-  registerContent: {
-    ...FontBody1,
-    color: White,
-    marginTop: 10,
-  },
-  linkRegister: {
-    ...FontBody1Accent,
-    textDecoration: 'underline',
-  },
   title: {
     ...FontBody1Accent,
+  },
+})
+
+export const SignInButton = styled(Button)({
+  backgroundColor: PinkBrownBase,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: PinkBrownLighten30,
+  },
+
+  '&:disabled': {
+    backgroundColor: PinkBrownDisabled,
   },
 })

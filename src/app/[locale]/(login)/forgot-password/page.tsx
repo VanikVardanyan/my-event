@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect } from 'react'
+import { lazy, useEffect } from 'react'
 import { useAuth } from '@/shared/lib/auth-context'
-import { SignIn } from './ui/form'
 import { useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
 import { Loader } from '@/shared/ui/Loader'
+
+const SignIn = lazy(() => import('./ui/form'))
 
 const SignInPage = () => {
   const { user, loading } = useAuth()
@@ -22,8 +23,6 @@ const SignInPage = () => {
       }
     }
   }, [loading])
-
-  if (loading) return <Loader />
 
   return <SignIn />
 }

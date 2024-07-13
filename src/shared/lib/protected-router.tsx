@@ -1,5 +1,3 @@
-'use client'
-
 import { useRouter } from '@/navigation'
 import { ReactNode, useLayoutEffect } from 'react'
 import { useAuth } from './auth-context'

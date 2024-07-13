@@ -23,7 +23,12 @@
         "no_account": "Don't have an account?",
         "register": "Register",
         "email": "Email",
-        "password": "Password"
+        "password": "Password",
+        "welcome": "Welcome",
+        "forgot_password_title": "Forgot password?",
+        "forgot_password_description": "We have sent you a password to your email",
+        "send": "Send",
+        "reset_password": "Reset password"
     },
     "Register": {
         "invalid_email": "Invalid email",
@@ -84,7 +89,9 @@
         "provider_title": "Service Provider",
         "provider_description": "Offer services for events",
         "client_title": "Client",
-        "client_description": "Seek services and organize events"
+        "client_description": "Seek services and organize events",
+        "user_type_select": "Determine your role",
+        "user_type_select_description": "Choose the role that suits you best"
     },
     "RequestList": {
         "all_requests": "All Requests",
@@ -111,7 +118,8 @@
         "request_list": "Request List",
         "login": "Login",
         "register": "Register",
-        "sign_out": "Sign Out"
+        "sign_out": "Sign Out",
+        "services": "Services"
     },
     "Professions": {
         "showman": "Showman",

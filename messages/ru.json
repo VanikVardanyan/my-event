@@ -23,7 +23,12 @@
         "no_account": "У вас еще нет аккаунта?",
         "register": "Зарегистрироваться",
         "email": "Email",
-        "password": "Пароль"
+        "password": "Пароль",
+        "welcome": "Добро пожаловать",
+        "forgot_password_title": "Забыли пароль?",
+        "forgot_password_description": "Мы отправили вам пароль на ваш email",
+        "send": "Отправить",
+        "reset_password": "Востановить пароль"
     },
     "Register": {
         "invalid_email": "Неверный email",
@@ -84,7 +89,9 @@
         "provider_title": "Поставщик услуг",
         "provider_description": "Предлагаю услуги для мероприятий",
         "client_title": "Клиент",
-        "client_description": "Ищу услуги и организовываю мероприятия"
+        "client_description": "Ищу услуги и организовываю мероприятия",
+        "user_type_select": "Определите свою роль",
+        "user_type_select_description": "Это поможет нам настроить ваш профиль и предложить вам подходящие услуги и предложения."
     },
     "RequestList": {
         "all_requests": "Все запросы",
@@ -111,7 +118,8 @@
         "request_list": "Список заказов",
         "login": "Вход",
         "register": "Регистрация",
-        "sign_out": "Выйти"
+        "sign_out": "Выйти",
+        "services": "Услуги"
     },
     "Professions": {
         "showman": "Шоумен",

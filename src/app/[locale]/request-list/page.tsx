@@ -7,6 +7,7 @@ import { UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Loader } from '@/shared/ui/Loader'
+import { Suspense } from 'react'
 
 const RequestsList = () => {
   const { loading } = useSelector(getProfile)

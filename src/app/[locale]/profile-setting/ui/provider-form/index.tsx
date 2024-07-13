@@ -11,13 +11,9 @@ import { Professions, UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
+import { UploadButton } from '../../styles'
 
-const WithStyledFlag = styled(MuiTelInput)`
-  .${classes.flagContainer} {
-    filter: grayscale(100%);
-    width: 20px;
-  }
-`
+const WithStyledFlag = styled(MuiTelInput)``
 
 export const ProviderForm = () => {
   const { classes } = useStyles()
@@ -92,14 +88,15 @@ export const ProviderForm = () => {
         <div className={classes.avatarWrapper}>
           <div className={classes.avatar}>
             <Image
-              src={avatarPreview || '/default.jpg'}
-              width={147}
-              height={147}
+              src={avatarPreview || '/default-avatar.png'}
+              width={150}
+              height={150}
               alt="Avatar Preview"
               className={classes.avatar}
             />
           </div>
-          <Button
+          <UploadButton
+            // @ts-ignore
             component="label"
             role={undefined}
             variant="contained"
@@ -109,7 +106,7 @@ export const ProviderForm = () => {
           >
             {t('upload_avatar')}
             <VisuallyHiddenInput type="file" onChange={handleAvatarChange} />
-          </Button>
+          </UploadButton>
         </div>
 
         <div className={classes.avatarSection}>
@@ -124,8 +121,9 @@ export const ProviderForm = () => {
             autoComplete="off"
             error={!!errors.name}
             helperText={errors?.name?.message as string}
+            size="small"
           />
-          <WithStyledFlag onChange={phoneChangeHandler} value={phone} defaultCountry="AM" />
+          <WithStyledFlag size="small" onChange={phoneChangeHandler} value={phone} defaultCountry="AM" />
           <TextField
             fullWidth
             autoCorrect="off"
@@ -136,6 +134,7 @@ export const ProviderForm = () => {
             autoComplete="off"
             error={!!errors.nickname}
             helperText={errors?.nickname?.message as string}
+            size="small"
           />
           <TextField
             fullWidth
@@ -147,6 +146,7 @@ export const ProviderForm = () => {
             autoComplete="off"
             error={!!errors.email}
             helperText={errors?.email?.message as string}
+            size="small"
           />
         </div>
       </div>

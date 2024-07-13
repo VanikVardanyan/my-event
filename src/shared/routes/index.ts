@@ -14,4 +14,5 @@ export enum Routes {
   ProfileSetting = '/profile-setting',
   Profile = '/profile',
   RequestList = '/request-list',
+  ForgotPassword = '/forgot-password',
 }

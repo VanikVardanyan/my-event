@@ -2,7 +2,7 @@
 
 import { ServicePost } from '@/shared/ui/service-post'
 import useStyles from './styles'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
@@ -43,17 +43,19 @@ const ShowMan = () => {
     fetchProviderUsers()
   }, [])
 
-  if (loading) return <Loader />
+  // if (loading) return <Loader />
 
   return (
-    <div className={classes.root}>
-      <div className={classes.servicesListWrapper}>
-        {providerUsers.map((service: any) => (
-          <ServicePost key={service.id} {...service} />
-        ))}
-        {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
+    <Suspense fallback={<div>...loading</div>}>
+      <div className={classes.root}>
+        <div className={classes.servicesListWrapper}>
+          {providerUsers.map((service: any) => (
+            <ServicePost key={service.id} {...service} />
+          ))}
+          {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
+        </div>
       </div>
-    </div>
+    </Suspense>
   )
 }
 

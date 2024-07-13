@@ -1,15 +1,25 @@
 import { tss } from 'tss-react/mui'
 
-import { DarkGreen, SlateGreyLighten49, White } from '@/shared/consts/colors'
+import {
+  PinkBrownBase,
+  PinkBrownDarken16,
+  PinkBrownDarken4,
+  SlateGreyLighten49,
+  TextSlateGreyLighten16,
+  TextSlateGreyLighten30,
+  White,
+} from '@/shared/consts/colors'
 import { BreakPoints } from '@/shared/consts/common'
+import { Button, styled } from '@mui/material'
+import { FontBody2 } from '../../consts/fontStyles'
 
 export default tss.withName('LayoutHeader').create({
   root: {
-    display: 'none',
+    display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '11px 10px 11px 16px',
-    backgroundColor: White,
+    background: PinkBrownBase,
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
     position: 'sticky',
     top: 0,
@@ -33,13 +43,14 @@ export default tss.withName('LayoutHeader').create({
   searchSection: {
     display: 'flex',
     alignItems: 'center',
-    gap: 4,
+    gap: 16,
     width: '100%',
     justifyContent: 'flex-end',
-
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      gap: 16,
-    },
+  },
+  hamburg: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 5,
   },
   hamburgerSection: {
     width: 40,
@@ -51,10 +62,43 @@ export default tss.withName('LayoutHeader').create({
     borderRadius: 10,
     outline: 'none',
     border: 'none',
-    background: 'none',
+    background: PinkBrownDarken16,
+    color: White,
 
     '&:hover': {
-      background: SlateGreyLighten49,
+      background: PinkBrownDarken16,
+      color: TextSlateGreyLighten16,
     },
+  },
+  hamburgWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row-reverse',
+    marginRight: 16,
+    gap: 16,
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      flexDirection: 'row',
+    },
+  },
+  hamburgText: {
+    ...FontBody2,
+    color: White,
+    display: 'none',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      display: 'inline',
+    },
+  },
+})
+
+export const LoginButton = styled(Button)({
+  backgroundColor: PinkBrownBase,
+  color: White,
+  border: `1px solid ${White}`,
+
+  '&:hover': {
+    backgroundColor: PinkBrownDarken4,
+    border: `1px solid ${TextSlateGreyLighten30}`,
   },
 })

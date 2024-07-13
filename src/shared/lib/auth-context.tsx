@@ -14,11 +14,13 @@ const AuthContext = createContext<{
   loading: boolean
   role: null | UserType
   setUser: (user: any) => void
+  setLoading: (loading: boolean) => void
 }>({
   user: null,
   loading: false,
   role: null,
   setUser: () => {},
+  setLoading: () => {},
 })
 
 export const AuthProvider = ({ children }: any) => {
@@ -55,7 +57,7 @@ export const AuthProvider = ({ children }: any) => {
     return () => unsubscribe()
   }, [])
 
-  return <AuthContext.Provider value={{ user, loading, role, setUser }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, loading, role, setUser, setLoading }}>{children}</AuthContext.Provider>
 }
 
 export const useAuth = () => useContext(AuthContext)

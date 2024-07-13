@@ -5,7 +5,7 @@ import { GreyBase, SlateGreyBase, TextSlateGreyBase, White } from '@/shared/cons
 export default tss.withName('SideNav').create({
   root: {},
   logoSection: {
-    height: 100,
+    height: 120,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -42,5 +42,8 @@ export default tss.withName('SideNav').create({
     '& svg': {
       fill: TextSlateGreyBase,
     },
+  },
+  logo: {
+    objectFit: 'cover',
   },
 })

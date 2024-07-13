@@ -1,15 +1,16 @@
 'use client'
 
+import { lazy, useEffect } from 'react'
 import { useAuth } from '@/shared/lib/auth-context'
 import { useRouter } from '@/navigation'
-import { Loader } from '@/shared/ui/Loader'
-import { lazy, useEffect } from 'react'
 import { Routes } from '@/shared/routes'
+import { Loader } from '@/shared/ui/Loader'
 
-const Register = lazy(() => import('./ui/form'))
+const SignIn = lazy(() => import('./ui/form'))
 
-const RegisterInPage = () => {
+const SignInPage = () => {
   const { user, loading } = useAuth()
+
   const history = useRouter()
 
   useEffect(() => {
@@ -23,11 +24,11 @@ const RegisterInPage = () => {
     }
   }, [loading])
 
-  return (
-    <div>
-      <Register />
-    </div>
-  )
+  // if (loading) {
+  //   return <Loader />
+  // }
+
+  return <SignIn />
 }
 
-export default RegisterInPage
+export default SignInPage
