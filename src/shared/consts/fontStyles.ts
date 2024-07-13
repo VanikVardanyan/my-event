@@ -36,6 +36,14 @@ export const FontH5: IFont = {
   letterSpacing: '0px',
 }
 
+export const FontSubtitle1: IFont = {
+  fontFamily: fontFamily.Base,
+  fontSize: '18px',
+  fontWeight: Number(fontWeight.Bold),
+  lineHeight: '22px',
+  letterSpacing: '0px',
+}
+
 export const FontBody1: IFont = {
   fontFamily: fontFamily.Base,
   fontSize: '14px',

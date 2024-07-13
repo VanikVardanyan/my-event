@@ -18,12 +18,17 @@
         "password_min_length": "Առնվազն 6 նիշ",
         "sign_in_with_email": "Մուտք գործել էլ․ հասցեով",
         "sign_in_with_google": "Մուտք գործել Google-ով",
-        "sign_in": "Մուտք գործել",
+        "sign_in": "Մուտք",
         "forgot_password": "Մոռացել եք գաղտնաբառը?",
         "no_account": "Եթե հաշիվ չունեք կարող եք",
         "register": "Գրանցվել",
         "email": "Էլ․ հասցե",
-        "password": "Գաղտնաբառ"
+        "password": "Գաղտնաբառ",
+        "welcome": "Բարի գալուստ",
+        "forgot_password_title": "Մոռացե՞լ եք գաղտնաբառը",
+        "forgot_password_description": "Մենք ուղարկել ենք ձեր գաղտնաբառը ձեր էլ․ հասցեին",
+        "send": "Ուղարկել",
+        "reset_password": "Վերականգնել գաղտնաբառը"
     },
     "Register": {
         "invalid_email": "Անվավեր էլ․ հասցե",
@@ -71,7 +76,7 @@
         "email": "Էլ․ հասցե",
         "enter_email": "Մուտքագրեք էլ․ հասցե",
         "select_profession": "Ընտրեք մասնագիտություն (առավելագույնը 2)",
-        "describe_yourself": "Նկարագրեք ինքներդ",
+        "describe_yourself": "Նկարագրություն",
         "enter_description": "Մուտքագրեք նկարագրություն",
         "facebook_link": "Հղում ձեր facebook-ի վրա",
         "enter_facebook_link": "Մուտքագրեք հղում ձեր facebook-ի վրա",
@@ -84,7 +89,9 @@
         "provider_title": "Ծառայության մատակարար",
         "provider_description": "Առաջարկեք ծառայություններ միջոցառումների համար",
         "client_title": "Հաճախորդ",
-        "client_description": "Փնտրեք ծառայություններ և կազմակերպեք միջոցառումներ"
+        "client_description": "Փնտրեք ծառայություններ և կազմակերպեք միջոցառումներ",
+        "user_type_select": "Ընտրեք ձեր դերը",
+        "user_type_select_description": "Ընտրեք այն դերը, որը ձեզ ավելի է համապատասխանում"
     },
     "RequestList": {
         "all_requests": "Բոլոր պահանջները",
@@ -109,9 +116,10 @@
         "costume_rental": "Հագուստի վարձույթ",
         "my_profile": "Իմ պրոֆիլը",
         "request_list": "Պահանջների ցանկ",
-        "login": "Մուտք գործել",
+        "login": "Մուտք",
         "register": "Գրանցվել",
-        "sign_out": "Դուրս գալ"
+        "sign_out": "Դուրս գալ",
+        "services": "Ծառայություններ"
     },
     "Professions": {
         "showman": "Շոումեն",

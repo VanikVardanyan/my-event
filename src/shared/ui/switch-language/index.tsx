@@ -43,7 +43,7 @@ export const SwitchLanguage = () => {
 
   return (
     <Dropdown>
-      <MenuButton sx={{ padding: '5px', display: 'flex' }}>
+      <MenuButton sx={{ padding: '5px', display: 'flex', background: 'inherit' }}>
         <Image src={`/flag-${locale}.png`} alt="flag" width={30} height={30} />
       </MenuButton>
       <Menu slots={{ listbox: AnimatedListbox }} style={{ zIndex: 1000 }}>

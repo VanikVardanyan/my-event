@@ -22,7 +22,6 @@ export default tss.withName('ClientForm').create({
     width: 147,
     height: 147,
     borderRadius: '50%',
-    border: `1px solid ${SlateGreyBase}`,
     overflow: 'hidden',
   },
   avatar: {

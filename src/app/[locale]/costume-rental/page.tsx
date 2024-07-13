@@ -6,11 +6,10 @@ import { useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
-import { IPostProps } from '@/shared/ui/service-post/types'
 import { useTranslations } from 'next-intl'
 import { Loader } from '@/shared/ui/Loader'
 
-const ShowMan = () => {
+const CostumeRental = () => {
   const { classes } = useStyles()
   const t = useTranslations('Shared')
 
@@ -58,4 +57,4 @@ const ShowMan = () => {
   )
 }
 
-export default ShowMan
+export default CostumeRental

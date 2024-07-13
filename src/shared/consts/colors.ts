@@ -21,6 +21,12 @@ export const OrangeBase = '#F4A72D'
 export const OrangeLighten37 = lighten(chroma(OrangeBase), 0.37).hex() // '#FDF2E0'
 export const OrangeDarken29 = darken(chroma(OrangeBase), 0.29).hex() // '#865507'
 
+export const PinkBrownBase = '#A87676'
+export const PinkBrownDarken16 = chroma(PinkBrownBase).darken(0.16).hex() // затемнённый на 16%
+export const PinkBrownLighten30 = chroma(PinkBrownBase).brighten(0.3).hex() // осветлённый на 30%
+export const PinkBrownDarken4 = chroma(PinkBrownBase).darken(0.04).hex() // затемнённый на 4%
+export const PinkBrownDisabled = chroma(PinkBrownBase).desaturate(1.5).brighten(0.5).hex() // приглушённый и осветлённый вариант
+
 export const GreenBase = '#70C24B'
 export const GreenLighten41 = lighten(chroma(GreenBase), 0.41).hex() // '#ECF7E7'
 export const GreenLighten33 = lighten(chroma(GreenBase), 0.33).hex() // '#D4EDC9'

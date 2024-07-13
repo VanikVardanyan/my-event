@@ -82,7 +82,7 @@ export const SideNav = (props: ISideNavProps) => {
   const content = (
     <div>
       <div className={classes.logoSection}>
-        <Image src="/logo.png" alt="logo" width={200} height={100} />
+        <Image src="/logo/png/logo-color.png" alt="logo" width={280} height={120} className={classes.logo} />
       </div>
       <div className={classes.linkWrapper}>
         {user && (
@@ -122,24 +122,6 @@ export const SideNav = (props: ISideNavProps) => {
       </div>
     </div>
   )
-
-  // if (lgUp) {
-  //   return (
-  //     <Drawer
-  //       anchor="left"
-  //       open
-  //       PaperProps={{
-  //         sx: {
-  //           width: 280,
-  //           background: White,
-  //         },
-  //       }}
-  //       variant="permanent"
-  //     >
-  //       {content}
-  //     </Drawer>
-  //   )
-  // }
 
   return (
     <Drawer

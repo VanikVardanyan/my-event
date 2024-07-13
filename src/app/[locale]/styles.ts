@@ -3,12 +3,10 @@ import { styled, Theme } from '@mui/material'
 
 export const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
-  flex: '1 1 auto',
+  flex: '1',
   maxWidth: '100%',
-
-  // [theme.breakpoints.up('lg')]: {
-  //   paddingLeft: 280,
-  // },
+  overflow: 'auto',
+  flexDirection: 'column',
 }))
 
 export const LayoutContainer = styled('div')(({ theme }) => ({
@@ -20,9 +18,10 @@ export const LayoutContainer = styled('div')(({ theme }) => ({
 
 export const Container = styled('div')(({ theme }) => ({
   padding: '12px',
+  marginTop: 40,
 
   [theme.breakpoints.up('md')]: {
-    padding: '0 12px 36px',
+    padding: '0 12px 5px 36px',
   },
 }))
 

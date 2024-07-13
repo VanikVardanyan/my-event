@@ -5,7 +5,7 @@ import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('ProviderForm').create({
   root: {
-    maxWidth: 650,
+    maxWidth: 1000,
     width: '100%',
     marginBottom: 20,
     display: 'flex',
@@ -21,11 +21,10 @@ export default tss.withName('ProviderForm').create({
     gap: 15,
   },
   avatar: {
-    width: 147,
-    height: 147,
+    width: 150,
+    height: 150,
     objectFit: 'cover',
     borderRadius: '50%',
-    border: `1px solid ${SlateGreyBase}`,
     margin: 'auto',
   },
   nameSection: {

@@ -1,7 +1,7 @@
-import { FontBody1Accent, FontBody2 } from '@/shared/consts/fontStyles'
+import { FontBody1, FontBody1Accent, FontBody2, FontH4, FontSubtitle1 } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
 import { BackgroundWhite, PurpleLighten25, TextGreyBase, TextSlateGreyLighten8 } from '@/shared/consts/colors'
-import { BreakPoints } from '../../../../../shared/consts/common'
+import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('UserTypesSelect').create({
   container: {
@@ -12,7 +12,7 @@ export default tss.withName('UserTypesSelect').create({
   cardContainer: {
     display: 'flex',
     justifyContent: 'space-between',
-    gap: 40,
+    gap: 30,
     flexDirection: 'column',
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
@@ -53,15 +53,32 @@ export default tss.withName('UserTypesSelect').create({
     },
   },
   title: {
-    color: TextGreyBase,
     ...FontBody1Accent,
-    marginBottom: 10,
+    color: TextGreyBase,
+    marginBottom: 20,
   },
   description: {
-    ...FontBody2,
-    color: TextSlateGreyLighten8,
+    ...FontBody1,
+    color: TextGreyBase,
   },
   active: {
     border: `2px solid ${PurpleLighten25} !important`,
+  },
+  titleSection: {
+    margin: 'auto',
+    maxWidth: 400,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 10,
+    marginBottom: 20,
+  },
+  typeTitle: {
+    ...FontH4,
+    color: TextGreyBase,
+  },
+  typeSubTitle: {
+    ...FontBody1,
+    color: TextGreyBase,
   },
 })

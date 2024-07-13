@@ -2,6 +2,7 @@ import { tss } from 'tss-react'
 
 import {
   GreyBase,
+  PinkBrownBase,
   PurpleBase,
   PurpleLighten25,
   PurpleLighten40,
@@ -27,7 +28,8 @@ export default tss
       visibility: 'hidden',
       gap: 8,
       zIndex: 1000,
-      background: White,
+      background: PinkBrownBase,
+      borderRadius: 10,
 
       [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         position: 'relative',
@@ -75,14 +77,14 @@ export default tss
     mobileInputButton: {
       width: 40,
       height: 40,
+      background: 'inherit',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      border: 'none',
       outline: 'none',
-      background: White,
       cursor: 'pointer',
       borderRadius: 10,
+      border: `1px solid ${White}`,
 
       [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         display: 'none',

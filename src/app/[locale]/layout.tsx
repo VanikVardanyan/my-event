@@ -8,13 +8,16 @@ import { LayoutContainer, LayoutRoot } from './styles'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { unstable_setRequestLocale } from 'next-intl/server'
-import { LayoutFooter } from '../../shared/ui/layout-footer'
-import { ToastContainer } from '../../shared/ui/toaster-container'
+import { ToastContainer } from '@/shared/ui/toaster-container'
 
 export const metadata: Metadata = {
-  icons: {
-    icon: '/logo.png',
-  },
+  icons: [
+    {
+      url: 'logo/svg/logo-color.svg',
+      sizes: '192x192',
+      type: 'image/svg',
+    },
+  ],
 }
 
 interface RootLayoutProps {
@@ -48,7 +51,6 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
                   <LayoutRoot>
                     <LayoutContainer>{children}</LayoutContainer>
                   </LayoutRoot>
-                  <LayoutFooter />
                 </div>
                 <ToastContainer />
               </NextAppDirEmotionCacheProvider>

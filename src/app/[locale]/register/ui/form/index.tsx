@@ -1,7 +1,7 @@
 'use client'
 import { Button, styled, TextField } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
-import useStyles from './styles'
+import useStyles, { SignInButton } from './styles'
 import { GmailIcon } from '@/shared/icons'
 import { Link } from '@/navigation'
 import { Routes } from '@/shared/routes'
@@ -16,15 +16,6 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Dispatch } from '@/store/store'
 
-const SignInButton = styled(Button)({
-  backgroundColor: '#ECC1C1',
-  color: 'white',
-
-  '&:hover': {
-    backgroundColor: '#ECC1C1',
-  },
-})
-
 interface IFormValues {
   email: string
   password: string
@@ -36,7 +27,7 @@ interface IFormValues {
   password_confirmation: string
 }
 
-export const Register = () => {
+const Register = () => {
   const t = useTranslations('Register')
   const err = useTranslations('Errors')
   const dispatch = Dispatch()
@@ -113,7 +104,7 @@ export const Register = () => {
         </div>
         <div className={classes.formSection}>
           <div className={classes.formWrapper}>
-            <div className={classes.formTitle}>register</div>
+            <div className={classes.formTitle}>{t('register')}</div>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
               <TextField
                 required
@@ -135,7 +126,6 @@ export const Register = () => {
                 error={!!errors.password}
                 helperText={errors.password?.message}
                 className={classes.textField}
-                autoFocus
               />
               <TextField
                 required
@@ -146,7 +136,6 @@ export const Register = () => {
                 error={!!errors.password}
                 helperText={errors.password_confirmation?.message}
                 className={classes.textField}
-                autoFocus
               />
               <SignInButton
                 type="submit"
@@ -155,6 +144,7 @@ export const Register = () => {
                 size="large"
                 className={classes.signInButton}
                 onSubmit={handleSubmit(onSubmit)}
+                disabled={loading || !formState.isValid}
               >
                 {t('register')}
               </SignInButton>
@@ -181,3 +171,5 @@ export const Register = () => {
     </LoadingOverlay>
   )
 }
+
+export default Register

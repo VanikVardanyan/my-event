@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import useStyles, { VisuallyHiddenInput } from './styles'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import { useEffect, useState } from 'react'
@@ -8,6 +8,7 @@ import { UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
+import { UploadButton } from '../../styles'
 
 export const ClientForm = () => {
   const { classes } = useStyles()
@@ -41,7 +42,7 @@ export const ClientForm = () => {
     <div className={classes.root}>
       <div className={classes.avatarSection}>
         <Image
-          src={avatarPreview || '/default.jpg'}
+          src={avatarPreview || '/default-avatar.png'}
           width={147}
           height={147}
           alt="Avatar Preview"
@@ -61,9 +62,11 @@ export const ClientForm = () => {
           autoComplete="off"
           error={!!errors.name}
           helperText={errors?.name?.message as string}
+          size="small"
         />
 
-        <Button
+        <UploadButton
+          // @ts-ignore
           component="label"
           role={undefined}
           variant="contained"
@@ -73,7 +76,7 @@ export const ClientForm = () => {
         >
           {t('upload_avatar')}
           <VisuallyHiddenInput type="file" onChange={handleAvatarChange} />
-        </Button>
+        </UploadButton>
       </div>
     </div>
   )

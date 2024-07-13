@@ -26,6 +26,7 @@ import { Loader } from '@/shared/ui/Loader'
 import { ProtectedRoute } from '@/shared/lib/protected-router'
 import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
 import toast from 'react-hot-toast'
+import { Container } from '../styles'
 interface IFormValues {
   name: string
   role: string
@@ -175,41 +176,43 @@ const ProfileSetting = () => {
   if (loading || userAuth.loading) return <Loader />
 
   return (
-    <ProtectedRoute>
-      <LoadingOverlay loading={loadingRegister}>
-        <div className={classes.root}>
-          <form>
-            <FormProvider {...methods}>
-              <>
-                {!profile?.role && step === 1 && (
-                  <UserTypeSelection onSelectUserType={onSelectUserType} currentUserType={userType} />
+    <Container>
+      <ProtectedRoute>
+        <LoadingOverlay loading={loadingRegister}>
+          <div className={classes.root}>
+            <form>
+              <FormProvider {...methods}>
+                <>
+                  {!profile?.role && step === 1 && (
+                    <UserTypeSelection onSelectUserType={onSelectUserType} currentUserType={userType} />
+                  )}
+                  {step === 2 && userType && getContent[userType]}
+                </>
+              </FormProvider>
+              <div className={classes.stepSection}>
+                {step !== 1 && (
+                  <Button variant="outlined" color="success" onClick={onPrevStep}>
+                    {t('back')}
+                  </Button>
                 )}
-                {step === 2 && userType && getContent[userType]}
-              </>
-            </FormProvider>
-            <div className={classes.stepSection}>
-              {step !== 1 && (
-                <Button variant="outlined" color="success" onClick={onPrevStep}>
-                  {t('back')}
-                </Button>
-              )}
-              {!profile?.role && <ProgressBar currentStep={step} totalStep={2} />}
+                {!profile?.role && <ProgressBar currentStep={step} totalStep={2} />}
 
-              {step === 1 && (
-                <Button variant="outlined" color="success" onClick={onNextStep} disabled={!userType}>
-                  {t('next')}
-                </Button>
-              )}
-              {step === 2 && (
-                <Button type="submit" variant="outlined" color="success" onClick={methods.handleSubmit(onSubmit)}>
-                  {t('finish')}
-                </Button>
-              )}
-            </div>
-          </form>
-        </div>
-      </LoadingOverlay>
-    </ProtectedRoute>
+                {step === 1 && (
+                  <Button variant="outlined" color="success" onClick={onNextStep} disabled={!userType}>
+                    {t('next')}
+                  </Button>
+                )}
+                {step === 2 && (
+                  <Button type="submit" variant="outlined" color="success" onClick={methods.handleSubmit(onSubmit)}>
+                    {t('finish')}
+                  </Button>
+                )}
+              </div>
+            </form>
+          </div>
+        </LoadingOverlay>
+      </ProtectedRoute>
+    </Container>
   )
 }
 

@@ -50,6 +50,10 @@ const UserTypeSelection = (props: IUserTypeSelection) => {
 
   return (
     <div className={classes.container}>
+      <div className={classes.titleSection}>
+        <div className={classes.typeTitle}>{t('user_type_select')}</div>
+        <div className={classes.typeSubTitle}>{t('user_type_select_description')}</div>
+      </div>
       <div className={classes.cardContainer}>
         <Card
           currentUserType={currentUserType}

@@ -13,38 +13,48 @@ import { useAuth } from '@/shared/lib/auth-context'
 import { useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
 import { Loader } from '@/shared/ui/Loader'
+import { Container } from '../styles'
+import { useEffect } from 'react'
 
 const Profile = () => {
   const { profile, loading } = useSelector(getProfile)
-  const { loading: authLoading } = useAuth()
+  const { loading: authLoading, user } = useAuth()
   const t = useTranslations('Shared')
   const router = useRouter()
 
   const { classes } = useStyles()
   const isBusiness = profile?.role === UserType.PROVIDER
+  const loadingProfile = loading || authLoading
 
-  if (loading || authLoading) {
+  useEffect(() => {
+    if (loadingProfile) {
+      return
+    }
+
+    if (user && !profile?.role) {
+      router.push(Routes.ProfileSetting)
+    }
+  }, [profile, user, loading, authLoading, loadingProfile])
+
+  if (loadingProfile) {
     return <Loader />
-  }
-  console.log('profile', profile)
-  if (!profile?.role) {
-    router.push(Routes.ProfileSetting)
-    return null
   }
 
   return (
     <ProtectedRoute>
-      <div className={classes.root}>
-        <>
-          {isBusiness && (
-            <>
-              <ProfileHeader {...profile} isMe />
-              <ProfileCreatives images={profile?.images || []} isMe />
-            </>
-          )}
-          {!isBusiness && <UserInfo />}
-        </>
-      </div>
+      <Container>
+        <div className={classes.root}>
+          <>
+            {isBusiness && (
+              <>
+                <ProfileHeader {...profile} isMe />
+                <ProfileCreatives images={profile?.images || []} isMe />
+              </>
+            )}
+            {!isBusiness && <UserInfo />}
+          </>
+        </div>
+      </Container>
     </ProtectedRoute>
   )
 }
