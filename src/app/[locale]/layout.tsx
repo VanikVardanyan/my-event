@@ -9,6 +9,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { unstable_setRequestLocale } from 'next-intl/server'
 import { ToastContainer } from '@/shared/ui/toaster-container'
+import Scroll from '@/shared/ui/scroll'
 
 export const metadata: Metadata = {
   icons: [
@@ -42,6 +43,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
   return (
     <html lang={locale}>
       <body>
+        <Scroll />
         <NextIntlClientProvider messages={messages}>
           <ReduxProvider>
             <AuthProvider>

@@ -70,7 +70,7 @@ export const LayoutHeader = () => {
       </header>
     )
   }
-
+  console.log(profile?.avatar)
   return (
     <header className={classes.root}>
       <div className={classes.hamburgWrapper}>

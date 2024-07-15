@@ -17,8 +17,8 @@ export const LayoutContainer = styled('div')(({ theme }) => ({
 }))
 
 export const Container = styled('div')(({ theme }) => ({
-  padding: '12px',
-  marginTop: 24,
+  padding: '0 12px 12px 12px',
+  marginTop: 20,
 
   [theme.breakpoints.up('md')]: {
     marginTop: 30,
