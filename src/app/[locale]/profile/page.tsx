@@ -31,7 +31,6 @@ const Profile = () => {
     if (loadingProfile) {
       return
     }
-
     if (user && !profile?.role) {
       router.push(Routes.ProfileSetting)
     }
@@ -40,7 +39,7 @@ const Profile = () => {
   if (loadingProfile) {
     return <Loader />
   }
-  console.log(profile?.avatar)
+
   return (
     <ProtectedRoute>
       <Container>
