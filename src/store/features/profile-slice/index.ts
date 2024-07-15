@@ -20,7 +20,7 @@ export const asyncSetProfileThunk = createAsyncThunk('profile/asyncSetProfileThu
   try {
     const user: any = await new Promise((resolve, reject) => {
       const unsubscribe = onAuthStateChanged(auth, (user: any) => {
-        unsubscribe() // Отписка от onAuthStateChanged
+        unsubscribe()
         if (user) {
           resolve(user)
         } else {

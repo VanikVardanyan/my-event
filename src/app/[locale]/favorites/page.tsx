@@ -7,16 +7,14 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { Loader } from '@/shared/ui/Loader'
 import { useSelector } from 'react-redux'
-import { getProfile } from '@/store/selectors'
-import { useAuth } from '@/shared/lib/auth-context'
+import { getClient } from '@/store/selectors'
 
-const MainPage = () => {
+const FavoritesPage = () => {
   const { classes } = useStyles()
-  const { profile } = useSelector(getProfile)
-  const { user } = useAuth()
 
   const [providerUsers, setProviderUsers] = useState<any>([])
   const [loading, setLoading] = useState(true)
+  const { favorites } = useSelector(getClient)
 
   const fetchProviderUsers = async () => {
     try {
@@ -28,7 +26,6 @@ const MainPage = () => {
       querySnapshot.forEach((doc) => {
         usersList.push({ id: doc.id, ...doc.data() })
       })
-      console.log('usersList', usersList)
       setProviderUsers(usersList)
     } catch (error) {
       console.error('Ошибка при загрузке пользователей:', error)
@@ -42,11 +39,17 @@ const MainPage = () => {
   }, [])
 
   if (loading) return <Loader />
+  // @ts-ignore
+  const favoriteProviderUsers = providerUsers.filter((user: { id: string }) => favorites.includes(user.id as string))
+
+  if (!loading && !favoriteProviderUsers.length) {
+    return <div>У вас нет избранных</div>
+  }
 
   return (
     <div className={classes.root}>
       <div className={classes.servicesListWrapper}>
-        {providerUsers.map((service: any) => (
+        {favoriteProviderUsers.map((service: any) => (
           <ServicePost key={service.id} {...service} />
         ))}
       </div>
@@ -54,4 +57,4 @@ const MainPage = () => {
   )
 }
 
-export default MainPage
+export default FavoritesPage

@@ -8,4 +8,6 @@ export interface IPostProps {
   profession: PROFESSIONS[]
   id: string
   likeCount: number
+  isFavorite?: boolean
+  fetchProviderUsers?: () => void
 }

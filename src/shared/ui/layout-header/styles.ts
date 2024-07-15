@@ -61,13 +61,12 @@ export default tss.withName('LayoutHeader').create({
     justifyContent: 'center',
     borderRadius: 10,
     outline: 'none',
-    border: 'none',
-    background: PinkBrownDarken16,
+    background: PinkBrownDarken4,
+    border: `1px solid ${White}`,
     color: White,
 
     '&:hover': {
       background: PinkBrownDarken16,
-      color: TextSlateGreyLighten16,
     },
   },
   hamburgWrapper: {
@@ -89,6 +88,12 @@ export default tss.withName('LayoutHeader').create({
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
       display: 'inline',
     },
+  },
+  favoritIcon: {
+    width: 40,
+    height: 40,
+    border: `1px solid ${White}`,
+    borderRadius: 8,
   },
 })
 

@@ -14,7 +14,7 @@ export default tss.withName('LoginPage').create({
     backgroundImage: `url('/signin/background.png')`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'bottom',
     justifyContent: 'center',
     alignItems: 'center',
     display: 'none',

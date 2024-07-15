@@ -25,7 +25,7 @@ export default tss.withName('SignIn').create({
     borderRadius: 10,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundPosition: 'center',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
       backgroundColor: White,

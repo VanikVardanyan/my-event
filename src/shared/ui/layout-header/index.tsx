@@ -9,7 +9,6 @@ import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from '@/navigation'
 import { signOut } from 'firebase/auth'
 import { auth } from '../../lib/firebaseConfig'
-import { usePathname } from 'next/navigation'
 import { useRouter } from '@/navigation'
 import { Routes } from '../../routes'
 import { useAuth } from '../../lib/auth-context'
@@ -22,6 +21,8 @@ import { SwitchLanguage } from '../switch-language'
 import LogoutIcon from '@mui/icons-material/Logout'
 import Image from 'next/image'
 import PersonIcon from '@mui/icons-material/Person'
+import { HeartIcon } from '../../icons'
+import { UserType } from '../../types/user.types'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
@@ -35,7 +36,8 @@ export const LayoutHeader = () => {
   const router = useRouter()
 
   const theme = useTheme()
-  const lgUp = useMediaQuery(theme.breakpoints.up('md'))
+  const MdUp = useMediaQuery(theme.breakpoints.up('md'))
+  const SmUp = useMediaQuery(theme.breakpoints.up('sm'))
 
   const menuClickHandler = () => {
     setOpenMenu(!isOpenMenu)
@@ -72,9 +74,16 @@ export const LayoutHeader = () => {
   return (
     <header className={classes.root}>
       <div className={classes.hamburgWrapper}>
-        <Link href={Routes.home} className={classes.logoLink}>
-          <Image src="/logo/svg/logo-no-background.svg" alt="logo" width={100} height={40} />
-        </Link>
+        {!profile && (
+          <Link href={Routes.home} className={classes.logoLink}>
+            <Image src="/logo/svg/logo-no-background.svg" alt="logo" width={100} height={40} />
+          </Link>
+        )}
+        {SmUp && user && profile && (
+          <Link href={Routes.home} className={classes.logoLink}>
+            <Image src="/logo/svg/logo-no-background.svg" alt="logo" width={100} height={40} />
+          </Link>
+        )}
         <div className={classes.hamburg}>
           <button onClick={menuClickHandler} className={classes.hamburgerSection}>
             <MenuIcon color="inherit" />
@@ -89,17 +98,22 @@ export const LayoutHeader = () => {
 
         {!user && (
           <>
-            {lgUp && (
+            {MdUp && (
               <LoginButton variant="outlined" LinkComponent={Link} href={Routes.Signin} style={{ height: 40 }}>
                 {t('login')}
               </LoginButton>
             )}
-            {!lgUp && (
+            {!MdUp && (
               <IconButton href={Routes.Signin} LinkComponent={Link} style={{ height: 40 }}>
                 <PersonIcon color="inherit" />
               </IconButton>
             )}
           </>
+        )}
+        {user && profile && profile.role === UserType.CLIENT && (
+          <IconButton href={Routes.Favorites} LinkComponent={Link} className={classes.favoritIcon}>
+            <HeartIcon style={{ width: 24, height: 24 }} />
+          </IconButton>
         )}
 
         {user && (

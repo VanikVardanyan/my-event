@@ -140,7 +140,7 @@ const SignIn = () => {
             />
             <FormHelperText error>{errors.password?.message}</FormHelperText>
             <Link href={Routes.ForgotPassword} className={classes.linkForgot}>
-              Забыли пароль?
+              {t('forgot_password')}
             </Link>
           </FormControl>
           <SignInButton

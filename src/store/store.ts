@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
 import profileReducer from './features/profile-slice'
+import clientReducer from './features/client-slice'
 
 export const store = configureStore({
   reducer: {
     profile: profileReducer,
+    client: clientReducer,
   },
 })
 

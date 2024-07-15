@@ -4,10 +4,11 @@ import { createContext, useContext, useEffect, useLayoutEffect, useState } from 
 import { Auth, User, onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from './firebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
-import { useDispatch } from 'react-redux'
 import { setProfile, setProfileLoading, setUserId } from '../../store/features/profile-slice'
 import { UserType } from '../types/user.types'
 import { IProfile } from '../../store/features/profile-slice/types'
+import { asyncSetFavoritesThunk } from '../../store/features/client-slice'
+import { Dispatch } from '../../store/store'
 
 const AuthContext = createContext<{
   user: (User & { profile: null | IProfile }) | null
@@ -28,7 +29,7 @@ export const AuthProvider = ({ children }: any) => {
   const [loading, setLoading] = useState(true)
   const [role, setRole] = useState<UserType | null>(null)
 
-  const dispatch = useDispatch()
+  const dispatch = Dispatch()
 
   useEffect(() => {
     setLoading(true)
@@ -44,6 +45,9 @@ export const AuthProvider = ({ children }: any) => {
           if (profileDoc.exists()) {
             dispatch(setProfile(profileDoc.data()))
             dispatch(setUserId(user.uid))
+          }
+          if (profileDoc?.data()?.role && profileDoc?.data()?.role === UserType.CLIENT) {
+            dispatch(asyncSetFavoritesThunk({ id: user.uid }))
           }
           setLoading(false)
         }

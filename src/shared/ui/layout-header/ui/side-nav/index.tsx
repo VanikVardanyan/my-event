@@ -76,7 +76,6 @@ export const SideNav = (props: ISideNavProps) => {
   ]
 
   const theme = useTheme()
-  const lgUp = useMediaQuery(theme.breakpoints.up('lg'))
   const { classes } = useStyles()
 
   const content = (

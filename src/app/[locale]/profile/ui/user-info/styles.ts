@@ -16,6 +16,7 @@ export default tss.withName('UserInfo').create({
   },
   avatar: {
     borderRadius: '50%',
+    objectFit: 'cover',
   },
   name: {
     ...FontBody1,

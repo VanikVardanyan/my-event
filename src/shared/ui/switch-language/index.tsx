@@ -10,6 +10,7 @@ import { usePathname } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
+import { PinkBrownDarken16 } from '../../consts/colors'
 
 function removeLanguageFromURL(url: string) {
   const parts = url.split('/')
@@ -43,7 +44,16 @@ export const SwitchLanguage = () => {
 
   return (
     <Dropdown>
-      <MenuButton sx={{ padding: '5px', display: 'flex', background: 'inherit' }}>
+      <MenuButton
+        sx={{
+          padding: '4px',
+          display: 'flex',
+          background: 'inherit',
+          '&:hover': {
+            background: PinkBrownDarken16,
+          },
+        }}
+      >
         <Image src={`/flag-${locale}.png`} alt="flag" width={30} height={30} />
       </MenuButton>
       <Menu slots={{ listbox: AnimatedListbox }} style={{ zIndex: 1000 }}>

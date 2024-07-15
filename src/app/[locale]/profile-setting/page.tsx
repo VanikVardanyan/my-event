@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Routes } from '@/shared/routes'
 import { useRouter } from '@/navigation'
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
 import { useTranslations } from 'next-intl'
@@ -106,6 +106,7 @@ const ProfileSetting = () => {
     setLoadingRegister(true)
     try {
       let avatarImage = ''
+      let oldAvatar = profile?.avatar
 
       if (data.avatar) {
         const storageRef = ref(storage, `avatar/${data.avatar.name}`)
@@ -142,6 +143,11 @@ const ProfileSetting = () => {
 
       await setDoc(doc(db, 'profiles', userAuth.user.uid), updatedProfile)
       await dispatch(asyncSetProfileThunk())
+
+      if (oldAvatar) {
+        const imageRef = ref(storage, oldAvatar)
+        await deleteObject(imageRef)
+      }
       router.push(Routes.Profile)
       setLoadingRegister(false)
     } catch (error) {

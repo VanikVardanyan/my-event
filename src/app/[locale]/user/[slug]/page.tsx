@@ -10,6 +10,7 @@ import { ProfileCreatives } from '@/shared/ui/profile-creatives'
 import { Box } from '@mui/material'
 import useStyles from './styles'
 import { Loader } from '../../../../shared/ui/Loader'
+import { Container } from '../../styles'
 
 const UserPage = () => {
   const router: { slug: string } = useParams()
@@ -35,18 +36,20 @@ const UserPage = () => {
   }, [router.slug])
 
   return (
-    <div className={classes.root}>
-      {loading ? (
-        <Loader />
-      ) : (
-        <div>
-          <ProfileHeader {...userData} />
-          <Box sx={{ mt: 5 }}>
-            <ProfileCreatives images={userData?.images || []} />
-          </Box>
-        </div>
-      )}
-    </div>
+    <Container>
+      <div className={classes.root}>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div>
+            <ProfileHeader {...userData} />
+            <Box sx={{ mt: 5 }}>
+              <ProfileCreatives images={userData?.images || []} />
+            </Box>
+          </div>
+        )}
+      </div>
+    </Container>
   )
 }
 
