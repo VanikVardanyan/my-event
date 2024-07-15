@@ -47,7 +47,12 @@
         "profile": "Profile",
         "edit_profile": "Edit profile",
         "add_request": "Add a service request",
-        "add_image": "Add image"
+        "add_image": "Add image",
+        "read_more": "Read more",
+        "show_less": "Show less",
+        "not_networks": "profile does not have networks",
+        "not_phone": "profile does not have a phone",
+        "not_email": "profile does not have an email"
     },
     "Request": {
         "required_field": "This field is required",

@@ -1,25 +1,23 @@
 'use client'
 import Image from 'next/image'
-import useStyles from './styles'
-import { Button } from '@mui/material'
+import useStyles, { EditButton } from './styles'
 import SettingsIcon from '@mui/icons-material/Settings'
-import { Chip } from '@mui/material'
-import InstagramIcon from '@mui/icons-material/Instagram'
-import YouTubeIcon from '@mui/icons-material/YouTube'
-import FacebookIcon from '@mui/icons-material/Facebook'
-import { TikTokIcon } from '@/shared/icons'
-import PhoneIcon from '@mui/icons-material/Phone'
-import EmailIcon from '@mui/icons-material/Email'
+import { FacebookIcon, InstagramIcon, MailIcon, PhoneIcon, TikTokIcon, YoutubeIcon } from '@/shared/icons'
 import { Routes } from '@/shared/routes'
 import { IProfile } from '@/store/features/profile-slice/types'
 import { Networks } from '../profile-networks'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
+import { PinkBrownBase } from '../../consts/colors'
+import { useState } from 'react'
+import cn from 'classnames'
 
 export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const { classes } = useStyles()
+  const [readMore, setReadMore] = useState(false)
   const t = useTranslations('Profile')
-  const p = useTranslations('Professions')
+
+  const iconStyle = { width: 18, height: 18 }
 
   const getNetworksContent = () => {
     const networks = []
@@ -28,72 +26,113 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
       networks.push({
         href: props?.facebook,
         name: 'Facebook',
-        icon: <FacebookIcon />,
+        icon: <FacebookIcon style={iconStyle} fill={PinkBrownBase} />,
       })
     }
     if (props?.instagram) {
       networks.push({
         href: props?.instagram,
         name: 'Instagram',
-        icon: <InstagramIcon />,
+        icon: <InstagramIcon style={iconStyle} fill={PinkBrownBase} />,
       })
     }
     if (props?.youtube) {
       networks.push({
         href: props?.youtube,
         name: 'Youtube',
-        icon: <YouTubeIcon />,
+        icon: <YoutubeIcon style={iconStyle} fill={PinkBrownBase} />,
       })
     }
     if (props?.tiktok) {
       networks.push({
         href: props?.tiktok,
         name: 'Tik Tok',
-        icon: <TikTokIcon />,
+        icon: <TikTokIcon style={iconStyle} fill={PinkBrownBase} />,
       })
     }
-    if (props?.phone) {
-      networks.push({
-        href: '',
-        name: props?.phone,
-        icon: <PhoneIcon />,
-      })
-    }
-    if (props?.email) {
-      networks.push({
-        href: `mailto:${props?.email}`,
-        name: props?.email,
-        icon: <EmailIcon />,
-      })
-    }
+
     return networks.length ? networks : []
+  }
+
+  const readMoreHandler = () => {
+    setReadMore(!readMore)
   }
 
   return (
     <div className={classes.root}>
-      <div className={classes.avatarSection}>
-        <Image src={props.avatar || '/default.jpg'} alt="avatar" width={150} height={150} className={classes.avatar} />
-      </div>
-      <div className={classes.info}>
-        <div className={classes.settingSection}>
-          <div className={classes.name}>{props?.name}</div>
+      <div className={classes.infoWrapper}>
+        <div className={classes.avatarSection}>
+          <Image
+            src={props.avatar || '/default.jpg'}
+            alt="avatar"
+            width={150}
+            height={150}
+            className={classes.avatar}
+          />
+        </div>
+        <div className={classes.infoName}>
+          <h4 className={classes.name}>{props?.name}</h4>
           <div className={classes.chips}>
-            {props?.profession?.map((profession) => <Chip label={p(profession)} key={profession} />)}
+            {props?.profession
+              ?.join(' | ')
+              .split(' ')
+              .map((profession) => (
+                <div key={profession} className={classes.chipItem}>
+                  {profession}
+                </div>
+              ))}
           </div>
-          {props.isMe && (
-            <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>
-              {t('edit_profile')}
-            </Button>
+          {getNetworksContent() ? (
+            <div className={classes.links}>
+              <Networks links={getNetworksContent()} />
+            </div>
+          ) : (
+            <div>{t('not_networks')}</div>
           )}
         </div>
-        {getNetworksContent() && (
-          <div className={classes.links}>
-            <Networks links={getNetworksContent()} />
+        <div className={classes.infoPhone}>
+          {props.isMe ? (
+            <EditButton
+              size="small"
+              variant="contained"
+              endIcon={<SettingsIcon />}
+              href={Routes.ProfileSetting}
+              LinkComponent={Link}
+              fullWidth
+            >
+              {t('edit_profile')}
+            </EditButton>
+          ) : (
+            <div className={classes.emptySettingBtn} />
+          )}
+          <div className={classes.contactWrapper}>
+            {props?.phone ? (
+              <div className={classes.contactInfo}>
+                <PhoneIcon style={iconStyle} fill={PinkBrownBase} />
+                {props?.phone}
+              </div>
+            ) : (
+              <div>{t('not_phone')}</div>
+            )}
+            {props?.email ? (
+              <div className={classes.contactInfo}>
+                <MailIcon style={iconStyle} fill={PinkBrownBase} />
+                {props?.email}
+              </div>
+            ) : (
+              <div>{t('not_email')}</div>
+            )}
           </div>
-        )}
-
-        <div className={classes.description}>{props?.description}</div>
+        </div>
       </div>
+      {props.description && (
+        <div>
+          <div className={cn(classes.description, { [classes.fullText]: readMore })}>{props?.description}</div>
+          <EditButton size="small" variant="contained" onClick={readMoreHandler}>
+            {readMore ? t('show_less') : t('read_more')}
+          </EditButton>
+        </div>
+      )}
     </div>
   )
 }

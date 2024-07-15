@@ -1,19 +1,23 @@
-import { TextGreyBase } from '@/shared/consts/colors'
-import { FontBody1 } from '@/shared/consts/fontStyles'
+import {
+  PinkBrownBase,
+  PinkBrownDisabled,
+  PinkBrownLighten30,
+  SlateGreyLighten13,
+  SlateGreyLighten21,
+  TextGreyBase,
+  TextSlateGreyLighten8,
+} from '@/shared/consts/colors'
+import { FontBody1, FontBody1Accent, FontH4 } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
 import { BreakPoints } from '../../consts/common'
+import { Button, styled } from '@mui/material'
 
 export default tss.withName('ProfileHeader').create({
   root: {
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     gap: 28,
-
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      flexDirection: 'row',
-    },
   },
   avatarSection: {
     width: 181,
@@ -27,7 +31,7 @@ export default tss.withName('ProfileHeader').create({
     objectFit: 'cover',
   },
   name: {
-    ...FontBody1,
+    ...FontH4,
     color: TextGreyBase,
   },
   settingSection: {
@@ -41,15 +45,21 @@ export default tss.withName('ProfileHeader').create({
       flexDirection: 'row',
     },
   },
-  info: {
+  infoWrapper: {
     display: 'flex',
+    alignItems: 'center',
+    gap: 14,
     flexDirection: 'column',
-    gap: 20,
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      flexDirection: 'row',
+      gap: 50,
+    },
   },
+
   postText: {
     ...FontBody1,
   },
-
   description: {
     display: '-webkit-box',
     // ['-webkit-line-clamp']: '2',
@@ -58,6 +68,11 @@ export default tss.withName('ProfileHeader').create({
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
+    marginBottom: 10,
+  },
+  fullText: {
+    WebkitLineClamp: 'none',
+    display: 'block',
   },
   links: {
     display: 'flex',
@@ -70,6 +85,68 @@ export default tss.withName('ProfileHeader').create({
   },
   chips: {
     display: 'flex',
-    gap: 10,
+    gap: 5,
+  },
+  chipItem: {
+    ...FontBody1Accent,
+    color: TextSlateGreyLighten8,
+  },
+  infoName: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 14,
+    alignItems: 'center',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      gap: 25,
+      alignItems: 'flex-start',
+    },
+  },
+  infoPhone: {
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    alignItems: 'center',
+    gap: 14,
+    width: '100%',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      gap: 25,
+      flexDirection: 'column',
+      width: 'inherit',
+      alignItems: 'flex-start',
+    },
+  },
+  contactInfo: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 14,
+  },
+  emptySettingBtn: {
+    height: 24,
+    display: 'none',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      display: 'block',
+    },
+  },
+  contactWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 14,
+    alignSelf: 'center',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      gap: 25,
+      alignSelf: 'flex-end',
+    },
+  },
+})
+
+export const EditButton = styled(Button)({
+  backgroundColor: PinkBrownBase,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: PinkBrownLighten30,
   },
 })

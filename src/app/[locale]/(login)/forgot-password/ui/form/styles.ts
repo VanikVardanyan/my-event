@@ -66,11 +66,9 @@ export default tss.withName('SignIn').create({
     ...FontBody2,
     marginBottom: 25,
     color: White,
-    display: 'none',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
       color: Black,
-      display: 'block',
     },
   },
   googleBtn: {

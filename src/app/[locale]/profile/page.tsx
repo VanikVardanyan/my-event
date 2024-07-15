@@ -19,6 +19,7 @@ import { useEffect } from 'react'
 const Profile = () => {
   const { profile, loading } = useSelector(getProfile)
   const { loading: authLoading, user } = useAuth()
+
   const t = useTranslations('Shared')
   const router = useRouter()
 

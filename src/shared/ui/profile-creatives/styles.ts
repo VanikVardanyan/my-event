@@ -1,6 +1,7 @@
-import { styled } from '@mui/material'
+import { Button, styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
 import { BreakPoints } from '../../consts/common'
+import { PinkBrownBase, PinkBrownLighten30 } from '../../consts/colors'
 
 export default tss.withName('ProfileCreatives').create({
   root: {},
@@ -32,4 +33,13 @@ export const VisuallyHiddenInput = styled('input')({
   left: 0,
   whiteSpace: 'nowrap',
   width: 1,
+})
+
+export const AddButton = styled(Button)({
+  backgroundColor: PinkBrownBase,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: PinkBrownLighten30,
+  },
 })

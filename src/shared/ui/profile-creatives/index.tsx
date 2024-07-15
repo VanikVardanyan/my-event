@@ -1,20 +1,17 @@
 import Image from 'next/image'
-import useStyles, { VisuallyHiddenInput } from './styles'
-import { Button } from '@mui/material'
+import useStyles, { AddButton, VisuallyHiddenInput } from './styles'
+import { Button, Skeleton } from '@mui/material'
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { db, storage } from '../../lib/firebaseConfig'
 import { useAuth } from '../../lib/auth-context'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { useSelector } from 'react-redux'
-import { getProfile } from '@/store/selectors'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
 import { useState } from 'react'
 import { ImageAction } from './ui/image-action'
 import { useTranslations } from 'next-intl'
 import { LoadingOverlay } from '../loading-overlay'
-import axios from 'axios'
 
 interface IImages {
   images: string[] | []
@@ -40,9 +37,15 @@ export const ProfileCreatives = (props: IImages) => {
 
       const files = event.target.files
       const uploadedImageUrls: string[] = []
+      const maxSizeInBytes = 8 * 1024 * 1024 // 1 МБ в байтах
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
+        if (file.size > maxSizeInBytes) {
+          alert('Размер файла не должен превышать 1 МБ')
+          setLoading(false)
+          return
+        }
         const storageRef = ref(storage, `images/${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file)
 
@@ -85,26 +88,38 @@ export const ProfileCreatives = (props: IImages) => {
       setLoading(false)
     }
   }
+  const imageAccept = '.jpg, .jpeg, .png, .gif, .bmp'
 
   return (
-    <LoadingOverlay loading={loading}>
+    <div>
       {isMe && (
-        <Button component="label" variant="contained" startIcon={<LibraryAddIcon />} sx={{ mb: 2 }}>
+        // @ts-ignore
+        <AddButton size="small" component="label" variant="contained" startIcon={<LibraryAddIcon />} sx={{ mb: 2 }}>
           {loading && 'loading...'}
           {!loading && t('add_image')}
-          <VisuallyHiddenInput multiple type="file" onChange={handleChangeMultipleFile} />
-        </Button>
+          <VisuallyHiddenInput multiple type="file" onChange={handleChangeMultipleFile} accept={imageAccept} />
+        </AddButton>
       )}
+
       <div className={classes.imagesWrapper}>
-        {images.map((item, i) => {
-          return (
-            <div key={i} className={classes.imageWrapper}>
-              <Image src={item} alt="image" width={307} height={307} className={classes.image} />
-              {isMe && <ImageAction item={item} loading={loading} setLoading={setLoading} userAuth={userAuth} />}
-            </div>
-          )
-        })}
+        {!loading &&
+          images.map((item, i) => {
+            return (
+              <div key={i} className={classes.imageWrapper}>
+                <Image src={item} alt="image" width={307} height={307} className={classes.image} />
+                {isMe && <ImageAction item={item} loading={loading} setLoading={setLoading} userAuth={userAuth} />}
+              </div>
+            )
+          })}
+        {loading &&
+          images.map((item, i) => {
+            return (
+              <div key={i} className={classes.imageWrapper}>
+                <Skeleton width={304} height={307} variant="rectangular" />
+              </div>
+            )
+          })}
       </div>
-    </LoadingOverlay>
+    </div>
   )
 }

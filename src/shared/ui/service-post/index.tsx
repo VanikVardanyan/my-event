@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IPostProps } from './types'
 import useStyles from './styles'
@@ -13,6 +13,16 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { IconButton } from '@mui/material'
+import { HeartIcon } from '../../icons'
+import { RedBase, TextGreyBase } from '../../consts/colors'
+import { toggleFavorite } from './lib'
+import { useAuth } from '../../lib/auth-context'
+import { useSelector } from 'react-redux'
+import { getClient, getProfile } from '../../../store/selectors'
+import { UserType } from '../../types/user.types'
+import { Dispatch } from '../../../store/store'
+import { asyncSetFavoritesThunk } from '../../../store/features/client-slice'
 
 const SamplePrevArrow = (props: any) => {
   const { onClick, currentSlide } = props
@@ -54,9 +64,22 @@ const settings = {
 }
 
 export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
-  const { profession, description, name, avatar, images, likeCount, id } = props
+  const { profession, description, name, avatar, images, id } = props
   const { classes } = useStyles()
   const p = useTranslations('Professions')
+  const { user } = useAuth()
+  const { profile } = useSelector(getProfile)
+  const { favorites } = useSelector(getClient)
+  const dispatch = Dispatch()
+
+  const canHasFavorite = user && profile && profile.role === UserType.CLIENT
+
+  const handleFavorite = async () => {
+    if (canHasFavorite) {
+      await toggleFavorite(user.uid, id)
+      dispatch(asyncSetFavoritesThunk({ id: user.uid }))
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -86,6 +109,16 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
           </Slider>
         )}
       </div>
+      {canHasFavorite && (
+        <IconButton onClick={handleFavorite} sx={{ marginTop: '20px' }}>
+          <HeartIcon
+            style={{ width: 24, height: 24 }}
+            fill={TextGreyBase}
+            fillBg={(favorites as string[]).includes(id) ? RedBase : undefined}
+          />
+        </IconButton>
+      )}
+
       {description && <div className={classes.description}>{description}</div>}
     </div>
   )

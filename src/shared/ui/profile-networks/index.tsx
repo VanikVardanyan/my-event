@@ -10,8 +10,8 @@ export const Networks = (props: INetworksProps) => {
     <div className={classes.root}>
       {links.map((item, i) => {
         return (
-          <Link href={item.href} className={classes.link} key={i}>
-            {item.icon} {item.name}
+          <Link href={item.href} key={i}>
+            {item.icon}
           </Link>
         )
       })}

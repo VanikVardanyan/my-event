@@ -30,17 +30,16 @@ interface ImageActionProps {
 }
 
 export const ImageAction = (props: ImageActionProps) => {
-  const { loading, userAuth, item } = props
+  const { loading, userAuth, item, setLoading } = props
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const [open, setOpen] = useState(false)
-  const [removeLoading, setRemoveLoading] = useState(false)
 
   const dispatch = Dispatch()
 
   const { classes } = useStyles()
 
   const handleDeleteImage = async (imageUrl: string) => {
-    setRemoveLoading(true)
+    setLoading(true)
     try {
       if (!userAuth?.user?.uid) return
       const userProfileRef = doc(db, 'profiles', userAuth.user?.uid)
@@ -56,12 +55,12 @@ export const ImageAction = (props: ImageActionProps) => {
 
       const imageRef = ref(storage, imageUrl)
       await deleteObject(imageRef)
-      setRemoveLoading(false)
+      setLoading(false)
 
       await dispatch(asyncSetProfileThunk())
     } catch (error) {
       console.error('Error deleting image:', error)
-      setRemoveLoading(false)
+      setLoading(false)
     }
   }
 
@@ -82,7 +81,7 @@ export const ImageAction = (props: ImageActionProps) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Button onClick={() => handleDeleteImage(item)} startIcon={<DeleteIcon />} disabled={removeLoading}>
+          <Button onClick={() => handleDeleteImage(item)} startIcon={<DeleteIcon />} disabled={loading}>
             Удалить изображения
           </Button>
         </Box>
