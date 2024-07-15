@@ -16,21 +16,23 @@ import { Button, styled } from '@mui/material'
 
 export default tss.withName('SignIn').create({
   formWrapper: {
-    maxWidth: 400,
+    maxWidth: '100%',
     minWidth: 300,
     width: '100%',
-    margin: 'auto',
     backgroundColor: 'rgba(0, 0, 0, 0.69)',
     padding: 25,
     borderRadius: 10,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    margin: '20px auto',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
       backgroundColor: White,
       padding: '0px',
       borderRadius: '0px',
+      margin: 'auto',
+      maxWidth: 400,
     },
   },
   textField: {
