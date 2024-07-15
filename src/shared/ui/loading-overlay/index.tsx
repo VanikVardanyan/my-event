@@ -28,7 +28,7 @@ const useStyles = tss.create(() => ({
 
 interface LoadingOverlayProps {
   loading: boolean
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ loading, children }) => {
@@ -41,7 +41,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({ loading, childre
           <Player autoplay loop src={Animater} style={{ height: '300px', width: '300px' }} />
         </div>
       )}
-      {children}
+      {children && children}
     </div>
   )
 }

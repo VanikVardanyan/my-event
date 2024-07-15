@@ -13,6 +13,7 @@ import { auth } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
 import { Dispatch } from '@/store/store'
 import toast from 'react-hot-toast'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
 interface IFormValues {
   email: string
@@ -59,6 +60,7 @@ const SignIn = () => {
 
   return (
     <div className={classes.formSection}>
+      <LoadingOverlay loading={loading} />
       <div className={classes.formWrapper}>
         <div className={classes.formTitle}>{t('reset_password')}</div>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>

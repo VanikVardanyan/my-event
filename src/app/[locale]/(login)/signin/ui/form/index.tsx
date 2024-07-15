@@ -27,7 +27,7 @@ import { useTranslations } from 'next-intl'
 import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import toast from 'react-hot-toast'
-import { Loader } from '../../../../../../shared/ui/Loader'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
 interface IFormValues {
   email: string
@@ -88,7 +88,7 @@ const SignIn = () => {
     try {
       signInWithPopup(auth, provider).then(async () => {
         await dispatch(asyncSetProfileThunk()).then(() => {
-          route.push(Routes.Profile)
+          route.push(Routes.Musicians)
           setLoading(false)
         })
       })
@@ -102,6 +102,7 @@ const SignIn = () => {
 
   return (
     <div className={classes.formSection}>
+      <LoadingOverlay loading={loading} />
       <div className={classes.formWrapper}>
         <div className={classes.formTitle}>{t('welcome')}</div>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>

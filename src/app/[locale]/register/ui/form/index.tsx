@@ -1,5 +1,5 @@
 'use client'
-import { Button, styled, TextField } from '@mui/material'
+import { TextField } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
 import useStyles, { SignInButton } from './styles'
 import { GmailIcon } from '@/shared/icons'
@@ -14,7 +14,6 @@ import { useTranslations } from 'next-intl'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { Dispatch } from '@/store/store'
 
 interface IFormValues {
   email: string
@@ -30,7 +29,6 @@ interface IFormValues {
 const Register = () => {
   const t = useTranslations('Register')
   const err = useTranslations('Errors')
-  const dispatch = Dispatch()
 
   const [loading, setLoading] = useState(false)
 

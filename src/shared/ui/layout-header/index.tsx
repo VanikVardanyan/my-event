@@ -15,7 +15,7 @@ import { useAuth } from '../../lib/auth-context'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Dispatch } from '@/store/store'
-import { setProfile } from '@/store/features/profile-slice'
+import { setProfile, setProfileLoading } from '@/store/features/profile-slice'
 import { useTranslations } from 'next-intl'
 import { SwitchLanguage } from '../switch-language'
 import LogoutIcon from '@mui/icons-material/Logout'
@@ -51,6 +51,7 @@ export const LayoutHeader = () => {
     setLoading(true)
     await signOut(auth).then(async () => {
       setUser(null)
+      dispatch(setProfileLoading(true))
       dispatch(setProfile(null))
       router.push(Routes.Main)
       setLoading(false)
@@ -70,7 +71,7 @@ export const LayoutHeader = () => {
       </header>
     )
   }
-  console.log(profile?.avatar)
+
   return (
     <header className={classes.root}>
       <div className={classes.hamburgWrapper}>

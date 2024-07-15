@@ -9,6 +9,8 @@ import { UserType } from '../types/user.types'
 import { IProfile } from '../../store/features/profile-slice/types'
 import { asyncSetFavoritesThunk } from '../../store/features/client-slice'
 import { Dispatch } from '../../store/store'
+import { usePathname, useRouter } from '../../navigation'
+import { Routes } from '../routes'
 
 const AuthContext = createContext<{
   user: (User & { profile: null | IProfile }) | null
@@ -28,12 +30,19 @@ export const AuthProvider = ({ children }: any) => {
   const [user, setUser] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [role, setRole] = useState<UserType | null>(null)
+  const pathname = usePathname()
+  const router = useRouter()
+
+  const redirectPathnamesForUser = [Routes.Signin, Routes.Register, Routes.ForgotPassword].includes(pathname as Routes)
 
   const dispatch = Dispatch()
 
   useEffect(() => {
     setLoading(true)
     dispatch(setProfileLoading(true))
+    if (user && redirectPathnamesForUser) {
+      router.push(Routes.Profile)
+    }
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user)
