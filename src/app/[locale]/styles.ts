@@ -1,5 +1,5 @@
 'use client'
-import { styled, Theme } from '@mui/material'
+import { styled } from '@mui/material'
 
 export const LayoutRoot = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -39,6 +39,7 @@ export default tss.withName('MainPage').create({
     justifyContent: 'space-between',
     flexDirection: 'column',
     gap: 40,
+    marginBottom: 40,
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
       flexDirection: 'row',
@@ -60,5 +61,19 @@ export default tss.withName('MainPage').create({
   },
   description: {
     ...FontBody2,
+  },
+  cardsWrapper: {
+    display: 'grid',
+    rowGap: 24,
+    columnGap: 18,
+    gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
+    },
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    },
   },
 })

@@ -53,7 +53,7 @@ export const LayoutHeader = () => {
       setUser(null)
       dispatch(setProfileLoading(true))
       dispatch(setProfile(null))
-      router.push(Routes.Main)
+      router.push(Routes.home)
       setLoading(false)
     })
   }

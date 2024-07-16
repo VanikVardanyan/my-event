@@ -50,7 +50,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
               <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
                 <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
                   <LayoutHeader />
-                  <LayoutRoot>
+                  <LayoutRoot id="layout">
                     <LayoutContainer>{children}</LayoutContainer>
                   </LayoutRoot>
                 </div>

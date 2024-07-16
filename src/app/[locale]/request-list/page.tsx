@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Loader } from '@/shared/ui/Loader'
 import { Suspense } from 'react'
+import { Container } from '../styles'
 
 const RequestsList = () => {
   const { loading } = useSelector(getProfile)
@@ -16,12 +17,14 @@ const RequestsList = () => {
 
   return (
     <ProtectedRoute requiredRole={UserType.PROVIDER}>
-      <Box>
-        <Typography variant="h4" gutterBottom>
-          Все запросы
-        </Typography>
-        <RequestList />
-      </Box>
+      <Container>
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            Все запросы
+          </Typography>
+          <RequestList />
+        </Box>
+      </Container>
     </ProtectedRoute>
   )
 }

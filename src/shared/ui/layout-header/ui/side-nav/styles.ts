@@ -1,6 +1,6 @@
 import { FontBody1, FontBody1Accent } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
-import { GreyBase, SlateGreyBase, TextSlateGreyBase, White } from '@/shared/consts/colors'
+import { GreyBase, PinkBrownBase, SlateGreyBase, TextSlateGreyBase, White } from '@/shared/consts/colors'
 
 export default tss.withName('SideNav').create({
   root: {},
@@ -24,7 +24,7 @@ export default tss.withName('SideNav').create({
     gap: 10,
 
     '& svg': {
-      fill: GreyBase,
+      fill: PinkBrownBase,
     },
 
     '&:hover': {

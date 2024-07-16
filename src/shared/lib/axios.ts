@@ -24,7 +24,6 @@ instance.interceptors.response.use(
   },
   (error) => {
     if (error.response.status === 403) {
-      //   window.location.href = Routes.Main
     }
     return Promise.reject(error)
   }

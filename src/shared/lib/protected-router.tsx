@@ -19,7 +19,7 @@ export const ProtectedRoute = ({ children, requiredRole }: IProtectedRoute) => {
   useLayoutEffect(() => {
     if (!loading) {
       if (!user) {
-        router.push(Routes.Main)
+        router.push(Routes.home)
       } else if (requiredRole && profile?.role !== requiredRole) {
         router.push(Routes.Profile)
       }

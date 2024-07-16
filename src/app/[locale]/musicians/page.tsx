@@ -8,6 +8,7 @@ import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
 import { useTranslations } from 'next-intl'
 import { Loader } from '@/shared/ui/Loader'
+import { Container } from '../styles'
 
 const ShowMan = () => {
   const { classes } = useStyles()
@@ -46,7 +47,7 @@ const ShowMan = () => {
   // if (loading) return <Loader />
 
   return (
-    <Suspense fallback={<div>...loading</div>}>
+    <Container>
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
           {providerUsers.map((service: any) => (
@@ -55,7 +56,7 @@ const ShowMan = () => {
           {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
         </div>
       </div>
-    </Suspense>
+    </Container>
   )
 }
 

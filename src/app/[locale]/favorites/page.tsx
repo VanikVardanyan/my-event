@@ -8,6 +8,7 @@ import { db } from '@/shared/lib/firebaseConfig'
 import { Loader } from '@/shared/ui/Loader'
 import { useSelector } from 'react-redux'
 import { getClient } from '@/store/selectors'
+import { Container } from '../styles'
 
 const FavoritesPage = () => {
   const { classes } = useStyles()
@@ -47,13 +48,15 @@ const FavoritesPage = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <div className={classes.servicesListWrapper}>
-        {favoriteProviderUsers.map((service: any) => (
-          <ServicePost key={service.id} {...service} />
-        ))}
+    <Container>
+      <div className={classes.root}>
+        <div className={classes.servicesListWrapper}>
+          {favoriteProviderUsers.map((service: any) => (
+            <ServicePost key={service.id} {...service} />
+          ))}
+        </div>
       </div>
-    </div>
+    </Container>
   )
 }
 

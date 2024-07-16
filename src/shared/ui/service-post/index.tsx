@@ -2,12 +2,11 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IPostProps } from './types'
-import useStyles from './styles'
+import useStyles, { ReadMoreButton } from './styles'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import Slider from 'react-slick'
 
-import cn from 'classnames'
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 
@@ -23,6 +22,7 @@ import { getClient, getProfile } from '../../../store/selectors'
 import { UserType } from '../../types/user.types'
 import { Dispatch } from '../../../store/store'
 import { asyncSetFavoritesThunk } from '../../../store/features/client-slice'
+import cn from 'classnames'
 
 const SamplePrevArrow = (props: any) => {
   const { onClick, currentSlide } = props
@@ -65,8 +65,11 @@ const settings = {
 
 export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const { profession, description, name, avatar, images, id } = props
+  const [readMore, setReadMore] = useState(false)
+
   const { classes } = useStyles()
   const p = useTranslations('Professions')
+  const t = useTranslations('Profile')
   const { user } = useAuth()
   const { profile } = useSelector(getProfile)
   const { favorites } = useSelector(getClient)
@@ -79,6 +82,10 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
       await toggleFavorite(user.uid, id)
       dispatch(asyncSetFavoritesThunk({ id: user.uid }))
     }
+  }
+
+  const readMoreHandler = () => {
+    setReadMore(!readMore)
   }
 
   return (
@@ -119,7 +126,14 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
         </IconButton>
       )}
 
-      {description && <div className={classes.description}>{description}</div>}
+      {description && (
+        <div>
+          <span className={cn(classes.description, { [classes.fullText]: readMore })}>{description}</span>
+          <ReadMoreButton size="small" variant="contained" onClick={readMoreHandler}>
+            {readMore ? t('show_less') : t('read_more')}
+          </ReadMoreButton>
+        </div>
+      )}
     </div>
   )
 }
