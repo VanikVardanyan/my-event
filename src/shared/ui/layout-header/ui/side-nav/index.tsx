@@ -1,6 +1,6 @@
 'use client'
 import { Drawer, useMediaQuery, useTheme } from '@mui/material'
-import { White } from '@/shared/consts/colors'
+import { PinkBrownBase, White } from '@/shared/consts/colors'
 import { Routes } from '@/shared/routes'
 import useStyles from './styles'
 import { Link } from '@/navigation'
@@ -35,7 +35,7 @@ export const SideNav = (props: ISideNavProps) => {
   const initialLinks = [
     {
       title: t('home'),
-      url: Routes.Main,
+      url: Routes.home,
       icon: <HomeIcon />,
     },
     {

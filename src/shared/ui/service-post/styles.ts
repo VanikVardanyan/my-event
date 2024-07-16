@@ -1,5 +1,14 @@
-import { GreyBase, SlateGreyDarken7, SlateGreyBase, SlateGreyLighten13, White } from '@/shared/consts/colors'
+import {
+  GreyBase,
+  SlateGreyDarken7,
+  SlateGreyBase,
+  SlateGreyLighten13,
+  White,
+  PinkBrownBase,
+  PinkBrownLighten30,
+} from '@/shared/consts/colors'
 import { FontBody1Accent, FontBody1 } from '@/shared/consts/fontStyles'
+import { Button, styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
 
 export default tss.withName('ServicePost').create({
@@ -37,6 +46,18 @@ export default tss.withName('ServicePost').create({
     ...FontBody1,
     color: SlateGreyBase,
     marginTop: 24,
+    display: '-webkit-box',
+    // ['-webkit-line-clamp']: '2',
+    WebkitLineClamp: 2,
+    // ['-webkit-box-orient']: 'vertical',
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    marginBottom: 10,
+  },
+  fullText: {
+    WebkitLineClamp: 'none',
+    display: 'block',
   },
   profession: {
     ...FontBody1,
@@ -77,5 +98,14 @@ export default tss.withName('ServicePost').create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+})
+
+export const ReadMoreButton = styled(Button)({
+  backgroundColor: PinkBrownBase,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: PinkBrownLighten30,
   },
 })

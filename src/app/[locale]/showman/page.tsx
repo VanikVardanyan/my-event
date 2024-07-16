@@ -9,6 +9,7 @@ import { Professions } from '@/shared/types/user.types'
 import { IPostProps } from '@/shared/ui/service-post/types'
 import { useTranslations } from 'next-intl'
 import { Loader } from '@/shared/ui/Loader'
+import { Container } from '../styles'
 
 const ShowMan = () => {
   const { classes } = useStyles()
@@ -47,14 +48,16 @@ const ShowMan = () => {
   if (loading) return <Loader />
 
   return (
-    <div className={classes.root}>
-      <div className={classes.servicesListWrapper}>
-        {providerUsers.map((service: any) => (
-          <ServicePost key={service.id} {...service} />
-        ))}
-        {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
+    <Container>
+      <div className={classes.root}>
+        <div className={classes.servicesListWrapper}>
+          {providerUsers.map((service: any) => (
+            <ServicePost key={service.id} {...service} />
+          ))}
+          {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
+        </div>
       </div>
-    </div>
+    </Container>
   )
 }
 

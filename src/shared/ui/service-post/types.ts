@@ -1,11 +1,11 @@
-import { PROFESSIONS } from '@/shared/types/proffesion.types'
+import { Professions } from '../../types/user.types'
 
 export interface IPostProps {
   avatar: string
   name: string
   images: string[]
   description?: string
-  profession: PROFESSIONS[]
+  profession: Professions[]
   id: string
   likeCount: number
   isFavorite?: boolean

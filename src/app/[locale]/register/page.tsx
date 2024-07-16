@@ -5,11 +5,7 @@ import { lazy } from 'react'
 const Register = lazy(() => import('./ui/form'))
 
 const RegisterInPage = () => {
-  return (
-    <div>
-      <Register />
-    </div>
-  )
+  return <Register />
 }
 
 export default RegisterInPage
