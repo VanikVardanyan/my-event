@@ -21,9 +21,6 @@ export default tss.withName('LayoutHeader').create({
     padding: '11px 10px 11px 16px',
     background: PinkBrownBase,
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
-    position: 'sticky',
-    top: 0,
-    left: 0,
     zIndex: 1000,
     minHeight: 62,
 
