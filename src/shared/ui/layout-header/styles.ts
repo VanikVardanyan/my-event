@@ -23,6 +23,10 @@ export default tss.withName('LayoutHeader').create({
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
     zIndex: 1000,
     minHeight: 62,
+    position: 'sticky',
+    top: 0,
+    left: 0,
+    right: 0,
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
       padding: '11px 26px 11px 32px',
