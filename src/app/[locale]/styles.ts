@@ -2,19 +2,15 @@
 import { styled } from '@mui/material'
 
 export const LayoutRoot = styled('div')(({ theme }) => ({
-  display: 'flex',
   flex: '1',
-  maxWidth: '100%',
-  overflow: 'auto',
-  flexDirection: 'column',
+  overflowY: 'auto',
 }))
 
-export const LayoutContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  flex: '1 1 auto',
-  flexDirection: 'column',
-  width: '100%',
-}))
+// export const LayoutContainer = styled('div')(({ theme }) => ({
+//   display: 'flex',
+//   flex: '1 1 auto',
+//   flexDirection: 'column',
+// }))
 
 export const Container = styled('div')(({ theme }) => ({
   padding: '0 12px 12px 12px',

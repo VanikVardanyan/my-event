@@ -4,7 +4,7 @@ import { ReduxProvider } from '@/store/provider'
 import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir'
 import { AuthProvider } from '@/shared/lib/auth-context'
 import { Metadata } from 'next'
-import { LayoutContainer, LayoutRoot } from './styles'
+import { LayoutRoot } from './styles'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { unstable_setRequestLocale } from 'next-intl/server'
@@ -43,22 +43,24 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
   return (
     <html lang={locale}>
       <body>
-        <Scroll />
-        <NextIntlClientProvider messages={messages}>
-          <ReduxProvider>
-            <AuthProvider>
-              <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
-                <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Scroll />
+          <NextIntlClientProvider messages={messages}>
+            <ReduxProvider>
+              <AuthProvider>
+                <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
                   <LayoutHeader />
                   <LayoutRoot id="layout">
-                    <LayoutContainer>{children}</LayoutContainer>
+                    {/* <LayoutContainer> */}
+                    {children}
+                    {/* </LayoutContainer> */}
                   </LayoutRoot>
-                </div>
-                <ToastContainer />
-              </NextAppDirEmotionCacheProvider>
-            </AuthProvider>
-          </ReduxProvider>
-        </NextIntlClientProvider>
+                  <ToastContainer />
+                </NextAppDirEmotionCacheProvider>
+              </AuthProvider>
+            </ReduxProvider>
+          </NextIntlClientProvider>
+        </div>
       </body>
     </html>
   )

@@ -20,7 +20,7 @@ export const ServiceCard = (props: IServiceProps) => {
       <Image src={image} alt={name} width={200} height={200} className={classes.img} />
       <h3>{name}</h3>
       <p>{description}</p>
-      <a href={link}>Learn more</a>
+      Learn more
     </Link>
   )
 }
