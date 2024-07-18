@@ -11,4 +11,6 @@ export enum Professions {
   EquipmentRental = 'equipment_rental',
   CarsRental = 'cars_rental',
   CostumeRental = 'costume_rental',
+  floristsDecorators = 'florists_decorators',
+  DancersEntertainers = 'dancers_entertainers',
 }

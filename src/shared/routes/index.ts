@@ -16,4 +16,6 @@ export enum Routes {
   RequestList = '/request-list',
   ForgotPassword = '/forgot-password',
   Favorites = '/favorites',
+  FloristsDecorators = '/florist-decorators',
+  DancersEntertainers = '/dance-entertainers',
 }

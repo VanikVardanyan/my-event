@@ -2,7 +2,15 @@
     "Main": {
         "organize_your_events": "Organize your events easily and efficiently",
         "organize_your_events_quickly": "Organize your events easily and quickly. On our platform, you will find the best professionals for photography, music, equipment rental, and much more. Register today to offer your services or find the perfect performer for your event.",
-        "start": "Start"
+        "start": "Start",
+        "showman_description": "Professional showman creating an unforgettable atmosphere at any event. Experience working with diverse audiences.",
+        "photographers_description": "Experienced photographers and videographers capturing the important moments of your life. Creative approach and high-quality work.",
+        "musicians_description": "Talented musicians for any event. Live music creating a special atmosphere.",
+        "djs_description": "Professional DJs with an extensive music repertoire. They will make your party unforgettable.",
+        "costume_rental_description": "Costume rental for any event. Wide selection and affordable prices.",
+        "equipment_rental_description": "Equipment rental for events. High quality and reliability.",
+        "florists_decorators_description": "Professional florists and decorators. They will create unique decorations for your celebration.",
+        "dancers_entertainers_description": "Dancers and entertainers for guest entertainment. Bright and memorable performances."
     },
     "Shared": {
         "current_list_is_empty": "At the moment, this list is still empty",
@@ -159,7 +167,9 @@
         "login": "Login",
         "register": "Register",
         "sign_out": "Sign Out",
-        "services": "Services"
+        "services": "Services",
+        "florists_decorators": "Florists and Decorators",
+        "dancers_entertainers": "Dancers and Entertainers"
     },
     "Professions": {
         "showman": "Showman",
@@ -168,7 +178,9 @@
         "musicians": "Musician",
         "equipment_rental": "Equipment Rental",
         "cars_rental": "Car Rental",
-        "costume_rental": "Costume Rental"
+        "costume_rental": "Dress Rental",
+        "florists_decorators": "Florists and Decorators",
+        "dancers_entertainers": "Dancers and Entertainers"
     },
     "Language": {
         "ru": "Rus",
