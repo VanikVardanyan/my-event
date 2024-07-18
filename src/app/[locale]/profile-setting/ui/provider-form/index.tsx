@@ -31,8 +31,9 @@ export const ProviderForm = () => {
     { value: Professions.EquipmentRental, label: m(Professions.EquipmentRental) },
     { value: Professions.CarsRental, label: m(Professions.CarsRental) },
     { value: Professions.CostumeRental, label: m(Professions.CostumeRental) },
+    { value: Professions.floristsDecorators, label: m(Professions.floristsDecorators) },
+    { value: Professions.DancersEntertainers, label: m(Professions.DancersEntertainers) },
   ]
-
   const [avatarPreview, setAvatarPreview] = useState<string | null>(profile?.avatar || null)
 
   const { register, formState, setValue, reset, watch } = useFormContext()

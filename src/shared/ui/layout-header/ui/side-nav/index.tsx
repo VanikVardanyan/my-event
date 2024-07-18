@@ -23,6 +23,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import LocalFloristIcon from '@mui/icons-material/LocalFlorist'
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
 
 export const SideNav = (props: ISideNavProps) => {
   const { profile } = useSelector(getProfile)
@@ -72,6 +74,16 @@ export const SideNav = (props: ISideNavProps) => {
       title: t('costume_rental'),
       url: Routes.CostumeRental,
       icon: <StorefrontIcon />,
+    },
+    {
+      title: t('florists_decorators'),
+      url: Routes.FloristsDecorators,
+      icon: <LocalFloristIcon />,
+    },
+    {
+      title: t('dancers_entertainers'),
+      url: Routes.DancersEntertainers,
+      icon: <AccessibilityNewIcon />,
     },
   ]
 

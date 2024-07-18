@@ -3,6 +3,7 @@ import { Routes } from '../../routes'
 import { Professions } from '../../types/user.types'
 import useStyles from './styles'
 import { Link } from '../../../navigation'
+import { useTranslations } from 'next-intl'
 
 interface IServiceProps {
   name: Professions
@@ -14,13 +15,16 @@ interface IServiceProps {
 export const ServiceCard = (props: IServiceProps) => {
   const { name, description, image, link } = props
   const { classes } = useStyles()
+  const professions = useTranslations('Professions')
+  const mainT = useTranslations('Main')
 
   return (
     <Link href={link} className={classes.root}>
       <Image src={image} alt={name} width={200} height={200} className={classes.img} />
-      <h3>{name}</h3>
-      <p>{description}</p>
-      Learn more
+      <div className={classes.info}>
+        <h3 className={classes.title}>{professions(name)}</h3>
+        <div className={classes.description}>{mainT(description)}</div>
+      </div>
     </Link>
   )
 }

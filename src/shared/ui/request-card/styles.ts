@@ -41,9 +41,11 @@ export default tss.withName('RequestCard').create({
   actions: {
     display: 'flex',
     alignItems: 'center',
+    flexWrap: 'wrap',
     gap: 10,
   },
   otherWrapper: {
     display: 'flex',
+    gap: 5,
   },
 })

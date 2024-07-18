@@ -18,39 +18,51 @@ interface IService {
 const serviceListMock: IService[] = [
   {
     name: Professions.Showman,
-    description: 'Cook description',
-    image: '/main/default.png',
+    description: 'showman_description',
+    image: '/main/showman.jpg',
     link: Routes.Showman,
   },
   {
     name: Professions.Photographers,
-    description: 'Photographers description',
-    image: '/main/default.png',
+    description: 'photographers_description',
+    image: '/main/photographer.jpg',
     link: Routes.Photographer,
   },
   {
     name: Professions.Musicians,
-    description: 'Musicians description',
-    image: '/main/default.png',
+    description: 'musicians_description',
+    image: '/main/musician.jpg',
     link: Routes.Musicians,
   },
   {
     name: Professions.Djs,
-    description: 'Djs description',
-    image: '/main/default.png',
+    description: 'djs_description',
+    image: '/main/dj.jpg',
     link: Routes.Dj,
   },
   {
     name: Professions.CostumeRental,
-    description: 'CostumeRental description',
-    image: '/main/default.png',
+    description: 'costume_rental_description',
+    image: '/main/dress.jpg',
     link: Routes.CostumeRental,
   },
   {
     name: Professions.EquipmentRental,
-    description: 'EquipmentRental description',
-    image: '/main/default.png',
+    description: 'equipment_rental_description',
+    image: '/main/equipment.jpg',
     link: Routes.EquipmentRental,
+  },
+  {
+    name: Professions.floristsDecorators,
+    description: 'florists_decorators_description',
+    image: '/main/florist.jpg',
+    link: Routes.FloristsDecorators,
+  },
+  {
+    name: Professions.DancersEntertainers,
+    description: 'dancers_entertainers_description',
+    image: '/main/dance.jpg',
+    link: Routes.DancersEntertainers,
   },
 ]
 

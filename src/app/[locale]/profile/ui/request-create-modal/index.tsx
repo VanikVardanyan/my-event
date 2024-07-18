@@ -26,7 +26,7 @@ import { Dispatch } from '@/store/store'
 import { useTranslations } from 'next-intl'
 import { AmdIcon } from '@/shared/icons'
 import { ArmenianCity } from '@/shared/common/citys'
-import { AddRequestButton } from '../../../../../shared/ui/profile-header/styles'
+import { AddRequestButton } from '@/shared/ui/profile-header/styles'
 
 interface Iprops {
   handleClose: () => void
@@ -42,8 +42,9 @@ const style = {
   boxShadow: 24,
   borderRadius: 4,
   p: 4,
+  maxHeight: 'calc(100% - 10px)',
+  overflowY: 'auto',
 }
-
 export const RequestCreateModal = (props: Iprops) => {
   const { handleClose } = props
   const t = useTranslations('Request')
