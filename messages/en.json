@@ -63,7 +63,40 @@
         "person_quantity": "Number of guests",
         "budget": "Budget",
         "date": "Date",
-        "create_request": "Create Request"
+        "create_request": "Create Request",
+        "description": "Description"
+    },
+    "Citys": {
+        "Yerevan": "Yerevan",
+        "Gyumri": "Gyumri",
+        "Vanadzor": "Vanadzor",
+        "Hrazdan": "Hrazdan",
+        "Abovyan": "Abovyan",
+        "Kapan": "Kapan",
+        "Armavir": "Armavir",
+        "Artashat": "Artashat",
+        "Gavar": "Gavar",
+        "Ashtarak": "Ashtarak",
+        "Goris": "Goris",
+        "Charentsavan": "Charentsavan",
+        "Sevan": "Sevan",
+        "Hatsavan": "Hatsavan",
+        "Dilijan": "Dilijan",
+        "Ararat": "Ararat",
+        "Ijevan": "Ijevan",
+        "Martuni": "Martuni",
+        "Spitak": "Spitak",
+        "Meghri": "Meghri",
+        "Vardenis": "Vardenis",
+        "Masis": "Masis",
+        "Aparan": "Aparan",
+        "Tashir": "Tashir",
+        "Berd": "Berd",
+        "Vedi": "Vedi",
+        "Yeghvard": "Yeghvard",
+        "Nor Hachn": "Nor Hachn",
+        "Maralik": "Maralik",
+        "Alaverdi": "Alaverdi"
     },
     "ProfileSetting": {
         "required_field": "This field is required",
@@ -108,7 +141,9 @@
         "location": "Location",
         "date": "Date",
         "budget": "Budget",
-        "city": "City"
+        "city": "City",
+        "description": "Description",
+        "more_info": "More info"
     },
     "Menu": {
         "home": "Home",

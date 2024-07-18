@@ -84,7 +84,7 @@ const SignIn = () => {
             fullWidth
             size="large"
             onSubmit={handleSubmit(onSubmit)}
-            disabled={loading || !formState.isValid}
+            disabled={formState.isSubmitted && (loading || !formState.isValid)}
           >
             {t('send')}
           </SignInButton>

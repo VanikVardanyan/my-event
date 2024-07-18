@@ -92,6 +92,7 @@ export const ProfileCreatives = (props: IImages) => {
 
   return (
     <div>
+      <LoadingOverlay loading={loading} />
       {isMe && (
         // @ts-ignore
         <AddButton size="small" component="label" variant="contained" startIcon={<LibraryAddIcon />} sx={{ mb: 2 }}>

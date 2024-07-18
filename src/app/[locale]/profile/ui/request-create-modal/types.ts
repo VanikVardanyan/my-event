@@ -5,4 +5,5 @@ export interface IRequestTypes {
   amount: string
   date: string
   city: string
+  other?: string
 }

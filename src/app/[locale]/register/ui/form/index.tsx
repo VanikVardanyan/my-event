@@ -142,7 +142,7 @@ const Register = () => {
                 size="large"
                 className={classes.signInButton}
                 onSubmit={handleSubmit(onSubmit)}
-                disabled={loading || !formState.isValid}
+                disabled={formState.isSubmitted && (loading || !formState.isValid)}
               >
                 {t('register')}
               </SignInButton>

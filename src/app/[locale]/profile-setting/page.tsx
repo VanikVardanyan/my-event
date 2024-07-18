@@ -27,6 +27,8 @@ import { ProtectedRoute } from '@/shared/lib/protected-router'
 import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
 import toast from 'react-hot-toast'
 import { Container } from '../styles'
+import { v4 as uuidv4 } from 'uuid'
+
 interface IFormValues {
   name: string
   role: string
@@ -109,7 +111,8 @@ const ProfileSetting = () => {
       let oldAvatar = profile?.avatar
 
       if (data.avatar) {
-        const storageRef = ref(storage, `avatar/${data.avatar.name}`)
+        const uniqueId = uuidv4()
+        const storageRef = ref(storage, `avatar/${uniqueId}_${data.avatar.name}`)
         const uploadTask = uploadBytesResumable(storageRef, data.avatar)
         await new Promise<void>((resolve, reject) => {
           uploadTask.on(
@@ -144,7 +147,7 @@ const ProfileSetting = () => {
       await setDoc(doc(db, 'profiles', userAuth.user.uid), updatedProfile)
       await dispatch(asyncSetProfileThunk())
 
-      if (oldAvatar) {
+      if (oldAvatar && avatarImage) {
         const imageRef = ref(storage, oldAvatar)
         await deleteObject(imageRef)
       }
@@ -155,7 +158,6 @@ const ProfileSetting = () => {
       toast.error(t('error_submitting_form'))
     }
   }
-
   const onNextStep = () => {
     setStep((prev) => prev + 1)
   }

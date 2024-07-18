@@ -88,7 +88,7 @@ export const ProviderForm = () => {
         <div className={classes.avatarWrapper}>
           <div className={classes.avatar}>
             <Image
-              src={avatarPreview || '/default-avatar.png'}
+              src={avatarPreview || '/default.jpg'}
               width={150}
               height={150}
               alt="Avatar Preview"

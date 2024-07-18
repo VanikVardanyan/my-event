@@ -9,9 +9,11 @@ import { getProfile } from '@/store/selectors'
 import { Loader } from '@/shared/ui/Loader'
 import { Suspense } from 'react'
 import { Container } from '../styles'
+import { useTranslations } from 'next-intl'
 
 const RequestsList = () => {
   const { loading } = useSelector(getProfile)
+  const t = useTranslations('RequestList')
 
   if (loading) return <Loader />
 
@@ -20,7 +22,7 @@ const RequestsList = () => {
       <Container>
         <Box>
           <Typography variant="h4" gutterBottom>
-            Все запросы
+            {t('all_requests')}
           </Typography>
           <RequestList />
         </Box>

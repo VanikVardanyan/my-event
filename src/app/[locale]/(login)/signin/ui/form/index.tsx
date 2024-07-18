@@ -149,7 +149,7 @@ const SignIn = () => {
             variant="contained"
             fullWidth
             size="large"
-            disabled={loading || !formState.isValid}
+            disabled={formState.isSubmitted && (loading || !formState.isValid)}
             className={classes.signInButton}
             onSubmit={handleSubmit(onSubmit)}
           >

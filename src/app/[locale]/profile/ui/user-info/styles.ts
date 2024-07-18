@@ -24,8 +24,8 @@ export default tss.withName('UserInfo').create({
   },
   requestCards: {
     display: 'flex',
+    flexDirection: 'column',
     flexWrap: 'wrap',
-    justifyContent: 'center',
     gap: 15,
   },
 })

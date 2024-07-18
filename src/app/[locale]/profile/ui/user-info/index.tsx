@@ -14,6 +14,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
+import { AddRequestButton, EditButton } from '../../../../../shared/ui/profile-header/styles'
 
 export const UserInfo = () => {
   const { classes } = useStyles()
@@ -47,15 +48,14 @@ export const UserInfo = () => {
           height={150}
           className={classes.avatar}
         />
-        <Button variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>
+        <EditButton variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>
           {t('edit_profile')}
-        </Button>
+        </EditButton>
         <div className={classes.name}>{profile?.name}</div>
-        <Button variant="contained" endIcon={<AddCircleOutlineIcon />} onClick={handleOpenModal}>
+        <AddRequestButton variant="contained" endIcon={<AddCircleOutlineIcon />} onClick={handleOpenModal}>
           {t('add_request')}
-        </Button>
+        </AddRequestButton>
       </div>
-
       <div className={classes.requestCards}>
         {requests.map((request) => (
           <RequestCard key={request.id} {...request} isMe />

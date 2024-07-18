@@ -1,4 +1,7 @@
 import {
+  DarkBlueBase,
+  DarkBlueDarken4,
+  DarkBlueLighten30,
   PinkBrownBase,
   PinkBrownDisabled,
   PinkBrownLighten30,
@@ -148,5 +151,14 @@ export const EditButton = styled(Button)({
 
   '&:hover': {
     backgroundColor: PinkBrownLighten30,
+  },
+})
+
+export const AddRequestButton = styled(Button)({
+  backgroundColor: DarkBlueLighten30,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: DarkBlueDarken4,
   },
 })
