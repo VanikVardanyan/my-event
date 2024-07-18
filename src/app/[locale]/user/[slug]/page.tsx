@@ -11,6 +11,7 @@ import { Box } from '@mui/material'
 import useStyles from './styles'
 import { Loader } from '../../../../shared/ui/Loader'
 import { Container } from '../../styles'
+import { LoadingOverlay } from '../../../../shared/ui/loading-overlay'
 
 const UserPage = () => {
   const router: { slug: string } = useParams()
@@ -26,7 +27,6 @@ const UserPage = () => {
         if (userDoc.exists()) {
           setUserData(userDoc.data())
         } else {
-          console.log('No such document!')
           history.push('/404')
         }
         setLoading(false)
@@ -39,7 +39,7 @@ const UserPage = () => {
     <Container>
       <div className={classes.root}>
         {loading ? (
-          <Loader />
+          <LoadingOverlay loading />
         ) : (
           <div>
             <ProfileHeader {...userData} />

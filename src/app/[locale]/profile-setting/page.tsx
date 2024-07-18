@@ -181,7 +181,7 @@ const ProfileSetting = () => {
     [UserType.PROVIDER]: <ProviderForm />,
   }
 
-  if (loading || userAuth.loading) return <Loader />
+  if (loading || userAuth.loading) return <LoadingOverlay loading />
 
   return (
     <Container>

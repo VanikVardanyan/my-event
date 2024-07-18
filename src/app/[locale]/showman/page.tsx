@@ -10,6 +10,7 @@ import { IPostProps } from '@/shared/ui/service-post/types'
 import { useTranslations } from 'next-intl'
 import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../styles'
+import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
 
 const ShowMan = () => {
   const { classes } = useStyles()
@@ -45,7 +46,7 @@ const ShowMan = () => {
     fetchProviderUsers()
   }, [])
 
-  if (loading) return <Loader />
+  if (loading) return <LoadingOverlay loading />
 
   return (
     <Container>

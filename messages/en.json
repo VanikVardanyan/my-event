@@ -183,8 +183,9 @@
         "dancers_entertainers": "Dancers and Entertainers"
     },
     "Language": {
-        "ru": "Rus",
-        "en": "Eng"
+        "ru": "Russian",
+        "en": "English",
+        "am": "Armenian"
     },
     "Errors": {
         "invalid_email_or_password": "Invalid email or password",
