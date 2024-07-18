@@ -4,7 +4,7 @@ export default tss.withName('RequestList').create({
   root: {},
   requestCards: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     justifyContent: 'center',
     gap: 15,
   },

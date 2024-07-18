@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import useStyles from './styles'
 import { Box, Button, Card } from '@mui/material'
 import { useAuth } from '../../lib/auth-context'
@@ -13,20 +13,26 @@ import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useTranslations } from 'next-intl'
 import { IRequestTypes } from '@/app/[locale]/profile/ui/request-create-modal/types'
+import cn from 'classnames'
+import RequestInfoModal from './ui/info-modal'
 
 export const RequestCard = (
   props: IRequestTypes & { responses: any[]; id: string; isMe?: boolean; updateAll: () => void }
 ) => {
-  const { service, city, amount, date, personQuantity, location, responses, id, isMe } = props
+  const { service, city, amount, date, personQuantity, location, responses, id, isMe, other } = props
   const { profile } = useSelector(getProfile)
   const { classes } = useStyles()
   const { user } = useAuth()
+
+  const btnRef = useRef(null)
 
   const t = useTranslations('RequestList')
   const p = useTranslations('Professions')
 
   const [loading, setLoading] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+  const [openInfoModal, setOpenInfoModal] = useState(false)
+
   const dispatch = Dispatch()
 
   const handleRespond = async () => {
@@ -65,6 +71,15 @@ export const RequestCard = (
     }
   }
 
+  const handleOpenInfoModal = () => {
+    setOpenInfoModal(true)
+  }
+
+  const handleCloseInfoModal = () => {
+    console.log('close')
+    setOpenInfoModal(false)
+  }
+
   const handleOpenModal = () => {
     setOpenModal(true)
   }
@@ -74,55 +89,76 @@ export const RequestCard = (
   }
 
   return (
-    <Card className={classes.root}>
+    <div className={classes.root}>
       <h3 className={classes.title}>{p(service)}</h3>
       <div className={classes.content}>
         <div className={classes.label}>
-          {t('city')}: <span className={classes.description}>{city}</span>
+          <span className={classes.infoTitle}> {t('city')}: </span>
+          <span className={classes.description}>{city}</span>
         </div>
         <div>
-          {t('guests_count')}: <span className={classes.description}>{personQuantity}</span>
+          <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}
+          <span className={classes.description}>{personQuantity}</span>
         </div>
         <div>
-          {t('location')}: <span className={classes.description}>{location}</span>
+          <span className={classes.infoTitle}>{t('location')}: </span>
+          <span className={classes.description}>{location}</span>
         </div>
         <div>
-          {t('date')}: <span className={classes.description}>{date}</span>
+          <span className={classes.infoTitle}>{t('date')}: </span>
+          <span className={classes.description}>{date}</span>
         </div>
         <div>
-          {t('budget')}: <span className={classes.description}>{amount}dram</span>
+          <span className={classes.infoTitle}>{t('budget')}: </span>
+          <span className={classes.description}>{amount}dram</span>
         </div>
+        {responses.length > 0 && (
+          <div>
+            <span className={classes.infoTitle}>{t('responses_count')}: </span>
+            <span className={classes.description}>{responses.length}</span>
+          </div>
+        )}
+        {other && (
+          <div className={classes.otherWrapper}>
+            <span className={classes.infoTitle}>{t('description')}: </span>
+            <div className={cn(classes.description, classes.other)}>{other}</div>
+          </div>
+        )}
       </div>
-      <div>
-        {t('responses_count')}: <span className={classes.description}>{responses.length}</span>
-      </div>
-      {isMe && (
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-          {responses.length > 0 && (
-            <Button variant="contained" onClick={handleOpenModal} sx={{ mt: 1 }}>
-              {t('view_responses')}
-            </Button>
-          )}
 
-          <Button
-            variant="contained"
-            color="error"
-            onClick={handleDelete}
-            startIcon={<DeleteIcon />}
-            disabled={loading}
-            sx={{ mt: 1 }}
-          >
-            {t('delete')}
+      <div className={classes.actions}>
+        {isMe && (
+          <>
+            {responses.length > 0 && (
+              <Button variant="contained" onClick={handleOpenModal} size="small">
+                {t('view_responses')}
+              </Button>
+            )}
+
+            <Button
+              variant="contained"
+              color="error"
+              size="small"
+              onClick={handleDelete}
+              startIcon={<DeleteIcon />}
+              disabled={loading}
+            >
+              {t('delete')}
+            </Button>
+          </>
+        )}
+        {!isMe && (
+          <Button variant="contained" color="success" onClick={handleRespond} size="small">
+            {t('respond')}
           </Button>
-        </Box>
-      )}
-      {!isMe && (
-        <Button variant="contained" color="success" onClick={handleRespond} sx={{ mt: 2 }}>
-          {t('respond')}
+        )}
+        <Button variant="contained" onClick={handleOpenInfoModal} size="small" ref={btnRef}>
+          {t('more_info')}
         </Button>
-      )}
+      </div>
 
       <ResponsesModal open={openModal} handleClose={handleCloseModal} responses={responses} />
-    </Card>
+      <RequestInfoModal open={openInfoModal} handleClose={handleCloseInfoModal} info={props} />
+    </div>
   )
 }

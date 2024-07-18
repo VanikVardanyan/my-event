@@ -42,7 +42,7 @@ export const ClientForm = () => {
     <div className={classes.root}>
       <div className={classes.avatarSection}>
         <Image
-          src={avatarPreview || '/default-avatar.png'}
+          src={avatarPreview || '/default.jpg'}
           width={147}
           height={147}
           alt="Avatar Preview"

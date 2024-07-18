@@ -32,7 +32,6 @@ export const LayoutHeader = () => {
   const { user, setUser, loading, setLoading } = useAuth()
   const { profile, loading: ProfileLoading } = useSelector(getProfile)
   const dispatch = Dispatch()
-
   const router = useRouter()
 
   const theme = useTheme()

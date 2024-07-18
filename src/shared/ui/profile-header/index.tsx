@@ -57,6 +57,7 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const readMoreHandler = () => {
     setReadMore(!readMore)
   }
+  console.log(props.avatar, 'avatar is header')
 
   return (
     <div className={classes.root}>

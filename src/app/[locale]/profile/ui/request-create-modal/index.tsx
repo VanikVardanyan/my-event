@@ -1,7 +1,19 @@
 import { useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  Grid,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material'
 import * as yup from 'yup'
 import { Professions } from '@/shared/types/user.types'
 import { addDoc, collection } from 'firebase/firestore'
@@ -12,6 +24,9 @@ import { IRequestTypes } from './types'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
 import { useTranslations } from 'next-intl'
+import { AmdIcon } from '@/shared/icons'
+import { ArmenianCity } from '@/shared/common/citys'
+import { AddRequestButton } from '../../../../../shared/ui/profile-header/styles'
 
 interface Iprops {
   handleClose: () => void
@@ -34,6 +49,7 @@ export const RequestCreateModal = (props: Iprops) => {
   const t = useTranslations('Request')
   const m = useTranslations('Menu')
   const shared = useTranslations('Shared')
+  const cityTranslate = useTranslations('Citys')
 
   const categories = Object.values(Professions).map((item) => ({
     value: item,
@@ -47,9 +63,11 @@ export const RequestCreateModal = (props: Iprops) => {
     personQuantity: yup.number().required(t('required_field')),
     amount: yup.string().required(t('required_field')),
     date: yup.string().required(t('required_field')),
+    other: yup.string(),
   })
 
   const [category, setCategory] = useState('')
+  const [city, setCity] = useState('')
   const { userId } = useSelector(getProfile)
   const dispatch = Dispatch()
 
@@ -84,6 +102,9 @@ export const RequestCreateModal = (props: Iprops) => {
   const handleChange = (event: any) => {
     setCategory(event.target.value)
   }
+  const handleChangeCity = (event: any) => {
+    setCity(event.target.value)
+  }
 
   const formatNumber = (value: string) => {
     return value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
@@ -97,18 +118,27 @@ export const RequestCreateModal = (props: Iprops) => {
         </Typography>
         <Grid container spacing={3} mb={2}>
           <Grid item xs={12} sm={10}>
-            <TextField
-              required
-              id="city"
-              label={t('city')}
-              {...register('city')}
-              fullWidth
-              size="small"
-              autoComplete="off"
-              variant="outlined"
-              error={!!errors.city}
-              helperText={errors.city?.message}
-            />
+            <Grid item xs={12} sm={7}>
+              <FormControl fullWidth size="small" style={{ minWidth: 276 }}>
+                <InputLabel id="demo-simple-select-label">{t('city')}</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={city}
+                  {...register('city')}
+                  error={!!errors.city}
+                  label={t('city')}
+                  onChange={handleChangeCity}
+                  fullWidth
+                >
+                  {ArmenianCity.map((item) => (
+                    <MenuItem key={item.label} value={item.value}>
+                      {cityTranslate(item.label)}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
           <Grid item xs={12} sm={10}>
             <TextField
@@ -125,7 +155,7 @@ export const RequestCreateModal = (props: Iprops) => {
             />
           </Grid>
           <Grid item xs={12} sm={7}>
-            <FormControl fullWidth size="small">
+            <FormControl fullWidth size="small" style={{ minWidth: 276 }}>
               <InputLabel id="demo-simple-select-label">{t('service')}</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
@@ -165,25 +195,29 @@ export const RequestCreateModal = (props: Iprops) => {
               name="amount"
               control={control}
               render={({ field: { onChange, onBlur, value, ref } }) => (
-                <TextField
-                  required
-                  id="amount"
-                  type="text"
-                  label={t('budget')}
-                  onChange={(e) => {
-                    const onlyNumbers = e.target.value.replace(/\D/g, '') // Удаляет все нецифровые символы
-                    onChange(formatNumber(onlyNumbers))
-                  }}
-                  onBlur={onBlur}
-                  value={value}
-                  fullWidth
-                  size="small"
-                  autoComplete="off"
-                  variant="outlined"
-                  error={!!errors.amount}
-                  helperText={errors.amount?.message}
-                  inputRef={ref}
-                />
+                <FormControl fullWidth>
+                  <OutlinedInput
+                    id="outlined-adornment-weight"
+                    endAdornment={<AmdIcon />}
+                    aria-describedby="outlined-weight-helper-text"
+                    inputProps={{
+                      'aria-label': 'weight',
+                    }}
+                    size="small"
+                    placeholder={t('budget')}
+                    required
+                    fullWidth
+                    onChange={(e) => {
+                      const onlyNumbers = e.target.value.replace(/\D/g, '') // Удаляет все нецифровые символы
+                      onChange(formatNumber(onlyNumbers))
+                    }}
+                    value={value}
+                    onBlur={onBlur}
+                    error={!!errors.amount}
+                    inputRef={ref}
+                  />
+                  <FormHelperText error>{errors.amount?.message as string}</FormHelperText>
+                </FormControl>
               )}
             />
           </Grid>
@@ -191,7 +225,6 @@ export const RequestCreateModal = (props: Iprops) => {
             <TextField
               required
               id="data"
-              label={t('date')}
               type="date"
               {...register('date')}
               fullWidth
@@ -202,14 +235,27 @@ export const RequestCreateModal = (props: Iprops) => {
               helperText={errors.date?.message}
             />
           </Grid>
+          <Grid item xs={12} sm={10}>
+            <TextField
+              fullWidth
+              autoCorrect="off"
+              {...register('other')}
+              label={t('description')}
+              placeholder={t('description')}
+              type="text"
+              autoComplete="off"
+              rows={4}
+              multiline
+            />
+          </Grid>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <Button variant="contained" type="submit" fullWidth>
+          <AddRequestButton variant="contained" type="submit" fullWidth>
             <Typography variant="button">{t('create_request')}</Typography>
-          </Button>
-          <Button variant="contained" type="button" onClick={handleClose} fullWidth sx={{ mt: 1 }}>
+          </AddRequestButton>
+          <AddRequestButton variant="contained" type="button" onClick={handleClose} fullWidth sx={{ mt: 1 }}>
             <Typography variant="button">{shared('cancel')}</Typography>
-          </Button>
+          </AddRequestButton>
         </Grid>
       </Box>
     </Box>

@@ -63,7 +63,40 @@
         "person_quantity": "Количество гостей",
         "budget": "Бюджет",
         "date": "Дата",
-        "create_request": "Создать запрос"
+        "create_request": "Создать запрос",
+        "description": "Дополнительная информация"
+    },
+    "Citys": {
+        "Yerevan": "Ереван",
+        "Gyumri": "Гюмри",
+        "Vanadzor": "Ванадзор",
+        "Hrazdan": "Раздан",
+        "Abovyan": "Абовян",
+        "Kapan": "Капан",
+        "Armavir": "Армавир",
+        "Artashat": "Арташат",
+        "Gavar": "Гавар",
+        "Ashtarak": "Аштарак",
+        "Goris": "Горис",
+        "Charentsavan": "Чаренцаван",
+        "Sevan": "Севан",
+        "Hatsavan": "Ацаван",
+        "Dilijan": "Дилижан",
+        "Ararat": "Арарат",
+        "Ijevan": "Иджеван",
+        "Martuni": "Мартуни",
+        "Spitak": "Спитак",
+        "Meghri": "Мегри",
+        "Vardenis": "Варденис",
+        "Masis": "Масис",
+        "Aparan": "Апаран",
+        "Tashir": "Ташир",
+        "Berd": "Берд",
+        "Vedi": "Веди",
+        "Yeghvard": "Ехвард",
+        "Nor Hachn": "Нор Ачн",
+        "Maralik": "Маралик",
+        "Alaverdi": "Алаверди"
     },
     "ProfileSetting": {
         "required_field": "Обязательное поле",
@@ -108,7 +141,9 @@
         "location": "Место",
         "date": "Дата",
         "budget": "Бюджет",
-        "city": "Город"
+        "city": "Город",
+        "description": "Дополнительная информация",
+        "more_info": "Подробнее"
     },
     "Menu": {
         "home": "Главная",

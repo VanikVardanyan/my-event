@@ -63,7 +63,40 @@
         "person_quantity": "Հյուրերի քանակը",
         "budget": "Բյուջե",
         "date": "Ամսաթիվ",
-        "create_request": "Ստեղծել պահանջ"
+        "create_request": "Ստեղծել պահանջ",
+        "description": "Լրացուցիչ տեղեկություն"
+    },
+    "Citys": {
+        "Yerevan": "Երևան",
+        "Gyumri": "Գյումրի",
+        "Vanadzor": "Վանաձոր",
+        "Hrazdan": "Հրազդան",
+        "Abovyan": "Աբովյան",
+        "Kapan": "Կապան",
+        "Armavir": "Արմավիր",
+        "Artashat": "Արտաշատ",
+        "Gavar": "Գավառ",
+        "Ashtarak": "Աշտարակ",
+        "Goris": "Գորիս",
+        "Charentsavan": "Չարենցավան",
+        "Sevan": "Սևան",
+        "Hatsavan": "Հացավան",
+        "Dilijan": "Դիլիջան",
+        "Ararat": "Արարատ",
+        "Ijevan": "Իջևան",
+        "Martuni": "Մարտունի",
+        "Spitak": "Սպիտակ",
+        "Meghri": "Մեղրի",
+        "Vardenis": "Վարդենիս",
+        "Masis": "Մասիս",
+        "Aparan": "Ապարան",
+        "Tashir": "Թաշիր",
+        "Berd": "Բերդ",
+        "Vedi": "Վեդի",
+        "Yeghvard": "Եղվարդ",
+        "Nor Hachn": "Նոր Հաճն",
+        "Maralik": "Մարալիկ",
+        "Alaverdi": "Ալավերդի"
     },
     "ProfileSetting": {
         "required_field": "Այս դաշտը պարտադիր է",
@@ -108,7 +141,9 @@
         "location": "Վայրը",
         "date": "Ամսաթիվ",
         "budget": "Բյուջե",
-        "city": "Քաղաք"
+        "city": "Քաղաք",
+        "description": "Լրացուցիչ տեղեկություն",
+        "more_info": "Ավելին"
     },
     "Menu": {
         "home": "Գլխավոր",
