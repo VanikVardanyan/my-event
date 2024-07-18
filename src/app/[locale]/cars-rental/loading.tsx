@@ -1,5 +1,5 @@
-import { Loader } from '@/shared/ui/Loader'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
-const Loading = () => <Loader />
+const Loading = () => <LoadingOverlay loading />
 
 export default Loading

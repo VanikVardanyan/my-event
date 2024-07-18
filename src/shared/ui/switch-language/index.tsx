@@ -36,6 +36,8 @@ export const SwitchLanguage = () => {
   const pathname = usePathname()
   const locale = useLocale()
 
+  const t = useTranslations('Language')
+
   const createHandleMenuClick = (lng: string) => {
     return () => {
       router.replace(`/${lng}/${removeLanguageFromURL(pathname)}`)
@@ -58,13 +60,13 @@ export const SwitchLanguage = () => {
       </MenuButton>
       <Menu slots={{ listbox: AnimatedListbox }} style={{ zIndex: 1000 }}>
         <MenuItem onClick={createHandleMenuClick('ru')} disabled={locale === 'ru'}>
-          Rus
+          {t('ru')}
         </MenuItem>
         <MenuItem onClick={createHandleMenuClick('en')} disabled={locale === 'en'}>
-          Eng
+          {t('en')}
         </MenuItem>
         <MenuItem onClick={createHandleMenuClick('arm')} disabled={locale === 'arm'}>
-          Arm
+          {t('am')}
         </MenuItem>
       </Menu>
     </Dropdown>

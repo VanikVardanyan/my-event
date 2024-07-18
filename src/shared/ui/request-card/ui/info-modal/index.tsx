@@ -19,6 +19,8 @@ const style = {
   boxShadow: 24,
   borderRadius: 4,
   p: 4,
+  maxHeight: 'calc(100% - 10px)',
+  overflowY: 'auto',
 }
 
 const RequestInfoModal = (props: IRequestInfoModal) => {

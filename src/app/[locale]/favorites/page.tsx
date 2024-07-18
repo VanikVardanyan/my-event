@@ -9,6 +9,7 @@ import { Loader } from '@/shared/ui/Loader'
 import { useSelector } from 'react-redux'
 import { getClient } from '@/store/selectors'
 import { Container } from '../styles'
+import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
 
 const FavoritesPage = () => {
   const { classes } = useStyles()
@@ -39,7 +40,7 @@ const FavoritesPage = () => {
     fetchProviderUsers()
   }, [])
 
-  if (loading) return <Loader />
+  if (loading) return <LoadingOverlay loading />
   // @ts-ignore
   const favoriteProviderUsers = providerUsers.filter((user: { id: string }) => favorites.includes(user.id as string))
 

@@ -76,7 +76,6 @@ export const RequestCard = (
   }
 
   const handleCloseInfoModal = () => {
-    console.log('close')
     setOpenInfoModal(false)
   }
 

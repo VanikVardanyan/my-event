@@ -1,10 +1,9 @@
-// 'use client'
+'use client'
 
 import { Player } from '@lottiefiles/react-lottie-player'
 import Animater from './loader-animate.json'
 
 import React from 'react'
-import CircularProgress from '@mui/material/CircularProgress'
 import { tss } from 'tss-react/mui'
 
 const useStyles = tss.create(() => ({

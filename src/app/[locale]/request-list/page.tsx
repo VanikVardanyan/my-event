@@ -10,12 +10,13 @@ import { Loader } from '@/shared/ui/Loader'
 import { Suspense } from 'react'
 import { Container } from '../styles'
 import { useTranslations } from 'next-intl'
+import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
 
 const RequestsList = () => {
   const { loading } = useSelector(getProfile)
   const t = useTranslations('RequestList')
 
-  if (loading) return <Loader />
+  if (loading) return <LoadingOverlay loading />
 
   return (
     <ProtectedRoute requiredRole={UserType.PROVIDER}>

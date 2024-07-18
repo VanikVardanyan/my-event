@@ -15,6 +15,7 @@ import { Routes } from '@/shared/routes'
 import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../styles'
 import { useEffect } from 'react'
+import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
 
 const Profile = () => {
   const { profile, loading } = useSelector(getProfile)
@@ -22,7 +23,6 @@ const Profile = () => {
 
   const t = useTranslations('Shared')
   const router = useRouter()
-  console.log('profile', profile)
   const { classes } = useStyles()
   const isBusiness = profile?.role === UserType.PROVIDER
   const loadingProfile = loading || authLoading
@@ -37,7 +37,7 @@ const Profile = () => {
   }, [profile, user, loading, authLoading, loadingProfile])
 
   if (loadingProfile) {
-    return <Loader />
+    return <LoadingOverlay loading />
   }
 
   return (

@@ -167,7 +167,9 @@
         "login": "Вход",
         "register": "Регистрация",
         "sign_out": "Выйти",
-        "services": "Услуги"
+        "services": "Услуги",
+        "dancers_entertainers": "Танцоры и аниматоры",
+        "florists_decorators": "Флористы и декораторы"
     },
     "Professions": {
         "showman": "Шоумен",
@@ -181,8 +183,9 @@
         "dancers_entertainers": "Танцоры и аниматоры"
     },
     "Language": {
-        "ru": "Рус",
-        "en": "Англ"
+        "ru": "Русский",
+        "en": "Английский",
+        "am": "Армянский"
     },
     "Errors": {
         "invalid_email_or_password": "Неверный email или пароль",
