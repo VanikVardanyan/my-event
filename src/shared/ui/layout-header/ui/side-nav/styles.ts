@@ -7,12 +7,16 @@ export default tss.withName('SideNav').create({
   logoSection: {
     height: 120,
     display: 'flex',
+    flex: '0 0 auto',
     justifyContent: 'center',
     alignItems: 'center',
   },
   linkWrapper: {
     display: 'flex',
+    flex: '1 1 auto',
+    overflowY: 'auto',
     flexDirection: 'column',
+    padding: 5,
     gap: 5,
   },
   link: {
@@ -45,5 +49,10 @@ export default tss.withName('SideNav').create({
   },
   logo: {
     objectFit: 'cover',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
   },
 })

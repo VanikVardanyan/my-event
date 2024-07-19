@@ -18,4 +18,6 @@ export enum Routes {
   Favorites = '/favorites',
   FloristsDecorators = '/florist-decorators',
   DancersEntertainers = '/dance-entertainers',
+  Restaurants = '/restaurants',
+  Cakes = '/cakes',
 }

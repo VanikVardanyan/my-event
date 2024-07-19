@@ -25,6 +25,8 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist'
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
+import CakeIcon from '@mui/icons-material/Cake'
+import RestaurantIcon from '@mui/icons-material/Restaurant'
 
 export const SideNav = (props: ISideNavProps) => {
   const { profile } = useSelector(getProfile)
@@ -85,13 +87,23 @@ export const SideNav = (props: ISideNavProps) => {
       url: Routes.DancersEntertainers,
       icon: <AccessibilityNewIcon />,
     },
+    {
+      title: t('restaurants'),
+      url: Routes.Restaurants,
+      icon: <RestaurantIcon />,
+    },
+    {
+      title: t('cake'),
+      url: Routes.Cakes,
+      icon: <CakeIcon />,
+    },
   ]
 
   const theme = useTheme()
   const { classes } = useStyles()
 
   const content = (
-    <div>
+    <div className={classes.container}>
       <div className={classes.logoSection}>
         <Image src="/logo/png/logo-color.png" alt="logo" width={280} height={120} className={classes.logo} />
       </div>

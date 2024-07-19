@@ -13,4 +13,12 @@ export enum Professions {
   CostumeRental = 'costume_rental',
   floristsDecorators = 'florists_decorators',
   DancersEntertainers = 'dancers_entertainers',
+  Restaurants = 'restaurants',
+  Cake = 'cake',
+}
+
+export enum Countries {
+  Armenia = 'armenia',
+  Georgia = 'georgia',
+  Russia = 'russia',
 }

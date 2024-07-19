@@ -9,7 +9,7 @@ import { Loader } from '@/shared/ui/Loader'
 import { useSelector } from 'react-redux'
 import { getClient } from '@/store/selectors'
 import { Container } from '../styles'
-import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
 const FavoritesPage = () => {
   const { classes } = useStyles()

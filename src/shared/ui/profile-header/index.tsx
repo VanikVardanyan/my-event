@@ -16,6 +16,7 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const { classes } = useStyles()
   const [readMore, setReadMore] = useState(false)
   const t = useTranslations('Profile')
+  const professionT = useTranslations('Professions')
 
   const iconStyle = { width: 18, height: 18 }
 
@@ -78,7 +79,7 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
               .split(' ')
               .map((profession) => (
                 <div key={profession} className={classes.chipItem}>
-                  {profession}
+                  {professionT(profession)}
                 </div>
               ))}
           </div>

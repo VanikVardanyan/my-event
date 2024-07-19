@@ -7,11 +7,10 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
 import { useTranslations } from 'next-intl'
-import { Loader } from '@/shared/ui/Loader'
-import { Container } from '../styles'
-import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
+import { Container } from '../../styles'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
-const ShowMan = () => {
+const RestaurantsPage = () => {
   const { classes } = useStyles()
   const t = useTranslations('Shared')
 
@@ -25,7 +24,7 @@ const ShowMan = () => {
         const q = query(
           usersRef,
           where('role', '==', 'provider'),
-          where('profession', 'array-contains', Professions.CarsRental)
+          where('profession', 'array-contains', Professions.Restaurants)
         )
         const querySnapshot = await getDocs(q)
 
@@ -61,4 +60,4 @@ const ShowMan = () => {
   )
 }
 
-export default ShowMan
+export default RestaurantsPage

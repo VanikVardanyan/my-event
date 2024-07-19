@@ -7,11 +7,10 @@ import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
 import { useTranslations } from 'next-intl'
-import { Loader } from '@/shared/ui/Loader'
-import { Container } from '../styles'
-import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
+import { Container } from '../../styles'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
-const ShowMan = () => {
+const CakesPage = () => {
   const { classes } = useStyles()
   const t = useTranslations('Shared')
 
@@ -25,7 +24,7 @@ const ShowMan = () => {
         const q = query(
           usersRef,
           where('role', '==', 'provider'),
-          where('profession', 'array-contains', Professions.Photographers)
+          where('profession', 'array-contains', Professions.Cake)
         )
         const querySnapshot = await getDocs(q)
 
@@ -33,7 +32,7 @@ const ShowMan = () => {
         querySnapshot.forEach((doc) => {
           usersList.push({ id: doc.id, ...doc.data() })
         })
-
+        setLoading(false)
         setProviderUsers(usersList)
       } catch (error) {
         console.error('Ошибка при загрузке пользователей:', error)
@@ -61,4 +60,4 @@ const ShowMan = () => {
   )
 }
 
-export default ShowMan
+export default CakesPage

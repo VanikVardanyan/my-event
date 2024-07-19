@@ -41,6 +41,12 @@ const serviceListMock: IService[] = [
     link: Routes.Dj,
   },
   {
+    name: Professions.Restaurants,
+    description: 'restaurant_services_description',
+    image: '/main/restaurant.jpg',
+    link: Routes.Restaurants,
+  },
+  {
     name: Professions.CostumeRental,
     description: 'costume_rental_description',
     image: '/main/dress.jpg',
@@ -64,6 +70,18 @@ const serviceListMock: IService[] = [
     image: '/main/dance.jpg',
     link: Routes.DancersEntertainers,
   },
+  {
+    name: Professions.CarsRental,
+    description: 'car_rental_description',
+    image: '/main/car.jpg',
+    link: Routes.CarsRental,
+  },
+  {
+    name: Professions.Cake,
+    description: 'cake_services_description',
+    image: '/main/cakes.jpg',
+    link: Routes.Cakes,
+  },
 ]
 
 export default function Home() {
@@ -84,6 +102,7 @@ export default function Home() {
         </div>
         <Image src="/event-main.jpg" alt="event" width={300} height={300} className={classes.image} />
       </div>
+      <h2 className={classes.caterories}>{t('categories')}</h2>
       <div className={classes.cardsWrapper}>
         {serviceListMock.map((service) => (
           <ServiceCard {...service} key={service.link} />
