@@ -1,4 +1,5 @@
 import { StandardLonghandProperties } from 'csstype'
+import './fonts.css'
 
 export type IFont = StandardLonghandProperties
 
@@ -10,6 +11,15 @@ export enum fontWeight {
 
 export enum fontFamily {
   Base = '"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif',
+  LIBRE = '"Libre Baskerville", "sans-serif"',
+}
+
+export const FontTitleBig = {
+  fontFamily: fontFamily.LIBRE,
+  fontWeight: Number(fontWeight.Regular),
+  fontSize: 30,
+  lineHeight: '44px',
+  letterSpacing: '1.2px',
 }
 
 export const FontH3: IFont = {

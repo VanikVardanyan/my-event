@@ -74,12 +74,10 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
         <div className={classes.infoName}>
           <h4 className={classes.name}>{props?.name}</h4>
           <div className={classes.chips}>
-            {props?.profession
-              ?.join(' | ')
-              .split(' ')
-              .map((profession) => (
+            {props?.profession?.length &&
+              props.profession.map((profession, index) => (
                 <div key={profession} className={classes.chipItem}>
-                  {professionT(profession)}
+                  {professionT(profession)} {props?.profession?.length && index !== props.profession.length - 1 && '/'}
                 </div>
               ))}
           </div>

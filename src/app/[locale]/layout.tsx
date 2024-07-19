@@ -10,6 +10,7 @@ import { getMessages } from 'next-intl/server'
 import { unstable_setRequestLocale } from 'next-intl/server'
 import { ToastContainer } from '@/shared/ui/toaster-container'
 import Scroll from '@/shared/ui/scroll'
+import Head from 'next/head'
 
 export const metadata: Metadata = {
   icons: [
@@ -42,6 +43,12 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
 
   return (
     <html lang={locale}>
+      <Head>
+      <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic"
+      rel="stylesheet"
+    />
+        </Head>
       <body>
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Scroll />

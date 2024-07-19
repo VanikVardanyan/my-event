@@ -94,20 +94,22 @@ export default function Home() {
   }
 
   return (
-    <Container>
+    <div>
       <div className={classes.root}>
         <div className={classes.content}>
           <h3 className={classes.title}>{t('organize_your_events')}</h3>
           <p className={classes.description}>{t('organize_your_events_quickly')}</p>
         </div>
-        <Image src="/event-main.jpg" alt="event" width={300} height={300} className={classes.image} />
+        {/* <Image src="/event-main.jpg" alt="event" width={300} height={300} className={classes.image} /> */}
       </div>
-      <h2 className={classes.caterories}>{t('categories')}</h2>
-      <div className={classes.cardsWrapper}>
-        {serviceListMock.map((service) => (
-          <ServiceCard {...service} key={service.link} />
-        ))}
-      </div>
-    </Container>
+      <Container>
+        <h2 className={classes.caterories}>{t('categories')}</h2>
+        <div className={classes.cardsWrapper}>
+          {serviceListMock.map((service) => (
+            <ServiceCard {...service} key={service.link} />
+          ))}
+        </div>
+      </Container>
+    </div>
   )
 }
