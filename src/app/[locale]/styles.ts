@@ -22,25 +22,11 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import { DarkBlueBase, SlateGreyLighten45 } from '@/shared/consts/colors'
-import { FontBody2, FontH3 } from '@/shared/consts/fontStyles'
+import { DarkBlueBase, SlateGreyLighten45, White } from '@/shared/consts/colors'
+import { FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('MainPage').create({
-  root: {
-    background: SlateGreyLighten45,
-    padding: 20,
-    borderRadius: 10,
-    display: 'flex',
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    gap: 40,
-    marginBottom: 40,
-
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      flexDirection: 'row',
-    },
-  },
   image: {
     borderRadius: 8,
     width: '100%',
@@ -51,17 +37,50 @@ export default tss.withName('MainPage').create({
     color: DarkBlueBase,
     marginBottom: 20,
   },
+  root: {
+    backgroundImage: 'url(/main/background.jpg)',
+    padding: 20,
+    backgroundSize: 'cover',
+    backgroundPosition: 'right',
+    backgroundRepeat: 'no-repeat',
+    gap: 40,
+    marginBottom: 40,
+    height: 350,
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      height: 600,
+    },
+  },
   content: {
-    maxWidth: 500,
+    maxWidth: 440,
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
+    marginTop: 0,
+    marginLeft: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 10,
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+    padding: 10,
+    textAlign: 'center',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      marginTop: 100,
+      marginLeft: 50,
+      textAlign: 'left',
+    },
   },
   title: {
     ...FontH3,
+    color: White,
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      ...FontTitleBig,
+    },
   },
   description: {
     ...FontBody2,
+    color: White,
   },
   cardsWrapper: {
     display: 'grid',
