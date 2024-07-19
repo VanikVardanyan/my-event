@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import useStyles from './styles'
 import { RequestCard } from '@/shared/ui/request-card'
-import { Button, Modal } from '@mui/material'
+import { Modal } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { RequestCreateModal } from '../request-create-modal'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
@@ -14,7 +14,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
-import { AddRequestButton, EditButton } from '../../../../../shared/ui/profile-header/styles'
+import { AddRequestButton, EditButton } from '@/shared/ui/profile-header/styles'
 
 export const UserInfo = () => {
   const { classes } = useStyles()
@@ -68,7 +68,9 @@ export const UserInfo = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <RequestCreateModal handleClose={handleCloseModal} />
+        <>
+          <RequestCreateModal handleClose={handleCloseModal} />
+        </>
       </Modal>
     </div>
   )

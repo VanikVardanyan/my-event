@@ -1,6 +1,7 @@
-import { Modal, Box } from '@mui/material'
+import { Modal, Box, IconButton } from '@mui/material'
 import useStyles from './styles'
 import { useTranslations } from 'next-intl'
+import CloseIcon from '@mui/icons-material/Close'
 
 export interface IRequestInfoModal {
   open: boolean
@@ -23,6 +24,12 @@ const style = {
   overflowY: 'auto',
 }
 
+const closeBtnStyle = {
+  position: 'absolute' as const,
+  top: 10,
+  right: 10,
+}
+
 const RequestInfoModal = (props: IRequestInfoModal) => {
   const { open, handleClose } = props
 
@@ -38,8 +45,12 @@ const RequestInfoModal = (props: IRequestInfoModal) => {
       onClose={handleClose}
       aria-labelledby="request-info-modal-title"
       aria-describedby="request-info-modal-description"
+      closeAfterTransition
     >
       <Box sx={style}>
+        <IconButton onClick={handleClose} style={closeBtnStyle}>
+          <CloseIcon />
+        </IconButton>
         <div>
           <h3 className={classes.title}>{p(service)}</h3>
           <div className={classes.content}>
