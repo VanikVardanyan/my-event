@@ -7,6 +7,7 @@ import {
   FormControl,
   FormHelperText,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   OutlinedInput,
@@ -27,10 +28,18 @@ import { useTranslations } from 'next-intl'
 import { AmdIcon } from '@/shared/icons'
 import { ArmenianCity } from '@/shared/common/citys'
 import { AddRequestButton } from '@/shared/ui/profile-header/styles'
+import CloseIcon from '@mui/icons-material/Close'
 
 interface Iprops {
   handleClose: () => void
 }
+
+const closeBtnStyle = {
+  position: 'absolute' as const,
+  top: 10,
+  right: 10,
+}
+
 const style = {
   position: 'absolute' as const,
   top: '50%',
@@ -113,6 +122,9 @@ export const RequestCreateModal = (props: Iprops) => {
 
   return (
     <Box sx={style}>
+      <IconButton onClick={handleClose} style={closeBtnStyle}>
+        <CloseIcon />
+      </IconButton>
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <Typography id="modal-modal-title" variant="h6" component="h2" mb={2}>
           {t('create_request')}

@@ -1,5 +1,7 @@
-import { Modal, Box, List, ListItem, ListItemText, Typography, Button, Avatar } from '@mui/material'
+import { Modal, Box, List, ListItem, ListItemText, Typography, Button, Avatar, IconButton } from '@mui/material'
 import { useRouter } from '@/navigation'
+import CloseIcon from '@mui/icons-material/Close'
+import { useTranslations } from 'next-intl'
 
 interface IResponses {
   userId: string
@@ -28,9 +30,16 @@ const style = {
   overflowY: 'auto',
 }
 
+const closeBtnStyle = {
+  position: 'absolute' as const,
+  top: 10,
+  right: 10,
+}
+
 const ResponsesModal = (props: IResponsesModal) => {
   const { open, handleClose, responses } = props
   const router = useRouter()
+  const t = useTranslations('RequestList')
 
   const handleUserClick = (userId: string) => {
     router.push(`/user/${userId}`)
@@ -44,8 +53,11 @@ const ResponsesModal = (props: IResponsesModal) => {
       aria-describedby="responses-modal-description"
     >
       <Box sx={style}>
+        <IconButton onClick={handleClose} style={closeBtnStyle}>
+          <CloseIcon />
+        </IconButton>
         <Typography id="responses-modal-title" variant="h6" component="h2" mb={2}>
-          Отклики
+          {t('responses')}
         </Typography>
         <List>
           {responses.map((response, index) => (
