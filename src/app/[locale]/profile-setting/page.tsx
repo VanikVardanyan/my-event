@@ -33,7 +33,7 @@ interface IFormValues {
   name: string
   role: string
   profession?: string[] | [] | null
-  nickname?: string | null
+  country?: string | null
   avatar?: any
   facebook?: string | null
   instagram?: string | null
@@ -67,7 +67,7 @@ const ProfileSetting = () => {
       then: () => yup.array().required(t('required_field')),
       otherwise: () => yup.array(),
     }),
-    nickname: yup.string(),
+    country: yup.string(),
     email: yup.string().email(t('invalid_email')),
     phone: yup.string(),
     avatar: yup.mixed(),
@@ -83,7 +83,7 @@ const ProfileSetting = () => {
       name: '',
       role: '',
       profession: undefined,
-      nickname: '',
+      country: '',
       avatar: undefined,
       facebook: '',
       instagram: '',

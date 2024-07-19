@@ -6,12 +6,13 @@ import { useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
+import { IPostProps } from '@/shared/ui/service-post/types'
 import { useTranslations } from 'next-intl'
 import { Loader } from '@/shared/ui/Loader'
-import { Container } from '../styles'
-import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
+import { Container } from '../../styles'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
-const DancePage = () => {
+const ShowMan = () => {
   const { classes } = useStyles()
   const t = useTranslations('Shared')
 
@@ -25,7 +26,7 @@ const DancePage = () => {
         const q = query(
           usersRef,
           where('role', '==', 'provider'),
-          where('profession', 'array-contains', Professions.DancersEntertainers)
+          where('profession', 'array-contains', Professions.EquipmentRental)
         )
         const querySnapshot = await getDocs(q)
 
@@ -33,7 +34,7 @@ const DancePage = () => {
         querySnapshot.forEach((doc) => {
           usersList.push({ id: doc.id, ...doc.data() })
         })
-        setLoading(false)
+
         setProviderUsers(usersList)
       } catch (error) {
         console.error('Ошибка при загрузке пользователей:', error)
@@ -61,4 +62,4 @@ const DancePage = () => {
   )
 }
 
-export default DancePage
+export default ShowMan

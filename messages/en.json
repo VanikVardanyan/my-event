@@ -3,6 +3,7 @@
         "organize_your_events": "Organize your events easily and efficiently",
         "organize_your_events_quickly": "Organize your events easily and quickly. On our platform, you will find the best professionals for photography, music, equipment rental, and much more. Register today to offer your services or find the perfect performer for your event.",
         "start": "Start",
+        "categories": "Categories",
         "showman_description": "Professional showman creating an unforgettable atmosphere at any event. Experience working with diverse audiences.",
         "photographers_description": "Experienced photographers and videographers capturing the important moments of your life. Creative approach and high-quality work.",
         "musicians_description": "Talented musicians for any event. Live music creating a special atmosphere.",
@@ -10,7 +11,10 @@
         "costume_rental_description": "Costume rental for any event. Wide selection and affordable prices.",
         "equipment_rental_description": "Equipment rental for events. High quality and reliability.",
         "florists_decorators_description": "Professional florists and decorators. They will create unique decorations for your celebration.",
-        "dancers_entertainers_description": "Dancers and entertainers for guest entertainment. Bright and memorable performances."
+        "dancers_entertainers_description": "Dancers and entertainers for guest entertainment. Bright and memorable performances.",
+        "car_rental_description": "Car rental for various events. Wide selection of cars for any taste and budget.",
+        "restaurant_services_description": "Restaurant services for your event. High-class service and exquisite dishes.",
+        "cake_services_description": "Custom cake making for any event. Unique design and excellent taste."
     },
     "Shared": {
         "current_list_is_empty": "At the moment, this list is still empty",
@@ -114,11 +118,11 @@
         "back": "Back",
         "next": "Next",
         "finish": "Finish",
-        "name": "Name",
-        "enter_name": "Enter name",
+        "name": "Name / Title",
+        "enter_name": "Enter name or title",
         "upload_avatar": "Upload Avatar",
-        "nickname": "Nickname",
-        "enter_nickname": "Enter nickname",
+        "country": "Country",
+        "enter_country": "Enter country",
         "email": "Email",
         "enter_email": "Enter email",
         "select_profession": "Select profession (max. 2)",
@@ -138,6 +142,11 @@
         "client_description": "Seek services and organize events",
         "user_type_select": "Determine your role",
         "user_type_select_description": "Choose the role that suits you best"
+    },
+    "Countries": {
+        "armenia": "Armenia",
+        "russia": "Russia",
+        "georgia": "Georgia"
     },
     "RequestList": {
         "all_requests": "All Requests",
@@ -169,7 +178,9 @@
         "sign_out": "Sign Out",
         "services": "Services",
         "florists_decorators": "Florists and Decorators",
-        "dancers_entertainers": "Dancers and Entertainers"
+        "dancers_entertainers": "Dancers and Entertainers",
+        "restaurants": "Restaurants",
+        "cake": "Cakes"
     },
     "Professions": {
         "showman": "Showman",
@@ -180,7 +191,9 @@
         "cars_rental": "Car Rental",
         "costume_rental": "Dress Rental",
         "florists_decorators": "Florists and Decorators",
-        "dancers_entertainers": "Dancers and Entertainers"
+        "dancers_entertainers": "Dancers and Entertainers",
+        "restaurants": "Restaurants",
+        "cake": "Cakes"
     },
     "Language": {
         "ru": "Russian",

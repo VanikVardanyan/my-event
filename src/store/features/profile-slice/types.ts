@@ -2,7 +2,7 @@ export interface IProfile {
   name: string
   role: string
   profession?: string[] | [] | null
-  nickname?: string | null
+  country?: string | null
   avatar?: string | null
   facebook?: string | null
   instagram?: string | null

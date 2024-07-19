@@ -1,5 +1,5 @@
-import { Button, FormHelperText, TextField, styled, useMediaQuery, useTheme } from '@mui/material'
-import { MuiTelInput, classes } from 'mui-tel-input'
+import { FormHelperText, TextField, styled } from '@mui/material'
+import { MuiTelInput } from 'mui-tel-input'
 import useStyles, { VisuallyHiddenInput } from './styles'
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import { useEffect, useState } from 'react'
@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useFormContext } from 'react-hook-form'
 import Select from 'react-select'
 import makeAnimated from 'react-select/animated'
-import { Professions, UserType } from '@/shared/types/user.types'
+import { Countries, Professions, UserType } from '@/shared/types/user.types'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
@@ -22,6 +22,7 @@ export const ProviderForm = () => {
 
   const t = useTranslations('ProfileSetting')
   const m = useTranslations('Professions')
+  const countriesT = useTranslations('Countries')
 
   const professionsOptions = [
     { value: Professions.Showman, label: m(Professions.Showman) },
@@ -33,7 +34,16 @@ export const ProviderForm = () => {
     { value: Professions.CostumeRental, label: m(Professions.CostumeRental) },
     { value: Professions.floristsDecorators, label: m(Professions.floristsDecorators) },
     { value: Professions.DancersEntertainers, label: m(Professions.DancersEntertainers) },
+    { value: Professions.Cake, label: m(Professions.Cake) },
+    { value: Professions.Restaurants, label: m(Professions.Restaurants) },
   ]
+
+  const countryOptions = [
+    { value: Countries.Armenia, label: Countries.Armenia },
+    { value: Countries.Georgia, label: Countries.Georgia },
+    { value: Countries.Russia, label: Countries.Russia },
+  ]
+
   const [avatarPreview, setAvatarPreview] = useState<string | null>(profile?.avatar || null)
 
   const { register, formState, setValue, reset, watch } = useFormContext()
@@ -46,7 +56,7 @@ export const ProviderForm = () => {
       setValue('name', profile?.name)
       setValue('role', profile?.role)
       setValue('profession', profile?.profession || [])
-      setValue('nickname', profile?.nickname || '')
+      setValue('country', profile?.country || '')
       setValue('facebook', profile?.facebook || '')
       setValue('instagram', profile?.instagram || '')
       setValue('youtube', profile?.youtube || '')
@@ -58,6 +68,8 @@ export const ProviderForm = () => {
   }, [])
 
   const professionWatcher = watch('profession')
+  const countryWatcher = watch('country')
+
   const { errors } = formState
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,6 +83,13 @@ export const ProviderForm = () => {
   const professionsSelectHandler = (selectedOptions: any) => {
     setValue(
       'profession',
+      selectedOptions.map((item: any) => item.value)
+    )
+  }
+
+  const countrySelectHandler = (selectedOptions: any) => {
+    setValue(
+      'country',
       selectedOptions.map((item: any) => item.value)
     )
   }
@@ -128,18 +147,6 @@ export const ProviderForm = () => {
           <TextField
             fullWidth
             autoCorrect="off"
-            {...register('nickname')}
-            label={t('nickname')}
-            placeholder={t('enter_nickname')}
-            type="text"
-            autoComplete="off"
-            error={!!errors.nickname}
-            helperText={errors?.nickname?.message as string}
-            size="small"
-          />
-          <TextField
-            fullWidth
-            autoCorrect="off"
             {...register('email')}
             label={t('email')}
             placeholder={t('enter_email')}
@@ -149,6 +156,19 @@ export const ProviderForm = () => {
             helperText={errors?.email?.message as string}
             size="small"
           />
+          <div className={classes.selectProfession}>
+            <Select
+              closeMenuOnSelect
+              components={animatedComponents}
+              options={countryOptions}
+              placeholder={t('country')}
+              onChange={countrySelectHandler}
+              defaultValue={{ label: countriesT(Countries.Armenia), value: Countries.Armenia }}
+              isDisabled
+              isOptionDisabled={() => countryWatcher && countryWatcher.length >= 2}
+            />
+            <FormHelperText error>{errors?.country?.message as string}</FormHelperText>
+          </div>
         </div>
       </div>
       <div className={classes.selectProfession}>

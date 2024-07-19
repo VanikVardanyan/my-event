@@ -22,7 +22,7 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import { SlateGreyLighten45 } from '@/shared/consts/colors'
+import { DarkBlueBase, SlateGreyLighten45 } from '@/shared/consts/colors'
 import { FontBody2, FontH3 } from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 
@@ -45,6 +45,11 @@ export default tss.withName('MainPage').create({
     borderRadius: 8,
     width: '100%',
     objectFit: 'cover',
+  },
+  caterories: {
+    ...FontH3,
+    color: DarkBlueBase,
+    marginBottom: 20,
   },
   content: {
     maxWidth: 500,
