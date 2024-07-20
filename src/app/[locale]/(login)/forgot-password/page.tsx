@@ -1,9 +1,9 @@
 'use client'
 
-import SignIn from './ui/form'
+import ForgotPassword from './ui/form'
 
-const SignInPage = () => {
-  return <SignIn />
+const ForgotPasswordPage = () => {
+  return <ForgotPassword />
 }
 
-export default SignInPage
+export default ForgotPasswordPage

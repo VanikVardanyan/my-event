@@ -89,10 +89,6 @@ export default function Home() {
   const History = useRouter()
   const t = useTranslations('Main')
 
-  const clickHandler = () => {
-    History.push(Routes.home)
-  }
-
   return (
     <div>
       <div className={classes.root}>
@@ -100,7 +96,6 @@ export default function Home() {
           <h3 className={classes.title}>{t('organize_your_events')}</h3>
           <p className={classes.description}>{t('organize_your_events_quickly')}</p>
         </div>
-        {/* <Image src="/event-main.jpg" alt="event" width={300} height={300} className={classes.image} /> */}
       </div>
       <Container>
         <h2 className={classes.caterories}>{t('categories')}</h2>

@@ -42,11 +42,6 @@ export default tss.withName('SignIn').create({
     '& input': {
       color: 'black',
     },
-
-    '& .Mui-focused': {
-      color: PinkBrownBase,
-      borderColor: PinkBrownBase,
-    },
   },
   formSection: {
     flex: 1,
@@ -129,16 +124,22 @@ export default tss.withName('SignIn').create({
   },
   signInButton: {},
   registerSection: {
-    display: 'block',
+    // display: 'block',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      display: 'none',
+      // display: 'none',
     },
   },
   registerContent: {
     ...FontBody1,
     color: White,
     marginTop: 10,
+    textAlign: 'center',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      color: GreyBase,
+      textAlign: 'right',
+    },
   },
   linkRegister: {
     ...FontBody1Accent,

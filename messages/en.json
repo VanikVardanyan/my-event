@@ -181,7 +181,8 @@
         "florists_decorators": "Florists and Decorators",
         "dancers_entertainers": "Dancers and Entertainers",
         "restaurants": "Restaurants",
-        "cake": "Cakes"
+        "cake": "Cakes",
+        "favorites": "Favorites"
     },
     "Professions": {
         "showman": "Showman",

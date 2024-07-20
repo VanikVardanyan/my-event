@@ -113,7 +113,6 @@ const Register = () => {
                 error={!!errors.email}
                 helperText={errors.email?.message}
                 className={classes.textField}
-                autoFocus
               />
               <TextField
                 required

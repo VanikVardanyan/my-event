@@ -131,11 +131,6 @@ export default tss.withName('Register').create({
     '& input': {
       color: 'black',
     },
-
-    '& .Mui-focused': {
-      color: PinkBrownBase,
-      borderColor: PinkBrownBase,
-    },
   },
   line: {
     height: 1,
