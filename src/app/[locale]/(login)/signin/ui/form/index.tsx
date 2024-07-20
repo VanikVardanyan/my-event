@@ -88,7 +88,7 @@ const SignIn = () => {
     try {
       signInWithPopup(auth, provider).then(async () => {
         await dispatch(asyncSetProfileThunk()).then(() => {
-          route.push(Routes.Musicians)
+          route.push(Routes.Profile)
         })
       })
     } catch (e) {
