@@ -44,17 +44,17 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
   return (
     <html lang={locale}>
       <Head>
-      <link
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic"
-      rel="stylesheet"
-    />
-        </Head>
+        <link
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic"
+          rel="stylesheet"
+        />
+      </Head>
       <body>
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-          <Scroll />
           <NextIntlClientProvider messages={messages}>
             <ReduxProvider>
               <AuthProvider>
+                <Scroll />
                 <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
                   <LayoutHeader />
                   <LayoutRoot id="layout">

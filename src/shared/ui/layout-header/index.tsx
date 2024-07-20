@@ -59,14 +59,10 @@ export const LayoutHeader = () => {
   }
 
   const signOutHandler = async () => {
-    router.push(Routes.home)
     handleClose()
-    await signOut(auth).then(async () => {
-      setTimeout(() => {
-        setUser(null)
-        dispatch(setProfileLoading(true))
-        dispatch(setProfile(null))
-      }, 0)
+    await signOut(auth).then(() => {
+      router.push(Routes.home)
+      setUser(null)
     })
   }
 
