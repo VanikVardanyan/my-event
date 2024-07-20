@@ -5,13 +5,14 @@ import {
   PinkBrownDarken16,
   PinkBrownDarken4,
   SlateGreyLighten49,
+  TextGreyLighten25,
   TextSlateGreyLighten16,
   TextSlateGreyLighten30,
   White,
 } from '@/shared/consts/colors'
 import { BreakPoints } from '@/shared/consts/common'
 import { Button, styled } from '@mui/material'
-import { FontBody2 } from '../../consts/fontStyles'
+import { FontBody1, FontBody2 } from '../../consts/fontStyles'
 
 export default tss.withName('LayoutHeader').create({
   root: {
@@ -95,6 +96,21 @@ export default tss.withName('LayoutHeader').create({
     height: 40,
     border: `1px solid ${White}`,
     borderRadius: 8,
+  },
+  profilePopupItem: {
+    ...FontBody1,
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+    color: TextGreyLighten25,
+
+    '& svg': {
+      fill: TextGreyLighten25,
+    },
+
+    '&:hover': {
+      color: PinkBrownBase,
+    },
   },
 })
 

@@ -19,7 +19,7 @@ interface IFormValues {
   email: string
 }
 
-const SignIn = () => {
+const ForgotPassword = () => {
   const [loading, setLoading] = useState(false)
   const route = useRouter()
 
@@ -94,4 +94,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default ForgotPassword

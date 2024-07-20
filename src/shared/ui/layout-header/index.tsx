@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { InputSearch } from '../input-search'
+
 import useStyles, { LoginButton } from './styles'
 import { SideNav } from './ui/side-nav'
-import { Avatar, IconButton, Skeleton, useMediaQuery, useTheme } from '@mui/material'
+import { Avatar, IconButton, Menu, MenuItem, Skeleton, useMediaQuery, useTheme } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import { Link } from '@/navigation'
 import { signOut } from 'firebase/auth'
@@ -23,6 +24,8 @@ import Image from 'next/image'
 import PersonIcon from '@mui/icons-material/Person'
 import { HeartIcon } from '../../icons'
 import { UserType } from '../../types/user.types'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'
+import { TextGreyLighten25 } from '../../consts/colors'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
@@ -33,6 +36,15 @@ export const LayoutHeader = () => {
   const { profile, loading: ProfileLoading } = useSelector(getProfile)
   const dispatch = Dispatch()
   const router = useRouter()
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const openPopup = Boolean(anchorEl)
+  const openPopupHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   const theme = useTheme()
   const MdUp = useMediaQuery(theme.breakpoints.up('md'))
@@ -47,13 +59,14 @@ export const LayoutHeader = () => {
   }
 
   const signOutHandler = async () => {
-    setLoading(true)
+    router.push(Routes.home)
+    handleClose()
     await signOut(auth).then(async () => {
-      setUser(null)
-      dispatch(setProfileLoading(true))
-      dispatch(setProfile(null))
-      router.push(Routes.home)
-      setLoading(false)
+      setTimeout(() => {
+        setUser(null)
+        dispatch(setProfileLoading(true))
+        dispatch(setProfile(null))
+      }, 0)
     })
   }
 
@@ -95,7 +108,6 @@ export const LayoutHeader = () => {
       <div className={classes.searchSection}>
         <InputSearch />
         <SwitchLanguage />
-
         {!user && (
           <>
             {MdUp && (
@@ -110,20 +122,43 @@ export const LayoutHeader = () => {
             )}
           </>
         )}
-        {user && profile && profile.role === UserType.CLIENT && (
-          <IconButton href={Routes.Favorites} LinkComponent={Link} className={classes.favoritIcon}>
-            <HeartIcon style={{ width: 24, height: 24 }} />
-          </IconButton>
-        )}
-
         {user && (
           <>
-            <Link href={Routes.Profile}>
+            <IconButton
+              style={{ width: 40, height: 40 }}
+              id="basic-button"
+              aria-controls={openPopup ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={openPopup ? 'true' : undefined}
+              onClick={openPopupHandler}
+            >
               <Avatar alt="Remy Sharp" src={profile?.avatar || '/default.jpg'} />
-            </Link>
-            <IconButton onClick={signOutHandler}>
-              <LogoutIcon />
             </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={openPopup}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem>
+                <Link href={Routes.Profile} onClick={handleClose} className={classes.profilePopupItem}>
+                  <AccountCircleIcon /> {t('my_profile')}
+                </Link>
+              </MenuItem>
+              {user && profile && profile.role === UserType.CLIENT && (
+                <MenuItem>
+                  <Link href={Routes.Favorites} className={classes.profilePopupItem}>
+                    <HeartIcon style={{ width: 24, height: 24 }} fill={TextGreyLighten25} /> {t('favorites')}
+                  </Link>
+                </MenuItem>
+              )}
+              <MenuItem onClick={signOutHandler} className={classes.profilePopupItem}>
+                <LogoutIcon /> {t('sign_out')}
+              </MenuItem>
+            </Menu>
           </>
         )}
       </div>

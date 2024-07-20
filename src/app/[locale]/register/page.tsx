@@ -1,8 +1,6 @@
 'use client'
 
-import { lazy } from 'react'
-
-const Register = lazy(() => import('./ui/form'))
+import Register from './ui/form'
 
 const RegisterInPage = () => {
   return <Register />

@@ -1,8 +1,6 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-
-const SignIn = dynamic(() => import('./ui/form'))
+import SignIn from './ui/form'
 
 const SignInPage = () => {
   return <SignIn />

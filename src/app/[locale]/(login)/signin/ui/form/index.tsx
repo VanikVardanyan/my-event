@@ -114,7 +114,6 @@ const SignIn = () => {
             label="email"
             error={!!errors.email}
             helperText={errors.email?.message}
-            autoFocus
             className={classes.textField}
           />
           <FormControl variant="filled">
@@ -156,14 +155,6 @@ const SignIn = () => {
             {t('sign_in')}
           </SignInButton>
         </form>
-        <div className={classes.withEmail}>
-          <div className={classes.line} />
-          <div className={classes.withEmailText}>{t('sign_in_with_email')}</div>
-          <div className={classes.line} />
-        </div>
-        <button className={classes.googleBtn} onClick={signInWithGoogle}>
-          <GmailIcon /> {t('sign_in_with_email')}
-        </button>
         <div className={classes.registerSection}>
           <div className={classes.registerContent}>
             {t('no_account')}{' '}
@@ -172,6 +163,14 @@ const SignIn = () => {
             </Link>
           </div>
         </div>
+        <div className={classes.withEmail}>
+          <div className={classes.line} />
+          <div className={classes.withEmailText}>{t('sign_in_with_email')}</div>
+          <div className={classes.line} />
+        </div>
+        <button className={classes.googleBtn} onClick={signInWithGoogle}>
+          <GmailIcon /> {t('sign_in_with_email')}
+        </button>
       </div>
     </div>
   )

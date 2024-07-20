@@ -179,7 +179,10 @@
         "sign_out": "Выйти",
         "services": "Услуги",
         "dancers_entertainers": "Танцоры и аниматоры",
-        "florists_decorators": "Флористы и декораторы"
+        "florists_decorators": "Флористы и декораторы",
+        "cake": "Торты",
+        "restaurants": "Ресторанны",
+        "favorites": "Избранное"
     },
     "Professions": {
         "showman": "Шоумен",

@@ -42,11 +42,6 @@ export default tss.withName('SignIn').create({
     '& input': {
       color: 'black',
     },
-
-    '& .Mui-focused': {
-      color: PinkBrownBase,
-      borderColor: PinkBrownBase,
-    },
   },
   formSection: {
     flex: 1,
