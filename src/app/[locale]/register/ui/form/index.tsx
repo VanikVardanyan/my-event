@@ -58,7 +58,6 @@ const Register = () => {
       try {
         await createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
           route.push(Routes.ProfileSetting)
-          setLoading(false)
         })
       } catch (error) {
         setLoading(false)
@@ -74,7 +73,6 @@ const Register = () => {
     try {
       signInWithPopup(auth, provider).then(async () => {
         route.push(Routes.ProfileSetting)
-        setLoading(false)
       })
     } catch (e) {
       setLoading(false)

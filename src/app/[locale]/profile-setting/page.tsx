@@ -22,9 +22,8 @@ import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebas
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
 import { useTranslations } from 'next-intl'
-import { Loader } from '@/shared/ui/Loader'
 import { ProtectedRoute } from '@/shared/lib/protected-router'
-import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import toast from 'react-hot-toast'
 import { Container } from '../styles'
 import { v4 as uuidv4 } from 'uuid'
@@ -152,7 +151,6 @@ const ProfileSetting = () => {
         await deleteObject(imageRef)
       }
       router.push(Routes.Profile)
-      setLoadingRegister(false)
     } catch (error) {
       setLoadingRegister(false)
       toast.error(t('error_submitting_form'))
