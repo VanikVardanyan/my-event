@@ -1,13 +1,13 @@
 import { Box, Button, ClickAwayListener, Fade, IconButton, Modal, Popper } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
-import { db, storage } from '../../../../lib/firebaseConfig'
-import { deleteObject, ref } from 'firebase/storage'
+import { db } from '../../../../lib/firebaseConfig'
 import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import useStyles from './styles'
 import { useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { deleteImage } from '../../../image-uploader/lib/getPresignedUrl'
 
 const style = {
   position: 'absolute' as const,
@@ -38,6 +38,12 @@ export const ImageAction = (props: ImageActionProps) => {
 
   const { classes } = useStyles()
 
+  function getFilePathFromUrl(url: string) {
+    const regex = /\/images\/(.+)$/
+    const match = url.match(regex)
+    return match ? `images/${match[1]}` : null
+  }
+
   const handleDeleteImage = async (imageUrl: string) => {
     setLoading(true)
     try {
@@ -52,9 +58,8 @@ export const ImageAction = (props: ImageActionProps) => {
         images: updatedImages,
       }
       await setDoc(doc(db, 'profiles', userAuth.user.uid), updatedProfile)
-
-      const imageRef = ref(storage, imageUrl)
-      await deleteObject(imageRef)
+      const filePath = getFilePathFromUrl(imageUrl) || ''
+      deleteImage(filePath)
       setLoading(false)
 
       await dispatch(asyncSetProfileThunk())

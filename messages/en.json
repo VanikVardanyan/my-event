@@ -141,7 +141,8 @@
         "client_title": "Client",
         "client_description": "Seek services and organize events",
         "user_type_select": "Determine your role",
-        "user_type_select_description": "Choose the role that suits you best"
+        "user_type_select_description": "Choose the role that suits you best",
+        "error_submitting_form": "An error occurred while submitting your data"
     },
     "Countries": {
         "armenia": "Armenia",

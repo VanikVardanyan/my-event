@@ -27,6 +27,13 @@ import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import toast from 'react-hot-toast'
 import { Container } from '../styles'
 import { v4 as uuidv4 } from 'uuid'
+import { deleteImage, getPresignedUrl } from '@/shared/ui/image-uploader/lib/getPresignedUrl'
+
+function getFilePathFromUrl(url: string) {
+  const regex = /\/avatar\/(.+)$/
+  const match = url.match(regex)
+  return match ? `avatar/${match[1]}` : null
+}
 
 interface IFormValues {
   name: string
@@ -111,23 +118,19 @@ const ProfileSetting = () => {
 
       if (data.avatar) {
         const uniqueId = uuidv4()
-        const storageRef = ref(storage, `avatar/${uniqueId}_${data.avatar.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, data.avatar)
-        await new Promise<void>((resolve, reject) => {
-          uploadTask.on(
-            'state_changed',
-            () => {},
-            (error) => {
-              console.error(error)
-              reject(error)
-            },
-            async () => {
-              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-              avatarImage = downloadURL
-              resolve()
-            }
-          )
+        const url = await getPresignedUrl(`avatar/${uniqueId}_${data.avatar.name}`)
+
+        const uploadResponse = await fetch(url, {
+          method: 'PUT',
+          body: data.avatar,
         })
+
+        if (uploadResponse.ok) {
+          avatarImage = `https://van-event.b-cdn.net/avatar/${uniqueId}_${data.avatar.name}`
+        } else {
+          toast.error(t('error_submitting_form'))
+          return
+        }
       }
 
       const userProfileRef = doc(db, 'profiles', userAuth.user?.uid)
@@ -147,8 +150,9 @@ const ProfileSetting = () => {
       await dispatch(asyncSetProfileThunk())
 
       if (oldAvatar && avatarImage) {
-        const imageRef = ref(storage, oldAvatar)
-        await deleteObject(imageRef)
+        const avatarUri = getFilePathFromUrl(oldAvatar) || ''
+        console.log('avatarUri', avatarUri)
+        await deleteImage(avatarUri)
       }
       router.push(Routes.Profile)
     } catch (error) {
