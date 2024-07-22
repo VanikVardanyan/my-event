@@ -1,9 +1,8 @@
 import Image from 'next/image'
 import useStyles, { AddButton, VisuallyHiddenInput } from './styles'
-import { Button, Skeleton } from '@mui/material'
+import { Skeleton } from '@mui/material'
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd'
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
-import { db, storage } from '../../lib/firebaseConfig'
+import { db } from '../../lib/firebaseConfig'
 import { useAuth } from '../../lib/auth-context'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
@@ -12,6 +11,8 @@ import { useState } from 'react'
 import { ImageAction } from './ui/image-action'
 import { useTranslations } from 'next-intl'
 import { LoadingOverlay } from '../loading-overlay'
+import { v4 as uuidv4 } from 'uuid'
+import { getPresignedUrl } from '../image-uploader/lib/getPresignedUrl'
 
 interface IImages {
   images: string[] | []
@@ -24,7 +25,7 @@ export const ProfileCreatives = (props: IImages) => {
   const userAuth = useAuth()
   const dispatch = Dispatch()
   const [loading, setLoading] = useState(false)
-
+  console.log(props.images[images.length - 1])
   const t = useTranslations('Profile')
 
   const handleChangeMultipleFile = async (event: any) => {
@@ -41,29 +42,14 @@ export const ProfileCreatives = (props: IImages) => {
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
-        if (file.size > maxSizeInBytes) {
-          alert('Размер файла не должен превышать 1 МБ')
-          setLoading(false)
-          return
-        }
-        const storageRef = ref(storage, `images/${file.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, file)
 
-        await new Promise<void>((resolve, reject) => {
-          uploadTask.on(
-            'state_changed',
-            () => {},
-            (error) => {
-              console.error(error)
-              reject(error)
-            },
-            async () => {
-              const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-              uploadedImageUrls.push(downloadURL)
-              resolve()
-            }
-          )
+        const uniqueId = uuidv4()
+        const url = await getPresignedUrl(`images/${uniqueId}_${file.name}`)
+        const uploadResponse = await fetch(url, {
+          method: 'PUT',
+          body: file,
         })
+        uploadedImageUrls.push(`https://van-event.b-cdn.net/images/${uniqueId}_${file.name}`)
       }
       if (currentProfile?.images) {
         const updatedImages = [...(currentProfile.images || []), ...uploadedImageUrls]

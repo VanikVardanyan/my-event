@@ -141,7 +141,8 @@
         "client_title": "Հաճախորդ",
         "client_description": "Փնտրեք ծառայություններ և կազմակերպեք միջոցառումներ",
         "user_type_select": "Ընտրեք ձեր դերը",
-        "user_type_select_description": "Ընտրեք այն դերը, որը ձեզ ավելի է համապատասխանում"
+        "user_type_select_description": "Ընտրեք այն դերը, որը ձեզ ավելի է համապատասխանում",
+        "error_submitting_form": "Սխալ է առաջարկվում ձեր տվյալները"
     },
     "Countries": {
         "armenia": "Հայաստան",

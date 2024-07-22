@@ -59,7 +59,7 @@ export const SwitchLanguage = React.memo(() => {
       router.replace(`/${lng}/${removeLanguageFromURL(pathname)}`)
     }
   }
-  console.log('jagagaga')
+
   return (
     <div>
       <IconButton
