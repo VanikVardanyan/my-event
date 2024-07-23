@@ -18,7 +18,6 @@ import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { Routes } from '@/shared/routes'
 import { useRouter } from '@/navigation'
-import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import { Dispatch } from '@/store/store'
 import { useTranslations } from 'next-intl'
@@ -28,6 +27,13 @@ import toast from 'react-hot-toast'
 import { Container } from '../styles'
 import { v4 as uuidv4 } from 'uuid'
 import { deleteImage, getPresignedUrl } from '@/shared/ui/image-uploader/lib/getPresignedUrl'
+import imageCompression from 'browser-image-compression'
+
+const options = {
+  maxSizeMB: 1,
+  maxWidthOrHeight: 800,
+  useWebWorker: true,
+}
 
 function getFilePathFromUrl(url: string) {
   const regex = /\/avatar\/(.+)$/
@@ -119,10 +125,10 @@ const ProfileSetting = () => {
       if (data.avatar) {
         const uniqueId = uuidv4()
         const url = await getPresignedUrl(`avatar/${uniqueId}_${data.avatar.name}`)
-
+        const compressedFile = await imageCompression(data.avatar, options)
         const uploadResponse = await fetch(url, {
           method: 'PUT',
-          body: data.avatar,
+          body: compressedFile,
         })
 
         if (uploadResponse.ok) {

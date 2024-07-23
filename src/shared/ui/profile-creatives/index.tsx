@@ -13,10 +13,17 @@ import { useTranslations } from 'next-intl'
 import { LoadingOverlay } from '../loading-overlay'
 import { v4 as uuidv4 } from 'uuid'
 import { getPresignedUrl } from '../image-uploader/lib/getPresignedUrl'
+import imageCompression from 'browser-image-compression'
 
 interface IImages {
   images: string[] | []
   isMe?: boolean
+}
+
+const options = {
+  maxSizeMB: 1,
+  maxWidthOrHeight: 1000,
+  useWebWorker: true,
 }
 
 export const ProfileCreatives = (props: IImages) => {
@@ -38,16 +45,21 @@ export const ProfileCreatives = (props: IImages) => {
 
       const files = event.target.files
       const uploadedImageUrls: string[] = []
-      const maxSizeInBytes = 8 * 1024 * 1024 // 1 МБ в байтах
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
+        console.log('originalFile instanceof Blob', file instanceof Blob)
+        console.log(`originalFile size ${file.size / 1024 / 1024} MB`)
+        const compressedFile = await imageCompression(file, options)
+
+        console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
+        console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
 
         const uniqueId = uuidv4()
         const url = await getPresignedUrl(`images/${uniqueId}_${file.name}`)
         const uploadResponse = await fetch(url, {
           method: 'PUT',
-          body: file,
+          body: compressedFile,
         })
         uploadedImageUrls.push(`https://van-event.b-cdn.net/images/${uniqueId}_${file.name}`)
       }
