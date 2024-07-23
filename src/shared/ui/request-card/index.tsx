@@ -109,7 +109,7 @@ export const RequestCard = (
         </div>
         <div>
           <span className={classes.infoTitle}>{t('budget')}: </span>
-          <span className={classes.description}>{amount}dram</span>
+          <span className={classes.description}>{amount} AMD</span>
         </div>
         {responses.length > 0 && (
           <div>

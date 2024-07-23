@@ -72,7 +72,7 @@ const RequestInfoModal = (props: IRequestInfoModal) => {
             </div>
             <div>
               <div className={classes.infoTitle}>{t('budget')}:</div>
-              <div className={classes.description}>{amount}dram</div>
+              <div className={classes.description}>{amount} AMD</div>
             </div>
           </div>
           {other && (
