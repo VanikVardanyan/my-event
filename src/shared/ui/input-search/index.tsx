@@ -26,6 +26,9 @@ import { photographerData } from '../../data/photo'
 import { rentCarData } from '../../data/rent-car'
 import { restaurantData } from '../../data/restaurant'
 import { showmanData } from '../../data/showman'
+import { instrumentsRenalData } from '../../data/instrument'
+import { musicianData } from '../../data/musiciant'
+import { danceData } from '../../data/dance'
 
 const initData = [
   ...cakesData,
@@ -36,6 +39,9 @@ const initData = [
   ...rentCarData,
   ...restaurantData,
   ...showmanData,
+  ...instrumentsRenalData,
+  ...musicianData,
+  ...danceData,
 ].map((item: any) => ({
   name: item.user.full_name,
   avatar: null,
