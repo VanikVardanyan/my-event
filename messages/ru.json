@@ -22,7 +22,8 @@
         "step": "Шаг",
         "oops": "Упс!",
         "something_went_wrong": "К сожалению нечего не найдено",
-        "cancel": "Отмена"
+        "cancel": "Отмена",
+        "more": "Подробнее"
     },
     "Signin": {
         "invalid_email": "Неверный email",

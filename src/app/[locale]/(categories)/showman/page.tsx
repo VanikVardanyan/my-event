@@ -11,6 +11,8 @@ import { useTranslations } from 'next-intl'
 import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
+import { showmanData } from '../../../../shared/data/showman'
+import { UserCardMini } from '../../../../shared/ui/user-card-mini'
 
 const ShowMan = () => {
   const { classes } = useStyles()
@@ -55,6 +57,9 @@ const ShowMan = () => {
           {providerUsers.map((service: any) => (
             <ServicePost key={service.id} {...service} />
           ))}
+          {showmanData.map((item, i) => {
+            return <UserCardMini key={item.user.pk} {...item.user} />
+          })}
           {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
         </div>
       </div>

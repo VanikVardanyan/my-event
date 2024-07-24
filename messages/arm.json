@@ -22,7 +22,8 @@
         "step": "Քայլ",
         "oops": "Վա՜յ!",
         "something_went_wrong": "Ցավոք, ոչինչ չի գտնվել",
-        "cancel": "Չեղարկել"
+        "cancel": "Չեղարկել",
+        "more": "Ավելին"
     },
     "Signin": {
         "invalid_email": "Անվավեր էլ․ հասցե",

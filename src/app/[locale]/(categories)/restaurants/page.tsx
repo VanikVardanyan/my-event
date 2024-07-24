@@ -9,6 +9,8 @@ import { Professions } from '@/shared/types/user.types'
 import { useTranslations } from 'next-intl'
 import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
+import { restaurantData } from '../../../../shared/data/restaurant'
+import { UserCardMini } from '../../../../shared/ui/user-card-mini'
 
 const RestaurantsPage = () => {
   const { classes } = useStyles()
@@ -53,7 +55,9 @@ const RestaurantsPage = () => {
           {providerUsers.map((service: any) => (
             <ServicePost key={service.id} {...service} />
           ))}
-          {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
+          {restaurantData.map((item, i) => {
+            return <UserCardMini {...item.user} key={item.user?.full_name} />
+          })}
         </div>
       </div>
     </Container>

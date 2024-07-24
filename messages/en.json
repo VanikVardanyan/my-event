@@ -22,7 +22,8 @@
         "step": "Step",
         "oops": "Oops!",
         "something_went_wrong": "Unfortunately, nothing was found",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "more": "More"
     },
     "Signin": {
         "invalid_email": "Invalid email",
