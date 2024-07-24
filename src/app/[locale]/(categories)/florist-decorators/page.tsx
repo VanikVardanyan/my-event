@@ -10,6 +10,8 @@ import { useTranslations } from 'next-intl'
 import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
+import { floristData, tarosiks } from '../../../../shared/data/florist'
+import { UserCardMini } from '../../../../shared/ui/user-card-mini'
 
 const FloristPage = () => {
   const { classes } = useStyles()
@@ -54,7 +56,12 @@ const FloristPage = () => {
           {providerUsers.map((service: any) => (
             <ServicePost key={service.id} {...service} />
           ))}
-          {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
+          {floristData.map((item, i) => {
+            return <UserCardMini {...item.user} key={item.user?.full_name} />
+          })}
+          {tarosiks.map((item, i) => {
+            return <UserCardMini {...item.user} key={item.user?.full_name} />
+          })}
         </div>
       </div>
     </Container>

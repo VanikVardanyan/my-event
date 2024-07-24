@@ -116,7 +116,7 @@ export const LayoutHeader = () => {
             )}
             {!MdUp && (
               <IconButton href={Routes.Signin} LinkComponent={Link} style={{ height: 40 }}>
-                <PersonIcon color="inherit" />
+                <PersonIcon style={{ fill: 'white' }} />
               </IconButton>
             )}
           </>

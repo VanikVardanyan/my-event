@@ -1,6 +1,9 @@
 import { tss } from 'tss-react/mui'
 
 import {
+  DarkBlueBase,
+  DarkBlueDarken16,
+  DarkBlueDarken4,
   PinkBrownBase,
   PinkBrownDarken16,
   PinkBrownDarken4,
@@ -20,7 +23,7 @@ export default tss.withName('LayoutHeader').create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '11px 10px 11px 16px',
-    background: PinkBrownBase,
+    background: DarkBlueDarken16,
     boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
     zIndex: 1000,
     minHeight: 62,
@@ -63,12 +66,12 @@ export default tss.withName('LayoutHeader').create({
     justifyContent: 'center',
     borderRadius: 10,
     outline: 'none',
-    background: PinkBrownDarken4,
+    background: DarkBlueDarken16,
     border: `1px solid ${White}`,
     color: White,
 
     '&:hover': {
-      background: PinkBrownDarken16,
+      background: DarkBlueDarken4,
     },
   },
   hamburgWrapper: {
@@ -115,12 +118,12 @@ export default tss.withName('LayoutHeader').create({
 })
 
 export const LoginButton = styled(Button)({
-  backgroundColor: PinkBrownBase,
+  backgroundColor: DarkBlueDarken16,
   color: White,
   border: `1px solid ${White}`,
 
   '&:hover': {
-    backgroundColor: PinkBrownDarken4,
+    backgroundColor: DarkBlueDarken4,
     border: `1px solid ${TextSlateGreyLighten30}`,
   },
 })
