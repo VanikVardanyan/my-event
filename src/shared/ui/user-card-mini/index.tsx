@@ -40,6 +40,8 @@ export const UserCardMini = ({ full_name, username, is_verified }: any) => {
         href={`https://www.instagram.com/${username}/`}
         target="_blank"
         endIcon={<InstagramIcon fill={PinkBrownBase} />}
+        variant="outlined"
+        className={classes.moreBtn}
       >
         {t('more')}
       </Button>

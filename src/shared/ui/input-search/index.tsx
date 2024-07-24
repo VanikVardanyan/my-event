@@ -10,6 +10,7 @@ import { HTTPResponseStatusCodes } from '../../utils/error-message-by-code'
 import useStyles from './styles'
 import { Card } from './ui/card'
 import { Empty } from './ui/empty'
+import OutsideClickHandler from 'react-outside-click-handler'
 import { Loader } from './ui/loader'
 import 'firebase/database'
 import errorToast from '@/shared/utils/error-toast'
@@ -169,11 +170,13 @@ export const InputSearch = (props: InputSearchProps) => {
               [classes.channelListEmpty]: !results.length && !loading,
             })}
           >
-            {loading && <Loader />}
-            {!!results.length &&
-              !loading &&
-              results.map((item) => <Card key={item.id} {...item} channelClickHandler={channelClickHandler} />)}
-            {!results.length && !loading && <Empty />}
+            <OutsideClickHandler onOutsideClick={closeInput}>
+              {loading && <Loader />}
+              {!!results.length &&
+                !loading &&
+                results.map((item) => <Card key={item.id} {...item} channelClickHandler={channelClickHandler} />)}
+              {!results.length && !loading && <Empty />}
+            </OutsideClickHandler>
           </div>
         )}
       </div>
