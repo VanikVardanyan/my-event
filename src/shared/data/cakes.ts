@@ -862,24 +862,6 @@ export const cakesData = [
     },
   },
   {
-    position: 51,
-    user: {
-      username: 'bentocake.msk',
-      is_verified: false,
-      full_name: 'Бенто-торты на заказ 💛 Москва',
-      search_social_context: null,
-      unseen_count: null,
-      pk: '45322908590',
-      live_broadcast_visibility: null,
-      live_broadcast_id: null,
-      profile_pic_url:
-        'https://instagram.fevn12-1.fna.fbcdn.net/v/t51.2885-19/183628512_212978213691430_5700040939686287037_n.jpg?stp=dst-jpg_s150x150\u0026_nc_ht=instagram.fevn12-1.fna.fbcdn.net\u0026_nc_cat=110\u0026_nc_ohc=YcankNyYYtoQ7kNvgEIksJA\u0026edm=AHFUoAoBAAAA\u0026ccb=7-5\u0026oh=00_AYCmjRaD5EC9QNz4jVDAQEwQUUMIlLhSgAVMjm9id16WXQ\u0026oe=66A5F1FF\u0026_nc_sid=c39c95',
-      hd_profile_pic_url_info: null,
-      is_unpublished: null,
-      id: null,
-    },
-  },
-  {
     position: 52,
     user: {
       username: 'my_lil_bakery',
