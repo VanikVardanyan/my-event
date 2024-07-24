@@ -20,6 +20,13 @@ export default tss.withName('UserCardMini').create({
       flexDirection: 'row',
     },
   },
+  moreBtn: {
+    width: '100%',
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      width: 'initial',
+    },
+  },
   text: {
     ...FontBody1,
     color: TextGreyBase,
