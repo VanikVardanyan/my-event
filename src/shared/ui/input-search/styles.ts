@@ -1,6 +1,7 @@
 import { tss } from 'tss-react'
 
 import {
+  DarkBlueBase,
   GreyBase,
   PinkBrownBase,
   PurpleBase,
@@ -28,7 +29,7 @@ export default tss
       visibility: 'hidden',
       gap: 8,
       zIndex: 1000,
-      background: PinkBrownBase,
+      background: DarkBlueBase,
       borderRadius: 10,
 
       [`@media (min-width: ${BreakPoints.MEDIUM})`]: {

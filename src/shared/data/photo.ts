@@ -11,7 +11,7 @@ export const photographerData = [
       title: '𝐆𝐚𝐫𝐢𝐤 𝐆𝐇𝐚𝐳𝐚𝐫𝐲𝐚𝐧 𝐏𝐡𝐨𝐭𝐨𝐠𝐫𝐚𝐩𝐡𝐞𝐫',
     },
     user: {
-      userName: 'garik_ghazaryan_photographer',
+      username: 'garik_ghazaryan_photographer',
       full_name: '𝐆𝐚𝐫𝐢𝐤 𝐆𝐇𝐚𝐳𝐚𝐫𝐲𝐚𝐧 𝐏𝐡𝐨𝐭𝐨𝐠𝐫𝐚𝐩𝐡𝐞𝐫',
     },
   },
@@ -27,7 +27,7 @@ export const photographerData = [
       title: 'Photographer Vitali Sargsyan',
     },
     user: {
-      userName: 'weddingphotographerr',
+      username: 'weddingphotographerr',
       full_name: 'Photographer Vitali Sargsyan',
     },
   },
