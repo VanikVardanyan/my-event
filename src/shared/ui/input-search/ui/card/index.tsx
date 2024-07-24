@@ -5,10 +5,10 @@ import { ICardProps } from './types'
 
 export const Card = (props: ICardProps) => {
   const { classes } = useStyles()
-  const { name, avatar, channelClickHandler, id } = props
+  const { name, avatar, channelClickHandler, id, isInstagram } = props
 
   return (
-    <div className={classes.root} onClick={channelClickHandler(id)}>
+    <div className={classes.root} onClick={channelClickHandler(id, isInstagram)}>
       <div>
         <Image src={avatar || '/default.jpg'} alt="avatar" width={36} height={36} className={classes.avatar} />
       </div>

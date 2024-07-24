@@ -18,6 +18,30 @@ import { db } from '../../lib/firebaseConfig'
 import { UserType } from '../../types/user.types'
 import { useRouter } from '@/navigation'
 import { useTranslations } from 'next-intl'
+import { cakesData } from '../../data/cakes'
+import { djData } from '../../data/dj'
+import { dress } from '../../data/dress'
+import { floristData } from '../../data/florist'
+import { photographerData } from '../../data/photo'
+import { rentCarData } from '../../data/rent-car'
+import { restaurantData } from '../../data/restaurant'
+import { showmanData } from '../../data/showman'
+
+const initData = [
+  ...cakesData,
+  ...djData,
+  ...dress,
+  ...floristData,
+  ...photographerData,
+  ...rentCarData,
+  ...restaurantData,
+  ...showmanData,
+].map((item: any) => ({
+  name: item.user.full_name,
+  avatar: null,
+  isInstagram: true,
+  id: item.user.username,
+}))
 
 interface InputSearchProps {
   classNameList?: string
@@ -69,7 +93,9 @@ export const InputSearch = (props: InputSearchProps) => {
             (user: { name: string }) => user.name.toLowerCase().startsWith(value.toLowerCase()) // замените 'someProperty' на свойство, по которому нужно фильтровать
           )
 
-          setResults(filteredUsersList)
+          const filteredInitData = initData.filter((item) => item.name.toLowerCase().startsWith(value.toLowerCase()))
+
+          setResults([...filteredUsersList, ...filteredInitData])
           setLoading(false)
         } catch (error) {
           const e = error as AxiosError
@@ -96,8 +122,12 @@ export const InputSearch = (props: InputSearchProps) => {
     debouncedRequest(event.target.value)
   }
 
-  const channelClickHandler = (id: string) => {
+  const channelClickHandler = (id: string, isInstagram?: boolean) => {
     return () => {
+      if (isInstagram) {
+        window.open(`https://www.instagram.com/${id}/`, '_blank')
+        return
+      }
       history.push(`/user/${id}`)
       closeInput()
     }
