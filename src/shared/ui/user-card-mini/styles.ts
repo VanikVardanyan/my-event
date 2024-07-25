@@ -1,4 +1,4 @@
-import { DarkBlueDarken16, SlateGreyDarken18, TextSlateGreyLighten16 } from './../../consts/colors'
+import { DarkBlueDarken16, SlateGreyDarken18, TextSlateGreyLighten16, White } from './../../consts/colors'
 import { tss } from 'tss-react/mui'
 import { BreakPoints } from '../../consts/common'
 import { FontBody1 } from '../../consts/fontStyles'
@@ -15,6 +15,7 @@ export default tss.withName('UserCardMini').create({
     padding: '10px 8px',
     border: `1px solid ${TextSlateGreyLighten16}`,
     borderRadius: 6,
+    background: White,
 
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
       flexDirection: 'row',

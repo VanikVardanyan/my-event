@@ -12,6 +12,28 @@ import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { photographerData } from '../../../../shared/data/photo'
 import { UserCardMini } from '../../../../shared/ui/user-card-mini'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Van Event - Լուսանկարիչներ',
+  description:
+    'Գտեք լավագույն լուսանկարիչներին ձեր միջոցառման համար: Van Event-ն առաջարկում է լայն ընտրանի լուսանկարիչների ծառայություններ:',
+  keywords: 'լուսանկարիչներ, միջոցառումներ, լուսանկարիչների ծառայություններ, Van Event',
+  openGraph: {
+    title: 'Van Event - Լուսանկարիչներ',
+    description:
+      'Գտեք լավագույն լուսանկարիչներին ձեր միջոցառման համար: Van Event-ն առաջարկում է լայն ընտրանի լուսանկարիչների ծառայություններ:',
+    url: 'https://www.van-event.app/photographer',
+    images: ['https://www.van-event.app/images/photographer.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Van Event - Լուսանկարիչներ',
+    description:
+      'Գտեք լավագույն լուսանկարիչներին ձեր միջոցառման համար: Van Event-ն առաջարկում է լայն ընտրանի լուսանկարիչների ծառայություններ:',
+    images: ['https://www.van-event.app/images/photographer.jpg'],
+  },
+}
 
 const ShowMan = () => {
   const { classes } = useStyles()
