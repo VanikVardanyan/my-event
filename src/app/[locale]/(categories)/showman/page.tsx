@@ -6,35 +6,33 @@ import { useEffect, useState } from 'react'
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
-import { IPostProps } from '@/shared/ui/service-post/types'
 import { useTranslations } from 'next-intl'
-import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { showmanData } from '../../../../shared/data/showman'
 import { UserCardMini } from '../../../../shared/ui/user-card-mini'
 import { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Van Event - Շոումեններ',
-  description:
-    'Իմացեք բոլոր շոումենների մասին, որոնք մատչելի են ձեր միջոցառման համար: Գրանցվեք Van Event հարթակում և գտնեք լավագույն շոումեններին:',
-  keywords: 'շոումեններ, միջոցառումներ, շոումենների ծառայություններ, Van Event',
-  openGraph: {
-    title: 'Van Event - Շոումեններ',
-    description:
-      'Իմացեք բոլոր շոումենների մասին, որոնք մատչելի են ձեր միջոցառման համար: Գրանցվեք Van Event հարթակում և գտնեք լավագույն շոումեններին:',
-    url: 'https://www.van-event.app/showman',
-    images: ['https://www.van-event.app/images/showman.jpg'],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Van Event - Շոումեններ',
-    description:
-      'Իմացեք բոլոր շոումենների մասին, որոնք մատչելի են ձեր միջոցառման համար: Գրանցվեք Van Event հարթակում և գտնեք լավագույն շոումեններին:',
-    images: ['https://www.van-event.app/images/showman.jpg'],
-  },
-}
+// export const metadata: Metadata = {
+//   title: 'Van Event - Շոումեններ',
+//   description:
+//     'Իմացեք բոլոր շոումենների մասին, որոնք մատչելի են ձեր միջոցառման համար: Գրանցվեք Van Event հարթակում և գտնեք լավագույն շոումեններին:',
+//   keywords: 'շոումեններ, միջոցառումներ, շոումենների ծառայություններ, Van Event',
+//   openGraph: {
+//     title: 'Van Event - Շոումեններ',
+//     description:
+//       'Իմացեք բոլոր շոումենների մասին, որոնք մատչելի են ձեր միջոցառման համար: Գրանցվեք Van Event հարթակում և գտնեք լավագույն շոումեններին:',
+//     url: 'https://www.van-event.app/showman',
+//     images: ['https://www.van-event.app/images/showman.jpg'],
+//   },
+//   twitter: {
+//     card: 'summary_large_image',
+//     title: 'Van Event - Շոումեններ',
+//     description:
+//       'Իմացեք բոլոր շոումենների մասին, որոնք մատչելի են ձեր միջոցառման համար: Գրանցվեք Van Event հարթակում և գտնեք լավագույն շոումեններին:',
+//     images: ['https://www.van-event.app/images/showman.jpg'],
+//   },
+// }
 
 const ShowMan = () => {
   const { classes } = useStyles()
