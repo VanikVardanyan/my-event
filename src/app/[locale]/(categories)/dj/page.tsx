@@ -12,6 +12,28 @@ import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { djData } from '../../../../shared/data/dj'
 import { UserCardMini } from '../../../../shared/ui/user-card-mini'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Van Event - Դիջեյներ',
+  description:
+    'Գտեք լավագույն դիջեյներին ձեր միջոցառման համար: Van Event-ն առաջարկում է դիջեյների լայն ընտրանի, որոնք պատրաստ են ձեր միջոցառման համար:',
+  keywords: 'դիջեյներ, միջոցառումներ, դիջեյների ծառայություններ, Van Event',
+  openGraph: {
+    title: 'Van Event - Դիջեյներ',
+    description:
+      'Գտեք լավագույն դիջեյներին ձեր միջոցառման համար: Van Event-ն առաջարկում է դիջեյների լայն ընտրանի, որոնք պատրաստ են ձեր միջոցառման համար:',
+    url: 'https://www.van-event.app/arm/dj',
+    images: ['https://www.van-event.app/arm/images/dj.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Van Event - Դիջեյներ',
+    description:
+      'Գտեք լավագույն դիջեյներին ձեր միջոցառման համար: Van Event-ն առաջարկում է դիջեյների լայն ընտրանի, որոնք պատրաստ են ձեր միջոցառման համար:',
+    images: ['https://www.van-event.app/images/dj.jpg'],
+  },
+}
 
 const ShowMan = () => {
   const { classes } = useStyles()
