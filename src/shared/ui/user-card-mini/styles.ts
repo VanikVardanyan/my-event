@@ -13,9 +13,9 @@ export default tss.withName('UserCardMini').create({
     width: '100%',
     flexDirection: 'column',
     padding: '10px 8px',
-    border: `1px solid ${TextSlateGreyLighten16}`,
     borderRadius: 6,
     background: White,
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
 
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
       flexDirection: 'row',

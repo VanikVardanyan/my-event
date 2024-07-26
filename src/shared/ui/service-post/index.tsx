@@ -74,12 +74,13 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const { profile } = useSelector(getProfile)
   const { favorites } = useSelector(getClient)
   const dispatch = Dispatch()
+  console.log('favorites', favorites)
 
   const canHasFavorite = user && profile && profile.role === UserType.CLIENT
 
   const handleFavorite = async () => {
     if (canHasFavorite) {
-      await toggleFavorite(user.uid, id)
+      await toggleFavorite(user.uid, { id })
       dispatch(asyncSetFavoritesThunk({ id: user.uid }))
     }
   }
@@ -121,7 +122,7 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
           <HeartIcon
             style={{ width: 24, height: 24 }}
             fill={TextGreyBase}
-            fillBg={(favorites as string[]).includes(id) ? RedBase : undefined}
+            fillBg={(favorites.direct as string[]).includes(id) ? RedBase : undefined}
           />
         </IconButton>
       )}

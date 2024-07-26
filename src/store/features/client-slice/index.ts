@@ -4,7 +4,10 @@ import { IClientState } from './types'
 import { getFavorites } from './api'
 
 const initialState: IClientState = {
-  favorites: [],
+  favorites: {
+    instagram: [],
+    direct: [],
+  },
 }
 
 const enum ClientSlice {
@@ -17,7 +20,7 @@ export const asyncSetFavoritesThunk = createAsyncThunk(
   async (params: { id: string }, { rejectWithValue }) => {
     try {
       const favorites = await getFavorites(params.id)
-      return favorites
+      return favorites || { instagram: [], direct: [] }
     } catch (error: any) {
       rejectWithValue(error.message)
       return []

@@ -12,18 +12,19 @@ export enum fontWeight {
 export enum fontFamily {
   Base = '"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif',
   LIBRE = '"Libre Baskerville", "sans-serif"',
+  Armenia = '"Armenia", "sans-serif"',
 }
 
 export const FontTitleBig = {
-  fontFamily: fontFamily.LIBRE,
+  fontFamily: fontFamily.Armenia,
   fontWeight: Number(fontWeight.Regular),
-  fontSize: 30,
-  lineHeight: '44px',
-  letterSpacing: '1.2px',
+  fontSize: 40,
+  lineHeight: '46px',
+  letterSpacing: '1.4px',
 }
 
 export const FontH3: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '24px',
   fontWeight: Number(fontWeight.Bold),
   lineHeight: '28px',
@@ -31,7 +32,7 @@ export const FontH3: IFont = {
 }
 
 export const FontH4: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '20px',
   fontWeight: Number(fontWeight.Bold),
   lineHeight: '24px',
@@ -39,7 +40,7 @@ export const FontH4: IFont = {
 }
 
 export const FontH5: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '16px',
   fontWeight: Number(fontWeight.Medium),
   lineHeight: '20px',
@@ -47,7 +48,7 @@ export const FontH5: IFont = {
 }
 
 export const FontSubtitle1: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '18px',
   fontWeight: Number(fontWeight.Bold),
   lineHeight: '22px',
@@ -55,7 +56,7 @@ export const FontSubtitle1: IFont = {
 }
 
 export const FontBody1: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '14px',
   fontWeight: Number(fontWeight.Regular),
   lineHeight: '20px',
@@ -63,7 +64,7 @@ export const FontBody1: IFont = {
 }
 
 export const FontBody2: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '16px',
   fontWeight: Number(fontWeight.Regular),
   lineHeight: '24px',
@@ -71,7 +72,7 @@ export const FontBody2: IFont = {
 }
 
 export const FontButtonBig: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '13px',
   fontWeight: Number(fontWeight.Medium),
   lineHeight: '16px',
@@ -79,7 +80,7 @@ export const FontButtonBig: IFont = {
 }
 
 export const FontBody1Accent: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '14px',
   fontWeight: Number(fontWeight.Medium),
   lineHeight: '20px',
@@ -87,7 +88,7 @@ export const FontBody1Accent: IFont = {
 }
 
 export const FontLandingBody2Accent: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '16px',
   fontWeight: Number(fontWeight.Medium),
   lineHeight: '24px',
@@ -95,7 +96,7 @@ export const FontLandingBody2Accent: IFont = {
 }
 
 export const FontCaption: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '12px',
   fontWeight: Number(fontWeight.Regular),
   lineHeight: '16px',
@@ -103,7 +104,7 @@ export const FontCaption: IFont = {
 }
 
 export const FontCaptionAccent: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '12px',
   fontWeight: Number(fontWeight.Medium),
   lineHeight: '16px',
@@ -111,7 +112,7 @@ export const FontCaptionAccent: IFont = {
 }
 
 export const FontOVERLINE: IFont = {
-  fontFamily: fontFamily.Base,
+  fontFamily: fontFamily.Armenia,
   fontSize: '12px',
   fontWeight: Number(fontWeight.Regular),
   lineHeight: '15px',

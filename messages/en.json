@@ -186,6 +186,9 @@
         "cake": "Cakes",
         "favorites": "Favorites"
     },
+    "Favorites": {
+        "empty": "You don't have any favorites yet"
+    },
     "Professions": {
         "showman": "Showman",
         "photographers": "Photographer",

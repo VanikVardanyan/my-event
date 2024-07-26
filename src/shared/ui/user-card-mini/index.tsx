@@ -1,9 +1,16 @@
 import Image from 'next/image'
-import { Button } from '@mui/material'
+import { Button, IconButton } from '@mui/material'
 import useStyles from './styles'
 import { useTranslations } from 'next-intl'
-import { InstagramIcon } from '../../icons'
-import { PinkBrownBase } from '../../consts/colors'
+import { HeartIcon, InstagramIcon } from '../../icons'
+import { PinkBrownBase, RedBase, TextGreyBase } from '../../consts/colors'
+import { useAuth } from '../../lib/auth-context'
+import { useSelector } from 'react-redux'
+import { getClient, getProfile } from '../../../store/selectors'
+import { UserType } from '../../types/user.types'
+import { toggleFavorite } from '../service-post/lib'
+import { Dispatch } from '../../../store/store'
+import { asyncSetFavoritesThunk } from '../../../store/features/client-slice'
 
 const verifiedIcon = (
   <svg
@@ -25,9 +32,21 @@ const verifiedIcon = (
 
 export const UserCardMini = ({ full_name, username, is_verified }: any) => {
   const { classes } = useStyles()
+  const { user } = useAuth()
+  const { profile } = useSelector(getProfile)
+  const canHasFavorite = user && profile && profile.role === UserType.CLIENT
+  const { favorites } = useSelector(getClient)
+  const dispatch = Dispatch()
 
   const t = useTranslations('Shared')
 
+  const handleFavorite = async () => {
+    if (canHasFavorite) {
+      await toggleFavorite(user.uid, { isInstagram: true, id: username })
+      dispatch(asyncSetFavoritesThunk({ id: user.uid }))
+    }
+  }
+  console.log(favorites)
   return (
     <div className={classes.root}>
       <div>
@@ -45,6 +64,15 @@ export const UserCardMini = ({ full_name, username, is_verified }: any) => {
       >
         {t('more')}
       </Button>
+      {canHasFavorite && (
+        <IconButton onClick={handleFavorite}>
+          <HeartIcon
+            style={{ width: 24, height: 24 }}
+            fill={TextGreyBase}
+            fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
+          />
+        </IconButton>
+      )}
     </div>
   )
 }

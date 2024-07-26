@@ -54,9 +54,9 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
           <NextIntlClientProvider messages={messages}>
             <ReduxProvider>
               <AuthProvider>
-                <Scroll />
                 <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
                   <LayoutHeader />
+                  <Scroll />
                   <LayoutRoot id="layout">
                     {/* <LayoutContainer> */}
                     {children}
