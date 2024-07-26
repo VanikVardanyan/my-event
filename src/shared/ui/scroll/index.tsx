@@ -15,8 +15,7 @@ export default function Scroll() {
   const pathname = usePathname()
 
   useEffect(() => {
-    const refLayout = document.getElementById('layout')
-    refLayout?.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [pathname])
 
   return <></>

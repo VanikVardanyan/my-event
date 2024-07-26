@@ -186,6 +186,9 @@
         "restaurants": "Ресторанны",
         "favorites": "Избранное"
     },
+    "Favorites": {
+        "empty": "У вас пока нет избранных"
+    },
     "Professions": {
         "showman": "Шоумен",
         "photographers": "Фотограф",

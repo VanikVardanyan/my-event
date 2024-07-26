@@ -28,6 +28,7 @@ export const RequestCard = (
 
   const t = useTranslations('RequestList')
   const p = useTranslations('Professions')
+  const cityT = useTranslations('Citys')
 
   const [loading, setLoading] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -93,7 +94,7 @@ export const RequestCard = (
       <div className={classes.content}>
         <div className={classes.label}>
           <span className={classes.infoTitle}> {t('city')}: </span>
-          <span className={classes.description}>{city}</span>
+          <span className={classes.description}>{cityT(city)}</span>
         </div>
         <div>
           <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}

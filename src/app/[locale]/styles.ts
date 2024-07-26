@@ -1,5 +1,5 @@
 'use client'
-import { styled } from '@mui/material'
+import { Button, styled } from '@mui/material'
 
 export const LayoutRoot = styled('div')(({ theme }) => ({
   flex: '1',
@@ -22,7 +22,14 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import { DarkBlueBase, SlateGreyLighten45, White } from '@/shared/consts/colors'
+import {
+  DarkBlueBase,
+  DarkBlueDarken16,
+  PinkBrownBase,
+  PinkBrownLighten30,
+  SlateGreyLighten45,
+  White,
+} from '@/shared/consts/colors'
 import { FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 
@@ -52,13 +59,12 @@ export default tss.withName('MainPage').create({
     },
   },
   content: {
-    maxWidth: 440,
+    maxWidth: 540,
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
     marginTop: 0,
     marginLeft: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     borderRadius: 10,
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
     padding: 10,
@@ -72,7 +78,7 @@ export default tss.withName('MainPage').create({
   },
   title: {
     ...FontH3,
-    color: White,
+    color: '#EEE9DB',
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
       ...FontTitleBig,
@@ -80,7 +86,7 @@ export default tss.withName('MainPage').create({
   },
   description: {
     ...FontBody2,
-    color: White,
+    color: '#EEE9DB',
   },
   cardsWrapper: {
     display: 'grid',
@@ -95,5 +101,14 @@ export default tss.withName('MainPage').create({
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
       gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     },
+  },
+})
+
+export const StartButton = styled(Button)({
+  backgroundColor: DarkBlueBase,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: DarkBlueDarken16,
   },
 })

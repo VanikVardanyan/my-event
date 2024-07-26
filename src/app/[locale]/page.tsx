@@ -1,11 +1,12 @@
 'use client'
-import useStyles, { Container } from './styles'
+import useStyles, { Container, StartButton } from './styles'
 import { useRouter } from '@/navigation'
 import { Routes } from '../../shared/routes'
 import { useTranslations } from 'next-intl'
 import { Professions } from '../../shared/types/user.types'
 import { ServiceCard } from '../../shared/ui/service-card'
-import { Metadata } from 'next'
+import { useRef } from 'react'
+import { useAuth } from '../../shared/lib/auth-context'
 
 interface IService {
   name: Professions
@@ -108,7 +109,20 @@ const serviceListMock: IService[] = [
 export default function Home() {
   const { classes } = useStyles()
   const History = useRouter()
+  const { user } = useAuth()
   const t = useTranslations('Main')
+
+  const categoryRef = useRef<HTMLDivElement>(null)
+
+  const handleStartClick = () => {
+    const fixedElementHeight = 62
+
+    if (categoryRef.current) {
+      const yOffset = -fixedElementHeight
+      const y = categoryRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset
+      window.scrollTo({ top: y, behavior: 'smooth' })
+    }
+  }
 
   return (
     <div>
@@ -116,10 +130,15 @@ export default function Home() {
         <div className={classes.content}>
           <h3 className={classes.title}>{t('organize_your_events')}</h3>
           <p className={classes.description}>{t('organize_your_events_quickly')}</p>
+          <StartButton size="large" onClick={handleStartClick}>
+            {t('start')}
+          </StartButton>
         </div>
       </div>
       <Container>
-        <h2 className={classes.caterories}>{t('categories')}</h2>
+        <h2 className={classes.caterories} ref={categoryRef}>
+          {t('categories')}
+        </h2>
         <div className={classes.cardsWrapper}>
           {serviceListMock.map((service) => (
             <ServiceCard {...service} key={service.link} />

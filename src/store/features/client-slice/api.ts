@@ -7,9 +7,12 @@ export const getFavorites = async (userId: string) => {
   try {
     const userFavoritesSnap = await getDoc(userFavoritesRef)
     if (userFavoritesSnap.exists()) {
-      return userFavoritesSnap.data().posts
+      return userFavoritesSnap.data()
     } else {
-      return []
+      return {
+        instagram: [],
+        direct: [],
+      }
     }
   } catch (error) {
     console.error('Error getting favorites: ', error)

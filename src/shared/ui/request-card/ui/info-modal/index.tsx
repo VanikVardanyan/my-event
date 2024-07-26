@@ -38,6 +38,7 @@ const RequestInfoModal = (props: IRequestInfoModal) => {
   const { classes } = useStyles()
   const t = useTranslations('RequestList')
   const p = useTranslations('Professions')
+  const cityT = useTranslations('Citys')
 
   return (
     <Modal
@@ -56,7 +57,7 @@ const RequestInfoModal = (props: IRequestInfoModal) => {
           <div className={classes.content}>
             <div className={classes.label}>
               <div className={classes.infoTitle}> {t('city')}:</div>
-              <div className={classes.description}>{city}</div>
+              <div className={classes.description}>{cityT(city)}</div>
             </div>
             <div>
               <div className={classes.infoTitle}> {t('guests_count')}:</div>
