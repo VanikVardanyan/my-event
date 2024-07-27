@@ -26,6 +26,7 @@ import { HeartIcon } from '../../icons'
 import { UserType } from '../../types/user.types'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { TextGreyLighten25 } from '../../consts/colors'
+import { clearSlice } from '../../../store/features/client-slice'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
@@ -65,6 +66,7 @@ export const LayoutHeader = () => {
       setUser(null)
       setTimeout(() => {
         dispatch(setProfile(null))
+        dispatch(clearSlice())
       }, 0)
     })
   }
@@ -148,7 +150,7 @@ export const LayoutHeader = () => {
                 </Link>
               </MenuItem>
               {user && profile && profile.role === UserType.CLIENT && (
-                <MenuItem>
+                <MenuItem onClick={handleClose}>
                   <Link href={Routes.Favorites} className={classes.profilePopupItem}>
                     <HeartIcon style={{ width: 24, height: 24 }} fill={TextGreyLighten25} /> {t('favorites')}
                   </Link>

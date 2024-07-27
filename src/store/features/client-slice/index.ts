@@ -31,7 +31,14 @@ export const asyncSetFavoritesThunk = createAsyncThunk(
 const clientSlice = createSlice({
   name: ClientSlice.name,
   initialState,
-  reducers: {},
+  reducers: {
+    clearSlice: (state) => {
+      state.favorites = {
+        instagram: [],
+        direct: [],
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(asyncSetFavoritesThunk.pending, (state) => {})
@@ -41,5 +48,7 @@ const clientSlice = createSlice({
       .addCase(asyncSetFavoritesThunk.rejected, (state) => {})
   },
 })
+
+export const { clearSlice } = clientSlice.actions
 
 export default clientSlice.reducer
