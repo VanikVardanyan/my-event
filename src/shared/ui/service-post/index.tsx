@@ -74,7 +74,6 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const { profile } = useSelector(getProfile)
   const { favorites } = useSelector(getClient)
   const dispatch = Dispatch()
-  console.log('favorites', favorites)
 
   const canHasFavorite = user && profile && profile.role === UserType.CLIENT
 
