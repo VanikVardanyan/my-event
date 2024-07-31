@@ -80,7 +80,6 @@ const ShowMan = () => {
           {showmanData.map((item, i) => {
             return <UserCardMini key={item.user.pk} {...item.user} />
           })}
-          {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>}
         </div>
       </div>
     </Container>

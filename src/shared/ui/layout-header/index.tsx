@@ -143,6 +143,9 @@ export const LayoutHeader = () => {
               MenuListProps={{
                 'aria-labelledby': 'basic-button',
               }}
+              sx={{
+                top: '20px',
+              }}
             >
               <MenuItem>
                 <Link href={Routes.Profile} onClick={handleClose} className={classes.profilePopupItem}>

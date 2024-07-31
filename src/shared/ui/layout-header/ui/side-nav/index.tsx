@@ -104,9 +104,7 @@ export const SideNav = (props: ISideNavProps) => {
 
   const content = (
     <div className={classes.container}>
-      <div className={classes.logoSection}>
-        <Image src="/logo/png/logo-color.png" alt="logo" width={280} height={120} className={classes.logo} />
-      </div>
+      <div className={classes.logoSection} />
       <div className={classes.linkWrapper}>
         {user && (
           <Link
