@@ -22,14 +22,7 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import {
-  DarkBlueBase,
-  DarkBlueDarken16,
-  PinkBrownBase,
-  PinkBrownLighten30,
-  SlateGreyLighten45,
-  White,
-} from '@/shared/consts/colors'
+import { DarkBlueBase, DarkBlueDarken16 } from '@/shared/consts/colors'
 import { FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 

@@ -5,7 +5,7 @@ import { GreyBase, PinkBrownBase, SlateGreyBase, TextSlateGreyBase, White } from
 export default tss.withName('SideNav').create({
   root: {},
   logoSection: {
-    height: 120,
+    height: 60,
     display: 'flex',
     flex: '0 0 auto',
     justifyContent: 'center',

@@ -80,7 +80,9 @@ export const SwitchLanguage = React.memo(() => {
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
-        className=""
+        sx={{
+          top: '20px',
+        }}
       >
         <MenuItem onClick={createHandleMenuClick('ru')} disabled={locale === 'ru'}>
           {t('ru')}
