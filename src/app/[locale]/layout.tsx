@@ -11,6 +11,7 @@ import { unstable_setRequestLocale } from 'next-intl/server'
 import { ToastContainer } from '@/shared/ui/toaster-container'
 import Scroll from '@/shared/ui/scroll'
 import Head from 'next/head'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 export const metadata: Metadata = {
   icons: [
@@ -69,6 +70,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
           </NextIntlClientProvider>
         </div>
       </body>
+      <GoogleAnalytics gaId="G-QGNT2T9GFM" />
     </html>
   )
 }
