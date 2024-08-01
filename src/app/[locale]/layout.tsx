@@ -13,14 +13,17 @@ import Scroll from '@/shared/ui/scroll'
 import Head from 'next/head'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
+// export const metadata: Metadata = {
+//   icons: {
+//     url: 'logo/svg/logo-color.svg',
+//   },
+
+// }
+
 export const metadata: Metadata = {
-  icons: [
-    {
-      url: 'logo/svg/logo-color.svg',
-      sizes: '192x192',
-      type: 'image/svg',
-    },
-  ],
+  icons: {
+    icon: '/logo/png/logo-color.png',
+  },
 }
 
 interface RootLayoutProps {
@@ -37,8 +40,6 @@ export function generateStaticParams() {
 }
 
 export default async function ({ children, params: { locale } }: Readonly<RootLayoutProps>) {
-  // Providing all messages to the client
-  // side is the easiest way to get started
   unstable_setRequestLocale(locale)
   const messages = await getMessages()
 
@@ -49,6 +50,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic"
           rel="stylesheet"
         />
+        <link rel="icon" href="/logo/png/logo-color.png" />
       </Head>
       <body>
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
