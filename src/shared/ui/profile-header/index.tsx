@@ -9,11 +9,17 @@ import { Networks } from '../profile-networks'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { PinkBrownBase } from '../../consts/colors'
-import { useState } from 'react'
+import { createRef, useEffect, useState } from 'react'
 import cn from 'classnames'
+import { IconButton } from '@mui/material'
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const { classes } = useStyles()
+  const [isDescriptionScroll, setDescriptionScroll] = useState(false)
+  const selectWrapperRef = createRef<HTMLDivElement>()
+
   const [readMore, setReadMore] = useState(false)
   const t = useTranslations('Profile')
   const professionT = useTranslations('Professions')
@@ -58,6 +64,17 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
   const readMoreHandler = () => {
     setReadMore(!readMore)
   }
+
+  const updateCheckScrollbar = () => {
+    const element = selectWrapperRef.current
+    if (element) {
+      setDescriptionScroll(element.scrollHeight > element.clientHeight)
+    }
+  }
+
+  useEffect(() => {
+    updateCheckScrollbar()
+  }, [props.description])
 
   return (
     <div className={classes.root}>
@@ -125,11 +142,25 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
         </div>
       </div>
       {props.description && (
-        <div>
-          <div className={cn(classes.description, { [classes.fullText]: readMore })}>{props?.description}</div>
-          <EditButton size="small" variant="contained" onClick={readMoreHandler}>
-            {readMore ? t('show_less') : t('read_more')}
-          </EditButton>
+        <div className={classes.descriptionWrapper}>
+          <div className={cn(classes.description, { [classes.fullText]: readMore })} ref={selectWrapperRef}>
+            {props?.description}
+          </div>
+          {isDescriptionScroll && (
+            <IconButton
+              size="small"
+              onClick={readMoreHandler}
+              sx={{ width: 30, height: 30 }}
+              className={classes.showMoreBtn}
+              title={t('show_less')}
+            >
+              {readMore ? (
+                <KeyboardArrowDownIcon titleAccess={t('show_less')} color="primary" />
+              ) : (
+                <KeyboardArrowUpIcon titleAccess={t('read_more')} color="primary" />
+              )}
+            </IconButton>
+          )}
         </div>
       )}
     </div>

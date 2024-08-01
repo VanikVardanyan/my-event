@@ -6,8 +6,10 @@ import {
   White,
   PinkBrownBase,
   PinkBrownLighten30,
+  TextGreyDarken7,
+  TextGreyBase,
 } from '@/shared/consts/colors'
-import { FontBody1Accent, FontBody1 } from '@/shared/consts/fontStyles'
+import { FontBody1Accent, FontBody1, FontBody2 } from '@/shared/consts/fontStyles'
 import { Button, styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
 
@@ -17,6 +19,8 @@ export default tss.withName('ServicePost').create({
     width: '100%',
     overflow: 'hidden',
     paddingBottom: 20,
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    borderRadius: 6,
   },
   header: {
     display: 'flex',
@@ -41,9 +45,13 @@ export default tss.withName('ServicePost').create({
     ...FontBody1Accent,
     color: GreyBase,
   },
+  descriptionWrapper: {
+    padding: '0 10px',
+    position: 'relative',
+  },
   description: {
     ...FontBody1,
-    color: SlateGreyBase,
+    color: TextGreyBase,
     marginTop: 24,
     display: '-webkit-box',
     // ['-webkit-line-clamp']: '2',
@@ -57,6 +65,12 @@ export default tss.withName('ServicePost').create({
   fullText: {
     WebkitLineClamp: 'none',
     display: 'block',
+  },
+  showMoreBtn: {
+    margin: '24px 0 10px',
+    position: 'absolute',
+    right: 8,
+    bottom: '-18px',
   },
   profession: {
     ...FontBody1,
