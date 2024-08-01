@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { createRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IPostProps } from './types'
 import useStyles, { ReadMoreButton } from './styles'
@@ -9,7 +9,8 @@ import Slider from 'react-slick'
 
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
-
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { IconButton } from '@mui/material'
@@ -66,6 +67,7 @@ const settings = {
 export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const { profession, description, name, avatar, images, id } = props
   const [readMore, setReadMore] = useState(false)
+  const [isDescriptionScroll, setDescriptionScroll] = useState(false)
 
   const { classes } = useStyles()
   const p = useTranslations('Professions')
@@ -74,6 +76,8 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const { profile } = useSelector(getProfile)
   const { favorites } = useSelector(getClient)
   const dispatch = Dispatch()
+
+  const selectWrapperRef = createRef<HTMLDivElement>()
 
   const canHasFavorite = user && profile && profile.role === UserType.CLIENT
 
@@ -87,6 +91,17 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const readMoreHandler = () => {
     setReadMore(!readMore)
   }
+
+  const updateCheckScrollbar = () => {
+    const element = selectWrapperRef.current
+    if (element) {
+      setDescriptionScroll(element.scrollHeight > element.clientHeight)
+    }
+  }
+
+  useEffect(() => {
+    updateCheckScrollbar()
+  }, [description])
 
   return (
     <div className={classes.root}>
@@ -125,13 +140,26 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
           />
         </IconButton>
       )}
-
       {description && (
-        <div>
-          <span className={cn(classes.description, { [classes.fullText]: readMore })}>{description}</span>
-          <ReadMoreButton size="small" variant="contained" onClick={readMoreHandler}>
-            {readMore ? t('show_less') : t('read_more')}
-          </ReadMoreButton>
+        <div className={classes.descriptionWrapper}>
+          <div className={cn(classes.description, { [classes.fullText]: readMore })} ref={selectWrapperRef}>
+            {description}
+          </div>
+          {isDescriptionScroll && (
+            <IconButton
+              size="small"
+              onClick={readMoreHandler}
+              sx={{ width: 30, height: 30 }}
+              className={classes.showMoreBtn}
+              title={t('show_less')}
+            >
+              {readMore ? (
+                <KeyboardArrowDownIcon titleAccess={t('show_less')} color="primary" />
+              ) : (
+                <KeyboardArrowUpIcon titleAccess={t('read_more')} color="primary" />
+              )}
+            </IconButton>
+          )}
         </div>
       )}
     </div>

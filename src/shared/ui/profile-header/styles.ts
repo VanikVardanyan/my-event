@@ -8,6 +8,7 @@ import {
   SlateGreyLighten13,
   SlateGreyLighten21,
   TextGreyBase,
+  TextGreyDarken7,
   TextSlateGreyLighten8,
 } from '@/shared/consts/colors'
 import { FontBody1, FontBody1Accent, FontH4 } from '@/shared/consts/fontStyles'
@@ -64,6 +65,8 @@ export default tss.withName('ProfileHeader').create({
     ...FontBody1,
   },
   description: {
+    ...FontBody1,
+    color: TextGreyDarken7,
     display: '-webkit-box',
     // ['-webkit-line-clamp']: '2',
     WebkitLineClamp: 2,
@@ -72,6 +75,15 @@ export default tss.withName('ProfileHeader').create({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     marginBottom: 10,
+  },
+  descriptionWrapper: {
+    position: 'relative',
+  },
+  showMoreBtn: {
+    margin: '24px 0 10px',
+    position: 'absolute',
+    right: 8,
+    bottom: '-18px',
   },
   fullText: {
     WebkitLineClamp: 'none',
