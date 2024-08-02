@@ -3,18 +3,18 @@ import {
   DarkBlueDarken4,
   DarkBlueLighten30,
   PinkBrownBase,
-  PinkBrownDisabled,
   PinkBrownLighten30,
-  SlateGreyLighten13,
-  SlateGreyLighten21,
+  PurpleBase,
   TextGreyBase,
   TextGreyDarken7,
+  TextSlateGreyBase,
   TextSlateGreyLighten8,
+  White,
 } from '@/shared/consts/colors'
 import { FontBody1, FontBody1Accent, FontH4 } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
 import { BreakPoints } from '../../consts/common'
-import { Button, styled } from '@mui/material'
+import { Button, IconButton, styled } from '@mui/material'
 
 export default tss.withName('ProfileHeader').create({
   root: {
@@ -45,7 +45,7 @@ export default tss.withName('ProfileHeader').create({
     gap: 20,
     width: '100%',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
       flexDirection: 'row',
     },
   },
@@ -55,7 +55,7 @@ export default tss.withName('ProfileHeader').create({
     gap: 14,
     flexDirection: 'column',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
       flexDirection: 'row',
       gap: 50,
     },
@@ -94,7 +94,7 @@ export default tss.withName('ProfileHeader').create({
     gap: 10,
     justifyContent: 'center',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
       justifyContent: 'flex-start',
     },
   },
@@ -112,7 +112,7 @@ export default tss.withName('ProfileHeader').create({
     gap: 14,
     alignItems: 'center',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
       gap: 25,
       alignItems: 'flex-start',
     },
@@ -124,7 +124,7 @@ export default tss.withName('ProfileHeader').create({
     gap: 14,
     width: '100%',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
       gap: 25,
       flexDirection: 'column',
       width: 'inherit',
@@ -140,7 +140,7 @@ export default tss.withName('ProfileHeader').create({
     height: 24,
     display: 'none',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
       display: 'block',
     },
   },
@@ -150,14 +150,100 @@ export default tss.withName('ProfileHeader').create({
     gap: 14,
     alignSelf: 'center',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
       gap: 25,
       alignSelf: 'flex-end',
     },
   },
+  calendarSection: {
+    width: '100%',
+  },
+  selectedDate: {
+    background: `${DarkBlueBase} !important`,
+    color: `${White} !important`,
+  },
+  datePicker: {
+    width: '100%',
+    border: `1px solid ${PinkBrownBase}`,
+
+    '& .react-datepicker__header': {
+      background: PinkBrownBase,
+    },
+
+    '& .react-datepicker__month-container': {
+      width: '100%',
+    },
+
+    '& .react-datepicker__day-name': {
+      color: White,
+    },
+
+    '& .react-datepicker__current-month': {
+      color: White,
+    },
+  },
+  datePickerDisabled: {
+    '& .react-datepicker__day': {
+      cursor: 'default',
+
+      '&:hover': {
+        background: 'none',
+      },
+    },
+    '& .react-datepicker__day--keyboard-selected': {
+      background: 'none',
+    },
+  },
+  dayHelper: {
+    display: 'flex',
+    gap: 3,
+    alignItems: 'center',
+  },
+  freeDay: {
+    width: 20,
+    height: 20,
+    border: `2px solid ${TextSlateGreyBase}`,
+    borderRadius: '50%',
+  },
+  busy: {
+    width: 20,
+    height: 20,
+    border: `2px solid ${TextSlateGreyBase}`,
+    borderRadius: '50%',
+    background: DarkBlueBase,
+  },
+  calendarActions: {
+    display: 'flex',
+    gap: 5,
+    marginTop: 5,
+  },
+  datePickerWrapper: {
+    position: 'relative',
+  },
+  datePickerDisabledWrapper: {
+    position: 'absolute',
+    left: '0%',
+    top: 0,
+    right: 0,
+    bottom: 5,
+    background: 'rgba(0, 0, 0, 0.1)',
+    transition: '0.3s',
+  },
+  datePickerDisabledOpen: {
+    left: '100%',
+  },
 })
 
 export const EditButton = styled(Button)({
+  backgroundColor: PinkBrownBase,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: PinkBrownLighten30,
+  },
+})
+
+export const EditDatesBtn = styled(Button)({
   backgroundColor: PinkBrownBase,
   color: 'white',
 

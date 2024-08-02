@@ -54,6 +54,13 @@ const profileSlice = createSlice({
     setUserId: (state, action) => {
       state.userId = action.payload
     },
+    setAvailableDates: (state, action) => {
+      if (!state.profile) return
+      state.profile = {
+        ...state.profile,
+        availableDates: action.payload,
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -71,5 +78,5 @@ const profileSlice = createSlice({
   },
 })
 
-export const { setProfile, setProfileLoading, setUserId } = profileSlice.actions
+export const { setProfile, setProfileLoading, setUserId, setAvailableDates } = profileSlice.actions
 export default profileSlice.reducer

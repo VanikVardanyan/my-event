@@ -12,6 +12,7 @@ export interface IProfile {
   email?: string | null
   description?: string | null
   images?: string[] | [] | null
+  availableDates: Date[]
 }
 
 export interface IProfileState {

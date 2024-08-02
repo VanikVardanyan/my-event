@@ -157,7 +157,6 @@ const ProfileSetting = () => {
 
       if (oldAvatar && avatarImage) {
         const avatarUri = getFilePathFromUrl(oldAvatar) || ''
-        console.log('avatarUri', avatarUri)
         await deleteImage(avatarUri)
       }
       router.push(Routes.Profile)
