@@ -134,6 +134,7 @@ export default function Home() {
             {t('start')}
           </StartButton>
         </div>
+        <div className={classes.layoutImage} />
       </div>
       <Container>
         <h2 className={classes.caterories} ref={categoryRef}>

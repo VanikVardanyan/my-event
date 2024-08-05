@@ -54,6 +54,7 @@ const style = {
   maxHeight: 'calc(100% - 10px)',
   overflowY: 'auto',
 }
+
 export const RequestCreateModal = (props: Iprops) => {
   const { handleClose } = props
   const t = useTranslations('Request')
@@ -90,7 +91,7 @@ export const RequestCreateModal = (props: Iprops) => {
       amount: '',
       date: '',
     },
-    resolver: yupResolver(schema),
+    // resolver: yupResolver(schema),
   })
 
   const { errors } = formState
@@ -101,8 +102,8 @@ export const RequestCreateModal = (props: Iprops) => {
         userId: userId,
         ...data,
         createdAt: new Date(),
-        responses: [], // Добавляем пустой массив откликнувшихся пользователей
-      }).then((resp) => {
+        responses: [],
+      }).then(() => {
         dispatch(asyncSetProfileThunk())
         handleClose()
       })
@@ -156,15 +157,15 @@ export const RequestCreateModal = (props: Iprops) => {
           <Grid item xs={12} sm={10}>
             <TextField
               required
-              id="location"
-              label={t('location')}
-              {...register('location')}
+              id="data"
+              type="date"
+              {...register('date')}
               fullWidth
               size="small"
               autoComplete="off"
               variant="outlined"
-              error={!!errors.location}
-              helperText={errors.location?.message}
+              error={!!errors.date}
+              helperText={errors.date?.message}
             />
           </Grid>
           <Grid item xs={12} sm={7}>
@@ -204,6 +205,21 @@ export const RequestCreateModal = (props: Iprops) => {
             />
           </Grid>
           <Grid item xs={12} sm={10}>
+            <TextField
+              required
+              id="location"
+              label={t('location')}
+              {...register('location')}
+              fullWidth
+              size="small"
+              autoComplete="off"
+              variant="outlined"
+              error={!!errors.location}
+              helperText={errors.location?.message}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={10}>
             <Controller
               name="amount"
               control={control}
@@ -232,20 +248,6 @@ export const RequestCreateModal = (props: Iprops) => {
                   <FormHelperText error>{errors.amount?.message as string}</FormHelperText>
                 </FormControl>
               )}
-            />
-          </Grid>
-          <Grid item xs={12} sm={10}>
-            <TextField
-              required
-              id="data"
-              type="date"
-              {...register('date')}
-              fullWidth
-              size="small"
-              autoComplete="off"
-              variant="outlined"
-              error={!!errors.date}
-              helperText={errors.date?.message}
             />
           </Grid>
           <Grid item xs={12} sm={10}>

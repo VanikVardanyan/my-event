@@ -71,11 +71,13 @@ const ShowMan = () => {
 
   if (loading) return <LoadingOverlay loading />
 
+  const data = providerUsers.filter((item: any) => item?.isApprovedUser)
+
   return (
     <Container>
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
-          {providerUsers.map((service: any) => (
+          {data.map((service: any) => (
             <ServicePost key={service.id} {...service} />
           ))}
           {musicianData.map((item, i) => {

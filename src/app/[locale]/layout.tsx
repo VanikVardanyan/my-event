@@ -15,16 +15,9 @@ import { GoogleAnalytics } from '@next/third-parties/google'
 
 // export const metadata: Metadata = {
 //   icons: {
-//     url: 'logo/svg/logo-color.svg',
+//     icon: '/logo/png/logo-color.png',
 //   },
-
 // }
-
-export const metadata: Metadata = {
-  icons: {
-    icon: '/logo/png/logo-color.png',
-  },
-}
 
 interface RootLayoutProps {
   children: React.ReactNode

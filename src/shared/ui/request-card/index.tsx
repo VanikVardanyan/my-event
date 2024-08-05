@@ -1,10 +1,11 @@
 import { useRef, useState } from 'react'
-import useStyles from './styles'
+import useStyles, { MoreButton } from './styles'
 import { Box, Button, Card } from '@mui/material'
 import { useAuth } from '../../lib/auth-context'
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
 import { db } from '../../lib/firebaseConfig'
 import ResponsesModal from './ui/response-list'
+import EditIcon from '@mui/icons-material/Edit'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { deleteDoc } from 'firebase/firestore'
@@ -12,23 +13,34 @@ import { Dispatch } from '@/store/store'
 import { asyncSetProfileThunk } from '@/store/features/profile-slice'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { useTranslations } from 'next-intl'
-import { IRequestTypes } from '@/app/[locale]/profile/ui/request-create-modal/types'
+import { IRequestTypes } from './types'
 import cn from 'classnames'
 import RequestInfoModal from './ui/info-modal'
+import { Link, useRouter } from '../../../navigation'
+import { Routes } from '../../routes'
+import { ProgressLine } from '../progress-line'
+import { getDoneServicesPercent } from '../../utils/numbers'
+import { ServiceSearchStatus } from '../../../app/[locale]/event/create/types'
+
+const formatNumber = (value: string) => {
+  return value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+}
 
 export const RequestCard = (
   props: IRequestTypes & { responses: any[]; id: string; isMe?: boolean; updateAll: () => void }
 ) => {
-  const { service, city, amount, date, personQuantity, location, responses, id, isMe, other } = props
+  const { service, city, amount, date, personQuantity, location, responses, id, isMe, other, title, services, type } =
+    props
   const { profile } = useSelector(getProfile)
   const { classes } = useStyles()
+  const router = useRouter()
   const { user } = useAuth()
 
   const btnRef = useRef(null)
 
   const t = useTranslations('RequestList')
-  const p = useTranslations('Professions')
   const cityT = useTranslations('Citys')
+  const eventTypesT = useTranslations('EventTypes')
 
   const [loading, setLoading] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -88,53 +100,79 @@ export const RequestCard = (
     setOpenModal(false)
   }
 
+  const calculateTotalBudget = (): number => {
+    return services.reduce((total, service) => {
+      // Удаление пробелов и преобразование строки в число
+      const amount = parseFloat(service.amount.replace(/\s/g, ''))
+      return total + amount
+    }, 0)
+  }
+
+  const totalBudget = services ? calculateTotalBudget() : null
+  const doneServicesLength = services.filter((service) => service.status === ServiceSearchStatus.Done).length
+  const allServices = services.length
+
+  const fullWidth = getDoneServicesPercent(allServices, doneServicesLength)
+  const goToDetail = () => {
+    router.push(`${Routes.Event}/${id}`)
+  }
+
   return (
-    <div className={classes.root}>
-      <h3 className={classes.title}>{p(service)}</h3>
+    <div className={classes.root} onClick={goToDetail}>
+      <h3 className={classes.title}>{title}</h3>
       <div className={classes.content}>
         <div className={classes.label}>
+          <span className={classes.infoTitle}> {t('event_types')}: </span>
+          <span className={classes.description}>{eventTypesT(type.toLocaleLowerCase())}</span>
+        </div>
+        {/* <div className={classes.label}>
           <span className={classes.infoTitle}> {t('city')}: </span>
           <span className={classes.description}>{cityT(city)}</span>
-        </div>
-        <div>
-          <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}
-          <span className={classes.description}>{personQuantity}</span>
-        </div>
-        <div>
-          <span className={classes.infoTitle}>{t('location')}: </span>
-          <span className={classes.description}>{location}</span>
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <span className={classes.infoTitle}>{t('date')}: </span>
           <span className={classes.description}>{date}</span>
-        </div>
-        <div>
-          <span className={classes.infoTitle}>{t('budget')}: </span>
-          <span className={classes.description}>{amount} AMD</span>
-        </div>
-        {responses.length > 0 && (
+        </div> */}
+        {/* <div>
+          <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}
+          <span className={classes.description}>{personQuantity}</span>
+        </div> */}
+        {/* <div>
+          <span className={classes.infoTitle}>{t('location')}: </span>
+          <span className={classes.description}>{location}</span>
+        </div> */}
+        {totalBudget && (
+          <div>
+            <span className={classes.infoTitle}>{t('total_budget')}: </span>
+            <span className={classes.description}>{formatNumber(totalBudget.toString())} AMD</span>
+          </div>
+        )}
+        {/* {responses.length > 0 && (
           <div>
             <span className={classes.infoTitle}>{t('responses_count')}: </span>
             <span className={classes.description}>{responses.length}</span>
           </div>
-        )}
-        {other && (
+        )} */}
+        {/* {other && (
           <div className={classes.otherWrapper}>
             <span className={classes.infoTitle}>{t('description')}: </span>
             <div className={cn(classes.description, classes.other)}>{other}</div>
           </div>
-        )}
+        )} */}
+        <div className={classes.percentWrapper}>
+          <div className={classes.percentTitle}>{t('event_ready_percent', { percent: fullWidth })}</div>
+          <ProgressLine fillWidth={fullWidth} />
+        </div>
       </div>
 
       <div className={classes.actions}>
         {isMe && (
           <>
-            {responses.length > 0 && (
+            {/* {responses.length > 0 && (
               <Button variant="contained" onClick={handleOpenModal} size="small">
                 {t('view_responses')}
               </Button>
-            )}
-
+            )} */}
             <Button
               variant="contained"
               color="error"
@@ -147,18 +185,36 @@ export const RequestCard = (
             </Button>
           </>
         )}
-        {!isMe && (
+        {/* {!isMe && (
           <Button variant="contained" color="success" onClick={handleRespond} size="small">
             {t('respond')}
           </Button>
-        )}
-        <Button variant="contained" onClick={handleOpenInfoModal} size="small" ref={btnRef}>
+        )} */}
+        <MoreButton
+          variant="contained"
+          onClick={handleOpenInfoModal}
+          size="small"
+          ref={btnRef}
+          LinkComponent={Link}
+          href={`${Routes.Event}/${id}`}
+        >
           {t('more_info')}
-        </Button>
+        </MoreButton>
+        <MoreButton
+          variant="contained"
+          onClick={handleOpenInfoModal}
+          size="small"
+          ref={btnRef}
+          LinkComponent={Link}
+          href={`${Routes.CreateEvent}/?id=${id}`}
+          startIcon={<EditIcon />}
+        >
+          {t('event_edit')}
+        </MoreButton>
       </div>
 
-      <ResponsesModal open={openModal} handleClose={handleCloseModal} responses={responses} />
-      <RequestInfoModal open={openInfoModal} handleClose={handleCloseInfoModal} info={props} />
+      {/* <ResponsesModal open={openModal} handleClose={handleCloseModal} responses={responses} />
+      <RequestInfoModal open={openInfoModal} handleClose={handleCloseInfoModal} info={props} /> */}
     </div>
   )
 }

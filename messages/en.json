@@ -23,7 +23,10 @@
         "oops": "Oops!",
         "something_went_wrong": "Unfortunately, nothing was found",
         "cancel": "Cancel",
-        "more": "More"
+        "more": "More",
+        "come_back": "Come back",
+        "save": "Save",
+        "blocked": "Your page will become public after checking by moderators"
     },
     "Signin": {
         "invalid_email": "Invalid email",
@@ -70,6 +73,8 @@
         "busyDay": "busy"
     },
     "Request": {
+        "title": "Title",
+        "event_types": "Event Types",
         "required_field": "This field is required",
         "city": "City",
         "location": "Location Name",
@@ -78,8 +83,39 @@
         "person_quantity": "Number of guests",
         "budget": "Budget",
         "date": "Date",
-        "create_request": "Create Request",
-        "description": "Description"
+        "all_services": "All services",
+        "create_event": "Create an event",
+        "description": "Description",
+        "event_description": "Event Description",
+        "event_edit": "Edit Event",
+        "add_service": "Add a service",
+        "empty_list": "Empty",
+        "doing": "In search",
+        "done": "Found",
+        "todo": "Not searching",
+        "status": "Status"
+    },
+    "EventTypes": {
+        "wedding": "Wedding",
+        "birthday": "Birthday",
+        "corporate": "Corporate Event",
+        "conference": "Conference",
+        "concert": "Concert",
+        "festival": "Festival",
+        "workshop": "Workshop / Seminar",
+        "meetup": "Meetup",
+        "charity": "Charity Event",
+        "sports": "Sports Event",
+        "exhibition": "Exhibition",
+        "tradeshow": "Trade Show",
+        "privateparty": "Private Party",
+        "fashionshow": "Fashion Show",
+        "productlaunch": "Product Launch",
+        "babyshower": "Baby Shower",
+        "engagement": "Engagement",
+        "graduation": "Graduation",
+        "networking": "Networking Event",
+        "other": "Other"
     },
     "Citys": {
         "Yerevan": "Yerevan",
@@ -163,9 +199,13 @@
         "location": "Location",
         "date": "Date",
         "budget": "Budget",
+        "total_budget": "Total budget",
         "city": "City",
         "description": "Description",
-        "more_info": "More info"
+        "more_info": "More info",
+        "event_types": "Event Types",
+        "event_ready_percent": "Event ready {percent} %",
+        "event_edit": "Edit Event"
     },
     "Menu": {
         "home": "Home",

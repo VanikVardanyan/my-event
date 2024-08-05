@@ -22,7 +22,7 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import { DarkBlueBase, DarkBlueDarken16 } from '@/shared/consts/colors'
+import { DarkBlueBase, DarkBlueDarken16, PinkBrownBase, PinkBrownDarken16 } from '@/shared/consts/colors'
 import { FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 
@@ -38,17 +38,36 @@ export default tss.withName('MainPage').create({
     marginBottom: 20,
   },
   root: {
-    backgroundImage: 'url(/main/background.jpg)',
+    backgroundColor: DarkBlueBase,
     padding: 20,
     backgroundSize: 'cover',
     backgroundPosition: 'right',
     backgroundRepeat: 'no-repeat',
-    gap: 40,
     marginBottom: 40,
-    height: 350,
+    gap: 40,
+    // height: 350,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column-reverse',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      height: 600,
+      gap: 80,
+
+      flexDirection: 'row',
+    },
+  },
+  layoutImage: {
+    backgroundImage: 'url(/main/background.jpg)',
+    width: 500,
+    height: 500,
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    display: 'none',
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      height: 600,
+      display: 'block',
     },
   },
   content: {
@@ -59,15 +78,15 @@ export default tss.withName('MainPage').create({
     marginTop: 0,
     marginLeft: 0,
     borderRadius: 10,
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+    // boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
     padding: 10,
-    textAlign: 'center',
+    textAlign: 'left',
 
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      marginTop: 100,
-      marginLeft: 50,
-      textAlign: 'left',
-    },
+    // [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+    //   marginTop: 100,
+    //   marginLeft: 50,
+    //   textAlign: 'left',
+    // },
   },
   title: {
     ...FontH3,
@@ -98,10 +117,12 @@ export default tss.withName('MainPage').create({
 })
 
 export const StartButton = styled(Button)({
-  backgroundColor: DarkBlueBase,
+  backgroundColor: PinkBrownBase,
   color: 'white',
+  maxWidth: 'fit-content',
+  marginTop: 20,
 
   '&:hover': {
-    backgroundColor: DarkBlueDarken16,
+    backgroundColor: PinkBrownDarken16,
   },
 })
