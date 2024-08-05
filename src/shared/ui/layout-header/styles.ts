@@ -23,8 +23,8 @@ export default tss.withName('LayoutHeader').create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '11px 10px 11px 16px',
-    background: DarkBlueDarken16,
-    boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+    background: DarkBlueBase,
+    // boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
     zIndex: 9000,
     minHeight: 62,
     position: 'sticky',
@@ -55,7 +55,7 @@ export default tss.withName('LayoutHeader').create({
   hamburg: {
     display: 'flex',
     alignItems: 'center',
-    gap: 5,
+    gap: 10,
   },
   hamburgerSection: {
     width: 40,

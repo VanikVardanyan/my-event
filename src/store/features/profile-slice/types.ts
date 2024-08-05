@@ -13,6 +13,7 @@ export interface IProfile {
   description?: string | null
   images?: string[] | [] | null
   availableDates: Date[]
+  isApprovedUser?: boolean
 }
 
 export interface IProfileState {

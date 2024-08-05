@@ -21,17 +21,23 @@ export const OrangeBase = '#F4A72D'
 export const OrangeLighten37 = lighten(chroma(OrangeBase), 0.37).hex() // '#FDF2E0'
 export const OrangeDarken29 = darken(chroma(OrangeBase), 0.29).hex() // '#865507'
 
-export const PinkBrownBase = '#A87676'
+export const PinkBrownBase = '#F222A9'
 export const PinkBrownDarken16 = chroma(PinkBrownBase).darken(0.16).hex() // затемнённый на 16%
 export const PinkBrownLighten30 = chroma(PinkBrownBase).brighten(0.3).hex() // осветлённый на 30%
 export const PinkBrownDarken4 = chroma(PinkBrownBase).darken(0.04).hex() // затемнённый на 4%
 export const PinkBrownDisabled = chroma(PinkBrownBase).desaturate(1.5).brighten(0.5).hex() // приглушённый и осветлённый вариант
 
-export const DarkBlueBase = '#4a5c5d'
+export const DarkBlueBase = '#5741A6'
 export const DarkBlueDarken16 = chroma(DarkBlueBase).darken(0.16).hex() // затемнённый на 16%
 export const DarkBlueLighten30 = chroma(DarkBlueBase).brighten(0.3).hex() // осветлённый на 30%
 export const DarkBlueDarken4 = chroma(DarkBlueBase).darken(0.04).hex() // затемнённый на 4%
 export const DarkBlueDisabled = chroma(DarkBlueBase).desaturate(1.5).brighten(0.5).hex() // приглушённый и осветлённый вариант
+
+export const DarkPurpleBase = '#281B59'
+export const DarkPurpleDarken16 = chroma(DarkPurpleBase).darken(0.16).hex() // затемнённый на 16%
+export const DarkPurpleLighten30 = chroma(DarkPurpleBase).brighten(0.3).hex() // осветлённый на 30%
+export const DarkPurpleDarken4 = chroma(DarkPurpleBase).darken(0.04).hex() // затемнённый на 4%
+export const DarkPurpleDisabled = chroma(DarkPurpleBase).desaturate(1.5).brighten(0.5).hex() // приглушённый и осветлённый вариант
 
 export const GreenBase = '#70C24B'
 export const GreenLighten41 = lighten(chroma(GreenBase), 0.41).hex() // '#ECF7E7'

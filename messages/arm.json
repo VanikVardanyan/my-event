@@ -23,7 +23,10 @@
         "oops": "Վա՜յ!",
         "something_went_wrong": "Ցավոք, ոչինչ չի գտնվել",
         "cancel": "Չեղարկել",
-        "more": "Ավելին"
+        "more": "Ավելին",
+        "come_back": "Վերադառնալ",
+        "save": "Պահպանել",
+        "blocked": "Ձեր էջը կդառնա հանրային մոդերատորների կողմից ստուգումից հետո"
     },
     "Signin": {
         "invalid_email": "Անվավեր էլ․ հասցե",
@@ -70,6 +73,8 @@
         "busyDay": "զբաղված"
     },
     "Request": {
+        "title": "Վերնագիր",
+        "event_types": "Միջոցառումների տեսակներ",
         "required_field": "Այս դաշտը պարտադիր է",
         "city": "Քաղաք",
         "location": "Վայրը",
@@ -77,9 +82,40 @@
         "select_service": "Ընտրեք ծառայություն",
         "person_quantity": "Հյուրերի քանակը",
         "budget": "Բյուջե",
+        "all_services": "Բոլոր ծառայությունները",
         "date": "Ամսաթիվ",
-        "create_request": "Ստեղծել պահանջ",
-        "description": "Լրացուցիչ տեղեկություն"
+        "create_event": "Ստեղծել միջոցառում",
+        "event_description": "նկարագրություն",
+        "event_edit": "խմբագրում",
+        "description": "Լրացուցիչ տեղեկություն",
+        "add_service": "Ավելացնել ծառայություն",
+        "empty_list": "Դատար է",
+        "doing": "Որոնման մեջ",
+        "done": "Գտնված է",
+        "todo": "չեմ որոնում",
+        "status": "Կարգավիճակ"
+    },
+    "EventTypes": {
+        "wedding": "Հարսանիք",
+        "birthday": "Ծննդյան օր",
+        "corporate": "Կորպորատիվ միջոցառում",
+        "conference": "Կոնֆերանս",
+        "concert": "Համերգ",
+        "festival": "Փառատոն",
+        "workshop": "Մաստեր-կլաս / Սեմինար",
+        "meetup": "Հանդիպում / Meetup",
+        "charity": "Բարեգործական միջոցառում",
+        "sports": "Սպորտային միջոցառում",
+        "exhibition": "Ցուցահանդես",
+        "tradeshow": "Առևտրային ցուցահանդես",
+        "privateparty": "Մասնավոր երեկույթ",
+        "fashionshow": "Նորաձևության ցուցադրում",
+        "productlaunch": "Ապրանքի ներկայացում",
+        "babyshower": "Baby Shower (երեկույթ ապագա ծննդյան համար)",
+        "engagement": "Նշանադրություն",
+        "graduation": "Շնորհավորում",
+        "networking": "Ցանցային միջոցառում",
+        "other": "Այլ"
     },
     "Citys": {
         "Yerevan": "Երևան",
@@ -163,9 +199,13 @@
         "location": "Վայրը",
         "date": "Ամսաթիվ",
         "budget": "Բյուջե",
+        "total_budget": "Ընդհանուր բյուջե",
         "city": "Քաղաք",
         "description": "Լրացուցիչ",
-        "more_info": "Ավելին"
+        "more_info": "Ավելին",
+        "event_types": "Միջոցառումների տեսակներ",
+        "event_ready_percent": "Միջոցառումը պատրաստ է {percent} %",
+        "event_edit": "խմբագրում"
     },
     "Menu": {
         "home": "Գլխավոր",

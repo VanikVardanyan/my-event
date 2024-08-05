@@ -1,6 +1,6 @@
 import { tss } from 'tss-react/mui'
 import { FontBody1, FontBody2, FontH3, FontH4, FontSubtitle1 } from '../../consts/fontStyles'
-import { PinkBrownBase, TextGreyLighten25 } from '../../consts/colors'
+import { DarkPurpleBase, PinkBrownBase, TextGreyLighten25 } from '../../consts/colors'
 
 export default tss.withName('ServiceCard').create({
   root: {
@@ -15,7 +15,7 @@ export default tss.withName('ServiceCard').create({
   },
   title: {
     ...FontH4,
-    color: PinkBrownBase,
+    color: DarkPurpleBase,
     paddingLeft: 10,
   },
   description: {

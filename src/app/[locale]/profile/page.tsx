@@ -16,6 +16,7 @@ import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../styles'
 import { useEffect } from 'react'
 import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
+import { Alert } from '@mui/material'
 
 const Profile = () => {
   const { profile, loading } = useSelector(getProfile)
@@ -43,6 +44,11 @@ const Profile = () => {
   return (
     <ProtectedRoute>
       <Container>
+        {!profile?.isApprovedUser && (
+          <Alert severity="error" sx={{ marginBottom: 5 }}>
+            {t('blocked')}
+          </Alert>
+        )}
         <div className={classes.root}>
           <>
             {isBusiness && (

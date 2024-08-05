@@ -15,28 +15,35 @@ import { db } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { AddRequestButton, EditButton } from '@/shared/ui/profile-header/styles'
+import { LoadingOverlay } from '../../../../../shared/ui/loading-overlay'
 
 export const UserInfo = () => {
   const { classes } = useStyles()
   const t = useTranslations('Profile')
+  const requestT = useTranslations('Request')
 
   const [openModal, setOpenModal] = useState(false)
   const handleCloseModal = () => setOpenModal(false)
   const handleOpenModal = () => setOpenModal(true)
   const { profile, userId } = useSelector(getProfile)
   const [requests, setRequests] = useState<any[]>([])
+  const [loading, setLoading] = useState(false)
 
   const fetchUserRequests = async () => {
+    setLoading(true)
     const q = query(collection(db, 'requests'), where('userId', '==', userId))
     const querySnapshot = await getDocs(q)
     const userRequests = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
 
     setRequests(userRequests)
+    setLoading(false)
   }
 
   useEffect(() => {
     fetchUserRequests()
   }, [userId])
+
+  if (loading) return <LoadingOverlay loading />
 
   return (
     <div>
@@ -52,16 +59,21 @@ export const UserInfo = () => {
           {t('edit_profile')}
         </EditButton>
         <div className={classes.name}>{profile?.name}</div>
-        <AddRequestButton variant="contained" endIcon={<AddCircleOutlineIcon />} onClick={handleOpenModal}>
-          {t('add_request')}
+        <AddRequestButton
+          variant="contained"
+          endIcon={<AddCircleOutlineIcon />}
+          href={Routes.CreateEvent}
+          LinkComponent={Link}
+        >
+          {requestT('create_event')}
         </AddRequestButton>
       </div>
       <div className={classes.requestCards}>
+        {!loading && requests.length === 0 && <div>{requestT('empty_list')}</div>}
         {requests.map((request) => (
           <RequestCard key={request.id} {...request} isMe />
         ))}
       </div>
-
       <Modal
         open={openModal}
         onClose={handleCloseModal}

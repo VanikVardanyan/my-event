@@ -13,6 +13,8 @@ export enum Routes {
   Setting = '/setting',
   ProfileSetting = '/profile-setting',
   Profile = '/profile',
+  CreateEvent = '/event/create',
+  Event = '/event',
   RequestList = '/request-list',
   ForgotPassword = '/forgot-password',
   Favorites = '/favorites',

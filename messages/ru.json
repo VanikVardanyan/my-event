@@ -23,7 +23,10 @@
         "oops": "Упс!",
         "something_went_wrong": "К сожалению нечего не найдено",
         "cancel": "Отмена",
-        "more": "Подробнее"
+        "more": "Подробнее",
+        "come_back": "Вернуться",
+        "save": "Сохранить",
+        "blocked": "Ваша страница станет общедоступной после проверки модераторов"
     },
     "Signin": {
         "invalid_email": "Неверный email",
@@ -70,6 +73,8 @@
         "busyDay": "Занят"
     },
     "Request": {
+        "title": "Заголовок",
+        "event_types": "Тип мероприятия",
         "required_field": "Обязательное поле",
         "city": "Город",
         "location": "Название заведения",
@@ -78,8 +83,39 @@
         "person_quantity": "Количество гостей",
         "budget": "Бюджет",
         "date": "Дата",
-        "create_request": "Создать запрос",
-        "description": "Доп. информация"
+        "all_services": "Все услуги",
+        "create_event": "Создать мероприятие",
+        "description": "Доп. информация",
+        "event_edit": "Редактировать",
+        "event_description": "Описание мероприятия",
+        "add_service": "Добавить услугу",
+        "empty_list": "Пусто",
+        "doing": "В поиске",
+        "done": "Найдено",
+        "todo": "Не ищу",
+        "status": "Статус"
+    },
+    "EventTypes": {
+        "wedding": "Свадьба",
+        "birthday": "День рождения",
+        "corporate": "Корпоративное мероприятие",
+        "conference": "Конференция",
+        "concert": "Концерт",
+        "festival": "Фестиваль",
+        "workshop": "Мастер-класс / Семинар",
+        "meetup": "Встреча / Meetup",
+        "charity": "Благотворительное мероприятие",
+        "sports": "Спортивное мероприятие",
+        "exhibition": "Выставка",
+        "tradeshow": "Торговая выставка",
+        "privateparty": "Частная вечеринка",
+        "fashionshow": "Показ мод",
+        "productlaunch": "Презентация продукта",
+        "babyshower": "Baby Shower (вечеринка для будущих родителей)",
+        "engagement": "Помолвка",
+        "graduation": "Выпускной",
+        "networking": "Сетевое мероприятие",
+        "other": "Другое"
     },
     "Citys": {
         "Yerevan": "Ереван",
@@ -163,9 +199,13 @@
         "location": "Место",
         "date": "Дата",
         "budget": "Бюджет",
+        "total_budget": "Общий бюджет",
         "city": "Город",
         "description": "Доп. информация",
-        "more_info": "Подробнее"
+        "more_info": "Подробнее",
+        "event_types": "Тип мероприятия",
+        "event_ready_percent": "Мероприятие готово на {percent} %",
+        "event_edit": "Редактировать"
     },
     "Menu": {
         "home": "Главная",

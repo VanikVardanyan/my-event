@@ -164,7 +164,7 @@ export default tss.withName('ProfileHeader').create({
   },
   datePicker: {
     width: '100%',
-    border: `1px solid ${PinkBrownBase}`,
+    border: `1px solid ${DarkBlueBase}`,
 
     '& .react-datepicker__header': {
       background: PinkBrownBase,
