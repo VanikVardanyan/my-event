@@ -78,9 +78,17 @@ const CreateEvent = () => {
           service: yup.string().required(),
           amount: yup.string().required(),
           id: yup.string().required(),
-          status: yup
-            .string()
-            .oneOf([ServiceSearchStatus.Todo, ServiceSearchStatus.Done, ServiceSearchStatus.Doing])
+          status: yup.mixed<ServiceSearchStatus>().oneOf(Object.values(ServiceSearchStatus)).required(),
+          selections: yup
+            .array()
+            .of(
+              yup.object().shape({
+                isInstagram: yup.boolean(),
+                id: yup.string().required(),
+                avatar: yup.string(),
+                name: yup.string().required(),
+              })
+            )
             .required(),
         })
       )
@@ -100,7 +108,7 @@ const CreateEvent = () => {
       date: '',
       location: '',
       personQuantity: 0,
-      services: [{ service: '', amount: '', status: ServiceSearchStatus.Todo, id: uniqueId }],
+      services: [{ service: '', amount: '', status: ServiceSearchStatus.Todo, id: uniqueId, selections: [] }],
       other: '',
     },
     resolver: yupResolver(schema),
@@ -382,7 +390,9 @@ const CreateEvent = () => {
             <Button
               variant="outlined"
               type="button"
-              onClick={() => append({ service: '', amount: '', status: ServiceSearchStatus.Todo, id: uniqueId })}
+              onClick={() =>
+                append({ service: '', amount: '', status: ServiceSearchStatus.Todo, id: uniqueId, selections: [] })
+              }
             >
               <AddIcon /> {t('add_service')}
             </Button>

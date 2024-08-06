@@ -4,11 +4,19 @@ export enum ServiceSearchStatus {
   Doing = 'doing',
 }
 
+export interface ISelection {
+  isInstagram?: boolean
+  id: string
+  avatar?: string
+  name: string
+}
+
 export interface IServices {
   service: string
   amount: string
   status: ServiceSearchStatus
   id: string
+  selections: ISelection[] | []
 }
 
 export interface IRequestTypes {

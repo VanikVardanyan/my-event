@@ -84,6 +84,8 @@
         "budget": "Բյուջե",
         "all_services": "Բոլոր ծառայությունները",
         "date": "Ամսաթիվ",
+        "responses": "Responses",
+        "selections": "Ընտրված",
         "create_event": "Ստեղծել միջոցառում",
         "event_description": "նկարագրություն",
         "event_edit": "խմբագրում",
@@ -205,7 +207,8 @@
         "more_info": "Ավելին",
         "event_types": "Միջոցառումների տեսակներ",
         "event_ready_percent": "Միջոցառումը պատրաստ է {percent} %",
-        "event_edit": "խմբագրում"
+        "event_edit": "խմբագրում",
+        "no_selections": "չկան"
     },
     "Menu": {
         "home": "Գլխավոր",

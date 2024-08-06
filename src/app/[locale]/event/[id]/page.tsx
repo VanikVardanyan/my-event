@@ -5,7 +5,7 @@ import useStyles, { AddRequestButton } from './styles'
 import { useTranslations } from 'next-intl'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/shared/lib/auth-context'
-import { IRequestTypes } from '../create/types'
+import { IRequestTypes, ISelection } from '../create/types'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { useParams } from 'next/navigation'
@@ -15,6 +15,7 @@ import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import cn from 'classnames'
 import { ServiceStatusItem } from './ui/service-item'
+import { ServiceSelected } from './ui/service-selected'
 
 const EventPage = () => {
   const { classes } = useStyles()
@@ -84,6 +85,25 @@ const EventPage = () => {
     }
   }
 
+  const removeSelection = async (serviceId: string, newSelections: ISelection[] | []) => {
+    try {
+      const docRef = doc(db, 'requests', id)
+      const docSnap = await getDoc(docRef)
+
+      if (docSnap.exists()) {
+        const requestData = docSnap.data() as IRequestTypes
+        const updatedServices = requestData.services.map((service) =>
+          service.id === serviceId ? { ...service, selections: newSelections } : service
+        )
+
+        await updateDoc(docRef, { services: updatedServices })
+        fetchRequest()
+      }
+    } catch (error) {
+      console.error('Error updating service status:', error)
+    }
+  }
+
   const calculateTotalBudget = () => {
     return data?.services.reduce((total, service) => {
       // Удаление пробелов и преобразование строки в число
@@ -142,6 +162,8 @@ const EventPage = () => {
                   <th className={classes.tableHead}>{t('service')}</th>
                   <th className={classes.tableHead}>{t('budget')}</th>
                   <th className={cn(classes.tableHead, classes.statusHeader)}>{t('status')}</th>
+                  {/* <th className={cn(classes.tableHead, classes.statusHeader)}>{t('responses')}</th> */}
+                  <th className={cn(classes.tableHead, classes.statusHeader)}>{t('selections')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -154,6 +176,14 @@ const EventPage = () => {
                         status={service.status}
                         id={service.id}
                         changeServiceStatus={changeServiceStatus}
+                      />
+                    </td>
+                    {/* <td className={classes.tableTd}>no</td> */}
+                    <td className={classes.tableTd}>
+                      <ServiceSelected
+                        removeSelection={removeSelection}
+                        serviceId={service.id}
+                        selections={service.selections}
                       />
                     </td>
                   </tr>

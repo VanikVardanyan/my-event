@@ -25,8 +25,14 @@ export default tss.withName('ServicePost').create({
   header: {
     display: 'flex',
     alignItems: 'center',
-    gap: 12,
     marginBottom: 12,
+    justifyContent: 'space-between',
+    padding: '0 5px',
+  },
+  headerName: {
+    display: 'flex',
+    gap: 5,
+    alignItems: 'center',
   },
   avatar: {
     borderRadius: '50%',

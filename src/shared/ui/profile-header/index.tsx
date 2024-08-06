@@ -83,7 +83,6 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
     } else {
       newDates.push(date) // Add the date if it's not selected
     }
-    console.log(newDates)
     setSelectedDates(newDates)
   }
 

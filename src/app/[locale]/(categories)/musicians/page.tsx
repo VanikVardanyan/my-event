@@ -81,7 +81,7 @@ const ShowMan = () => {
             <ServicePost key={service.id} {...service} />
           ))}
           {musicianData.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.full_name} />
+            return <UserCardMini {...item.user} key={item.user?.username} />
           })}
         </div>
       </div>

@@ -30,7 +30,6 @@ export async function deleteImage(fileName: string): Promise<void> {
     })
 
     await s3.send(command)
-    console.log(`Object ${fileName} deleted successfully.`)
   } catch (error) {
     console.error(`Failed to delete object ${fileName}:`, error)
     throw error // Пробросить ошибку, если нужно

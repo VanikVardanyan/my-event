@@ -1,21 +1,21 @@
 import Image from 'next/image'
 import useStyles from './styles'
 import { RequestCard } from '@/shared/ui/request-card'
-import { Modal } from '@mui/material'
+import { Modal, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { RequestCreateModal } from '../request-create-modal'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { Routes } from '@/shared/routes'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { useSelector } from 'react-redux'
-import { getProfile } from '@/store/selectors'
+import { getClient, getProfile } from '@/store/selectors'
 
-import { collection, query, where, getDocs } from 'firebase/firestore'
-import { db } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { AddRequestButton, EditButton } from '@/shared/ui/profile-header/styles'
 import { LoadingOverlay } from '../../../../../shared/ui/loading-overlay'
+import { Dispatch } from '../../../../../store/store'
+import { asyncSetEventsThunk } from '../../../../../store/features/client-slice'
 
 export const UserInfo = () => {
   const { classes } = useStyles()
@@ -25,22 +25,19 @@ export const UserInfo = () => {
   const [openModal, setOpenModal] = useState(false)
   const handleCloseModal = () => setOpenModal(false)
   const handleOpenModal = () => setOpenModal(true)
-  const { profile, userId } = useSelector(getProfile)
-  const [requests, setRequests] = useState<any[]>([])
   const [loading, setLoading] = useState(false)
 
-  const fetchUserRequests = async () => {
-    setLoading(true)
-    const q = query(collection(db, 'requests'), where('userId', '==', userId))
-    const querySnapshot = await getDocs(q)
-    const userRequests = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-
-    setRequests(userRequests)
-    setLoading(false)
-  }
+  const { profile, userId } = useSelector(getProfile)
+  const { events } = useSelector(getClient)
+  const dispatch = Dispatch()
 
   useEffect(() => {
-    fetchUserRequests()
+    setLoading(true)
+    if (userId) {
+      dispatch(asyncSetEventsThunk({ id: userId })).finally(() => setLoading(false))
+      return
+    }
+    setLoading(false)
   }, [userId])
 
   if (loading) return <LoadingOverlay loading />
@@ -69,8 +66,12 @@ export const UserInfo = () => {
         </AddRequestButton>
       </div>
       <div className={classes.requestCards}>
-        {!loading && requests.length === 0 && <div>{requestT('empty_list')}</div>}
-        {requests.map((request) => (
+        {!loading && events.length === 0 && (
+          <Typography align="center" component={'h1'}>
+            {requestT('empty_list')}
+          </Typography>
+        )}
+        {events.map((request) => (
           <RequestCard key={request.id} {...request} isMe />
         ))}
       </div>

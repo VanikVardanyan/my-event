@@ -32,7 +32,7 @@ export const ProfileCreatives = (props: IImages) => {
   const userAuth = useAuth()
   const dispatch = Dispatch()
   const [loading, setLoading] = useState(false)
-  console.log(props.images[images.length - 1])
+
   const t = useTranslations('Profile')
 
   const handleChangeMultipleFile = async (event: any) => {
@@ -48,12 +48,7 @@ export const ProfileCreatives = (props: IImages) => {
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i]
-        console.log('originalFile instanceof Blob', file instanceof Blob)
-        console.log(`originalFile size ${file.size / 1024 / 1024} MB`)
         const compressedFile = await imageCompression(file, options)
-
-        console.log('compressedFile instanceof Blob', compressedFile instanceof Blob) // true
-        console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`) // smaller than maxSizeMB
 
         const uniqueId = uuidv4()
         const url = await getPresignedUrl(`images/${uniqueId}_${file.name}`)
