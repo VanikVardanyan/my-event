@@ -16,6 +16,7 @@ export default tss.withName('UserCardMini').create({
     borderRadius: 6,
     background: White,
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+    position: 'relative',
 
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
       flexDirection: 'row',
@@ -45,6 +46,43 @@ export default tss.withName('UserCardMini').create({
 
     '& svg': {
       flexShrink: 0,
+    },
+  },
+  selection: {
+    position: 'absolute',
+    right: 3,
+    top: 3,
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      position: 'relative',
+      right: 0,
+      top: 0,
+    },
+  },
+  actionBlock: {
+    display: 'flex',
+    gap: 15,
+    width: '100%',
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      width: 'initial',
+    },
+  },
+
+  mobileLike: {
+    display: 'block',
+    width: 40,
+    height: 40,
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      display: 'none',
+    },
+  },
+  desktopLike: {
+    display: 'none',
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      display: 'block',
     },
   },
 })

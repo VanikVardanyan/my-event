@@ -142,13 +142,13 @@ const ProfileSetting = () => {
       const userProfileRef = doc(db, 'profiles', userAuth.user?.uid)
       const userProfileSnap = await getDoc(userProfileRef)
       const currentProfile = userProfileSnap.data()
-      // let isApprovedUser = data.role === UserType.PROVIDER && currentProfile?.isApproved
+      let isApprovedUser = data.role === UserType.PROVIDER && currentProfile?.isApproved
 
-      // if (!isApprovedUser) {
-      //   isApprovedUser = false
-      // }
+      if (!isApprovedUser) {
+        isApprovedUser = false
+      }
       const updatedProfile = {
-        // isApprovedUser: data.role === UserType.CLIENT ? true : isApprovedUser,
+        isApprovedUser: data.role === UserType.CLIENT ? true : isApprovedUser,
         ...currentProfile,
         ...data,
       }

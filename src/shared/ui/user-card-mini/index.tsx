@@ -56,26 +56,37 @@ export const UserCardMini = ({ full_name, username, is_verified }: any) => {
       <div className={classes.name}>
         <div className={classes.text}>{full_name || username}</div> {is_verified && verifiedIcon}
       </div>
-      <Button
-        href={`https://www.instagram.com/${username}/`}
-        target="_blank"
-        endIcon={<InstagramIcon fill={PinkBrownBase} />}
-        variant="outlined"
-        className={classes.moreBtn}
-      >
-        {t('more')}
-      </Button>
+      <div className={classes.actionBlock}>
+        <Button
+          href={`https://www.instagram.com/${username}/`}
+          target="_blank"
+          endIcon={<InstagramIcon fill={PinkBrownBase} />}
+          variant="outlined"
+          className={classes.moreBtn}
+        >
+          {t('more')}
+        </Button>
+        <IconButton onClick={handleFavorite} className={classes.mobileLike}>
+          <HeartIcon
+            style={{ width: 24, height: 24 }}
+            fill={TextGreyBase}
+            fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
+          />
+        </IconButton>
+      </div>
+
       {canHasFavorite && (
         <>
-          <IconButton onClick={handleFavorite}>
+          <IconButton onClick={handleFavorite} className={classes.desktopLike}>
             <HeartIcon
               style={{ width: 24, height: 24 }}
               fill={TextGreyBase}
               fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
             />
           </IconButton>
-
-          <SelectionModal profileId={username} profileName={username || full_name} isInstagram />
+          <div className={classes.selection}>
+            <SelectionModal profileId={username} profileName={username || full_name} isInstagram />
+          </div>
         </>
       )}
     </div>
