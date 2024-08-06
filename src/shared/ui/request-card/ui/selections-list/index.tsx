@@ -1,10 +1,23 @@
-import { Modal, Box, List, ListItem, ListItemText, Typography, Button, Avatar, IconButton, Icon } from '@mui/material'
+import {
+  Modal,
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  Button,
+  Avatar,
+  IconButton,
+  Icon,
+  ListItemButton,
+  ListItemAvatar,
+} from '@mui/material'
 import { useRouter } from '@/navigation'
 import CloseIcon from '@mui/icons-material/Close'
 import { useTranslations } from 'next-intl'
 import { ISelection } from '@/app/[locale]/event/create/types'
 import DeleteIcon from '@mui/icons-material/Delete'
-
+import useStyles from './styles'
 export interface IResponsesModal {
   open: boolean
   handleClose: () => void
@@ -23,7 +36,7 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius: 4,
-  p: 4,
+  padding: '20px',
   maxHeight: 'calc(100% - 10px)',
   overflowY: 'auto',
 }
@@ -38,6 +51,7 @@ const ResponsesModal = (props: IResponsesModal) => {
   const { open, handleClose, selections, removeSelection, serviceId } = props
   const router = useRouter()
   const t = useTranslations('RequestList')
+  const { classes } = useStyles()
 
   console.log('selections', selections)
 
@@ -72,12 +86,18 @@ const ResponsesModal = (props: IResponsesModal) => {
         </Typography>
         <List>
           {selections.map((response, index) => (
-            <ListItem button key={index} sx={{ borderRadius: 2 }}>
-              <ListItem onClick={() => handleUserClick(response.id, response.isInstagram)}>
-                <Avatar src={response.avatar} sx={{ mr: 2 }} />
-                <ListItemText primary={response.name} />
+            <ListItem key={index} sx={{ borderRadius: 2, paddingLeft: 0 }}>
+              <ListItem
+                button
+                sx={{ borderRadius: 2, paddingLeft: '5px' }}
+                onClick={() => handleUserClick(response.id, response.isInstagram)}
+              >
+                <ListItemAvatar>
+                  <Avatar src={response.avatar} />
+                </ListItemAvatar>
+                <ListItemText primary={response.name} classes={{ root: classes.title }} />
               </ListItem>
-              <IconButton onClick={() => handleDelete(response.id)}>
+              <IconButton onClick={() => handleDelete(response.id)} className={classes.btn}>
                 <DeleteIcon />
               </IconButton>
             </ListItem>
