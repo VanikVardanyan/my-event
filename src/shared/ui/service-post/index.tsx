@@ -2,7 +2,7 @@
 import React, { createRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { IPostProps } from './types'
-import useStyles, { ReadMoreButton } from './styles'
+import useStyles from './styles'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import Slider from 'react-slick'
@@ -19,11 +19,12 @@ import { RedBase, TextGreyBase } from '../../consts/colors'
 import { toggleFavorite } from './lib'
 import { useAuth } from '../../lib/auth-context'
 import { useSelector } from 'react-redux'
-import { getClient, getProfile } from '../../../store/selectors'
+import { getClient, getProfile } from '@/store/selectors'
 import { UserType } from '../../types/user.types'
-import { Dispatch } from '../../../store/store'
-import { asyncSetFavoritesThunk } from '../../../store/features/client-slice'
+import { Dispatch } from '@/store/store'
+import { asyncSetFavoritesThunk } from '@/store/features/client-slice'
 import cn from 'classnames'
+import { SelectionModal } from './ui/selection-modal'
 
 const SamplePrevArrow = (props: any) => {
   const { onClick, currentSlide } = props
@@ -105,12 +106,16 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
 
   return (
     <div className={classes.root}>
-      <Link href={`/user/${id}`} className={classes.header}>
-        <Image src={avatar || '/default.jpg'} alt={'image'} width={42} height={42} className={classes.avatar} />
-        <div className={classes.userName}>
-          {name} <span className={classes.profession}>({profession.map((item) => p(item)).join(', ')})</span>
-        </div>
-      </Link>
+      <div className={classes.header}>
+        <Link href={`/user/${id}`} className={classes.headerName}>
+          <Image src={avatar || '/default.jpg'} alt={'image'} width={42} height={42} className={classes.avatar} />
+          <div className={classes.userName}>
+            {name} <span className={classes.profession}>({profession.map((item) => p(item)).join(', ')})</span>
+          </div>
+        </Link>
+
+        {canHasFavorite && <SelectionModal profileId={id} profileName={name} isInstagram={false} />}
+      </div>
       <div className={classes.carouselWrapper}>
         {(images?.length === 0 || !images) && (
           <Image src={'/default.jpg'} alt={'default'} width={468} height={468} className={classes.carouselImage} />

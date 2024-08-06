@@ -4,7 +4,7 @@ import { Box, Button, Card } from '@mui/material'
 import { useAuth } from '../../lib/auth-context'
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
 import { db } from '../../lib/firebaseConfig'
-import ResponsesModal from './ui/response-list'
+
 import EditIcon from '@mui/icons-material/Edit'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
@@ -26,11 +26,8 @@ const formatNumber = (value: string) => {
   return value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }
 
-export const RequestCard = (
-  props: IRequestTypes & { responses: any[]; id: string; isMe?: boolean; updateAll: () => void }
-) => {
-  const { service, city, amount, date, personQuantity, location, responses, id, isMe, other, title, services, type } =
-    props
+export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean; updateAll?: () => void }) => {
+  const { service, city, amount, date, personQuantity, location, id, isMe, other, title, services, type } = props
   const { profile } = useSelector(getProfile)
   const { classes } = useStyles()
   const router = useRouter()
@@ -118,53 +115,54 @@ export const RequestCard = (
   }
 
   return (
-    <div className={classes.root} onClick={goToDetail}>
-      <h3 className={classes.title}>{title}</h3>
-      <div className={classes.content}>
-        <div className={classes.label}>
-          <span className={classes.infoTitle}> {t('event_types')}: </span>
-          <span className={classes.description}>{eventTypesT(type.toLocaleLowerCase())}</span>
-        </div>
-        {/* <div className={classes.label}>
+    <div className={classes.root}>
+      <div onClick={goToDetail}>
+        <h3 className={classes.title}>{title}</h3>
+        <div className={classes.content}>
+          <div className={classes.label}>
+            <span className={classes.infoTitle}> {t('event_types')}: </span>
+            <span className={classes.description}>{eventTypesT(type.toLocaleLowerCase())}</span>
+          </div>
+          {/* <div className={classes.label}>
           <span className={classes.infoTitle}> {t('city')}: </span>
           <span className={classes.description}>{cityT(city)}</span>
         </div> */}
-        {/* <div>
+          {/* <div>
           <span className={classes.infoTitle}>{t('date')}: </span>
           <span className={classes.description}>{date}</span>
         </div> */}
-        {/* <div>
+          {/* <div>
           <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}
           <span className={classes.description}>{personQuantity}</span>
         </div> */}
-        {/* <div>
+          {/* <div>
           <span className={classes.infoTitle}>{t('location')}: </span>
           <span className={classes.description}>{location}</span>
         </div> */}
-        {totalBudget && (
-          <div>
-            <span className={classes.infoTitle}>{t('total_budget')}: </span>
-            <span className={classes.description}>{formatNumber(totalBudget.toString())} AMD</span>
-          </div>
-        )}
-        {/* {responses.length > 0 && (
+          {totalBudget && (
+            <div>
+              <span className={classes.infoTitle}>{t('total_budget')}: </span>
+              <span className={classes.description}>{formatNumber(totalBudget.toString())} AMD</span>
+            </div>
+          )}
+          {/* {responses.length > 0 && (
           <div>
             <span className={classes.infoTitle}>{t('responses_count')}: </span>
             <span className={classes.description}>{responses.length}</span>
           </div>
         )} */}
-        {/* {other && (
+          {/* {other && (
           <div className={classes.otherWrapper}>
             <span className={classes.infoTitle}>{t('description')}: </span>
             <div className={cn(classes.description, classes.other)}>{other}</div>
           </div>
         )} */}
-        <div className={classes.percentWrapper}>
-          <div className={classes.percentTitle}>{t('event_ready_percent', { percent: fullWidth })}</div>
-          <ProgressLine fillWidth={fullWidth} />
+          <div className={classes.percentWrapper}>
+            <div className={classes.percentTitle}>{t('event_ready_percent', { percent: fullWidth })}</div>
+            <ProgressLine fillWidth={fullWidth} />
+          </div>
         </div>
       </div>
-
       <div className={classes.actions}>
         {isMe && (
           <>
@@ -174,6 +172,7 @@ export const RequestCard = (
               </Button>
             )} */}
             <Button
+              type="button"
               variant="contained"
               color="error"
               size="small"

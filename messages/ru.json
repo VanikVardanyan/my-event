@@ -84,6 +84,8 @@
         "budget": "Бюджет",
         "date": "Дата",
         "all_services": "Все услуги",
+        "responses": "Отклики",
+        "selections": "Подборы",
         "create_event": "Создать мероприятие",
         "description": "Доп. информация",
         "event_edit": "Редактировать",
@@ -205,7 +207,8 @@
         "more_info": "Подробнее",
         "event_types": "Тип мероприятия",
         "event_ready_percent": "Мероприятие готово на {percent} %",
-        "event_edit": "Редактировать"
+        "event_edit": "Редактировать",
+        "no_selections": "Нет подборов"
     },
     "Menu": {
         "home": "Главная",

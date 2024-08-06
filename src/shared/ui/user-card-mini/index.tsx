@@ -11,6 +11,7 @@ import { UserType } from '../../types/user.types'
 import { toggleFavorite } from '../service-post/lib'
 import { Dispatch } from '../../../store/store'
 import { asyncSetFavoritesThunk } from '../../../store/features/client-slice'
+import { SelectionModal } from '../service-post/ui/selection-modal'
 
 const verifiedIcon = (
   <svg
@@ -46,7 +47,7 @@ export const UserCardMini = ({ full_name, username, is_verified }: any) => {
       dispatch(asyncSetFavoritesThunk({ id: user.uid }))
     }
   }
-  console.log(favorites)
+
   return (
     <div className={classes.root}>
       <div>
@@ -65,13 +66,17 @@ export const UserCardMini = ({ full_name, username, is_verified }: any) => {
         {t('more')}
       </Button>
       {canHasFavorite && (
-        <IconButton onClick={handleFavorite}>
-          <HeartIcon
-            style={{ width: 24, height: 24 }}
-            fill={TextGreyBase}
-            fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
-          />
-        </IconButton>
+        <>
+          <IconButton onClick={handleFavorite}>
+            <HeartIcon
+              style={{ width: 24, height: 24 }}
+              fill={TextGreyBase}
+              fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
+            />
+          </IconButton>
+
+          <SelectionModal profileId={username} profileName={username || full_name} isInstagram />
+        </>
       )}
     </div>
   )

@@ -1,10 +1,12 @@
 import { EventTypes } from '@/shared/types/user.types'
-import { ServiceSearchStatus } from '../../../app/[locale]/event/create/types'
+import { ISelection, ServiceSearchStatus } from '../../../app/[locale]/event/create/types'
 
 interface IServices {
   amount: string
   service: string
   status: ServiceSearchStatus
+  id: string
+  selections: ISelection[]
 }
 
 export interface IRequestTypes {

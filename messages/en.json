@@ -85,6 +85,8 @@
         "date": "Date",
         "all_services": "All services",
         "create_event": "Create an event",
+        "selections": "Selections",
+        "responses": "Responses",
         "description": "Description",
         "event_description": "Event Description",
         "event_edit": "Edit Event",
@@ -205,7 +207,8 @@
         "more_info": "More info",
         "event_types": "Event Types",
         "event_ready_percent": "Event ready {percent} %",
-        "event_edit": "Edit Event"
+        "event_edit": "Edit Event",
+        "no_selections": "No selections"
     },
     "Menu": {
         "home": "Home",

@@ -1,4 +1,15 @@
-import { doc, setDoc, getDoc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import {
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  query,
+  collection,
+  getDocs,
+  where,
+} from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 
 export const getFavorites = async (userId: string) => {
@@ -24,4 +35,11 @@ export const getFavorites = async (userId: string) => {
       direct: [],
     }
   }
+}
+
+export const fetchUserRequests = async (userId: string) => {
+  const q = query(collection(db, 'requests'), where('userId', '==', userId))
+  const querySnapshot = await getDocs(q)
+  const userRequests = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+  return userRequests
 }
