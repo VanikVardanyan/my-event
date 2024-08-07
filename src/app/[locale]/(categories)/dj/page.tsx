@@ -81,7 +81,7 @@ const ShowMan = () => {
             <ServicePost key={service.id} {...service} />
           ))}
           {djData.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.full_name} />
+            return <UserCardMini {...item.user} key={item.user?.username} />
           })}
           {/* {providerUsers.length === 0 && !loading && <div>{t('current_list_is_empty')}</div>} */}
         </div>

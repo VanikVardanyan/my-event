@@ -81,7 +81,7 @@ const ShowMan = () => {
           ))}
 
           {photographerData.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.full_name} />
+            return <UserCardMini {...item.user} key={item.user?.username} />
           })}
         </div>
       </div>

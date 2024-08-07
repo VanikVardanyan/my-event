@@ -290,6 +290,8 @@ const CreateEvent = () => {
               variant="outlined"
               error={!!errors.date}
               helperText={errors.date?.message}
+              label={t('date')}
+              InputLabelProps={{ shrink: true }}
             />
           </Grid>
           <Grid item xs={12} sm={10}>

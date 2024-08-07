@@ -12,7 +12,8 @@ export enum fontWeight {
 export enum fontFamily {
   Base = '"Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif',
   LIBRE = '"Libre Baskerville", "sans-serif"',
-  Armenia = '"Armenia", "sans-serif"',
+  ArmeniaTassel = '"ArmeniaTassel", "sans-serif"',
+  Armenia = '"ArmeniaSans", "sans-serif"',
 }
 
 export const FontTitleBig = {

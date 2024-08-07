@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, IconButton, Modal, Typography } from '@mui/material'
+import { Box, Button, IconButton, Modal, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../../../lib/auth-context'
@@ -6,9 +6,14 @@ import { asyncSetEventsThunk } from '@/store/features/client-slice'
 import { useSelector } from 'react-redux'
 import { getClient, getProfile } from '@/store/selectors'
 import { Dispatch } from '@/store/store'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { SelectionItem } from '../selection-item'
 import useStyles from './styles'
+import CloseIcon from '@mui/icons-material/Close'
+import { AddRequestButton } from '../../../profile-header/styles'
+import { Routes } from '../../../../routes'
+import { Link } from '../../../../../navigation'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import { useTranslations } from 'next-intl'
 
 interface ISelectionModal {
   profileId: string
@@ -43,6 +48,7 @@ export const SelectionModal = (props: ISelectionModal) => {
   const handleClose = () => setOpen(false)
   const handleOpen = () => setOpen(true)
   const { classes } = useStyles()
+  const requestT = useTranslations('Request')
 
   const { events } = useSelector(getClient)
   const { user } = useAuth()
@@ -53,8 +59,9 @@ export const SelectionModal = (props: ISelectionModal) => {
     if (user?.uid) {
       dispatch(asyncSetEventsThunk({ id: user?.uid })).finally(() => setLoading(false))
       return
+    } else {
+      setLoading(false)
     }
-    setLoading(false)
   }, [user])
 
   return (
@@ -70,20 +77,36 @@ export const SelectionModal = (props: ISelectionModal) => {
         closeAfterTransition
       >
         <Box sx={style}>
-          <Typography variant="h6" mb={2}>
-            Добавить к мероприятию
-          </Typography>
-          <div className={classes.eventWrapper}>
-            {events.map((event) => (
-              <SelectionItem
-                key={event.id}
-                {...event}
-                profileId={profileId}
-                profileName={profileName}
-                isInstagram={isInstagram}
-              />
-            ))}
-          </div>
+          <IconButton onClick={handleClose} style={closeBtnStyle}>
+            <CloseIcon />
+          </IconButton>
+          <h4 className={classes.title}>{requestT('add_in_event')}</h4>
+          {events.length === 0 && !loading && (
+            <div className={classes.emptyBlock}>
+              <div className={classes.emptyBlockTitle}>{requestT('dont_have_created_events')}</div>
+              <AddRequestButton
+                variant="contained"
+                endIcon={<AddCircleOutlineIcon />}
+                href={Routes.CreateEvent}
+                LinkComponent={Link}
+              >
+                {requestT('create_event')}
+              </AddRequestButton>
+            </div>
+          )}
+          {events.length > 0 && !loading && (
+            <div className={classes.eventWrapper}>
+              {events.map((event) => (
+                <SelectionItem
+                  key={event.id}
+                  {...event}
+                  profileId={profileId}
+                  profileName={profileName}
+                  isInstagram={isInstagram}
+                />
+              ))}
+            </div>
+          )}
         </Box>
       </Modal>
     </div>

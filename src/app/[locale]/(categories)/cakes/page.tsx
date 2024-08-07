@@ -58,7 +58,7 @@ const CakesPage = () => {
             <ServicePost key={service.id} {...service} />
           ))}
           {cakesData.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.full_name} />
+            return <UserCardMini {...item.user} key={item.user?.username} />
           })}
         </div>
       </div>

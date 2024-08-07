@@ -1,5 +1,5 @@
 import { tss } from 'tss-react/mui'
-import { FontBody1, FontBody2, FontH3, FontH4, FontSubtitle1 } from '../../consts/fontStyles'
+import { FontBody1, FontBody2, fontFamily, FontH3, FontH4, FontSubtitle1 } from '../../consts/fontStyles'
 import { DarkPurpleBase, PinkBrownBase, TextGreyLighten25 } from '../../consts/colors'
 
 export default tss.withName('ServiceCard').create({
@@ -20,6 +20,7 @@ export default tss.withName('ServiceCard').create({
   },
   description: {
     ...FontBody2,
+    fontFamily: fontFamily.ArmeniaTassel,
     color: TextGreyLighten25,
     padding: 10,
   },

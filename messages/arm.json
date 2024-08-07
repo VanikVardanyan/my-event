@@ -95,7 +95,9 @@
         "doing": "Որոնման մեջ",
         "done": "Գտնված է",
         "todo": "չեմ որոնում",
-        "status": "Կարգավիճակ"
+        "status": "Կարգավիճակ",
+        "add_in_event": "Ավելացնել միջոցառում",
+        "dont_have_created_events": "Դուք դեռ չեք ստեղծել միջոցառումներ"
     },
     "EventTypes": {
         "wedding": "Հարսանիք",
@@ -229,7 +231,8 @@
         "dancers_entertainers": "Պար",
         "restaurants": "Ռեստորաններ",
         "cake": "Տորթեր",
-        "favorites": "Նախընտրելիներ"
+        "favorites": "Նախընտրելիներ",
+        "date": "Ամսաթիվ"
     },
     "Favorites": {
         "empty": "Դուք դեռ չունեք նախընտրելիներ"

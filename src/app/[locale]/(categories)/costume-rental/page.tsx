@@ -59,7 +59,7 @@ const CostumeRental = () => {
             <ServicePost key={service.id} {...service} />
           ))}
           {dress.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.full_name} />
+            return <UserCardMini {...item.user} key={item.user?.username} />
           })}
         </div>
       </div>

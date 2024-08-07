@@ -18,3 +18,25 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'ArmeniaSans';
+  src:
+  /* url('./font/FreeSans.ttf') format('truetype'), */
+  /* url('./font/FreeSansBold.ttf') format('truetype'), */
+  /* url('./font/FreeSansBoldOblique.ttf') format('truetype'); */
+  /* url('./font/FreeSansBoldOblique.ttf') format('truetype'), */
+  url('./font/Amar.ttf') format('truetype');
+  
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ArmeniaTassel';
+  src:
+  url('./font/Vrdznagir.otf') format('opentype');
+  
+  font-weight: normal;
+  font-style: normal;
+}

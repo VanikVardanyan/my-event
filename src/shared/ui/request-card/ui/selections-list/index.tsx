@@ -95,7 +95,11 @@ const ResponsesModal = (props: IResponsesModal) => {
                 <ListItemAvatar>
                   <Avatar src={response.avatar} />
                 </ListItemAvatar>
-                <ListItemText primary={response.name} classes={{ root: classes.title }} />
+                <ListItemText
+                  primaryTypographyProps={{ style: { whiteSpace: 'normal' } }}
+                  primary={response.name}
+                  classes={{ root: classes.title }}
+                />
               </ListItem>
               <IconButton onClick={() => handleDelete(response.id)} className={classes.btn}>
                 <DeleteIcon />
