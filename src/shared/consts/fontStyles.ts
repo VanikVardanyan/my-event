@@ -14,6 +14,7 @@ export enum fontFamily {
   LIBRE = '"Libre Baskerville", "sans-serif"',
   ArmeniaTassel = '"ArmeniaTassel", "sans-serif"',
   Armenia = '"ArmeniaSans", "sans-serif"',
+  ArmenianDefault = '"ArmeniaSans", "sans-serif"',
 }
 
 export const FontTitleBig = {

@@ -13,12 +13,6 @@ import Scroll from '@/shared/ui/scroll'
 import Head from 'next/head'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-// export const metadata: Metadata = {
-//   icons: {
-//     icon: '/logo/png/logo-color.png',
-//   },
-// }
-
 interface RootLayoutProps {
   children: React.ReactNode
   params: {

@@ -59,7 +59,7 @@ export default tss.withName('MainPage').create({
     },
   },
   layoutImage: {
-    backgroundImage: 'url(/main/background.jpg)',
+    backgroundImage: 'url(/main/background1.png)',
     width: 500,
     height: 500,
     backgroundSize: 'contain',

@@ -9,6 +9,7 @@ import {
 } from '../../consts/colors'
 import { FontH3, FontBody1, FontBody1Accent, FontSubtitle1, FontLandingBody2Accent } from './../../consts/fontStyles'
 import { tss } from 'tss-react/mui'
+import { BreakPoints } from '../../consts/common'
 
 export default tss.withName('RequestCard').create({
   root: {
@@ -17,6 +18,14 @@ export default tss.withName('RequestCard').create({
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
     borderRadius: 4,
     cursor: 'pointer',
+    backgroundImage: 'none',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'right',
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      backgroundImage: 'url(/profile/todo.png)',
+    },
   },
 
   title: {
@@ -61,6 +70,7 @@ export default tss.withName('RequestCard').create({
   percentWrapper: {
     display: 'flex',
     flexDirection: 'column',
+    maxWidth: 350,
     gap: 5,
   },
   percentTitle: {
