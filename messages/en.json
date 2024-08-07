@@ -95,7 +95,9 @@
         "doing": "In search",
         "done": "Found",
         "todo": "Not searching",
-        "status": "Status"
+        "status": "Status",
+        "add_in_event": "Add to event",
+        "dont_have_created_events": "You have not created any events yet"
     },
     "EventTypes": {
         "wedding": "Wedding",
@@ -229,7 +231,8 @@
         "dancers_entertainers": "Dancers and Entertainers",
         "restaurants": "Restaurants",
         "cake": "Cakes",
-        "favorites": "Favorites"
+        "favorites": "Favorites",
+        "date": "Date"
     },
     "Favorites": {
         "empty": "You don't have any favorites yet"

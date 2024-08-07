@@ -1,13 +1,6 @@
 import { tss } from 'tss-react/mui'
-import {
-  BackgroundGrey,
-  DarkBlueBase,
-  GreenBase,
-  PinkBrownBase,
-  TextGreyBase,
-  TextSlateGreyBase,
-} from '@/shared/consts/colors'
-import { FontBody1, FontBody1Accent } from '@/shared/consts/fontStyles'
+import { BackgroundGrey, DarkBlueBase, TextGreyBase } from '@/shared/consts/colors'
+import { FontBody1 } from '@/shared/consts/fontStyles'
 
 export default tss.withName('ProgressBar').create({
   root: {

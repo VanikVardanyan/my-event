@@ -13,9 +13,9 @@ import { getClient, getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/navigation'
 import { AddRequestButton, EditButton } from '@/shared/ui/profile-header/styles'
-import { LoadingOverlay } from '../../../../../shared/ui/loading-overlay'
-import { Dispatch } from '../../../../../store/store'
-import { asyncSetEventsThunk } from '../../../../../store/features/client-slice'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
+import { Dispatch } from '@/store/store'
+import { asyncSetEventsThunk } from '@/store/features/client-slice'
 
 export const UserInfo = () => {
   const { classes } = useStyles()

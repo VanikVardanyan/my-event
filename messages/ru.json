@@ -95,7 +95,9 @@
         "doing": "В поиске",
         "done": "Найдено",
         "todo": "Не ищу",
-        "status": "Статус"
+        "status": "Статус",
+        "add_in_event": "Добавить в мероприятие",
+        "dont_have_created_events": "У вас пока нет созданных мероприятий"
     },
     "EventTypes": {
         "wedding": "Свадьба",
@@ -229,7 +231,8 @@
         "florists_decorators": "Флористы и декораторы",
         "cake": "Торты",
         "restaurants": "Ресторанны",
-        "favorites": "Избранное"
+        "favorites": "Избранное",
+        "date": "Дата"
     },
     "Favorites": {
         "empty": "У вас пока нет избранных"
