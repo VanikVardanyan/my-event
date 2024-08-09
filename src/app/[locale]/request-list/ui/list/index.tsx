@@ -4,9 +4,16 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { RequestCard } from '@/shared/ui/request-card'
 import { IRequestTypes } from '../../../profile/ui/request-create-modal/types'
+import { useRouter } from '@/navigation'
+import { Routes } from '@/shared/routes'
 
 export const RequestList = () => {
   const { classes } = useStyles()
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push(Routes.Profile)
+  }, [])
 
   const [requests, setRequests] = useState<(IRequestTypes[] & { responses: any[] }) | []>([])
 

@@ -57,6 +57,7 @@ export const SwitchLanguage = React.memo(() => {
   const createHandleMenuClick = (lng: string) => {
     return () => {
       router.replace(`/${lng}/${removeLanguageFromURL(pathname)}`)
+      window.location.reload()
     }
   }
 

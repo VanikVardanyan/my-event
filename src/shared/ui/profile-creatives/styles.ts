@@ -1,7 +1,8 @@
 import { Button, styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
 import { BreakPoints } from '../../consts/common'
-import { PinkBrownBase, PinkBrownLighten30 } from '../../consts/colors'
+import { PinkBrownBase, PinkBrownLighten30, RedDarken16 } from '../../consts/colors'
+import { FontBody1 } from '../../consts/fontStyles'
 
 export default tss.withName('ProfileCreatives').create({
   root: {},
@@ -17,6 +18,21 @@ export default tss.withName('ProfileCreatives').create({
   },
   imageWrapper: {
     position: 'relative',
+  },
+  addImagesWrapper: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 5,
+    marginBottom: 15,
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      flexDirection: 'row',
+    },
+  },
+  maxError: {
+    ...FontBody1,
+    color: RedDarken16,
   },
   image: {
     objectFit: 'cover',

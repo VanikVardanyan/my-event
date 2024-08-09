@@ -14,6 +14,7 @@ import { LoadingOverlay } from '../loading-overlay'
 import { v4 as uuidv4 } from 'uuid'
 import { getPresignedUrl } from '../image-uploader/lib/getPresignedUrl'
 import imageCompression from 'browser-image-compression'
+import { Tooltip } from '@/shared/ui/tooltip'
 
 interface IImages {
   images: string[] | []
@@ -83,16 +84,32 @@ export const ProfileCreatives = (props: IImages) => {
   }
   const imageAccept = '.jpg, .jpeg, .png, .gif, .bmp'
 
+  const isDisabled = images.length >= 6
+
   return (
     <div>
       <LoadingOverlay loading={loading} />
       {isMe && (
-        // @ts-ignore
-        <AddButton size="small" component="label" variant="contained" startIcon={<LibraryAddIcon />} sx={{ mb: 2 }}>
-          {loading && 'loading...'}
-          {!loading && t('add_image')}
-          <VisuallyHiddenInput multiple type="file" onChange={handleChangeMultipleFile} accept={imageAccept} />
-        </AddButton>
+        <div className={classes.addImagesWrapper}>
+          <AddButton
+            size="small"
+            disabled={isDisabled}
+            // @ts-ignore
+            component="label"
+            variant="contained"
+            startIcon={<LibraryAddIcon />}
+          >
+            {loading && 'loading...'}
+            {!loading && t('add_image')}
+            <VisuallyHiddenInput
+              disabled={isDisabled}
+              type="file"
+              onChange={handleChangeMultipleFile}
+              accept={imageAccept}
+            />
+          </AddButton>
+          {isDisabled && <div className={classes.maxError}>{t('max_image')}</div>}
+        </div>
       )}
 
       <div className={classes.imagesWrapper}>
