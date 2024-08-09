@@ -3,7 +3,9 @@ import { tss } from 'tss-react/mui'
 import { GreyBase, PinkBrownBase, SlateGreyBase, TextSlateGreyBase, White } from '@/shared/consts/colors'
 
 export default tss.withName('SideNav').create({
-  root: {},
+  root: {
+    zIndex: 1050,
+  },
   logoSection: {
     height: 60,
     display: 'flex',

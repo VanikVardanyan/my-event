@@ -70,7 +70,8 @@
         "not_phone": "profile does not have a phone",
         "not_email": "profile does not have an email",
         "freeDay": "free",
-        "busyDay": "busy"
+        "busyDay": "busy",
+        "max_image": "maximum number of images 6"
     },
     "Request": {
         "title": "Title",
