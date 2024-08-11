@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'Van Event - Շոումեններ',
     description:
       'Իմացեք բոլոր շոումենների մասին, որոնք մատչելի են ձեր միջոցառման համար: Գրանցվեք Van Event հարթակում և գտնեք լավագույն շոումեններին:',
-    url: 'https://www.van-event.app/arm/showman',
+    url: 'https://www.van-event.app/hy/showman',
     images: ['https://www.van-event.app/main/showman.jpg'],
   },
   twitter: {

@@ -5,7 +5,7 @@ import cn from 'classnames'
 import useStyles from './styles'
 import { useLocale, useTranslations } from 'next-intl'
 import DatePicker, { registerLocale } from 'react-datepicker'
-import arm from 'date-fns/locale/hy'
+import hy from 'date-fns/locale/hy'
 import ru from 'date-fns/locale/ru'
 import en from 'date-fns/locale/en-US'
 import { Button } from '@mui/material'
@@ -18,13 +18,14 @@ import { db } from '@/shared/lib/firebaseConfig'
 import { Dispatch } from '@/store/store'
 import { setAvailableDates } from '@/store/features/profile-slice'
 import 'react-datepicker/dist/react-datepicker.css'
+import { Languages } from '../../../../types/common'
 
 // @ts-ignore
-registerLocale('arm', arm)
+registerLocale(Languages.HY, hy)
 // @ts-ignore
-registerLocale('ru', ru)
+registerLocale(Languages.RU, ru)
 // @ts-ignore
-registerLocale('en', en)
+registerLocale(Languages.EN, en)
 
 interface ICalendarProps {
   availableDates: Date[]

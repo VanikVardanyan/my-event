@@ -1,11 +1,20 @@
 import { S3Client } from '@aws-sdk/client-s3'
 
+const endpoint = process.env.NEXT_PUBLIC_WASABI_ENDPOINT
+const region = process.env.NEXT_PUBLIC_WASABI_REGION
+const accessKeyId = process.env.NEXT_PUBLIC_WASABI_ACCESS_KEY_ID
+const secretAccessKey = process.env.NEXT_PUBLIC_WASABI_SECRET_ACCESS_KEY
+
+if (!endpoint || !region || !accessKeyId || !secretAccessKey) {
+  throw new Error('Wasabi configuration is incomplete.')
+}
+
 const wasabi = new S3Client({
-  endpoint: 'https://s3.us-east-1.wasabisys.com',
-  region: 'us-east-1',
+  endpoint,
+  region,
   credentials: {
-    accessKeyId: 'TDZKBEAU5AXFT7MQCO43',
-    secretAccessKey: 'ckeBGpkeWgRinwT60Rzmz8g5wo0imyyNisPcjKzC',
+    accessKeyId,
+    secretAccessKey,
   },
   forcePathStyle: true, // Заставляет использовать путь-стиль для совместимости с Wasabi
 })

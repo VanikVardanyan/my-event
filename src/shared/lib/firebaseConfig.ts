@@ -4,13 +4,13 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyC76vkVYktLxx3fXabIuiuzDkcZirb6rDQ',
-  authDomain: 'my-event-5ec1f.firebaseapp.com',
-  projectId: 'my-event-5ec1f',
-  storageBucket: 'my-event-5ec1f.appspot.com',
-  messagingSenderId: '846330526651',
-  appId: '1:846330526651:web:71d005dc8632b58e46e29e',
-  measurementId: 'G-4X1RKZ9JQJ',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 // Инициализация Firebase
 const app = initializeApp(firebaseConfig)
