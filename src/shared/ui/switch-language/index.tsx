@@ -7,6 +7,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import Image from 'next/image'
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import { tss } from 'tss-react/mui'
+import { Languages } from '../../types/common'
 
 const useStyles = tss.create({
   switchButton: {
@@ -57,7 +58,9 @@ export const SwitchLanguage = React.memo(() => {
   const createHandleMenuClick = (lng: string) => {
     return () => {
       router.replace(`/${lng}/${removeLanguageFromURL(pathname)}`)
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
     }
   }
 
@@ -82,17 +85,20 @@ export const SwitchLanguage = React.memo(() => {
           'aria-labelledby': 'basic-button',
         }}
         sx={{
-          top: '20px',
+          top: '10px',
         }}
       >
-        <MenuItem onClick={createHandleMenuClick('ru')} disabled={locale === 'ru'}>
-          {t('ru')}
+        <MenuItem onClick={createHandleMenuClick(Languages.RU)} disabled={locale === Languages.RU}>
+          {/* {t(Languages.RU)} */}
+          RU
         </MenuItem>
-        <MenuItem onClick={createHandleMenuClick('en')} disabled={locale === 'en'}>
-          {t('en')}
+        <MenuItem onClick={createHandleMenuClick(Languages.EN)} disabled={locale === Languages.EN}>
+          {/* {t(Languages.EN)} */}
+          EN
         </MenuItem>
-        <MenuItem onClick={createHandleMenuClick('arm')} disabled={locale === 'arm'}>
-          {t('am')}
+        <MenuItem onClick={createHandleMenuClick(Languages.HY)} disabled={locale === Languages.HY}>
+          {/* {t('am')} */}
+          HY
         </MenuItem>
       </Menu>
     </div>

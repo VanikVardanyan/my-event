@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useLayoutEffect, useState } from 'react'
-import { Auth, User, onAuthStateChanged } from 'firebase/auth'
+import { User, onAuthStateChanged } from 'firebase/auth'
 import { auth, db } from './firebaseConfig'
 import { doc, getDoc } from 'firebase/firestore'
 import { setProfile, setProfileLoading, setUserId } from '../../store/features/profile-slice'
