@@ -3,16 +3,13 @@
 import { ServicePost } from '@/shared/ui/service-post'
 import useStyles from './styles'
 import { useEffect, useState } from 'react'
-import { collection, getDocs, query, where } from 'firebase/firestore'
-import { db } from '@/shared/lib/firebaseConfig'
 import { Professions } from '@/shared/types/user.types'
-import { IPostProps } from '@/shared/ui/service-post/types'
 import { useTranslations } from 'next-intl'
-import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
-import { instrumentsRenalData } from '../../../../shared/data/instrument'
-import { UserCardMini } from '../../../../shared/ui/user-card-mini'
+import { instrumentsRenalData } from '@/shared/data/instrument'
+import { UserCardMini } from '@/shared/ui/user-card-mini'
+import axios from 'axios'
 
 const ShowMan = () => {
   const { classes } = useStyles()
@@ -22,21 +19,13 @@ const ShowMan = () => {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchProviderUsers = async () => {
+    const fetchUsers = async () => {
+      setLoading(true)
       try {
-        const usersRef = collection(db, 'profiles')
-        const q = query(
-          usersRef,
-          where('role', '==', 'provider'),
-          where('profession', 'array-contains', Professions.EquipmentRental)
+        const response = await axios.get(
+          `/api/services-list?profession=${encodeURIComponent(Professions.EquipmentRental)}`
         )
-        const querySnapshot = await getDocs(q)
-
-        const usersList: any = []
-        querySnapshot.forEach((doc) => {
-          usersList.push({ id: doc.id, ...doc.data() })
-        })
-
+        const usersList = await response.data
         setProviderUsers(usersList)
       } catch (error) {
         console.error('Ошибка при загрузке пользователей:', error)
@@ -45,18 +34,16 @@ const ShowMan = () => {
       }
     }
 
-    fetchProviderUsers()
+    fetchUsers()
   }, [])
 
   if (loading) return <LoadingOverlay loading />
-
-  const data = providerUsers.filter((item: any) => item?.isApprovedUser)
 
   return (
     <Container>
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
-          {data.map((service: any) => (
+          {providerUsers.map((service: any) => (
             <ServicePost key={service.id} {...service} />
           ))}
           {instrumentsRenalData.map((item, i) => {

@@ -27,7 +27,6 @@ const ForgotPassword = () => {
 
   const t = useTranslations('Signin')
   const err = useTranslations('Errors')
-  const dispatch = Dispatch()
 
   const schema = yup.object().shape({
     email: yup.string().email(t('invalid_email')).required(t('required_field')),

@@ -30,7 +30,6 @@ export const UserInfo = () => {
   const { profile, userId } = useSelector(getProfile)
   const { events } = useSelector(getClient)
   const dispatch = Dispatch()
-
   useEffect(() => {
     setLoading(true)
     if (userId) {

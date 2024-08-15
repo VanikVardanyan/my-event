@@ -19,7 +19,6 @@ export default tss.withName('SignIn').create({
     maxWidth: '100%',
     minWidth: 300,
     width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.69)',
     padding: 25,
     borderRadius: 10,
     backgroundRepeat: 'no-repeat',
@@ -47,14 +46,10 @@ export default tss.withName('SignIn').create({
     flex: 1,
     alignSelf: 'center',
     padding: '0 10px',
-    backgroundImage: `url('/signin/background.png')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
     height: '100%',
     display: 'flex',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      backgroundImage: 'none',
       height: 'initial',
       display: 'block',
     },
@@ -62,11 +57,7 @@ export default tss.withName('SignIn').create({
   formTitle: {
     ...FontBody2,
     marginBottom: 25,
-    color: White,
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      color: Black,
-    },
+    color: Black,
   },
   googleBtn: {
     ...FontBody1Accent,
@@ -92,12 +83,8 @@ export default tss.withName('SignIn').create({
   },
   withEmailText: {
     ...FontBody1,
-    color: White,
+    color: GreyBase,
     textAlign: 'center',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      color: GreyBase,
-    },
   },
   line: {
     height: 1,
@@ -113,12 +100,8 @@ export default tss.withName('SignIn').create({
     ...FontBody1,
     display: 'flex',
     justifyContent: 'flex-end',
-    color: White,
+    color: GreyBase,
     textDecoration: 'underline',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      color: GreyBase,
-    },
   },
   title: {
     ...FontBody1Accent,

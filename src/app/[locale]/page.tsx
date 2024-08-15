@@ -1,12 +1,16 @@
 'use client'
 import useStyles, { Container, StartButton } from './styles'
-import { useRouter } from '@/navigation'
+import { Link, useRouter } from '@/navigation'
 import { Routes } from '../../shared/routes'
 import { useTranslations } from 'next-intl'
-import { Professions } from '../../shared/types/user.types'
+import { Professions, UserType } from '../../shared/types/user.types'
 import { ServiceCard } from '../../shared/ui/service-card'
 import { useRef } from 'react'
 import { useAuth } from '../../shared/lib/auth-context'
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
+import { IconButton } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { getProfile } from '../../store/selectors'
 
 interface IService {
   name: Professions
@@ -109,7 +113,7 @@ const serviceListMock: IService[] = [
 export default function Home() {
   const { classes } = useStyles()
   const History = useRouter()
-  const { user } = useAuth()
+  const { profile } = useSelector(getProfile)
   const t = useTranslations('Main')
 
   const categoryRef = useRef<HTMLDivElement>(null)
@@ -130,9 +134,16 @@ export default function Home() {
         <div className={classes.content}>
           <h3 className={classes.title}>{t('organize_your_events')}</h3>
           <p className={classes.description}>{t('organize_your_events_quickly')}</p>
-          <StartButton size="large" onClick={handleStartClick}>
-            {t('start')}
-          </StartButton>
+          <div className={classes.headerActions}>
+            {profile?.role !== UserType.PROVIDER && (
+              <StartButton LinkComponent={Link} href={Routes.CreateEvent}>
+                {t('start')}
+              </StartButton>
+            )}
+            <IconButton onClick={handleStartClick}>
+              <KeyboardDoubleArrowDownIcon />
+            </IconButton>
+          </div>
         </div>
         <div className={classes.layoutImage} />
       </div>

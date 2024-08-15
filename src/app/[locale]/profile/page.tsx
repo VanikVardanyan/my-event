@@ -35,6 +35,9 @@ const Profile = () => {
     if (user && !profile?.role) {
       router.push(Routes.ProfileSetting)
     }
+    if (profile?.role === UserType.CLIENT && localStorage.getItem('prevData')) {
+      router.push(Routes.CreateEvent)
+    }
   }, [profile, user, loading, authLoading, loadingProfile])
 
   if (loadingProfile) {

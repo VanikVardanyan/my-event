@@ -44,12 +44,10 @@ const EventPage = () => {
         setData(requestData)
         setLoading(false)
       } else {
-        console.log('You do not have permission to edit this request.')
         router.push(Routes.Profile)
         setLoading(false)
       }
     } else {
-      console.log('No such document!')
       setLoading(false)
     }
     setLoading(false)

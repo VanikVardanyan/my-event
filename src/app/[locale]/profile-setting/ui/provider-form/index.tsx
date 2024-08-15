@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
 import { UploadButton } from '../../styles'
+import { useAuth } from '@/shared/lib/auth-context'
 
 const WithStyledFlag = styled(MuiTelInput)``
 
@@ -19,6 +20,7 @@ export const ProviderForm = () => {
   const { classes } = useStyles()
   const animatedComponents = makeAnimated()
   const { profile } = useSelector(getProfile)
+  const { user } = useAuth()
 
   const t = useTranslations('ProfileSetting')
   const m = useTranslations('Professions')
@@ -66,6 +68,14 @@ export const ProviderForm = () => {
       setValue('description', profile?.description || '')
     }
   }, [])
+
+  useEffect(() => {
+    if (profile === null && user) {
+      console.log('user', user)
+      setValue('email', user?.email || '')
+      setValue('name', user?.displayName || '')
+    }
+  }, [profile, user])
 
   const professionWatcher = watch('profession')
   const countryWatcher = watch('country')

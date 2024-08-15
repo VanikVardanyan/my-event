@@ -80,6 +80,8 @@ export default tss.withName('UserCardMini').create({
   },
   desktopLike: {
     display: 'none',
+    width: 40,
+    height: 40,
 
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
       display: 'block',
