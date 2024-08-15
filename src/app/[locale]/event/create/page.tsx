@@ -53,6 +53,7 @@ const CreateEvent = () => {
   const { user } = useAuth()
 
   const searchId = searchParams.get('id')
+  const isHasPrevData = localStorage.getItem('prevData')
 
   const categories = Object.values(Professions).map((item) => ({
     value: item,
@@ -114,6 +115,17 @@ const CreateEvent = () => {
     resolver: yupResolver(schema),
   })
 
+  const setValues = (data: any) => {
+    setValue('title', data.title)
+    setValue('type', data.type)
+    setValue('city', data.city)
+    setValue('date', data.date)
+    setValue('location', data.location)
+    setValue('personQuantity', data.personQuantity)
+    setValue('services', data.services)
+    setValue('other', data.other)
+  }
+
   const countryWatch = watch('city')
   const typesWatch = watch('type')
 
@@ -128,21 +140,12 @@ const CreateEvent = () => {
     if (docSnap.exists()) {
       const requestData: any = docSnap.data()
       if (requestData.userId === user.uid) {
-        setValue('title', requestData.title)
-        setValue('type', requestData.type)
-        setValue('city', requestData.city)
-        setValue('date', requestData.date)
-        setValue('location', requestData.location)
-        setValue('personQuantity', requestData.personQuantity)
-        setValue('services', requestData.services)
-        setValue('other', requestData.other)
+        setValues(requestData)
         setLoading(false)
       } else {
-        console.log('You do not have permission to edit this request.')
         router.push(Routes.Profile)
       }
     } else {
-      console.log('No such document!')
       setLoading(false)
     }
     setLoading(false)
@@ -159,6 +162,14 @@ const CreateEvent = () => {
     }
   }, [searchId, user])
 
+  useEffect(() => {
+    if (localStorage.getItem('prevData') && user?.uid) {
+      const requestData = JSON.parse(localStorage.getItem('prevData') as string)
+      setValues(requestData)
+      localStorage.removeItem('prevData')
+    }
+  }, [user?.uid])
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'services',
@@ -170,6 +181,8 @@ const CreateEvent = () => {
     setLoading(true)
     if (!userId) {
       setLoading(false)
+      localStorage.setItem('prevData', JSON.stringify(data))
+      router.push(Routes.Signin)
       return
     }
 
@@ -187,7 +200,6 @@ const CreateEvent = () => {
           dispatch(asyncSetProfileThunk())
           router.push(Routes.Profile)
         } else {
-          console.log('You do not have permission to edit this request.')
           setLoading(false)
         }
       } else {
@@ -224,7 +236,7 @@ const CreateEvent = () => {
           <Grid item xs={12} sm={10}>
             <TextField
               required
-              InputLabelProps={{ shrink: searchId ? true : undefined }}
+              InputLabelProps={{ shrink: searchId || isHasPrevData ? true : undefined }}
               id="title"
               label={t('title')}
               {...register('title')}
@@ -298,7 +310,7 @@ const CreateEvent = () => {
             <TextField
               required
               id="location"
-              InputLabelProps={{ shrink: searchId ? true : undefined }}
+              InputLabelProps={{ shrink: searchId || isHasPrevData ? true : undefined }}
               label={t('location')}
               {...register('location')}
               fullWidth
@@ -404,7 +416,7 @@ const CreateEvent = () => {
             <TextField
               fullWidth
               autoCorrect="off"
-              InputLabelProps={{ shrink: searchId ? true : undefined }}
+              InputLabelProps={{ shrink: searchId || isHasPrevData ? true : undefined }}
               {...register('other')}
               label={t('description')}
               placeholder={t('description')}

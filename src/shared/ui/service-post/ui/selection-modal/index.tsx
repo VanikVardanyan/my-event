@@ -14,6 +14,8 @@ import { Routes } from '../../../../routes'
 import { Link } from '../../../../../navigation'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { useTranslations } from 'next-intl'
+import { LoadingOverlay } from '../../../loading-overlay'
+import LinearProgress from '@mui/material/LinearProgress'
 
 interface ISelectionModal {
   profileId: string
@@ -44,6 +46,7 @@ const closeBtnStyle = {
 export const SelectionModal = (props: ISelectionModal) => {
   const { profileId, isInstagram, profileName } = props
   const [open, setOpen] = useState(false)
+  const [initLoading, setInitLoading] = useState(false)
   const [loading, setLoading] = useState(false)
   const handleClose = () => setOpen(false)
   const handleOpen = () => setOpen(true)
@@ -55,14 +58,19 @@ export const SelectionModal = (props: ISelectionModal) => {
   const dispatch = Dispatch()
 
   useEffect(() => {
+    setInitLoading(true)
     setLoading(true)
-    if (user?.uid) {
-      dispatch(asyncSetEventsThunk({ id: user?.uid })).finally(() => setLoading(false))
+    if (user?.uid && open) {
+      dispatch(asyncSetEventsThunk({ id: user?.uid })).finally(() => {
+        setInitLoading(false)
+        setLoading(false)
+      })
       return
     } else {
       setLoading(false)
+      setInitLoading(false)
     }
-  }, [user])
+  }, [user, open])
 
   return (
     <div>
@@ -81,6 +89,7 @@ export const SelectionModal = (props: ISelectionModal) => {
             <CloseIcon />
           </IconButton>
           <h4 className={classes.title}>{requestT('add_in_event')}</h4>
+          {initLoading && <LinearProgress variant="query" />}
           {events.length === 0 && !loading && (
             <div className={classes.emptyBlock}>
               <div className={classes.emptyBlockTitle}>{requestT('dont_have_created_events')}</div>

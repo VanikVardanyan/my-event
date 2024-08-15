@@ -4,8 +4,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { useTranslations } from 'next-intl'
 import useStyles from './styles'
 import { doc, getDoc, updateDoc } from 'firebase/firestore'
-import { db } from '../../../../lib/firebaseConfig'
-import { useAuth } from '../../../../lib/auth-context'
+import { db } from '@/shared/lib/firebaseConfig'
+import { useAuth } from '@/shared/lib/auth-context'
 import { ISelection, IServices } from '@/app/[locale]/event/create/types'
 import { Dispatch } from '@/store/store'
 import { asyncSetEventsThunk } from '@/store/features/client-slice'
@@ -52,10 +52,8 @@ export const SelectionItem = (props: IRequestTypesWithId) => {
         // Обновляем документ с новым массивом services
         await updateDoc(requestRef, { services: updatedServices })
         await dispatch(asyncSetEventsThunk({ id: user.uid })).finally(() => setLoading(false))
-        console.log('Service selection updated successfully!')
       } catch (error) {
         setLoading(false)
-        console.error('Failed to update service selection: ', error)
       }
     } else {
       setLoading(false)
@@ -95,7 +93,6 @@ export const SelectionItem = (props: IRequestTypesWithId) => {
         // Обновляем документ с новым массивом services
         await updateDoc(requestRef, { services: updatedServices })
         await dispatch(asyncSetEventsThunk({ id: user.uid })).finally(() => setLoading(false))
-        console.log('Service selection removed successfully!')
       } catch (error) {
         console.error('Failed to remove service selection: ', error)
       }

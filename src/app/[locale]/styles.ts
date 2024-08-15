@@ -70,6 +70,12 @@ export default tss.withName('MainPage').create({
       display: 'block',
     },
   },
+  headerActions: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 15,
+    marginTop: 20,
+  },
   content: {
     maxWidth: 540,
     display: 'flex',
@@ -120,7 +126,6 @@ export const StartButton = styled(Button)({
   backgroundColor: PinkBrownBase,
   color: 'white',
   maxWidth: 'fit-content',
-  marginTop: 20,
 
   '&:hover': {
     backgroundColor: PinkBrownDarken16,

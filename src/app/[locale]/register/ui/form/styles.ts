@@ -49,10 +49,6 @@ export default tss.withName('Register').create({
     flex: 1,
     alignSelf: 'center',
     padding: '0 10px',
-    backgroundImage: `url('/register/background.png')`,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
     height: '100%',
     display: 'flex',
 
@@ -66,16 +62,12 @@ export default tss.withName('Register').create({
     maxWidth: '100%',
     minWidth: 300,
     width: '100%',
-    backgroundColor: 'rgba(0, 0, 0, 0.69)',
     padding: 25,
+    backgroundColor: White,
     borderRadius: 10,
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
     margin: '20px auto',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      backgroundColor: White,
       padding: '0px',
       borderRadius: '0px',
       margin: 'auto',
@@ -85,11 +77,10 @@ export default tss.withName('Register').create({
   formTitle: {
     ...FontBody2,
     marginBottom: 25,
-    color: White,
+    color: Black,
     display: 'none',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      color: Black,
       display: 'block',
     },
   },
@@ -117,12 +108,9 @@ export default tss.withName('Register').create({
   },
   withEmailText: {
     ...FontBody1,
-    color: White,
-    textAlign: 'center',
+    color: GreyBase,
 
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      color: GreyBase,
-    },
+    textAlign: 'center',
   },
   textField: {
     background: White,
@@ -149,14 +137,10 @@ export default tss.withName('Register').create({
   },
   registerSection: {
     display: 'block',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      display: 'none',
-    },
   },
   registerContent: {
     ...FontBody1,
-    color: White,
+    color: Black,
     marginTop: 10,
   },
   linkRegister: {

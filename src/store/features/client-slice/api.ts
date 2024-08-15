@@ -11,6 +11,7 @@ import {
   where,
 } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
+import axios from 'axios'
 
 export const getFavorites = async (userId: string) => {
   const userFavoritesRef = doc(db, 'favorites', userId)
@@ -38,8 +39,11 @@ export const getFavorites = async (userId: string) => {
 }
 
 export const fetchUserRequests = async (userId: string) => {
-  const q = query(collection(db, 'requests'), where('userId', '==', userId))
-  const querySnapshot = await getDocs(q)
-  const userRequests = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-  return userRequests
+  try {
+    const resp = await axios.get(`/api/requests-me?userId=${userId}`)
+    return resp.data
+  } catch (err) {
+    console.error(err)
+    return []
+  }
 }

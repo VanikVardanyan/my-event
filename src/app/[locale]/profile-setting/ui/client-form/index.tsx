@@ -9,11 +9,13 @@ import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
 import { UploadButton } from '../../styles'
+import { useAuth } from '@/shared/lib/auth-context'
 
 export const ClientForm = () => {
   const { classes } = useStyles()
   const { profile } = useSelector(getProfile)
   const t = useTranslations('ProfileSetting')
+  const { user } = useAuth()
 
   const [avatarPreview, setAvatarPreview] = useState<string | null>(profile?.avatar || null)
 
@@ -27,6 +29,12 @@ export const ClientForm = () => {
       setValue('name', profile?.name)
     }
   }, [])
+
+  useEffect(() => {
+    if (profile === null && user) {
+      setValue('name', user?.displayName || '')
+    }
+  }, [profile, user])
 
   const { errors } = formState
 
@@ -54,6 +62,7 @@ export const ClientForm = () => {
           margin="normal"
           required
           fullWidth
+          InputLabelProps={{ shrink: true }}
           autoCorrect="off"
           {...register('name')}
           label={t('name')}

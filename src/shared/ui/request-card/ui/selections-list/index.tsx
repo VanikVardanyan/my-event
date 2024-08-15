@@ -53,8 +53,6 @@ const ResponsesModal = (props: IResponsesModal) => {
   const t = useTranslations('RequestList')
   const { classes } = useStyles()
 
-  console.log('selections', selections)
-
   const handleUserClick = (userId: string, isInstagram?: boolean) => {
     if (isInstagram) {
       window.open(`https://www.instagram.com/${userId}/`, '_blank')
@@ -64,8 +62,6 @@ const ResponsesModal = (props: IResponsesModal) => {
     router.push(`/user/${userId}`)
   }
   const handleDelete = (id: string) => {
-    console.log('delete', id)
-    console.log(selections)
     const newSelections = selections.filter((selection) => selection.id !== id)
     removeSelection(serviceId, newSelections)
   }

@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { IconButton, Menu, MenuItem } from '@mui/material'
 import { tss } from 'tss-react/mui'
 import { Languages } from '../../types/common'
+import { EngFlagIcon, HyFlagIcon, RusFlagIcon } from '../../icons'
 
 const useStyles = tss.create({
   switchButton: {
@@ -15,6 +16,11 @@ const useStyles = tss.create({
     height: 40,
     border: '1px solid white',
     borderRadius: 4,
+  },
+  lngItem: {
+    padding: 0,
+    // maxHeight: 30,
+    minHeight: 'inherit',
   },
 })
 
@@ -86,19 +92,34 @@ export const SwitchLanguage = React.memo(() => {
         }}
         sx={{
           top: '10px',
+          '& ul': {
+            padding: '5px',
+          },
         }}
       >
-        <MenuItem onClick={createHandleMenuClick(Languages.RU)} disabled={locale === Languages.RU}>
-          {/* {t(Languages.RU)} */}
-          RU
+        <MenuItem
+          onClick={createHandleMenuClick(Languages.RU)}
+          disabled={locale === Languages.RU}
+          className={classes.lngItem}
+        >
+          {/* <Image src={`/flag-${Languages.RU}.png`} alt="flag" width={30} height={30} /> */}
+          <RusFlagIcon style={{ width: 30, height: 30 }} />
         </MenuItem>
-        <MenuItem onClick={createHandleMenuClick(Languages.EN)} disabled={locale === Languages.EN}>
-          {/* {t(Languages.EN)} */}
-          EN
+        <MenuItem
+          onClick={createHandleMenuClick(Languages.EN)}
+          disabled={locale === Languages.EN}
+          className={classes.lngItem}
+        >
+          {/* <Image src={`/flag-${Languages.EN}.png`} alt="flag" width={30} height={30} /> */}
+          <EngFlagIcon />
         </MenuItem>
-        <MenuItem onClick={createHandleMenuClick(Languages.HY)} disabled={locale === Languages.HY}>
-          {/* {t('am')} */}
-          HY
+        <MenuItem
+          onClick={createHandleMenuClick(Languages.HY)}
+          disabled={locale === Languages.HY}
+          className={classes.lngItem}
+        >
+          {/* <Image src={`/flag-${Languages.HY}.png`} alt="flag" width={30} height={30} /> */}
+          <HyFlagIcon />
         </MenuItem>
       </Menu>
     </div>
