@@ -14,7 +14,8 @@
         "dancers_entertainers_description": "Dancers and entertainers for guest entertainment. Bright and memorable performances.",
         "car_rental_description": "Car rental for various events. Wide selection of cars for any taste and budget.",
         "restaurant_services_description": "Restaurant services for your event. High-class service and exquisite dishes.",
-        "cake_services_description": "Custom cake making for any event. Unique design and excellent taste."
+        "cake_services_description": "Custom cake making for any event. Unique design and excellent taste.",
+        "find_professionals": "Find an imaginative and trusted partner."
     },
     "Shared": {
         "current_list_is_empty": "At the moment, this list is still empty",
@@ -98,7 +99,8 @@
         "todo": "Not searching",
         "status": "Status",
         "add_in_event": "Add to event",
-        "dont_have_created_events": "You have not created any events yet"
+        "dont_have_created_events": "You have not created any events yet",
+        "created_events": "Created Events"
     },
     "EventTypes": {
         "wedding": "Wedding",

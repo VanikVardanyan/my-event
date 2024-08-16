@@ -1,4 +1,5 @@
 import {
+  Black,
   DarkBlueBase,
   DarkBlueDarken4,
   DarkBlueLighten30,
@@ -235,7 +236,7 @@ export default tss.withName('ProfileHeader').create({
 })
 
 export const EditButton = styled(Button)({
-  backgroundColor: PinkBrownBase,
+  backgroundColor: Black,
   color: 'white',
 
   '&:hover': {
@@ -253,7 +254,7 @@ export const EditDatesBtn = styled(Button)({
 })
 
 export const AddRequestButton = styled(Button)({
-  backgroundColor: DarkBlueLighten30,
+  backgroundColor: Black,
   color: 'white',
 
   '&:hover': {

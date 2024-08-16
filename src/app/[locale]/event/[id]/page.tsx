@@ -118,7 +118,7 @@ const EventPage = () => {
   return (
     <Container>
       <div className={classes.form}>
-        <Typography id="modal-modal-title" variant="h6" component="h2" mb={2}>
+        <Typography id="modal-modal-title" variant="h4" component="h4" mb={2}>
           {t('event_description')}
         </Typography>
         <div className={classes.formSection}>
@@ -135,7 +135,7 @@ const EventPage = () => {
             <div className={classes.editableValue}>{cityTranslate(data?.city)}</div>
           </div>
           <div className={classes.editableWrapper}>
-            <div className={classes.editableTitle}>date:</div>
+            <div className={classes.editableTitle}>{t('date')}:</div>
             <div className={classes.editableValue}>{data?.date}</div>
           </div>
           <div className={classes.editableWrapper}>
@@ -146,10 +146,12 @@ const EventPage = () => {
             <div className={classes.editableTitle}>{t('person_quantity')}:</div>
             <div className={classes.editableValue}>{data?.personQuantity}</div>
           </div>
-          <div className={classes.editableWrapper}>
-            <div className={classes.editableTitle}>{t('description')}:</div>
-            <div className={classes.editableValue}>{data?.other}</div>
-          </div>
+          {data?.other && (
+            <div className={classes.editableWrapper}>
+              <div className={classes.editableTitle}>{t('description')}:</div>
+              <div className={classes.editableValue}>{data.other}</div>
+            </div>
+          )}
           <div>
             <h4 className={classes.allServices}>{t('all_services')}</h4>
           </div>

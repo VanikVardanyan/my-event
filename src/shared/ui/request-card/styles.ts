@@ -1,5 +1,6 @@
 import { Button, styled } from '@mui/material'
 import {
+  Black,
   DarkBlueDarken4,
   DarkBlueLighten30,
   GreyBase,
@@ -80,7 +81,7 @@ export default tss.withName('RequestCard').create({
 })
 
 export const MoreButton = styled(Button)({
-  backgroundColor: DarkBlueLighten30,
+  backgroundColor: Black,
   color: 'white',
 
   '&:hover': {
