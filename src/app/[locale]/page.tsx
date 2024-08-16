@@ -7,17 +7,19 @@ import { UserType } from '../../shared/types/user.types'
 import { ServiceCard } from '../../shared/ui/service-card'
 import { useRef } from 'react'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
-import { IconButton } from '@mui/material'
+import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { getProfile } from '../../store/selectors'
 import Slider from 'react-slick'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
-import { serviceListMock } from '../../shared/utils/mainList'
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { questions, serviceListMock, workSteps } from '../../shared/utils/main-helper'
 import cn from 'classnames'
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import { WorkCard } from '../../shared/ui/home-work-card'
+import { SlateGreyBase } from '../../shared/consts/colors'
 
 interface ArrowProps {
   className?: string
@@ -28,7 +30,7 @@ interface ArrowProps {
 const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
   return (
     <div className={className} onClick={onClick}>
-      <KeyboardArrowRightIcon style={{ color: 'white' }} />
+      <ArrowForwardIosIcon style={{ color: SlateGreyBase }} />
     </div>
   )
 }
@@ -36,7 +38,7 @@ const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
 const PrevArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
   return (
     <div className={className} onClick={onClick}>
-      <KeyboardArrowLeftIcon style={{ color: 'white' }} />
+      <ArrowBackIosNewIcon style={{ color: SlateGreyBase }} />
     </div>
   )
 }
@@ -88,8 +90,8 @@ export default function Home() {
     slidesToShow: 3,
     slidesToScroll: 3,
     initialSlide: 0,
-    nextArrow: <NextArrow className={classes.nextArrow} />,
-    prevArrow: <PrevArrow className={classes.nextArrow} />,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
     responsive: [
       {
         breakpoint: 2000,
@@ -150,12 +152,13 @@ export default function Home() {
         </div>
         <div className={classes.layoutImage} />
       </div>
-      <Container>
-        <div className={classes.titleWrapper}>
-          <div className={classes.titleBorder} ref={categoryRef} />
-          <h2 className={classes.categories}>{t('categories')}</h2>
-          <div className={classes.subTitle}>{t('find_professionals')}</div>
-        </div>
+      <div className={classes.titleWrapper}>
+        <div className={classes.titleBorder} ref={categoryRef} />
+        <h2 className={classes.categories}>{t('categories')}</h2>
+        <div className={classes.subTitle}>{t('find_professionals')}</div>
+      </div>
+      <div className={classes.slickWrapper}>
+        {' '}
         <div className={classes.slick}>
           <Slider {...settings}>
             {serviceListMock.map((service) => (
@@ -163,17 +166,38 @@ export default function Home() {
             ))}
           </Slider>
         </div>
+      </div>
+
+      <Container>
         <div className={classes.titleWrapper}>
-          <div className={classes.titleBorder} ref={categoryRef} />
-          <h2 className={classes.categories}>How it works.</h2>
-          <div className={classes.subTitle}>{t('find_professionals')}</div>
+          <div className={classes.titleBorder} />
+          <h2 className={classes.categories}>{t('how_it_works')}</h2>
+          {/* <div className={classes.subTitle}>{t('find_professionals')}</div> */}
         </div>
         {/* <div className={classes.cardsWrapper}>
           {serviceListMock.map((service) => (
             <ServiceCard {...service} key={service.link} />
           ))}
         </div> */}
-        <div>hallo world</div>
+        <div className={classes.howWorkWrapper}>
+          {workSteps.map((step, index) => (
+            <WorkCard key={index} {...step} />
+          ))}
+        </div>
+        <div className={classes.titleWrapper}>
+          <div className={classes.titleBorder} />
+          <h2 className={classes.categories}>{t('have_questions_have_answers')}</h2>
+        </div>
+        <div className={classes.questionsWrapper}>
+          {questions.map((question) => (
+            <Accordion key={question.question} sx={{ borderRadius: '6px' }}>
+              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1-content" id="panel1-header">
+                {t(question.question)}
+              </AccordionSummary>
+              <AccordionDetails>{t(question.answer)}</AccordionDetails>
+            </Accordion>
+          ))}
+        </div>
       </Container>
     </div>
   )

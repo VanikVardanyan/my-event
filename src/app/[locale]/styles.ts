@@ -122,7 +122,7 @@ export default tss.withName('MainPage').create({
     background: TextGreyBase,
     display: 'flex',
     justifyContent: 'center',
-    margin: 'auto',
+    margin: '0 auto 5px',
   },
   cardsWrapper: {
     display: 'grid',
@@ -138,54 +138,79 @@ export default tss.withName('MainPage').create({
       gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     },
   },
+  slickWrapper: {
+    padding: '24px 12px',
+    background: '#f7f9fa',
+  },
   slick: {
-    maxWidth: 1218,
+    maxWidth: 1440,
     margin: 'auto',
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      padding: '24px 22px 0',
+    },
 
     '& .slick-slide': {
       padding: 5,
     },
     '& .slick-list': {
       margin: '0 5px',
-      // boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     },
     '& .slick-prev': {
-      left: '-3px',
-      top: '38%',
+      left: '-12px',
+      top: '34%',
       zIndex: 100,
-      width: 30,
-      height: 30,
-      background: 'rgba(0, 0, 0, 0.8)',
       borderRadius: '50%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+
+      [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+        right: '-15px',
+      },
 
       '&:before': {
         display: 'none',
       },
     },
     '& .slick-next': {
-      right: '-3px',
-      top: '38%',
+      right: '-12px',
+      top: '34%',
       zIndex: 100,
-      width: 30,
-      height: 30,
-      background: 'rgba(0, 0, 0, 0.8)',
       borderRadius: '50%',
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+
+      [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+        right: '-15px',
+      },
 
       '&:before': {
         display: 'none',
       },
     },
   },
-  nextArrow: {
-    width: 40,
-    height: 40,
-    background: 'red',
+  howWorkWrapper: {
+    maxWidth: 1240,
+    margin: 'auto',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 50,
+    flexDirection: 'column',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+    },
+  },
+  questionsWrapper: {
+    maxWidth: 1240,
+    margin: 'auto',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
   },
 })
 

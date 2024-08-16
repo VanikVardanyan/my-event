@@ -12,6 +12,7 @@ import { ToastContainer } from '@/shared/ui/toaster-container'
 import Scroll from '@/shared/ui/scroll'
 import Head from 'next/head'
 import { GoogleAnalytics } from '@next/third-parties/google'
+// import { Footer } from '../../shared/ui/footer'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -52,6 +53,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
                     {children}
                     {/* </LayoutContainer> */}
                   </LayoutRoot>
+                  {/* <Footer /> */}
                   <ToastContainer />
                 </NextAppDirEmotionCacheProvider>
               </AuthProvider>
