@@ -1,13 +1,21 @@
-import { TextGreyBase } from '@/shared/consts/colors'
-import { FontBody1 } from '@/shared/consts/fontStyles'
+import { TextGreyBase, TextSlateGreyBase } from '@/shared/consts/colors'
+import { FontBody1, FontBody2, FontH3, FontH4 } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
+import { BreakPoints } from '../../../../../shared/consts/common'
 
 export default tss.withName('UserInfo').create({
-  root: {},
+  root: {
+    width: '100%',
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    gap: '20px 15px',
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      gridTemplateColumns: 'auto 1fr',
+    },
+  },
   avatarSection: {
     display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'flex-start',
     flexDirection: 'column',
     gap: 10,
     width: '100%',
@@ -17,9 +25,14 @@ export default tss.withName('UserInfo').create({
   avatar: {
     borderRadius: '50%',
     objectFit: 'cover',
+    margin: '0 auto',
+  },
+  title: {
+    ...FontH3,
+    color: TextSlateGreyBase,
   },
   name: {
-    ...FontBody1,
+    ...FontH4,
     color: TextGreyBase,
   },
   requestCards: {

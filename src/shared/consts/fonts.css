@@ -1,20 +1,7 @@
 @font-face {
   font-family: 'Libre Baskerville';
   src:
-   url('./font/LibreBaskerville-Bold.ttf') format('truetype'),
-   url('./font/LibreBaskerville-Italic.ttf') format('truetype'),
-   url('./font/LibreBaskerville-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Armenia';
-  src:
-    url('./font/GHEAGpalatBld.otf') format('opentype'),
-    url('./font/GHEAGrapalatBlit.otf') format('truetype'),
-    url('./font/GHEAGrapalatRit.otf') format('truetype'),
-    url('./font/GHEAGrpalatReg.otf') format('truetype');
+   url('./font/GothamMedium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -23,20 +10,14 @@
   font-family: 'ArmeniaSans';
   src:
   url('./font/FreeSans.ttf') format('truetype');
-  /* url('./font/FreeSansBold.ttf') format('truetype'), */
-  /* url('./font/FreeSansBoldOblique.ttf') format('truetype'); */
-  /* url('./font/FreeSansBoldOblique.ttf') format('truetype'), */
-  /* url('./font/Amar.ttf') format('truetype'); */
-  
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'ArmeniaTassel';
+  font-family: 'RussianSans';
   src:
-  url('./font/Vrdznagir.otf') format('opentype');
-  
+  url('./font/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }

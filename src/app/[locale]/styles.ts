@@ -22,8 +22,15 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import { DarkBlueBase, DarkBlueDarken16, PinkBrownBase, PinkBrownDarken16 } from '@/shared/consts/colors'
-import { FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
+import {
+  DarkBlueBase,
+  DarkBlueDarken16,
+  PinkBrownBase,
+  PinkBrownDarken16,
+  PurpleBase,
+  TextGreyBase,
+} from '@/shared/consts/colors'
+import { FontBody1, FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('MainPage').create({
@@ -32,10 +39,9 @@ export default tss.withName('MainPage').create({
     width: '100%',
     objectFit: 'cover',
   },
-  caterories: {
+  categories: {
     ...FontH3,
-    color: DarkBlueBase,
-    marginBottom: 20,
+    color: TextGreyBase,
   },
   root: {
     backgroundColor: DarkBlueBase,
@@ -45,7 +51,6 @@ export default tss.withName('MainPage').create({
     backgroundRepeat: 'no-repeat',
     marginBottom: 40,
     gap: 40,
-    // height: 350,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -60,10 +65,11 @@ export default tss.withName('MainPage').create({
   },
   layoutImage: {
     backgroundImage: 'url(/main/background1.png)',
-    width: 500,
-    height: 500,
+    width: 700,
+    height: 700,
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
     display: 'none',
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
@@ -84,15 +90,8 @@ export default tss.withName('MainPage').create({
     marginTop: 0,
     marginLeft: 0,
     borderRadius: 10,
-    // boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
     padding: 10,
     textAlign: 'left',
-
-    // [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-    //   marginTop: 100,
-    //   marginLeft: 50,
-    //   textAlign: 'left',
-    // },
   },
   title: {
     ...FontH3,
@@ -105,6 +104,25 @@ export default tss.withName('MainPage').create({
   description: {
     ...FontBody2,
     color: '#EEE9DB',
+  },
+  titleWrapper: {
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+    marginBottom: 20,
+  },
+  subTitle: {
+    ...FontBody2,
+    color: TextGreyBase,
+  },
+  titleBorder: {
+    width: 34,
+    height: 3,
+    background: TextGreyBase,
+    display: 'flex',
+    justifyContent: 'center',
+    margin: 'auto',
   },
   cardsWrapper: {
     display: 'grid',
@@ -119,6 +137,55 @@ export default tss.withName('MainPage').create({
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
       gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
     },
+  },
+  slick: {
+    maxWidth: 1218,
+    margin: 'auto',
+
+    '& .slick-slide': {
+      padding: 5,
+    },
+    '& .slick-list': {
+      margin: '0 5px',
+      // boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    },
+    '& .slick-prev': {
+      left: '-3px',
+      top: '38%',
+      zIndex: 100,
+      width: 30,
+      height: 30,
+      background: 'rgba(0, 0, 0, 0.8)',
+      borderRadius: '50%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+
+      '&:before': {
+        display: 'none',
+      },
+    },
+    '& .slick-next': {
+      right: '-3px',
+      top: '38%',
+      zIndex: 100,
+      width: 30,
+      height: 30,
+      background: 'rgba(0, 0, 0, 0.8)',
+      borderRadius: '50%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+
+      '&:before': {
+        display: 'none',
+      },
+    },
+  },
+  nextArrow: {
+    width: 40,
+    height: 40,
+    background: 'red',
   },
 })
 

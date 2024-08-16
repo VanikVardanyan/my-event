@@ -3,90 +3,43 @@ import useStyles, { Container, StartButton } from './styles'
 import { Link, useRouter } from '@/navigation'
 import { Routes } from '../../shared/routes'
 import { useTranslations } from 'next-intl'
-import { Professions, UserType } from '../../shared/types/user.types'
+import { UserType } from '../../shared/types/user.types'
 import { ServiceCard } from '../../shared/ui/service-card'
 import { useRef } from 'react'
-import { useAuth } from '../../shared/lib/auth-context'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
 import { IconButton } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { getProfile } from '../../store/selectors'
+import Slider from 'react-slick'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft'
+import { serviceListMock } from '../../shared/utils/mainList'
+import cn from 'classnames'
 
-interface IService {
-  name: Professions
-  description: string
-  image: string
-  link: Routes
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+
+interface ArrowProps {
+  className?: string
+  style?: React.CSSProperties
+  onClick?: () => void
 }
 
-const serviceListMock: IService[] = [
-  {
-    name: Professions.Showman,
-    description: 'showman_description',
-    image: '/main/showman.jpg',
-    link: Routes.Showman,
-  },
-  {
-    name: Professions.Photographers,
-    description: 'photographers_description',
-    image: '/main/photographer.jpg',
-    link: Routes.Photographer,
-  },
-  {
-    name: Professions.Musicians,
-    description: 'musicians_description',
-    image: '/main/musician.jpg',
-    link: Routes.Musicians,
-  },
-  {
-    name: Professions.Djs,
-    description: 'djs_description',
-    image: '/main/dj.jpg',
-    link: Routes.Dj,
-  },
-  {
-    name: Professions.Restaurants,
-    description: 'restaurant_services_description',
-    image: '/main/restaurant.jpg',
-    link: Routes.Restaurants,
-  },
-  {
-    name: Professions.CostumeRental,
-    description: 'costume_rental_description',
-    image: '/main/dress.jpg',
-    link: Routes.CostumeRental,
-  },
-  {
-    name: Professions.EquipmentRental,
-    description: 'equipment_rental_description',
-    image: '/main/equipment.jpg',
-    link: Routes.EquipmentRental,
-  },
-  {
-    name: Professions.floristsDecorators,
-    description: 'florists_decorators_description',
-    image: '/main/florist.jpg',
-    link: Routes.FloristsDecorators,
-  },
-  {
-    name: Professions.DancersEntertainers,
-    description: 'dancers_entertainers_description',
-    image: '/main/dance.jpg',
-    link: Routes.DancersEntertainers,
-  },
-  {
-    name: Professions.CarsRental,
-    description: 'car_rental_description',
-    image: '/main/car.jpg',
-    link: Routes.CarsRental,
-  },
-  {
-    name: Professions.Cake,
-    description: 'cake_services_description',
-    image: '/main/cakes.jpg',
-    link: Routes.Cakes,
-  },
-]
+const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
+  return (
+    <div className={className} onClick={onClick}>
+      <KeyboardArrowRightIcon style={{ color: 'white' }} />
+    </div>
+  )
+}
+
+const PrevArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
+  return (
+    <div className={className} onClick={onClick}>
+      <KeyboardArrowLeftIcon style={{ color: 'white' }} />
+    </div>
+  )
+}
 
 // export const metadata: Metadata = {
 //   title: 'Van Event - Մասնագիտացված հարթակ միջոցառումների համար',
@@ -128,6 +81,56 @@ export default function Home() {
     }
   }
 
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    nextArrow: <NextArrow className={classes.nextArrow} />,
+    prevArrow: <PrevArrow className={classes.nextArrow} />,
+    responsive: [
+      {
+        breakpoint: 2000,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4,
+          infinite: true,
+          dots: false,
+          arrows: true,
+        },
+      },
+      {
+        breakpoint: 1114,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: false,
+          arrows: true,
+        },
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+          arrows: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+        },
+      },
+    ],
+  }
+
   return (
     <div>
       <div className={classes.root}>
@@ -148,14 +151,29 @@ export default function Home() {
         <div className={classes.layoutImage} />
       </div>
       <Container>
-        <h2 className={classes.caterories} ref={categoryRef}>
-          {t('categories')}
-        </h2>
-        <div className={classes.cardsWrapper}>
+        <div className={classes.titleWrapper}>
+          <div className={classes.titleBorder} ref={categoryRef} />
+          <h2 className={classes.categories}>{t('categories')}</h2>
+          <div className={classes.subTitle}>{t('find_professionals')}</div>
+        </div>
+        <div className={classes.slick}>
+          <Slider {...settings}>
+            {serviceListMock.map((service) => (
+              <ServiceCard {...service} key={service.link} />
+            ))}
+          </Slider>
+        </div>
+        <div className={classes.titleWrapper}>
+          <div className={classes.titleBorder} ref={categoryRef} />
+          <h2 className={classes.categories}>How it works.</h2>
+          <div className={classes.subTitle}>{t('find_professionals')}</div>
+        </div>
+        {/* <div className={classes.cardsWrapper}>
           {serviceListMock.map((service) => (
             <ServiceCard {...service} key={service.link} />
           ))}
-        </div>
+        </div> */}
+        <div>hallo world</div>
       </Container>
     </div>
   )

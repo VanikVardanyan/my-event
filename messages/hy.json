@@ -14,7 +14,8 @@
         "dancers_entertainers_description": "Պարային ստուդիաներ:",
         "car_rental_description": "Մեքենաների վարձակալություն տարբեր միջոցառումների համար։",
         "restaurant_services_description": "Ռեստորանների լայն ընտրանի:",
-        "cake_services_description": "Պատվերով քաղցրավենիքներ պատրաստող ստուդիաների լայն ընտրանի:"
+        "cake_services_description": "Պատվերով քաղցրավենիքներ պատրաստող ստուդիաների լայն ընտրանի:",
+        "find_professionals": "Գտեք ստեղծագործ և վստահելի գործընկեր։"
     },
     "Shared": {
         "current_list_is_empty": "Այժմ այս ցուցակը դատարկ է",
@@ -75,7 +76,7 @@
     },
     "Request": {
         "title": "Վերնագիր",
-        "event_types": "Միջոցառումների տեսակներ",
+        "event_types": "Միջոցառումի տեսակ",
         "required_field": "Այս դաշտը պարտադիր է",
         "city": "Քաղաք",
         "location": "Վայրը",
@@ -98,7 +99,8 @@
         "todo": "չեմ որոնում",
         "status": "Կարգավիճակ",
         "add_in_event": "Ավելացնել միջոցառում",
-        "dont_have_created_events": "Դուք դեռ չեք ստեղծել միջոցառումներ"
+        "dont_have_created_events": "Դուք դեռ չեք ստեղծել միջոցառումներ",
+        "created_events": "Ստեղծված միջոցառումներ"
     },
     "EventTypes": {
         "wedding": "Հարսանիք",
@@ -208,7 +210,7 @@
         "city": "Քաղաք",
         "description": "Լրացուցիչ",
         "more_info": "Ավելին",
-        "event_types": "Միջոցառումների տեսակներ",
+        "event_types": "Միջոցառումի տեսակ",
         "event_ready_percent": "Միջոցառումը պատրաստ է {percent} %",
         "event_edit": "խմբագրում",
         "no_selections": "չկան"

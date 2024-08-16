@@ -42,8 +42,9 @@ export const UserInfo = () => {
   if (loading) return <LoadingOverlay loading />
 
   return (
-    <div>
+    <div className={classes.root}>
       <div className={classes.avatarSection}>
+        <h4 className={classes.name}>{profile?.name}</h4>
         <Image
           src={profile?.avatar || '/default.jpg'}
           alt="avatar"
@@ -51,11 +52,17 @@ export const UserInfo = () => {
           height={150}
           className={classes.avatar}
         />
-        <EditButton variant="contained" endIcon={<SettingsIcon />} href={Routes.ProfileSetting} LinkComponent={Link}>
+        <EditButton
+          variant="contained"
+          endIcon={<SettingsIcon />}
+          size="small"
+          href={Routes.ProfileSetting}
+          LinkComponent={Link}
+        >
           {t('edit_profile')}
         </EditButton>
-        <div className={classes.name}>{profile?.name}</div>
         <AddRequestButton
+          size="small"
           variant="contained"
           endIcon={<AddCircleOutlineIcon />}
           href={Routes.CreateEvent}
@@ -65,8 +72,9 @@ export const UserInfo = () => {
         </AddRequestButton>
       </div>
       <div className={classes.requestCards}>
+        <h3 className={classes.title}>{requestT('created_events')}</h3>
         {!loading && events.length === 0 && (
-          <Typography align="center" component={'h1'}>
+          <Typography align="left" component={'h1'}>
             {requestT('empty_list')}
           </Typography>
         )}

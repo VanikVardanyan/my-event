@@ -1,6 +1,7 @@
 import { Button, styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
 import {
+  Black,
   DarkBlueBase,
   DarkBlueDarken4,
   DarkBlueLighten30,
@@ -25,7 +26,7 @@ export default tss.withName('create-event').create({
   },
   allServices: {
     ...FontH4,
-    color: DarkBlueBase,
+    color: Black,
   },
   tableContainer: {
     overflowX: 'auto',
@@ -118,10 +119,10 @@ export default tss.withName('create-event').create({
   },
   editableTitle: {
     ...FontBody1,
-    color: PinkBrownBase,
+    color: Black,
   },
   editableValue: {
-    ...FontBody1,
+    ...FontBody2,
     color: DarkBlueBase,
   },
   firstService: {
