@@ -153,6 +153,16 @@ export default function Home() {
         <div className={classes.layoutImage} />
       </div>
       <div className={classes.titleWrapper}>
+        <div className={classes.titleBorder} />
+        <h2 className={classes.categories}>{t('how_it_works')}</h2>
+        {/* <div className={classes.subTitle}>{t('find_professionals')}</div> */}
+      </div>
+      <div className={classes.howWorkWrapper}>
+        {workSteps.map((step, index) => (
+          <WorkCard key={index} {...step} />
+        ))}
+      </div>
+      <div className={classes.titleWrapper}>
         <div className={classes.titleBorder} ref={categoryRef} />
         <h2 className={classes.categories}>{t('categories')}</h2>
         <div className={classes.subTitle}>{t('find_professionals')}</div>
@@ -169,21 +179,6 @@ export default function Home() {
       </div>
 
       <Container>
-        <div className={classes.titleWrapper}>
-          <div className={classes.titleBorder} />
-          <h2 className={classes.categories}>{t('how_it_works')}</h2>
-          {/* <div className={classes.subTitle}>{t('find_professionals')}</div> */}
-        </div>
-        {/* <div className={classes.cardsWrapper}>
-          {serviceListMock.map((service) => (
-            <ServiceCard {...service} key={service.link} />
-          ))}
-        </div> */}
-        <div className={classes.howWorkWrapper}>
-          {workSteps.map((step, index) => (
-            <WorkCard key={index} {...step} />
-          ))}
-        </div>
         <div className={classes.titleWrapper}>
           <div className={classes.titleBorder} />
           <h2 className={classes.categories}>{t('have_questions_have_answers')}</h2>

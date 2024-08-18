@@ -38,6 +38,7 @@ export const ProviderForm = () => {
     { value: Professions.DancersEntertainers, label: m(Professions.DancersEntertainers) },
     { value: Professions.Cake, label: m(Professions.Cake) },
     { value: Professions.Restaurants, label: m(Professions.Restaurants) },
+    { value: Professions.Show, label: m(Professions.Show) },
   ]
 
   const countryOptions = [
