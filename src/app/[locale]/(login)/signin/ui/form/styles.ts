@@ -108,7 +108,7 @@ export default tss.withName('SignIn').create({
   signInButton: {},
   registerSection: {},
   registerContent: {
-    ...FontBody1,
+    // ...FontBody1,
     color: GreyBase,
     marginTop: 10,
     textAlign: 'center',
@@ -118,7 +118,7 @@ export default tss.withName('SignIn').create({
     },
   },
   linkRegister: {
-    ...FontBody1Accent,
+    // ...FontBody1Accent,
     textDecoration: 'underline',
   },
   title: {

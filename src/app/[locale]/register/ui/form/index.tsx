@@ -153,7 +153,7 @@ const Register = () => {
               <GmailIcon /> {t('sign_up_with_email')}
             </button>
             <div className={classes.registerSection}>
-              <div className={classes.registerContent}>
+              <div className={classes.registerContentForm}>
                 {t('already_have_account')}{' '}
                 <Link href={Routes.Signin} className={classes.linkRegister}>
                   {t('sign_in')}

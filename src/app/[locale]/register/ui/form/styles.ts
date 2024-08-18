@@ -139,7 +139,12 @@ export default tss.withName('Register').create({
     display: 'block',
   },
   registerContent: {
-    ...FontBody1,
+    // ...FontBody1,
+    color: White,
+    marginTop: 10,
+  },
+  registerContentForm: {
+    // ...FontBody1,
     color: Black,
     marginTop: 10,
   },
