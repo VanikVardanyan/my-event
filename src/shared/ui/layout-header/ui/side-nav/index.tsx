@@ -27,6 +27,7 @@ import LocalFloristIcon from '@mui/icons-material/LocalFlorist'
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew'
 import CakeIcon from '@mui/icons-material/Cake'
 import RestaurantIcon from '@mui/icons-material/Restaurant'
+import TheaterComedyIcon from '@mui/icons-material/TheaterComedy'
 
 export const SideNav = (props: ISideNavProps) => {
   const { profile } = useSelector(getProfile)
@@ -96,6 +97,11 @@ export const SideNav = (props: ISideNavProps) => {
       title: t('cake'),
       url: Routes.Cakes,
       icon: <CakeIcon />,
+    },
+    {
+      title: t('show'),
+      url: Routes.Show,
+      icon: <TheaterComedyIcon />,
     },
   ]
 

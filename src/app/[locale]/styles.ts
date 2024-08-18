@@ -57,7 +57,7 @@ export default tss.withName('MainPage').create({
     flexDirection: 'column-reverse',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      height: 600,
+      height: 630,
       gap: 80,
 
       flexDirection: 'row',

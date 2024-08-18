@@ -6,6 +6,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import AssignmentIcon from '@mui/icons-material/Assignment'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { PurpleBase } from '../consts/colors'
 interface IService {
   name: Professions
   description: string
@@ -80,28 +81,34 @@ export const serviceListMock: IService[] = [
     image: '/main/cakes.jpg',
     link: Routes.Cakes,
   },
+  {
+    name: Professions.Show,
+    description: 'show_service_description',
+    image: '/main/show.jpeg',
+    link: Routes.Cakes,
+  },
 ]
 
 export const workSteps = [
   {
     title: 'step1_title',
     description: 'step1_description',
-    icon: <EventAvailableIcon style={{ width: 60, height: 60 }} color="info" />,
+    icon: <EventAvailableIcon style={{ width: 60, height: 60 }} />,
   },
   {
     title: 'step3_title',
     description: 'step3_description',
-    icon: <ManageAccountsIcon style={{ width: 60, height: 60 }} color="info" />,
+    icon: <ManageAccountsIcon style={{ width: 60, height: 60 }} />,
   },
   {
     title: 'step2_title',
     description: 'step2_description',
-    icon: <SearchIcon style={{ width: 60, height: 60 }} color="info" />,
+    icon: <SearchIcon style={{ width: 60, height: 60 }} />,
   },
   {
     title: 'step4_title',
     description: 'step4_description',
-    icon: <FavoriteBorderIcon style={{ width: 60, height: 60 }} color="info" />,
+    icon: <FavoriteBorderIcon style={{ width: 60, height: 60 }} />,
   },
 ]
 

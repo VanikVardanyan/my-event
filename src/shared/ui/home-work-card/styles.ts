@@ -1,6 +1,6 @@
 import { tss } from 'tss-react/mui'
 import { FontBody2, FontH4 } from '../../consts/fontStyles'
-import { TextGreyBase, TextGreyLighten25 } from '../../consts/colors'
+import { PinkBrownBase, PurpleBase, TextGreyBase, TextGreyLighten25 } from '../../consts/colors'
 
 export default tss.withName('HomeWorkCard').create({
   root: {
@@ -8,6 +8,10 @@ export default tss.withName('HomeWorkCard').create({
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
+
+    '& svg': {
+      fill: PinkBrownBase,
+    },
   },
   title: {
     ...FontH4,

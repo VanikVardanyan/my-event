@@ -2,6 +2,7 @@ export enum Routes {
   home = '/',
   Main = '/main',
   Showman = '/showman',
+  Show = '/show',
   Photographer = '/photographer',
   Dj = '/dj',
   Musicians = '/musicians',

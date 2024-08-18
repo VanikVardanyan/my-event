@@ -15,6 +15,7 @@ export enum Professions {
   DancersEntertainers = 'dancers_entertainers',
   Restaurants = 'restaurants',
   Cake = 'cake',
+  Show = 'show',
 }
 
 export enum Countries {
