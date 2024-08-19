@@ -57,6 +57,11 @@ export default tss.withName('ProviderForm').create({
   selectProfession: {
     zIndex: 100,
   },
+  ckEditor: {
+    '& .ck-content': {
+      minHeight: 120,
+    },
+  },
 })
 
 export const VisuallyHiddenInput = styled('input')({

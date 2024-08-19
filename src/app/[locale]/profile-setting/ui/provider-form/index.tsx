@@ -13,8 +13,109 @@ import { getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
 import { UploadButton } from '../../styles'
 import { useAuth } from '@/shared/lib/auth-context'
+import 'ckeditor5/ckeditor5.css'
+
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import {
+  ClassicEditor,
+  Bold,
+  Essentials,
+  Italic,
+  Mention,
+  Paragraph,
+  Undo,
+  Underline,
+  Strikethrough,
+  Link,
+  List,
+  BlockQuote,
+  Heading,
+  Table,
+} from 'ckeditor5'
+
+const config = {
+  width: 400,
+  toolbar: {
+    items: [
+      'heading',
+      'paragraph',
+      'undo',
+      'redo',
+      '|',
+      'bold',
+      'italic',
+      'underline',
+      'strikethrough',
+      '|',
+      'link',
+      'bulletedList',
+      'numberedList',
+      '|',
+      'blockQuote',
+    ],
+  },
+  plugins: [
+    Bold,
+    Heading,
+    Essentials,
+    Italic,
+    Mention,
+    Paragraph,
+    Undo,
+    Underline,
+    Strikethrough,
+    Link,
+    List,
+    BlockQuote,
+  ],
+  initialData: '',
+}
 
 const WithStyledFlag = styled(MuiTelInput)``
+
+const editorConfiguration = {
+  toolbar: {
+    items: [
+      'heading',
+      '|',
+      'fontfamily',
+      'fontsize',
+      '|',
+      'alignment',
+      '|',
+      'fontColor',
+      'fontBackgroundColor',
+      '|',
+      'bold',
+      'italic',
+      'strikethrough',
+      'underline',
+      'subscript',
+      'superscript',
+      '|',
+      'link',
+      '|',
+      'outdent',
+      'indent',
+      '|',
+      'bulletedList',
+      'numberedList',
+      'todoList',
+      '|',
+      'code',
+      'codeBlock',
+      '|',
+      'insertTable',
+      '|',
+      'imageUpload',
+      'blockQuote',
+      '|',
+      'undo',
+      'redo',
+    ],
+    shouldNotGroupWhenFull: true,
+  },
+}
 
 export const ProviderForm = () => {
   const { classes } = useStyles()
@@ -80,11 +181,13 @@ export const ProviderForm = () => {
 
   const professionWatcher = watch('profession')
   const countryWatcher = watch('country')
+  const descriptionValue = watch('description')
 
   const { errors } = formState
 
   const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
+
     if (file) {
       setAvatarPreview(URL.createObjectURL(file))
       setValue('avatar', file)
@@ -112,6 +215,8 @@ export const ProviderForm = () => {
   }
 
   const phone = watch('phone')
+
+  console.log(register('description'))
 
   return (
     <div className={classes.root}>
@@ -195,7 +300,7 @@ export const ProviderForm = () => {
         />
         <FormHelperText error>{errors?.profession?.message as string}</FormHelperText>
       </div>
-      <TextField
+      {/* <TextField
         fullWidth
         autoCorrect="off"
         {...register('description')}
@@ -205,7 +310,21 @@ export const ProviderForm = () => {
         autoComplete="off"
         rows={4}
         multiline
-      />
+      /> */}
+      <div className={classes.ckEditor}>
+        <FormHelperText>{t('describe_yourself')}</FormHelperText>
+        <CKEditor
+          editor={ClassicEditor}
+          config={config}
+          data={descriptionValue}
+          onChange={(event, editor) => {
+            const data = editor.getData()
+            // Устанавливаем значение в форму
+            setValue('description', data)
+          }}
+        />
+      </div>
+
       <div className={classes.network}>
         <TextField
           fullWidth

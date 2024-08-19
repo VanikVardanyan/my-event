@@ -20,7 +20,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import StorefrontIcon from '@mui/icons-material/Storefront'
 import CampaignIcon from '@mui/icons-material/Campaign'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-// import ListAltIcon from '@mui/icons-material/ListAlt'
+import ListAltIcon from '@mui/icons-material/ListAlt'
 // import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import LocalFloristIcon from '@mui/icons-material/LocalFlorist'
@@ -123,7 +123,7 @@ export const SideNav = (props: ISideNavProps) => {
           </Link>
         )}
 
-        {/* {user && profile?.role === UserType.PROVIDER && (
+        {user && profile?.role === UserType.PROVIDER && (
           <Link
             href={Routes.RequestList}
             className={cn(classes.link, { [classes.linkActive]: pathname == Routes.RequestList })}
@@ -132,7 +132,8 @@ export const SideNav = (props: ISideNavProps) => {
             <ListAltIcon />
             {t('request_list')}
           </Link>
-        )} */}
+        )}
+
         {initialLinks.map((item) => {
           return (
             <Link

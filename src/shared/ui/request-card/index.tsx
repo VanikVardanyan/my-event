@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import useStyles, { MoreButton } from './styles'
+import useStyles, { MoreButton, RespondButton } from './styles'
 import { Box, Button, Card } from '@mui/material'
 import { useAuth } from '../../lib/auth-context'
 import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
@@ -36,8 +36,11 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
   const btnRef = useRef(null)
 
   const t = useTranslations('RequestList')
+  const requestsT = useTranslations('Request')
+
   const cityT = useTranslations('Citys')
   const eventTypesT = useTranslations('EventTypes')
+  const professionsT = useTranslations('Professions')
 
   const [loading, setLoading] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -111,7 +114,54 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
 
   const fullWidth = getDoneServicesPercent(allServices, doneServicesLength)
   const goToDetail = () => {
+    if (!isMe) return
     router.push(`${Routes.Event}/${id}`)
+  }
+
+  if (!isMe) {
+    return (
+      <div className={classes.requestCard}>
+        <h3 className={classes.title}>{title}</h3>
+        <div className={classes.content}>
+          <div className={classes.label}>
+            <span className={classes.infoTitle}> {t('event_types')}: </span>
+            <span className={classes.description}>{eventTypesT(type.toLocaleLowerCase())}</span>
+          </div>
+        </div>
+        <div className={classes.servicesTitle}>{t('services')}</div>
+        <div className={classes.requestCardServices}>
+          {services.map((service, index) => (
+            <div key={index} className={classes.serviceWrapper}>
+              <div className={classes.service}>
+                <div>
+                  <span className={classes.serviceTitle}>{t('service')}:</span> {professionsT(service.service)}
+                </div>
+                <div>
+                  <span className={classes.serviceTitle}>{t('budget')}:</span> {service.amount} AMD
+                </div>
+              </div>
+              <RespondButton size="small">{t('respond')} </RespondButton>
+            </div>
+          ))}
+        </div>
+        <div className={classes.requestCardGroup}>
+          <div>
+            <span className={classes.infoTitle}>{t('date')}: </span>
+            <span className={classes.description}>{date}</span>
+          </div>
+          <div>
+            <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}
+            <span className={classes.description}>{personQuantity}</span>
+          </div>
+          {other && (
+            <div className={classes.otherWrapper}>
+              <span className={classes.infoTitle}>{t('description')}: </span>
+              <div className={cn(classes.description, classes.other)}>{other}</div>
+            </div>
+          )}
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -123,22 +173,27 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
             <span className={classes.infoTitle}> {t('event_types')}: </span>
             <span className={classes.description}>{eventTypesT(type.toLocaleLowerCase())}</span>
           </div>
-          {/* <div className={classes.label}>
-          <span className={classes.infoTitle}> {t('city')}: </span>
-          <span className={classes.description}>{cityT(city)}</span>
-        </div> */}
-          {/* <div>
-          <span className={classes.infoTitle}>{t('date')}: </span>
-          <span className={classes.description}>{date}</span>
-        </div> */}
-          {/* <div>
-          <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}
-          <span className={classes.description}>{personQuantity}</span>
-        </div> */}
-          {/* <div>
-          <span className={classes.infoTitle}>{t('location')}: </span>
-          <span className={classes.description}>{location}</span>
-        </div> */}
+          {!isMe && (
+            <>
+              <div className={classes.label}>
+                <span className={classes.infoTitle}> {t('city')}: </span>
+                <span className={classes.description}>{cityT(city)}</span>
+              </div>
+              <div>
+                <span className={classes.infoTitle}>{t('date')}: </span>
+                <span className={classes.description}>{date}</span>
+              </div>
+              <div>
+                <span className={classes.infoTitle}>{t('guests_count')}: </span>{' '}
+                <span className={classes.description}>{personQuantity}</span>
+              </div>
+              <div>
+                <span className={classes.infoTitle}>{t('location')}: </span>
+                <span className={classes.description}>{location}</span>
+              </div>
+            </>
+          )}
+
           {totalBudget && (
             <div>
               <span className={classes.infoTitle}>{t('total_budget')}: </span>
@@ -157,10 +212,12 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
             <div className={cn(classes.description, classes.other)}>{other}</div>
           </div>
         )} */}
-          <div className={classes.percentWrapper}>
-            <div className={classes.percentTitle}>{t('event_ready_percent', { percent: fullWidth })}</div>
-            <ProgressLine fillWidth={fullWidth} />
-          </div>
+          {isMe && (
+            <div className={classes.percentWrapper}>
+              <div className={classes.percentTitle}>{t('event_ready_percent', { percent: fullWidth })}</div>
+              <ProgressLine fillWidth={fullWidth} />
+            </div>
+          )}
         </div>
       </div>
       <div className={classes.actions}>
@@ -189,27 +246,31 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
             {t('respond')}
           </Button>
         )} */}
-        <MoreButton
-          variant="contained"
-          onClick={handleOpenInfoModal}
-          size="small"
-          ref={btnRef}
-          LinkComponent={Link}
-          href={`${Routes.Event}/${id}`}
-        >
-          {t('more_info')}
-        </MoreButton>
-        <MoreButton
-          variant="contained"
-          onClick={handleOpenInfoModal}
-          size="small"
-          ref={btnRef}
-          LinkComponent={Link}
-          href={`${Routes.CreateEvent}/?id=${id}`}
-          startIcon={<EditIcon />}
-        >
-          {t('event_edit')}
-        </MoreButton>
+        {isMe && (
+          <MoreButton
+            variant="contained"
+            onClick={handleOpenInfoModal}
+            size="small"
+            ref={btnRef}
+            LinkComponent={Link}
+            href={`${Routes.Event}/${id}`}
+          >
+            {t('more_info')}
+          </MoreButton>
+        )}
+        {isMe && (
+          <MoreButton
+            variant="contained"
+            onClick={handleOpenInfoModal}
+            size="small"
+            ref={btnRef}
+            LinkComponent={Link}
+            href={`${Routes.CreateEvent}/?id=${id}`}
+            startIcon={<EditIcon />}
+          >
+            {t('event_edit')}
+          </MoreButton>
+        )}
       </div>
 
       {/* <ResponsesModal open={openModal} handleClose={handleCloseModal} responses={responses} />

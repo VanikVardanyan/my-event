@@ -1,7 +1,7 @@
 {
     "Main": {
-        "organize_your_events": "Organize your events easily and quickly!",
-        "organize_your_events_quickly": "On our platform, you will find the best professionals for photography, music, equipment rental, and much more. Register today to offer your services or find the perfect performer for your event.",
+        "organize_your_events": "Welcome to Evneasy.",
+        "organize_your_events_quickly": "Evneasy makes event planning easier. Whether you are organizing a wedding, corporate anniversary, birthday, or any other special event, here you will find everything you need to make that day unforgettable.",
         "start": "Create an event",
         "categories": "Categories",
         "showman_description": "Professional showman creating an unforgettable atmosphere at any event. Experience working with diverse audiences.",
@@ -15,6 +15,7 @@
         "car_rental_description": "Car rental for various events. Wide selection of cars for any taste and budget.",
         "restaurant_services_description": "Restaurant services for your event. High-class service and exquisite dishes.",
         "cake_services_description": "Custom cake making for any event. Unique design and excellent taste.",
+        "show_service_description": "Exciting and captivating performances for your events. Professional artists, amazing shows, and unforgettable experiences.",
         "find_professionals": "Find an imaginative and trusted partner.",
         "how_it_works": "How it works",
         "step1_title": "Create an Event",
@@ -235,13 +236,16 @@
         "event_types": "Event Types",
         "event_ready_percent": "Event ready {percent} %",
         "event_edit": "Edit Event",
-        "no_selections": "No selections"
+        "no_selections": "No selections",
+        "service": "Service",
+        "services": "Services"
     },
     "Menu": {
         "home": "Home",
         "showman": "Showman",
         "photographers": "Photographers",
         "djs": "DJs",
+        "show": "Show Program",
         "musicians": "Musicians",
         "equipment_rental": "Equipment Rental",
         "cars_rental": "Cars Rental",
@@ -264,6 +268,7 @@
     },
     "Professions": {
         "showman": "Showman",
+        "show": "Show Program",
         "photographers": "Photographer",
         "djs": "DJ",
         "musicians": "Musician",

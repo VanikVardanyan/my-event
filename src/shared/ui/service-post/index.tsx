@@ -147,9 +147,11 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
       )}
       {description && (
         <div className={classes.descriptionWrapper}>
-          <div className={cn(classes.description, { [classes.fullText]: readMore })} ref={selectWrapperRef}>
-            {description}
-          </div>
+          <div
+            className={cn(classes.description, { [classes.fullText]: readMore })}
+            ref={selectWrapperRef}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
           {isDescriptionScroll && (
             <IconButton
               size="small"
