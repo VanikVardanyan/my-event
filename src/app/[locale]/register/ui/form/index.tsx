@@ -14,6 +14,7 @@ import { useTranslations } from 'next-intl'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import { SignIn } from '../../../../../shared/ui/sign-in'
 
 interface IFormValues {
   email: string
@@ -90,10 +91,11 @@ const Register = () => {
             <div className={classes.title}>“My Event”</div>
             <div className={classes.registerContent}>
               <div className={classes.registerContent}>
-                {t('already_have_account')}{' '}
+                {/* {t('already_have_account')}{' '}
                 <Link href={Routes.Signin} className={classes.linkRegister}>
                   {t('sign_in')}
-                </Link>{' '}
+                </Link>{' '} */}
+                <SignIn withText content={t('already_have_account')} />
               </div>
             </div>
           </div>
@@ -154,10 +156,7 @@ const Register = () => {
             </button>
             <div className={classes.registerSection}>
               <div className={classes.registerContentForm}>
-                {t('already_have_account')}{' '}
-                <Link href={Routes.Signin} className={classes.linkRegister}>
-                  {t('sign_in')}
-                </Link>{' '}
+                <SignIn withText content={t('already_have_account')} />
               </div>
             </div>
           </div>
