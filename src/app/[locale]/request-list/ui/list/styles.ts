@@ -1,5 +1,5 @@
 import { tss } from 'tss-react/mui'
-import { BreakPoints } from '../../../../../shared/consts/common'
+import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('RequestList').create({
   root: {},

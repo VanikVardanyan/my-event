@@ -27,6 +27,7 @@ import { UserType } from '../../types/user.types'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { TextGreyLighten25 } from '../../consts/colors'
 import { clearSlice } from '../../../store/features/client-slice'
+import { SignIn } from '../sign-in'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
@@ -109,20 +110,7 @@ export const LayoutHeader = () => {
       <div className={classes.searchSection}>
         <InputSearch />
         <SwitchLanguage />
-        {!user && (
-          <>
-            {MdUp && (
-              <LoginButton variant="outlined" LinkComponent={Link} href={Routes.Signin} style={{ height: 40 }}>
-                {t('login')}
-              </LoginButton>
-            )}
-            {!MdUp && (
-              <IconButton href={Routes.Signin} LinkComponent={Link} style={{ height: 40 }}>
-                <PersonIcon style={{ fill: 'white' }} />
-              </IconButton>
-            )}
-          </>
-        )}
+        {!user && <SignIn />}
         {user && (
           <>
             <IconButton

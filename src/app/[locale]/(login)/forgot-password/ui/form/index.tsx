@@ -14,6 +14,7 @@ import { useTranslations } from 'next-intl'
 import { Dispatch } from '@/store/store'
 import toast from 'react-hot-toast'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
+import { SignIn } from '../../../../../../shared/ui/sign-in'
 
 interface IFormValues {
   email: string
@@ -74,9 +75,10 @@ const ForgotPassword = () => {
             autoFocus
             className={classes.textField}
           />
-          <Link href={Routes.Signin} className={classes.linkForgot}>
+          {/* <Link href={Routes.Signin} className={classes.linkForgot}>
             {t('sign_in')}
-          </Link>
+          </Link> */}
+          <SignIn withText />
           <SignInButton
             type="submit"
             variant="contained"
