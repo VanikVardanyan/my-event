@@ -13,109 +13,11 @@ import { getProfile } from '@/store/selectors'
 import { useTranslations } from 'next-intl'
 import { UploadButton } from '../../styles'
 import { useAuth } from '@/shared/lib/auth-context'
-import 'ckeditor5/ckeditor5.css'
-
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import {
-  ClassicEditor,
-  Bold,
-  Essentials,
-  Italic,
-  Mention,
-  Paragraph,
-  Undo,
-  Underline,
-  Strikethrough,
-  Link,
-  List,
-  BlockQuote,
-  Heading,
-  Table,
-} from 'ckeditor5'
-
-const config = {
-  width: 400,
-  toolbar: {
-    items: [
-      'heading',
-      'paragraph',
-      'undo',
-      'redo',
-      '|',
-      'bold',
-      'italic',
-      'underline',
-      'strikethrough',
-      '|',
-      'link',
-      'bulletedList',
-      'numberedList',
-      '|',
-      'blockQuote',
-    ],
-  },
-  plugins: [
-    Bold,
-    Heading,
-    Essentials,
-    Italic,
-    Mention,
-    Paragraph,
-    Undo,
-    Underline,
-    Strikethrough,
-    Link,
-    List,
-    BlockQuote,
-  ],
-  initialData: '',
-}
+import dynamic from 'next/dynamic'
 
 const WithStyledFlag = styled(MuiTelInput)``
 
-const editorConfiguration = {
-  toolbar: {
-    items: [
-      'heading',
-      '|',
-      'fontfamily',
-      'fontsize',
-      '|',
-      'alignment',
-      '|',
-      'fontColor',
-      'fontBackgroundColor',
-      '|',
-      'bold',
-      'italic',
-      'strikethrough',
-      'underline',
-      'subscript',
-      'superscript',
-      '|',
-      'link',
-      '|',
-      'outdent',
-      'indent',
-      '|',
-      'bulletedList',
-      'numberedList',
-      'todoList',
-      '|',
-      'code',
-      'codeBlock',
-      '|',
-      'insertTable',
-      '|',
-      'imageUpload',
-      'blockQuote',
-      '|',
-      'undo',
-      'redo',
-    ],
-    shouldNotGroupWhenFull: true,
-  },
-}
+const CustomEditor = dynamic(() => import('@/shared/ui/ck-editor'), { ssr: false })
 
 export const ProviderForm = () => {
   const { classes } = useStyles()
@@ -313,16 +215,7 @@ export const ProviderForm = () => {
       /> */}
       <div className={classes.ckEditor}>
         <FormHelperText>{t('describe_yourself')}</FormHelperText>
-        <CKEditor
-          editor={ClassicEditor}
-          config={config}
-          data={descriptionValue}
-          onChange={(event, editor) => {
-            const data = editor.getData()
-            // Устанавливаем значение в форму
-            setValue('description', data)
-          }}
-        />
+        <CustomEditor descriptionValue={descriptionValue} setValue={setValue} />
       </div>
 
       <div className={classes.network}>
