@@ -1,26 +1,32 @@
 import { useEffect, useState } from 'react'
 import useStyles from './styles'
-import { collection, getDocs } from 'firebase/firestore'
-import { db } from '@/shared/lib/firebaseConfig'
 import { RequestCard } from '@/shared/ui/request-card'
 import { IRequestTypes } from '../../../profile/ui/request-create-modal/types'
 import { useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
+import axios from 'axios'
 
 export const RequestList = () => {
   const { classes } = useStyles()
   const router = useRouter()
 
   useEffect(() => {
-    router.push(Routes.Profile)
+    // router.push(Routes.Profile)
   }, [])
 
   const [requests, setRequests] = useState<(IRequestTypes[] & { responses: any[] }) | []>([])
 
   const fetchRequests = async () => {
-    const querySnapshot = await getDocs(collection(db, 'requests'))
-    const requestsData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    setRequests(requestsData as any)
+    try {
+      const response = await axios.get(`/api/request-list`)
+      const usersList = await response.data
+
+      setRequests(usersList)
+    } catch (error) {
+      console.error('Ошибка при загрузке пользователей:', error)
+    } finally {
+      // setLoading(false)
+    }
   }
 
   useEffect(() => {

@@ -9,6 +9,7 @@ export default tss.withName('RequestList').create({
     gap: 15,
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      display: 'grid',
       gridTemplateColumns: '1fr 1fr',
     },
   },

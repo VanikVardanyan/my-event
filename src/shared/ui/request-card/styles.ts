@@ -1,18 +1,69 @@
 import { Button, styled } from '@mui/material'
 import {
   Black,
+  DarkBlueBase,
   DarkBlueDarken4,
   DarkBlueLighten30,
   GreyBase,
+  PinkBrownBase,
+  PurpleBase,
   TextGreyBase,
   TextGreyLighten25,
   TextGreyLighten39,
 } from '../../consts/colors'
-import { FontH3, FontBody1, FontBody1Accent, FontSubtitle1, FontLandingBody2Accent } from './../../consts/fontStyles'
+import {
+  FontH3,
+  FontBody1,
+  FontBody1Accent,
+  FontSubtitle1,
+  FontLandingBody2Accent,
+  FontBody2,
+} from './../../consts/fontStyles'
 import { tss } from 'tss-react/mui'
 import { BreakPoints } from '../../consts/common'
 
 export default tss.withName('RequestCard').create({
+  requestCard: {
+    padding: 24,
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+    borderRadius: 4,
+  },
+  requestCardServices: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 10,
+    marginBottom: 10,
+    border: `1px solid ${PinkBrownBase}`,
+    borderRadius: 6,
+    padding: 10,
+    width: 'max-content',
+  },
+  serviceWrapper: {
+    // border: `1px solid ${PinkBrownBase}`,
+    // borderRadius: 6,
+    // padding: 10,
+    // width: 'max-content',
+  },
+  service: {
+    ...FontBody1,
+
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+    marginBottom: 5,
+  },
+  serviceTitle: {
+    color: PurpleBase,
+  },
+  requestCardGroup: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 5,
+  },
+  servicesTitle: {
+    ...FontBody2,
+    marginBottom: 5,
+  },
   root: {
     padding: 24,
     width: '100%',
@@ -82,6 +133,15 @@ export default tss.withName('RequestCard').create({
 
 export const MoreButton = styled(Button)({
   backgroundColor: Black,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: DarkBlueDarken4,
+  },
+})
+
+export const RespondButton = styled(Button)({
+  backgroundColor: DarkBlueBase,
   color: 'white',
 
   '&:hover': {
