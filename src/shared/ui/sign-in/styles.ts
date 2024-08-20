@@ -58,11 +58,6 @@ export default tss.withName('SignInModal').create({
     ...FontBody2,
     marginBottom: 25,
     color: Black,
-    display: 'none',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      display: 'block',
-    },
   },
   googleBtn: {
     ...FontBody1Accent,

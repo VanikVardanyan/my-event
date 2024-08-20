@@ -5,14 +5,16 @@ import { IRequestTypes } from '../../../profile/ui/request-create-modal/types'
 import { useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
 import axios from 'axios'
+import { LoadingOverlay } from '../../../../../shared/ui/loading-overlay'
 
 export const RequestList = () => {
   const { classes } = useStyles()
   const router = useRouter()
+  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    // router.push(Routes.Profile)
-  }, [])
+  // useEffect(() => {
+  // router.push(Routes.Profile)
+  // }, [])
 
   const [requests, setRequests] = useState<(IRequestTypes[] & { responses: any[] }) | []>([])
 
@@ -30,8 +32,11 @@ export const RequestList = () => {
   }
 
   useEffect(() => {
-    fetchRequests()
+    setLoading(true)
+    fetchRequests().finally(() => setLoading(false))
   }, [])
+
+  if (loading) return <LoadingOverlay loading={loading} />
 
   return (
     <div className={classes.root}>

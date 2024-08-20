@@ -2,7 +2,7 @@ import { useRef, useState } from 'react'
 import useStyles, { MoreButton, RespondButton } from './styles'
 import { Box, Button, Card } from '@mui/material'
 import { useAuth } from '../../lib/auth-context'
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore'
+import { doc, updateDoc, arrayUnion, getDocs, collection } from 'firebase/firestore'
 import { db } from '../../lib/firebaseConfig'
 
 import EditIcon from '@mui/icons-material/Edit'
@@ -21,6 +21,7 @@ import { Routes } from '../../routes'
 import { ProgressLine } from '../progress-line'
 import { getDoneServicesPercent } from '../../utils/numbers'
 import { ServiceSearchStatus } from '../../../app/[locale]/event/create/types'
+import { LoadingOverlay } from '../loading-overlay'
 
 const formatNumber = (value: string) => {
   return value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
@@ -46,24 +47,67 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
   const [openModal, setOpenModal] = useState(false)
   const [openInfoModal, setOpenInfoModal] = useState(false)
 
+  const hasResponded = (service: any) => {
+    return service.respondents?.some((respondent: any) => respondent.userId === user?.uid)
+  }
+
   const dispatch = Dispatch()
 
-  const handleRespond = async () => {
+  const handleRespond = async (serviceId: string) => {
     setLoading(true)
+    const requests: any = await getDocs(collection(db, 'requests'))
+    const requestsData = requests.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }))
+    const currentServices: any = requestsData.find((item: any) => item.id === id).services
+
     try {
       const requestRef = doc(db, 'requests', id)
+
       if (user) {
+        const updatedServices = currentServices.map((service: any) => {
+          if (service.id === serviceId) {
+            // Проверяем, есть ли уже отклик от текущего пользователя
+            const existingRespondentIndex = service?.respondents?.findIndex(
+              (respondent: any) => respondent.userId === user.uid
+            )
+
+            let updatedRespondents = [...(service.respondents || [])]
+
+            if (existingRespondentIndex !== -1) {
+              // Если отклик существует, обновляем его
+              updatedRespondents[existingRespondentIndex] = {
+                ...updatedRespondents[existingRespondentIndex],
+                userName: profile?.name || user.displayName,
+                userAvatar: profile?.avatar || '',
+                isApprove: false, // Обновляемое поле, если нужно
+              }
+            } else {
+              // Если отклика нет, добавляем новый
+              updatedRespondents.push({
+                userId: user.uid,
+                userName: profile?.name || user.displayName,
+                userAvatar: profile?.avatar || '',
+                isApprove: false,
+              })
+            }
+
+            return {
+              ...service,
+              respondents: updatedRespondents,
+            }
+          }
+          return service
+        })
+
+        // Обновляем документ в Firestore с новым массивом services
         await updateDoc(requestRef, {
-          responses: arrayUnion({
-            userId: user.uid,
-            userName: profile?.name || user.displayName, // имя пользователя или email
-            userAvatar: profile?.avatar || '', // ссылка на аватар пользователя
-          }),
+          services: updatedServices,
         })
       }
+
       if (props.updateAll) {
         props.updateAll()
       }
+
       setLoading(false)
     } catch (error) {
       console.error('Error responding to request:', error)
@@ -113,6 +157,7 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
   const allServices = services.length
 
   const fullWidth = getDoneServicesPercent(allServices, doneServicesLength)
+
   const goToDetail = () => {
     if (!isMe) return
     router.push(`${Routes.Event}/${id}`)
@@ -140,7 +185,9 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
                   <span className={classes.serviceTitle}>{t('budget')}:</span> {service.amount} AMD
                 </div>
               </div>
-              <RespondButton size="small">{t('respond')} </RespondButton>
+              <RespondButton size="small" onClick={() => handleRespond(service.id)} disabled={hasResponded(service)}>
+                {t('respond')}{' '}
+              </RespondButton>
             </div>
           ))}
         </div>
@@ -159,7 +206,13 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
               <div className={cn(classes.description, classes.other)}>{other}</div>
             </div>
           )}
+          <div>
+            <MoreButton variant="contained" onClick={handleOpenInfoModal} size="small">
+              {t('more_info')}
+            </MoreButton>
+          </div>
         </div>
+        <RequestInfoModal open={openInfoModal} handleClose={handleCloseInfoModal} info={props} />
       </div>
     )
   }
@@ -200,18 +253,6 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
               <span className={classes.description}>{formatNumber(totalBudget.toString())} AMD</span>
             </div>
           )}
-          {/* {responses.length > 0 && (
-          <div>
-            <span className={classes.infoTitle}>{t('responses_count')}: </span>
-            <span className={classes.description}>{responses.length}</span>
-          </div>
-        )} */}
-          {/* {other && (
-          <div className={classes.otherWrapper}>
-            <span className={classes.infoTitle}>{t('description')}: </span>
-            <div className={cn(classes.description, classes.other)}>{other}</div>
-          </div>
-        )} */}
           {isMe && (
             <div className={classes.percentWrapper}>
               <div className={classes.percentTitle}>{t('event_ready_percent', { percent: fullWidth })}</div>
@@ -223,11 +264,6 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
       <div className={classes.actions}>
         {isMe && (
           <>
-            {/* {responses.length > 0 && (
-              <Button variant="contained" onClick={handleOpenModal} size="small">
-                {t('view_responses')}
-              </Button>
-            )} */}
             <Button
               type="button"
               variant="contained"
@@ -241,11 +277,6 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
             </Button>
           </>
         )}
-        {/* {!isMe && (
-          <Button variant="contained" color="success" onClick={handleRespond} size="small">
-            {t('respond')}
-          </Button>
-        )} */}
         {isMe && (
           <MoreButton
             variant="contained"
@@ -273,8 +304,7 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
         )}
       </div>
 
-      {/* <ResponsesModal open={openModal} handleClose={handleCloseModal} responses={responses} />
-      <RequestInfoModal open={openInfoModal} handleClose={handleCloseInfoModal} info={props} /> */}
+      {/* <ResponsesModal open={openModal} handleClose={handleCloseModal} responses={responses} /> */}
     </div>
   )
 }
