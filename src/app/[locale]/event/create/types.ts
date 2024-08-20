@@ -1,24 +1,3 @@
-export enum ServiceSearchStatus {
-  Todo = 'todo',
-  Done = 'done',
-  Doing = 'doing',
-}
-
-export interface ISelection {
-  isInstagram?: boolean
-  id: string
-  avatar?: string
-  name: string
-}
-
-export interface IServices {
-  service: string
-  amount: string
-  status: ServiceSearchStatus
-  id: string
-  selections: ISelection[] | []
-}
-
 export interface IRequestTypes {
   title: string
   type: string
@@ -28,4 +7,34 @@ export interface IRequestTypes {
   personQuantity: number
   services: IServices[]
   other?: string
+}
+
+export interface IServices {
+  service: string
+  amount: string
+  status: ServiceSearchStatus
+  id: string
+  selections: ISelection[]
+  respondents: IRespondents[]
+}
+
+export interface ISelection {
+  isInstagram?: boolean
+  id: string
+  avatar?: string
+  name: string
+  userName?: string
+}
+
+export interface IRespondents {
+  userId: string
+  avatar?: string
+  userName: string
+  isApprove: boolean
+}
+
+export enum ServiceSearchStatus {
+  Todo = 'todo',
+  Done = 'done',
+  Doing = 'doing',
 }

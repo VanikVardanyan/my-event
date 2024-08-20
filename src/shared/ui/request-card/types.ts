@@ -7,6 +7,7 @@ interface IServices {
   status: ServiceSearchStatus
   id: string
   selections: ISelection[]
+  respondents: any
 }
 
 export interface IRequestTypes {

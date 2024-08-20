@@ -1,17 +1,4 @@
-import {
-  Modal,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-  Button,
-  Avatar,
-  IconButton,
-  Icon,
-  ListItemButton,
-  ListItemAvatar,
-} from '@mui/material'
+import { Modal, Box, List, ListItem, ListItemText, Typography, Avatar, IconButton, ListItemAvatar } from '@mui/material'
 import { useRouter } from '@/navigation'
 import CloseIcon from '@mui/icons-material/Close'
 import { useTranslations } from 'next-intl'
@@ -81,7 +68,7 @@ const ResponsesModal = (props: IResponsesModal) => {
           {t('responses')}
         </Typography>
         <List>
-          {selections.map((response, index) => (
+          {selections?.map((response, index) => (
             <ListItem key={index} sx={{ borderRadius: 2, paddingLeft: 0 }}>
               <ListItem
                 button
@@ -93,7 +80,7 @@ const ResponsesModal = (props: IResponsesModal) => {
                 </ListItemAvatar>
                 <ListItemText
                   primaryTypographyProps={{ style: { whiteSpace: 'normal' } }}
-                  primary={response.name}
+                  primary={response.name || response.userName}
                   classes={{ root: classes.title }}
                 />
               </ListItem>

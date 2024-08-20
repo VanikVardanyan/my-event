@@ -88,6 +88,18 @@ const CreateEvent = () => {
                 id: yup.string().required(),
                 avatar: yup.string(),
                 name: yup.string().required(),
+                userName: yup.string(),
+              })
+            )
+            .required(),
+          respondents: yup
+            .array()
+            .of(
+              yup.object().shape({
+                userId: yup.string().required(),
+                userName: yup.string().required(),
+                avatar: yup.string(),
+                isApprove: yup.boolean().required(),
               })
             )
             .required(),
@@ -109,7 +121,9 @@ const CreateEvent = () => {
       date: '',
       location: '',
       personQuantity: 0,
-      services: [{ service: '', amount: '', status: ServiceSearchStatus.Todo, id: uniqueId, selections: [] }],
+      services: [
+        { service: '', amount: '', status: ServiceSearchStatus.Todo, id: uniqueId, selections: [], respondents: [] },
+      ],
       other: '',
     },
     resolver: yupResolver(schema),
@@ -405,7 +419,14 @@ const CreateEvent = () => {
               variant="outlined"
               type="button"
               onClick={() =>
-                append({ service: '', amount: '', status: ServiceSearchStatus.Todo, id: uniqueId, selections: [] })
+                append({
+                  service: '',
+                  amount: '',
+                  status: ServiceSearchStatus.Todo,
+                  id: uniqueId,
+                  selections: [],
+                  respondents: [],
+                })
               }
             >
               <AddIcon /> {t('add_service')}

@@ -53,7 +53,6 @@ const RequestInfoModal = (props: IRequestInfoModal) => {
           <CloseIcon />
         </IconButton>
         <div>
-          <h3 className={classes.title}>{p(service)}</h3>
           <div className={classes.content}>
             <div className={classes.label}>
               <div className={classes.infoTitle}> {t('city')}:</div>
@@ -70,10 +69,6 @@ const RequestInfoModal = (props: IRequestInfoModal) => {
             <div>
               <div className={classes.infoTitle}>{t('date')}:</div>
               <div className={classes.description}>{date}</div>
-            </div>
-            <div>
-              <div className={classes.infoTitle}>{t('budget')}:</div>
-              <div className={classes.description}>{amount} AMD</div>
             </div>
           </div>
           {other && (
