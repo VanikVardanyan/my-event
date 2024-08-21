@@ -1,29 +1,34 @@
-import { Icon, IconButton } from '@mui/material'
+import { Icon, IconButton, useMediaQuery, useTheme } from '@mui/material'
 import useStyles, { Textarea } from './styles'
 import SendIcon from '@mui/icons-material/Send'
 import { MessageItem } from '../message-Item'
 import { IMessagesProps } from './types'
-import { useAuth } from '../../../../../shared/lib/auth-context'
+import { useAuth } from '@/shared/lib/auth-context'
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
-import { db } from '../../../../../shared/lib/firebaseConfig'
-import { useEffect, useRef, useState } from 'react'
+import { db } from '@/shared/lib/firebaseConfig'
+import { useEffect, useState } from 'react'
+import RecentActorsIcon from '@mui/icons-material/RecentActors'
 
 export const Message = (props: IMessagesProps) => {
-  const { messages, threadId, fetchUserDetails } = props
+  const { messages, threadId, fetchUserDetails, toggleDrawer } = props
   const { user } = useAuth()
   const [messageText, setMessageText] = useState('')
-
-  const messageSectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     window.scrollTo({
       top: document.body.scrollHeight,
       behavior: 'smooth',
     })
-  }, [messages])
+  }, [])
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      fetchUserDetails()
+    }, 5000)
+
+    return () => clearInterval(intervalId)
+  }, [])
   const { classes } = useStyles()
-
   const changeMessageText = (e: any) => {
     setMessageText(e.target.value)
   }
@@ -45,6 +50,12 @@ export const Message = (props: IMessagesProps) => {
       })
       setMessageText('')
       fetchUserDetails()
+      setTimeout(() => {
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: 'smooth',
+        })
+      }, 1000)
       console.log('Message sent successfully')
     } catch (error) {
       console.error('Error sending message: ', error)
@@ -58,14 +69,22 @@ export const Message = (props: IMessagesProps) => {
     await sendMessage()
   }
 
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
   return (
-    <div className={classes.root} ref={messageSectionRef}>
+    <div className={classes.root}>
       <div className={classes.messageSection}>
         {messages.map((message) => (
           <MessageItem key={message.id} me={message.author_id === user?.uid} message={message.message} />
         ))}
       </div>
       <div className={classes.inputText}>
+        {isMobile && (
+          <IconButton onClick={() => toggleDrawer(true)}>
+            <RecentActorsIcon fontSize="large" />
+          </IconButton>
+        )}
         <Textarea
           aria-label="minimum height"
           minRows={1}
