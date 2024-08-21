@@ -34,6 +34,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
   return (
     <html lang={locale}>
       <Head>
+        <meta name="viewport" content="viewport-fit=cover, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic"
           rel="stylesheet"
