@@ -219,6 +219,7 @@
         "georgia": "Georgia"
     },
     "RequestList": {
+        "send_cover_message": "Send a cover message",
         "all_requests": "All Requests",
         "respond": "Respond",
         "view_responses": "View responses",

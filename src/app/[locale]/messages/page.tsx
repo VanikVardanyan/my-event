@@ -128,6 +128,13 @@ const MessagesPage = () => {
     const thread = threads.find((thread) => thread.participants.includes(threadId))
     setCurrentThread(thread)
     toggleDrawer(false)
+
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth',
+      })
+    }, 500)
   }
 
   if (loading) return <LoadingOverlay loading={loading} />

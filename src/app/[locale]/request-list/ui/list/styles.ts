@@ -10,7 +10,7 @@ export default tss.withName('RequestList').create({
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
+      gridTemplateColumns: '1fr 1fr 1fr',
     },
   },
 })

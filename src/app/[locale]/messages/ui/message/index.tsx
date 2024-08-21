@@ -1,4 +1,4 @@
-import { Icon, IconButton, useMediaQuery, useTheme } from '@mui/material'
+import { IconButton, useMediaQuery, useTheme } from '@mui/material'
 import useStyles, { Textarea } from './styles'
 import SendIcon from '@mui/icons-material/Send'
 import { MessageItem } from '../message-Item'
@@ -8,10 +8,11 @@ import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { useEffect, useState } from 'react'
 import RecentActorsIcon from '@mui/icons-material/RecentActors'
+import { UserType } from '../../../../../shared/types/user.types'
 
 export const Message = (props: IMessagesProps) => {
   const { messages, threadId, fetchUserDetails, toggleDrawer } = props
-  const { user } = useAuth()
+  const { user, role } = useAuth()
   const [messageText, setMessageText] = useState('')
 
   useEffect(() => {
@@ -72,6 +73,14 @@ export const Message = (props: IMessagesProps) => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
+  const isDisabled = () => {
+    if (role === UserType.PROVIDER) {
+      const checkDisabled = props.messages.filter((message) => message.author_id !== user?.uid)
+      return !Boolean(checkDisabled.length)
+    }
+    return
+  }
+
   return (
     <div className={classes.root}>
       <div className={classes.messageSection}>
@@ -92,8 +101,9 @@ export const Message = (props: IMessagesProps) => {
           className={classes.textArea}
           value={messageText}
           onChange={changeMessageText}
+          disabled={isDisabled()}
         />
-        <IconButton onClick={handleSendMessage}>
+        <IconButton onClick={handleSendMessage} disabled={isDisabled()}>
           <SendIcon />
         </IconButton>
       </div>

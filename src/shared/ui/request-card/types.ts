@@ -21,4 +21,5 @@ export interface IRequestTypes {
   title: string
   services: IServices[]
   type: EventTypes
+  userId: string
 }

@@ -38,12 +38,7 @@ export default tss.withName('RequestCard').create({
     padding: 10,
     width: 'max-content',
   },
-  serviceWrapper: {
-    // border: `1px solid ${PinkBrownBase}`,
-    // borderRadius: 6,
-    // padding: 10,
-    // width: 'max-content',
-  },
+  serviceWrapper: {},
   service: {
     ...FontBody1,
 
@@ -132,6 +127,15 @@ export default tss.withName('RequestCard').create({
 })
 
 export const MoreButton = styled(Button)({
+  backgroundColor: Black,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: DarkBlueDarken4,
+  },
+})
+
+export const RespondSendButton = styled(Button)({
   backgroundColor: Black,
   color: 'white',
 
