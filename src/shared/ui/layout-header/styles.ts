@@ -115,6 +115,18 @@ export default tss.withName('LayoutHeader').create({
       color: PinkBrownBase,
     },
   },
+  messengerButton: {
+    width: 40,
+    height: 40,
+    background: 'inherit',
+    border: `1px solid ${White}`,
+    borderRadius: 4,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: White,
+    cursor: 'pointer',
+  },
 })
 
 export const LoginButton = styled(Button)({

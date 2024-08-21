@@ -261,3 +261,12 @@ export const AddRequestButton = styled(Button)({
     backgroundColor: DarkBlueDarken4,
   },
 })
+
+export const MessageButton = styled(Button)({
+  backgroundColor: Black,
+  color: 'white',
+
+  '&:hover': {
+    backgroundColor: DarkBlueDarken4,
+  },
+})

@@ -1,12 +1,12 @@
 'use client'
 import Image from 'next/image'
-import useStyles, { EditButton } from './styles'
+import useStyles, { MessageButton, EditButton } from './styles'
 import SettingsIcon from '@mui/icons-material/Settings'
 import { FacebookIcon, InstagramIcon, MailIcon, PhoneIcon, TikTokIcon, YoutubeIcon } from '@/shared/icons'
 import { Routes } from '@/shared/routes'
 import { IProfile } from '@/store/features/profile-slice/types'
 import { Networks } from '../profile-networks'
-import { Link } from '@/navigation'
+import { Link, useRouter } from '@/navigation'
 import { useTranslations } from 'next-intl'
 import { PinkBrownBase } from '../../consts/colors'
 import { createRef, useEffect, useState } from 'react'
@@ -16,9 +16,17 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 
 import { Calendar } from './ui/date-picker'
+import { useAuth } from '../../lib/auth-context'
+import MarkunreadIcon from '@mui/icons-material/Markunread'
+import { IThread } from './types'
+import { query } from 'firebase/database'
+import { collection, doc, DocumentData, getDocs, Query, setDoc, where } from 'firebase/firestore'
+import { db } from '../../lib/firebaseConfig'
 
-export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
+export const ProfileHeader = (props: IProfile & { isMe?: boolean } & { thread?: IThread }) => {
   const { classes } = useStyles()
+  const { user } = useAuth()
+  const router = useRouter()
 
   const [isDescriptionScroll, setDescriptionScroll] = useState(false)
   const selectWrapperRef = createRef<HTMLDivElement>()
@@ -74,6 +82,40 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
     const element = selectWrapperRef.current
     if (element) {
       setDescriptionScroll(element.scrollHeight > element.clientHeight)
+    }
+  }
+
+  const messageHandler = async () => {
+    if (!props.thread) return
+
+    const threadsRef = collection(db, 'threads')
+    // @ts-ignore
+    const q: Query<DocumentData> = query(threadsRef, where('participants', 'array-contains', props.thread.author_id))
+
+    const querySnapshot = await getDocs(q)
+
+    let existingThread = null
+
+    querySnapshot.forEach((doc) => {
+      const thread = doc.data()
+      // @ts-ignore
+      if (thread.participants.includes(props.thread.recipient_id)) {
+        existingThread = thread
+      }
+    })
+
+    if (existingThread) {
+      router.push(Routes.Messages)
+    } else {
+      const newThreadRef = doc(threadsRef)
+      const newThread = {
+        id: newThreadRef.id,
+        participants: [props.thread.author_id, props.thread.recipient_id],
+        messages: [],
+      }
+
+      await setDoc(newThreadRef, newThread)
+      router.push(Routes.Messages)
     }
   }
 
@@ -173,6 +215,13 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean }) => {
               )}
             </IconButton>
           )}
+        </div>
+      )}
+      {!props.isMe && (
+        <div>
+          <MessageButton startIcon={<MarkunreadIcon />} onClick={messageHandler}>
+            Написать
+          </MessageButton>
         </div>
       )}
     </div>
