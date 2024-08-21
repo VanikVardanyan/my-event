@@ -12,19 +12,16 @@ import {
   useMediaQuery,
   useTheme,
   List,
-  IconButton,
-  Button,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { TextSlateGreyLighten30, White } from '@/shared/consts/colors'
+import { White } from '@/shared/consts/colors'
 import { Message } from './ui/message'
 import { useAuth } from '@/shared/lib/auth-context'
 import { collection, getDocs, query, where, getDoc, doc } from 'firebase/firestore'
 import { db } from '@/shared/lib/firebaseConfig'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
-import RecentActorsIcon from '@mui/icons-material/RecentActors'
 import OutsideClickHandler from 'react-outside-click-handler'
-import useStyles from './styles'
+import { useTranslations } from 'next-intl'
 
 const useUserThreads = (userId: string | undefined) => {
   const [threads, setThreads] = useState<any[]>([])
@@ -82,7 +79,7 @@ const MessagesPage = () => {
   const [participants, setParticipants] = useState<any[]>([])
   const [currentThread, setCurrentThread] = useState<any>(null)
   const [isNeedLoad, setIsNeedLoad] = useState(true)
-  const { classes } = useStyles()
+  const professionT = useTranslations('Professions')
 
   const { user } = useAuth()
 
@@ -154,7 +151,12 @@ const MessagesPage = () => {
             <ListItemAvatar>
               <Avatar alt="logo" src={participant?.avatar || '/default.jpg'} />
             </ListItemAvatar>
-            <ListItemText primary={participant.name} />
+            <ListItemText
+              primary={participant.name}
+              secondary={
+                participant.profession ? participant.profession.map((item: string) => professionT(item)).join(', ') : ''
+              }
+            />
           </ListItemButton>
           <Divider />
         </React.Fragment>
@@ -166,14 +168,6 @@ const MessagesPage = () => {
     <Container>
       <ProtectedRoute>
         <div style={{ position: 'relative' }}>
-          {isMobile && (
-            <div className={classes.allContactWrapper}>
-              <Button onClick={() => toggleDrawer(!openDrawer)} endIcon={<RecentActorsIcon />} variant="contained">
-                Список пользователей
-              </Button>
-            </div>
-          )}
-
           <>
             {isMobile && (
               <OutsideClickHandler onOutsideClick={() => toggleDrawer(false)}>
@@ -201,7 +195,6 @@ const MessagesPage = () => {
                 anchor="right"
                 onClose={setOpenDrawer}
                 open={true}
-                // className={classes.root}
                 PaperProps={{
                   sx: {
                     width: 360,
@@ -219,6 +212,7 @@ const MessagesPage = () => {
             messages={currentThread?.messages || []}
             threadId={currentThread?.id || ''}
             fetchUserDetails={updateThreads}
+            toggleDrawer={toggleDrawer}
           />
         </div>
       </ProtectedRoute>

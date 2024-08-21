@@ -10,4 +10,5 @@ export interface IMessagesProps {
   messages: IMessage[] | []
   threadId: string
   fetchUserDetails: (isLoading?: boolean) => void
+  toggleDrawer: (isOpen: boolean) => void
 }

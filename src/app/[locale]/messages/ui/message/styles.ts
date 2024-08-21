@@ -20,6 +20,7 @@ export default tss.withName('Message').create({
     display: 'flex',
     alignItems: 'center',
     position: 'fixed',
+    gap: 5,
     bottom: 0,
     left: 0,
     right: 0,
