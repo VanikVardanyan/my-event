@@ -7,14 +7,13 @@ import { BreakPoints } from '@/shared/consts/common'
 export default tss.withName('Message').create({
   root: {
     marginRight: 0,
-    height: 'calc(100vh - 160px)',
+    height: 'calc(100vh - 110px)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
       marginRight: 360,
-      height: 'calc(100vh - 110px)',
     },
   },
   inputText: {

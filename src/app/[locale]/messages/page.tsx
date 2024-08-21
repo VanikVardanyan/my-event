@@ -16,7 +16,7 @@ import {
   Button,
 } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { White } from '@/shared/consts/colors'
+import { TextSlateGreyLighten30, White } from '@/shared/consts/colors'
 import { Message } from './ui/message'
 import { useAuth } from '@/shared/lib/auth-context'
 import { collection, getDocs, query, where, getDoc, doc } from 'firebase/firestore'
@@ -163,60 +163,77 @@ const MessagesPage = () => {
   return (
     <Container>
       <ProtectedRoute>
-        {isMobile && (
-          <div style={{ padding: '15px 0' }}>
-            <Button onClick={() => toggleDrawer(true)} endIcon={<RecentActorsIcon />} variant="outlined">
-              Список пользователей
-            </Button>
-          </div>
-        )}
-
-        <>
+        <div style={{ position: 'relative' }}>
           {isMobile && (
-            <OutsideClickHandler onOutsideClick={() => toggleDrawer(false)}>
+            <div
+              style={{
+                padding: '15px 0',
+                position: 'absolute',
+                background: 'white',
+                left: 0,
+                right: 0,
+                width: '100%',
+                zIndex: '100',
+                display: 'flex',
+                justifyContent: 'center',
+                backgroundColor: TextSlateGreyLighten30,
+                borderBottomLeftRadius: 8,
+                borderBottomRightRadius: 8,
+              }}
+            >
+              <Button onClick={() => toggleDrawer(!openDrawer)} endIcon={<RecentActorsIcon />} variant="contained">
+                Список пользователей
+              </Button>
+            </div>
+          )}
+
+          <>
+            {isMobile && (
+              <OutsideClickHandler onOutsideClick={() => toggleDrawer(false)}>
+                <Drawer
+                  anchor="right"
+                  open={openDrawer}
+                  onClose={() => toggleDrawer(false)}
+                  variant="persistent"
+                  PaperProps={{
+                    sx: {
+                      width: 280,
+                      background: White,
+                      top: '64px',
+                      zIndex: 2000,
+                    },
+                  }}
+                  sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
+                >
+                  {contentDrawer}
+                </Drawer>
+              </OutsideClickHandler>
+            )}
+            {!isMobile && (
               <Drawer
                 anchor="right"
-                open={openDrawer}
-                onClose={() => toggleDrawer(false)}
-                variant="persistent"
+                onClose={setOpenDrawer}
+                open={true}
+                // className={classes.root}
                 PaperProps={{
                   sx: {
-                    width: 280,
+                    width: 360,
                     background: White,
                     top: '64px',
-                    zIndex: 2000,
                   },
                 }}
-                sx={{ zIndex: (theme) => theme.zIndex.appBar + 100 }}
+                variant="persistent"
               >
                 {contentDrawer}
               </Drawer>
-            </OutsideClickHandler>
-          )}
-          {!isMobile && (
-            <Drawer
-              anchor="right"
-              onClose={setOpenDrawer}
-              open={true}
-              // className={classes.root}
-              PaperProps={{
-                sx: {
-                  width: 360,
-                  background: White,
-                  top: '64px',
-                },
-              }}
-              variant="persistent"
-            >
-              {contentDrawer}
-            </Drawer>
-          )}
-        </>
-        <Message
-          messages={currentThread?.messages || []}
-          threadId={currentThread?.id || ''}
-          fetchUserDetails={updateThreads}
-        />
+            )}
+          </>
+          <Message
+            messages={currentThread?.messages || []}
+            threadId={currentThread?.id || ''}
+            fetchUserDetails={updateThreads}
+          />
+        </div>
       </ProtectedRoute>
     </Container>
   )
