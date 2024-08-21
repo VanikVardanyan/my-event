@@ -28,6 +28,9 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { TextGreyLighten25 } from '../../consts/colors'
 import { clearSlice } from '../../../store/features/client-slice'
 import { SignIn } from '../sign-in'
+import MailOutlineIcon from '@mui/icons-material/MailOutline'
+import MarkunreadIcon from '@mui/icons-material/Markunread'
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
@@ -58,6 +61,10 @@ export const LayoutHeader = () => {
 
   const linkClickHandler = () => {
     setOpenMenu(false)
+  }
+
+  const goToMessages = () => {
+    router.push(Routes.Messages)
   }
 
   const signOutHandler = async () => {
@@ -113,6 +120,9 @@ export const LayoutHeader = () => {
         {!user && <SignIn />}
         {user && (
           <>
+            <button onClick={goToMessages} className={classes.messengerButton}>
+              <MarkunreadIcon style={{ width: 30, height: 30 }} />
+            </button>
             <IconButton
               style={{ width: 40, height: 40 }}
               id="basic-button"

@@ -27,6 +27,7 @@ import { DarkBlueBase, White } from '@/shared/consts/colors'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import CheckIcon from '@mui/icons-material/Check'
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn'
+import { useAuth } from '@/shared/lib/auth-context'
 
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & {
@@ -40,6 +41,7 @@ const Transition = React.forwardRef(function Transition(
 export const RespondentsList = (props: IRespondentsList) => {
   const { respondents, updateRespondents, serviceId } = props
   const { classes } = useStyles()
+  const { user } = useAuth()
 
   const [open, setOpen] = React.useState(false)
   const [openDrawer, setOpenDrawer] = React.useState(false)
@@ -78,7 +80,7 @@ export const RespondentsList = (props: IRespondentsList) => {
 
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
-  console.log(respondents)
+
   const handleApprove = () => {
     const newData = respondents.map((respondent) => {
       if (respondent.userId === currentUserId) {
@@ -203,7 +205,7 @@ export const RespondentsList = (props: IRespondentsList) => {
                       </div>
                     )}
                   </div>
-                  <ProfileHeader {...userData} />
+                  <ProfileHeader {...userData} thread={{ author_id: user?.uid, recipient_id: currentUserId }} />
                   <Box sx={{ mt: 5 }}>
                     <ProfileCreatives images={userData?.images || []} />
                   </Box>

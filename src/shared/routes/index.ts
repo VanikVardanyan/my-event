@@ -23,4 +23,5 @@ export enum Routes {
   DancersEntertainers = '/dance-entertainers',
   Restaurants = '/restaurants',
   Cakes = '/cakes',
+  Messages = '/messages',
 }
