@@ -219,6 +219,7 @@
         "georgia": "Грузия"
     },
     "RequestList": {
+        "send_cover_message": "Отправить сопроводительное письмо",
         "all_requests": "Все запросы",
         "respond": "Откликнуться",
         "view_responses": "Посмотреть отклики",

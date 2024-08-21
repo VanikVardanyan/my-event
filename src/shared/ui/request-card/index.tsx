@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
-import useStyles, { MoreButton, RespondButton } from './styles'
-import { Box, Button, Card } from '@mui/material'
+import { use, useRef, useState } from 'react'
+import useStyles, { MoreButton } from './styles'
+import { Button, Divider } from '@mui/material'
 import { useAuth } from '../../lib/auth-context'
-import { doc, updateDoc, arrayUnion, getDocs, collection } from 'firebase/firestore'
+import { doc, updateDoc, getDocs, collection, setDoc, query, where } from 'firebase/firestore'
 import { db } from '../../lib/firebaseConfig'
 
 import EditIcon from '@mui/icons-material/Edit'
@@ -21,30 +21,27 @@ import { Routes } from '../../routes'
 import { ProgressLine } from '../progress-line'
 import { getDoneServicesPercent } from '../../utils/numbers'
 import { ServiceSearchStatus } from '../../../app/[locale]/event/create/types'
-import { LoadingOverlay } from '../loading-overlay'
+import { ServiceCard } from './ui/service-card'
 
 const formatNumber = (value: string) => {
   return value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }
 
 export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean; updateAll?: () => void }) => {
-  const { service, city, amount, date, personQuantity, location, id, isMe, other, title, services, type } = props
+  const { service, city, amount, date, personQuantity, location, id, isMe, other, title, services, type, userId } =
+    props
   const { profile } = useSelector(getProfile)
   const { classes } = useStyles()
   const router = useRouter()
   const { user } = useAuth()
-
   const btnRef = useRef(null)
 
   const t = useTranslations('RequestList')
-  const requestsT = useTranslations('Request')
 
   const cityT = useTranslations('Citys')
   const eventTypesT = useTranslations('EventTypes')
-  const professionsT = useTranslations('Professions')
 
   const [loading, setLoading] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
   const [openInfoModal, setOpenInfoModal] = useState(false)
 
   const hasResponded = (service: any) => {
@@ -53,7 +50,48 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
 
   const dispatch = Dispatch()
 
-  const handleRespond = async (serviceId: string) => {
+  const messageHandler = async (messageText: string) => {
+    const author_id = user?.uid
+
+    if (!author_id || !userId) return
+
+    const message = {
+      id: crypto.randomUUID(), // Генерируем уникальный ID для сообщения
+      created_at: new Date().toISOString(), // Текущая дата и время
+      message: messageText, // Текст сообщения
+      author_id: user?.uid, // ID автора сообщения
+      is_read: false, // По умолчанию сообщение не прочитано
+    }
+    const threadsRef = collection(db, 'threads')
+    // @ts-ignore
+    const q: Query<DocumentData> = query(threadsRef, where('participants', 'array-contains', author_id))
+
+    const querySnapshot = await getDocs(q)
+
+    let existingThread = null
+
+    querySnapshot.forEach((doc) => {
+      const thread = doc.data()
+      // @ts-ignore
+      if (thread.participants.includes(userId)) {
+        existingThread = thread
+      }
+    })
+
+    if (existingThread) {
+    } else {
+      const newThreadRef = doc(threadsRef)
+      const newThread = {
+        id: newThreadRef.id,
+        participants: [author_id, userId],
+        messages: [message],
+      }
+
+      await setDoc(newThreadRef, newThread)
+    }
+  }
+
+  const handleRespond = async (serviceId: string, message?: string) => {
     setLoading(true)
     const requests: any = await getDocs(collection(db, 'requests'))
     const requestsData = requests.docs.map((doc: any) => ({ ...doc.data(), id: doc.id }))
@@ -102,6 +140,9 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
         await updateDoc(requestRef, {
           services: updatedServices,
         })
+        if (message) {
+          await messageHandler(message)
+        }
       }
 
       if (props.updateAll) {
@@ -136,14 +177,6 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
     setOpenInfoModal(false)
   }
 
-  const handleOpenModal = () => {
-    setOpenModal(true)
-  }
-
-  const handleCloseModal = () => {
-    setOpenModal(false)
-  }
-
   const calculateTotalBudget = (): number => {
     return services.reduce((total, service) => {
       // Удаление пробелов и преобразование строки в число
@@ -176,19 +209,10 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
         <div className={classes.servicesTitle}>{t('services')}</div>
         <div className={classes.requestCardServices}>
           {services.map((service, index) => (
-            <div key={index} className={classes.serviceWrapper}>
-              <div className={classes.service}>
-                <div>
-                  <span className={classes.serviceTitle}>{t('service')}:</span> {professionsT(service.service)}
-                </div>
-                <div>
-                  <span className={classes.serviceTitle}>{t('budget')}:</span> {service.amount} AMD
-                </div>
-              </div>
-              <RespondButton size="small" onClick={() => handleRespond(service.id)} disabled={hasResponded(service)}>
-                {t('respond')}{' '}
-              </RespondButton>
-            </div>
+            <>
+              <ServiceCard key={index} service={service} hasResponded={hasResponded} handleRespond={handleRespond} />
+              {index !== services.length - 1 && <Divider />}
+            </>
           ))}
         </div>
         <div className={classes.requestCardGroup}>
@@ -303,8 +327,6 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
           </MoreButton>
         )}
       </div>
-
-      {/* <ResponsesModal open={openModal} handleClose={handleCloseModal} responses={responses} /> */}
     </div>
   )
 }

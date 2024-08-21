@@ -219,6 +219,7 @@
         "georgia": "Վրաստան"
     },
     "RequestList": {
+        "send_cover_message": "Ուղարկել ուղեկցող նամակ",
         "all_requests": "Բոլոր պահանջները",
         "respond": "Արձագանքել",
         "view_responses": "Դիտել արձագանքները",
