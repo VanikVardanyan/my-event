@@ -3,11 +3,11 @@ import { TextareaAutosize as BaseTextareaAutosize } from '@mui/base/TextareaAuto
 import { blue, grey } from '@mui/material/colors'
 import { styled } from '@mui/material'
 import { BreakPoints } from '@/shared/consts/common'
+import { White } from '../../../../../shared/consts/colors'
 
 export default tss.withName('Message').create({
   root: {
     marginRight: 0,
-    height: 'calc(100vh - 110px)',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -19,6 +19,16 @@ export default tss.withName('Message').create({
   inputText: {
     display: 'flex',
     alignItems: 'center',
+    position: 'fixed',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    background: White,
+    padding: 10,
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      right: 360,
+    },
   },
   textArea: {
     width: '100%',
@@ -27,7 +37,7 @@ export default tss.withName('Message').create({
     overflowY: 'scroll',
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: 10,
+    marginBottom: 70,
     gap: 15,
   },
 })

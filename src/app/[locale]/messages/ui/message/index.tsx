@@ -16,13 +16,10 @@ export const Message = (props: IMessagesProps) => {
   const messageSectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Автоматическая прокрутка вниз при изменении списка сообщений
-    if (messageSectionRef.current) {
-      messageSectionRef.current.scrollTo({
-        top: messageSectionRef.current.scrollHeight,
-        behavior: 'smooth',
-      })
-    }
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth',
+    })
   }, [messages])
 
   const { classes } = useStyles()
@@ -62,8 +59,8 @@ export const Message = (props: IMessagesProps) => {
   }
 
   return (
-    <div className={classes.root}>
-      <div className={classes.messageSection} ref={messageSectionRef}>
+    <div className={classes.root} ref={messageSectionRef}>
+      <div className={classes.messageSection}>
         {messages.map((message) => (
           <MessageItem key={message.id} me={message.author_id === user?.uid} message={message.message} />
         ))}

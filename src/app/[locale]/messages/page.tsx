@@ -24,10 +24,11 @@ import { db } from '@/shared/lib/firebaseConfig'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import RecentActorsIcon from '@mui/icons-material/RecentActors'
 import OutsideClickHandler from 'react-outside-click-handler'
+import useStyles from './styles'
 
 const useUserThreads = (userId: string | undefined) => {
   const [threads, setThreads] = useState<any[]>([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   const fetchThreads = async () => {
     if (!userId) {
@@ -77,10 +78,11 @@ const fetchUserProfiles = async (userIds: string[]) => {
 
 const MessagesPage = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [participants, setParticipants] = useState<any[]>([])
   const [currentThread, setCurrentThread] = useState<any>(null)
   const [isNeedLoad, setIsNeedLoad] = useState(true)
+  const { classes } = useStyles()
 
   const { user } = useAuth()
 
@@ -91,7 +93,7 @@ const MessagesPage = () => {
     setOpenDrawer(isOpen)
   }
 
-  const { threads, updateThreads } = useUserThreads(user?.uid)
+  const { threads, updateThreads, loading: threadsLoading } = useUserThreads(user?.uid)
 
   const fetchUserDetails = async () => {
     if (isNeedLoad) {
@@ -133,7 +135,7 @@ const MessagesPage = () => {
 
   if (loading) return <LoadingOverlay loading={loading} />
 
-  if (!loading && threads.length === 0) {
+  if (!loading && threads.length === 0 && !threadsLoading) {
     return (
       <Container>
         <p>У вас пока нет диалогов</p>
@@ -165,22 +167,7 @@ const MessagesPage = () => {
       <ProtectedRoute>
         <div style={{ position: 'relative' }}>
           {isMobile && (
-            <div
-              style={{
-                padding: '15px 0',
-                position: 'absolute',
-                background: 'white',
-                left: 0,
-                right: 0,
-                width: '100%',
-                zIndex: '100',
-                display: 'flex',
-                justifyContent: 'center',
-                backgroundColor: TextSlateGreyLighten30,
-                borderBottomLeftRadius: 8,
-                borderBottomRightRadius: 8,
-              }}
-            >
+            <div className={classes.allContactWrapper}>
               <Button onClick={() => toggleDrawer(!openDrawer)} endIcon={<RecentActorsIcon />} variant="contained">
                 Список пользователей
               </Button>
