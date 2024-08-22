@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import useStyles from './styles'
 import { RequestCard } from '@/shared/ui/request-card'
