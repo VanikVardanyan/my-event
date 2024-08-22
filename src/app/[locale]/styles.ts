@@ -6,12 +6,6 @@ export const LayoutRoot = styled('div')(({ theme }) => ({
   overflowY: 'auto',
 }))
 
-// export const LayoutContainer = styled('div')(({ theme }) => ({
-//   display: 'flex',
-//   flex: '1 1 auto',
-//   flexDirection: 'column',
-// }))
-
 export const Container = styled('div')(({ theme }) => ({
   padding: '0 12px 12px 12px',
   marginTop: 20,
@@ -22,15 +16,8 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import {
-  DarkBlueBase,
-  DarkBlueDarken16,
-  PinkBrownBase,
-  PinkBrownDarken16,
-  PurpleBase,
-  TextGreyBase,
-} from '@/shared/consts/colors'
-import { FontBody1, FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
+import { DarkBlueBase, PinkBrownBase, PinkBrownDarken16, TextGreyBase } from '@/shared/consts/colors'
+import { FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('MainPage').create({
@@ -111,6 +98,7 @@ export default tss.withName('MainPage').create({
     flexDirection: 'column',
     gap: 10,
     marginBottom: 20,
+    marginTop: 40,
   },
   subTitle: {
     ...FontBody2,

@@ -32,6 +32,7 @@ import { AmdIcon } from '@/shared/icons'
 import useStyles, { AddRequestButton } from './styles'
 import DeleteIcon from '@mui/icons-material/Delete'
 import AddIcon from '@mui/icons-material/Add'
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import { Link, useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
 import { useSearchParams } from 'next/navigation'
@@ -432,7 +433,6 @@ const CreateEvent = () => {
               <AddIcon /> {t('add_service')}
             </Button>
           </Grid>
-
           <Grid item xs={12} sm={10}>
             <TextField
               fullWidth
@@ -449,7 +449,7 @@ const CreateEvent = () => {
           </Grid>
         </Grid>
         <div className={classes.actionBlock}>
-          <AddRequestButton variant="contained" type="submit">
+          <AddRequestButton variant="contained" type="submit" startIcon={<AddCircleOutlineIcon />}>
             <Typography variant="button">{searchId ? shared('save') : t('create_event')}</Typography>
           </AddRequestButton>
           <Button variant="outlined" type="button" onClick={goToBack}>
