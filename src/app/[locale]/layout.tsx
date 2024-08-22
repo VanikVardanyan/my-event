@@ -3,7 +3,7 @@ import { LayoutHeader } from '@/shared/ui/layout-header'
 import { ReduxProvider } from '@/store/provider'
 import { NextAppDirEmotionCacheProvider } from 'tss-react/next/appDir'
 import { AuthProvider } from '@/shared/lib/auth-context'
-import { Metadata } from 'next'
+import { Metadata, Viewport } from 'next'
 import { LayoutRoot } from './styles'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
@@ -21,6 +21,11 @@ interface RootLayoutProps {
   }
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  userScalable: false,
+}
+
 const locales = ['en', 're']
 
 export function generateStaticParams() {
@@ -34,7 +39,6 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
   return (
     <html lang={locale}>
       <Head>
-        <meta name="viewport" content="viewport-fit=cover, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=cyrillic"
           rel="stylesheet"
