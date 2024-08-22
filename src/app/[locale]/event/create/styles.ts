@@ -1,6 +1,6 @@
 import { Button, styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
-import { DarkBlueBase, PinkBrownBase, PinkBrownDarken16 } from '@/shared/consts/colors'
+import { DarkBlueBase, PinkBrownBase } from '@/shared/consts/colors'
 import { FontBody1, FontBody2 } from '@/shared/consts/fontStyles'
 
 export default tss.withName('create-event').create({
@@ -36,10 +36,10 @@ export default tss.withName('create-event').create({
 })
 
 export const AddRequestButton = styled(Button)({
-  backgroundColor: PinkBrownBase,
+  backgroundColor: '#21262C',
   color: 'white',
 
   '&:hover': {
-    backgroundColor: PinkBrownDarken16,
+    backgroundColor: DarkBlueBase,
   },
 })
