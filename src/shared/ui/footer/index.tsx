@@ -9,10 +9,10 @@ import cn from 'classnames'
 import { Routes } from '../../routes'
 
 const linksMock = [
-  { title: 'About us', link: '/about' },
-  { title: 'Contact us', link: '/contact' },
-  { title: 'Terms and conditions', link: '/terms' },
-  { title: 'Privacy policy', link: '/privacy' },
+  { title: 'About us', link: '#' },
+  { title: 'Contact us', link: '#' },
+  { title: 'Terms and conditions', link: '#' },
+  { title: 'Privacy policy', link: '#' },
 ]
 
 export const Footer = () => {
@@ -41,11 +41,11 @@ export const Footer = () => {
             © EvnEasy 2024 <span className={classes.colorPeace}>❤ Peace, Love & EvnEasy ® </span>{' '}
           </div>
           <div>
-            <Link href="/terms" className={classes.link}>
+            <Link href="#" className={classes.link}>
               Terms of Service
             </Link>{' '}
             |{' '}
-            <Link href="/privacy" className={classes.link}>
+            <Link href="#" className={classes.link}>
               Privacy Policy
             </Link>
           </div>
