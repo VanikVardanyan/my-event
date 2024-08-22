@@ -7,29 +7,33 @@ import { IRequestTypes } from '../../../profile/ui/request-create-modal/types'
 import { useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
 import axios from 'axios'
-import { LoadingOverlay } from '../../../../../shared/ui/loading-overlay'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
+import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../../../../../shared/lib/firebaseConfig'
 
 export const RequestList = () => {
   const { classes } = useStyles()
-  const router = useRouter()
   const [loading, setLoading] = useState(true)
-
-  // useEffect(() => {
-  // router.push(Routes.Profile)
-  // }, [])
 
   const [requests, setRequests] = useState<(IRequestTypes[] & { responses: any[] }) | []>([])
 
   const fetchRequests = async () => {
     try {
-      const response = await axios.get(`/api/request-list`)
-      const usersList = await response.data
+      // const response = await axios.get(`/api/request-list`)
+      // const usersList = await response.data
+      // setRequests(usersList)
+      const querySnapshot = await getDocs(collection(db, 'requests'))
+      const requestsData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 
-      setRequests(usersList)
+      const dataWithDoingServices = requestsData.filter((d: any) => d.services.some((s: any) => s.status === 'doing'))
+      const result: any = dataWithDoingServices.map((d: any) => ({
+        ...d,
+        services: d.services.filter((s: any) => s.status === 'doing'),
+      }))
+      setRequests(result)
     } catch (error) {
       console.error('Ошибка при загрузке пользователей:', error)
     } finally {
-      // setLoading(false)
     }
   }
 
