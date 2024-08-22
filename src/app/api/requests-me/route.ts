@@ -14,7 +14,6 @@ export const GET = async (request: Request) => {
     const q = query(collection(db, 'requests'), where('userId', '==', userId))
     const querySnapshot = await getDocs(q)
     const userRequests = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-
     return NextResponse.json(userRequests, { status: 200 })
   } catch (error) {
     {
