@@ -9,6 +9,7 @@ export async function GET(request: Request) {
   if (!profession) {
     return NextResponse.json({ error: 'Profession is required' }, { status: 400 })
   }
+
   try {
     const usersRef = collection(db, 'profiles')
     const q = query(

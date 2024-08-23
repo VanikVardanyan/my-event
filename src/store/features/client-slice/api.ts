@@ -40,8 +40,11 @@ export const getFavorites = async (userId: string) => {
 
 export const fetchUserRequests = async (userId: string) => {
   try {
-    const resp = await axios.get(`/api/requests-me?userId=${userId}`)
-    return resp.data
+    const q = query(collection(db, 'requests'), where('userId', '==', userId))
+    const querySnapshot = await getDocs(q)
+    const userRequests = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+
+    return userRequests
   } catch (err) {
     console.error(err)
     return []

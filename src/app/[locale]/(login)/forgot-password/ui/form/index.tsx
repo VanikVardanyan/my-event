@@ -2,7 +2,6 @@
 import { TextField } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
 import useStyles, { SignInButton } from './styles'
-import { Link } from '@/navigation'
 import { Routes } from '@/shared/routes'
 import { useState } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -11,10 +10,8 @@ import { useRouter } from '@/navigation'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
-import { Dispatch } from '@/store/store'
 import toast from 'react-hot-toast'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
-import { SignIn } from '../../../../../../shared/ui/sign-in'
 
 interface IFormValues {
   email: string
@@ -75,10 +72,6 @@ const ForgotPassword = () => {
             autoFocus
             className={classes.textField}
           />
-          {/* <Link href={Routes.Signin} className={classes.linkForgot}>
-            {t('sign_in')}
-          </Link> */}
-          <SignIn withText />
           <SignInButton
             type="submit"
             variant="contained"
