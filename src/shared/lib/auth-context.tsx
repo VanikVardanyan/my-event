@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }: any) => {
     if (user && redirectPathnamesForUser) {
       router.push(Routes.Profile)
     }
+
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user)

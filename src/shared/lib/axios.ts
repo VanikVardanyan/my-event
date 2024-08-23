@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { Routes } from '../routes'
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000',

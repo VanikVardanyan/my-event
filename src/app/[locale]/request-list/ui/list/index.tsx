@@ -4,12 +4,9 @@ import { useEffect, useState } from 'react'
 import useStyles from './styles'
 import { RequestCard } from '@/shared/ui/request-card'
 import { IRequestTypes } from '../../../profile/ui/request-create-modal/types'
-import { useRouter } from '@/navigation'
-import { Routes } from '@/shared/routes'
-import axios from 'axios'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { collection, getDocs } from 'firebase/firestore'
-import { db } from '../../../../../shared/lib/firebaseConfig'
+import { db } from '@/shared/lib/firebaseConfig'
 
 export const RequestList = () => {
   const { classes } = useStyles()
@@ -19,9 +16,6 @@ export const RequestList = () => {
 
   const fetchRequests = async () => {
     try {
-      // const response = await axios.get(`/api/request-list`)
-      // const usersList = await response.data
-      // setRequests(usersList)
       const querySnapshot = await getDocs(collection(db, 'requests'))
       const requestsData = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 
