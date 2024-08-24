@@ -56,20 +56,20 @@ export const UserCardMini = ({
     }
   }
 
+  const formatNumber = (value: string) => {
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+  }
+
   return (
     <div className={classes.userCardWrapper}>
       <div className={classes.root}>
-        <div>
-          <Avatar
-            src={`/service-images/${username}.jpg`}
-            alt={full_name}
-            // width={42}
-            // height={42}
-            // className={classes.img}
-          />
-        </div>
-        <div className={classes.name}>
-          <div className={classes.text}>{full_name || username}</div> {verified && verifiedIcon}
+        <div className={classes.imgSection}>
+          <div>
+            <Avatar src={`/service-images/${username}.jpg`} alt={full_name} style={{ width: 45, height: 45 }} />
+          </div>
+          <div className={classes.name}>
+            <div className={classes.text}>{full_name || username}</div> {verified && verifiedIcon}
+          </div>
         </div>
         <div className={classes.actionBlock}>
           <Button
@@ -108,10 +108,10 @@ export const UserCardMini = ({
       <div className={classes.infoSection}>
         <div className={classes.countSection}>
           <div className={classes.countText}>
-            <span className={classes.count}>{followersCount}</span> подписчиков
+            <span className={classes.count}>{formatNumber(followersCount.toString())}</span> подписчиков
           </div>
           <div className={classes.countText}>
-            <span className={classes.count}>{postsCount}</span> публикаций
+            <span className={classes.count}>{formatNumber(postsCount.toString())}</span> публикаций
           </div>
         </div>
         <div className={classes.biography}>{biography}</div>

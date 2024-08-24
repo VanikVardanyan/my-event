@@ -20,6 +20,50 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { WorkCard } from '../../shared/ui/home-work-card'
 import { SlateGreyBase } from '../../shared/consts/colors'
+import { VideoCard } from '../../shared/ui/videoCard'
+
+const videoListMock = [
+  {
+    link: 'https://www.youtube.com/embed/zVDhVjFqQBs', // Ссылка на видео
+    title: 'happy birthday', // Заголовок или текст
+    description: 'This is a description for video 1', // Описание или любой другой текст
+  },
+  {
+    link: 'https://www.youtube.com/embed/PEIgbYXgKQk',
+    title: 'Video Title 2',
+    description: 'This is a description for video 2',
+  },
+  {
+    link: 'https://www.youtube.com/embed/IhTs70El5SU',
+    title: 'Video Title 3',
+    description: 'This is a description for video 3',
+  },
+  {
+    link: 'https://www.youtube.com/embed/qX8ZU1nFb8o',
+    title: 'Video Title 3',
+    description: 'This is a description for video 3',
+  },
+  {
+    link: 'https://www.youtube.com/embed/ihJfpKsPH_w',
+    title: 'Video Title 3',
+    description: 'This is a description for video 3',
+  },
+  {
+    link: 'https://www.youtube.com/embed/eMD9907f-N4',
+    title: 'Video Title 3',
+    description: 'This is a description for video 3',
+  },
+  {
+    link: 'https://www.youtube.com/embed/JhmhKGJy73w',
+    title: 'Video Title 3',
+    description: 'This is a description for video 3',
+  },
+  {
+    link: 'https://www.youtube.com/embed/H68cS21ML3Y',
+    title: 'Video Title 3',
+    description: 'This is a description for video 3',
+  },
+]
 
 interface ArrowProps {
   className?: string
@@ -173,6 +217,21 @@ export default function Home() {
           <Slider {...settings}>
             {serviceListMock.map((service) => (
               <ServiceCard {...service} key={service.link} />
+            ))}
+          </Slider>
+        </div>
+      </div>
+      <div className={classes.titleWrapper}>
+        <div className={classes.titleBorder} ref={categoryRef} />
+        <h2 className={classes.categories}>{t('event_example')}</h2>
+        <div className={classes.subTitle}>{t('find_professionals')}</div>
+      </div>
+      <div className={classes.slickWrapper}>
+        {' '}
+        <div className={classes.slick}>
+          <Slider {...settings}>
+            {videoListMock.map((service) => (
+              <VideoCard {...service} key={service.link} />
             ))}
           </Slider>
         </div>
