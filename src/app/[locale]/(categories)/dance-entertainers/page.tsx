@@ -23,7 +23,7 @@ const DancePage = () => {
             <ServicePost key={service.id} {...service} />
           ))}
           {danceData.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.username} />
+            return <UserCardMini {...item} key={item?.username} />
           })}
         </div>
       </div>

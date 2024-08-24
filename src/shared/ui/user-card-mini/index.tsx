@@ -1,17 +1,18 @@
 import Image from 'next/image'
-import { Button, IconButton } from '@mui/material'
+import { Avatar, Button, IconButton } from '@mui/material'
 import useStyles from './styles'
 import { useTranslations } from 'next-intl'
 import { HeartIcon, InstagramIcon } from '../../icons'
 import { PinkBrownBase, RedBase, TextGreyBase } from '../../consts/colors'
 import { useAuth } from '../../lib/auth-context'
 import { useSelector } from 'react-redux'
-import { getClient, getProfile } from '../../../store/selectors'
+import { getClient, getProfile } from '@/store/selectors'
 import { UserType } from '../../types/user.types'
 import { toggleFavorite } from '../service-post/lib'
-import { Dispatch } from '../../../store/store'
-import { asyncSetFavoritesThunk } from '../../../store/features/client-slice'
+import { Dispatch } from '@/store/store'
+import { asyncSetFavoritesThunk } from '@/store/features/client-slice'
 import { SelectionModal } from '../service-post/ui/selection-modal'
+import { IInstagramProfile } from '../../data/types'
 
 const verifiedIcon = (
   <svg
@@ -31,7 +32,14 @@ const verifiedIcon = (
   </svg>
 )
 
-export const UserCardMini = ({ full_name, username, is_verified }: any) => {
+export const UserCardMini = ({
+  full_name,
+  username,
+  verified,
+  followersCount,
+  postsCount,
+  biography,
+}: IInstagramProfile) => {
   const { classes } = useStyles()
   const { user } = useAuth()
   const { profile } = useSelector(getProfile)
@@ -49,46 +57,65 @@ export const UserCardMini = ({ full_name, username, is_verified }: any) => {
   }
 
   return (
-    <div className={classes.root}>
-      <div>
-        <Image src={'/default-avatar.png'} alt={full_name} width={42} height={42} />
-      </div>
-      <div className={classes.name}>
-        <div className={classes.text}>{full_name || username}</div> {is_verified && verifiedIcon}
-      </div>
-      <div className={classes.actionBlock}>
-        <Button
-          href={`https://www.instagram.com/${username}/`}
-          target="_blank"
-          endIcon={<InstagramIcon fill={PinkBrownBase} />}
-          variant="outlined"
-          className={classes.moreBtn}
-        >
-          {t('more')}
-        </Button>
-        <IconButton onClick={handleFavorite} className={classes.mobileLike}>
-          <HeartIcon
-            style={{ width: 24, height: 24 }}
-            fill={TextGreyBase}
-            fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
+    <div className={classes.userCardWrapper}>
+      <div className={classes.root}>
+        <div>
+          <Avatar
+            src={`/service-images/${username}.jpg`}
+            alt={full_name}
+            // width={42}
+            // height={42}
+            // className={classes.img}
           />
-        </IconButton>
-      </div>
-
-      {canHasFavorite && (
-        <>
-          <IconButton onClick={handleFavorite} className={classes.desktopLike}>
+        </div>
+        <div className={classes.name}>
+          <div className={classes.text}>{full_name || username}</div> {verified && verifiedIcon}
+        </div>
+        <div className={classes.actionBlock}>
+          <Button
+            href={`https://www.instagram.com/${username}/`}
+            target="_blank"
+            endIcon={<InstagramIcon fill={PinkBrownBase} />}
+            variant="outlined"
+            className={classes.moreBtn}
+          >
+            {t('more')}
+          </Button>
+          <IconButton onClick={handleFavorite} className={classes.mobileLike}>
             <HeartIcon
               style={{ width: 24, height: 24 }}
               fill={TextGreyBase}
               fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
             />
           </IconButton>
-          <div className={classes.selection}>
-            <SelectionModal profileId={username} profileName={username || full_name} isInstagram />
+        </div>
+
+        {canHasFavorite && (
+          <>
+            <IconButton onClick={handleFavorite} className={classes.desktopLike}>
+              <HeartIcon
+                style={{ width: 24, height: 24 }}
+                fill={TextGreyBase}
+                fillBg={(favorites.instagram as string[]).includes(username) ? RedBase : undefined}
+              />
+            </IconButton>
+            <div className={classes.selection}>
+              <SelectionModal profileId={username} profileName={username || full_name} isInstagram />
+            </div>
+          </>
+        )}
+      </div>
+      <div className={classes.infoSection}>
+        <div className={classes.countSection}>
+          <div className={classes.countText}>
+            <span className={classes.count}>{followersCount}</span> подписчиков
           </div>
-        </>
-      )}
+          <div className={classes.countText}>
+            <span className={classes.count}>{postsCount}</span> публикаций
+          </div>
+        </div>
+        <div className={classes.biography}>{biography}</div>
+      </div>
     </div>
   )
 }
