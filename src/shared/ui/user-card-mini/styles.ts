@@ -49,6 +49,14 @@ export default tss.withName('UserCardMini').create({
   img: {
     borderRadius: '50%',
   },
+  imgSection: {
+    display: 'flex',
+    gap: 12,
+    alignItems: 'center',
+    maxWidth: 222,
+    width: '100%',
+    alignSelf: 'flex-start',
+  },
   name: {
     flex: 1,
     display: 'flex',
