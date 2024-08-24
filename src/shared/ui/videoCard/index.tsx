@@ -8,6 +8,7 @@ const closeBtnStyle = {
   position: 'absolute' as const,
   top: 10,
   right: 10,
+  background: 'rgba(255, 255, 255, 0.5)',
 }
 
 const style = {
@@ -44,10 +45,10 @@ const VideoModal = ({ link }: any) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <IconButton onClick={handleCloseModal} sx={closeBtnStyle}>
+        <div className={classes.wrapper}>
+          {/* <IconButton onClick={handleCloseModal} sx={closeBtnStyle}>
             <CloseIcon />
-          </IconButton>
+          </IconButton> */}
           <iframe
             width="100%"
             height="100%"
@@ -57,7 +58,7 @@ const VideoModal = ({ link }: any) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           ></iframe>
-        </Box>
+        </div>
       </Modal>
     </>
   )
