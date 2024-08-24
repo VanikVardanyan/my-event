@@ -1,21 +1,26 @@
-import { DarkBlueDarken16, SlateGreyDarken18, TextSlateGreyLighten16, White } from './../../consts/colors'
+import { DarkBlueBase, PinkBrownBase, TextGreyDarken7, White } from './../../consts/colors'
 import { tss } from 'tss-react/mui'
 import { BreakPoints } from '../../consts/common'
-import { FontBody1 } from '../../consts/fontStyles'
+import { FontBody1, FontBody1Accent } from '../../consts/fontStyles'
 import { TextGreyBase } from '../../consts/colors'
 
 export default tss.withName('UserCardMini').create({
+  userCardWrapper: {
+    maxWidth: 470,
+    width: '100%',
+    padding: '10px 12px',
+    borderRadius: 6,
+    background: White,
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 15,
+  },
   root: {
     display: 'flex',
     gap: 12,
     alignItems: 'center',
-    maxWidth: 470,
-    width: '100%',
     flexDirection: 'column',
-    padding: '10px 8px',
-    borderRadius: 6,
-    background: White,
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
     position: 'relative',
 
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
@@ -33,10 +38,16 @@ export default tss.withName('UserCardMini').create({
     ...FontBody1,
     color: TextGreyBase,
     textAlign: 'center',
+    maxWidth: 170,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
 
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
       textAlign: 'inherit',
     },
+  },
+  img: {
+    borderRadius: '50%',
   },
   name: {
     flex: 1,
@@ -86,5 +97,26 @@ export default tss.withName('UserCardMini').create({
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
       display: 'block',
     },
+  },
+  countSection: {
+    display: 'flex',
+    gap: 15,
+  },
+  biography: {
+    ...FontBody1,
+    color: TextGreyDarken7,
+  },
+  infoSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 15,
+  },
+  countText: {
+    ...FontBody1,
+    color: DarkBlueBase,
+  },
+  count: {
+    ...FontBody1Accent,
+    color: PinkBrownBase,
   },
 })

@@ -76,7 +76,7 @@ const ResponsesModal = (props: IResponsesModal) => {
                 onClick={() => handleUserClick(response.id, response.isInstagram)}
               >
                 <ListItemAvatar>
-                  <Avatar src={response.avatar} />
+                  <Avatar src={response.isInstagram ? `/service-images/${response.name}.jpg` : response.avatar} />
                 </ListItemAvatar>
                 <ListItemText
                   primaryTypographyProps={{ style: { whiteSpace: 'normal' } }}

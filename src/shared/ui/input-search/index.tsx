@@ -44,10 +44,10 @@ const initData = [
   ...musicianData,
   ...danceData,
 ].map((item: any) => ({
-  name: item.user.full_name,
+  name: item.full_name,
   avatar: null,
   isInstagram: true,
-  id: item.user.username,
+  id: item.username,
 }))
 
 interface InputSearchProps {
@@ -186,3 +186,5 @@ export const InputSearch = (props: InputSearchProps) => {
     </>
   )
 }
+
+const data = []

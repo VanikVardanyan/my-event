@@ -21,9 +21,11 @@ export const ShowManRoot = () => {
           <ServicePost key={service.id} {...service} />
         ))}
         {showmanData.map((item) => {
-          return <UserCardMini key={item.user.username} {...item.user} />
+          return <UserCardMini key={item.username} {...item} />
         })}
       </div>
     </div>
   )
 }
+
+const rtt = []

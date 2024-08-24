@@ -2,13 +2,11 @@
 
 import { ServicePost } from '@/shared/ui/service-post'
 import useStyles from './styles'
-import { useEffect, useState } from 'react'
 import { Professions } from '@/shared/types/user.types'
 import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
-import { floristData, tarosiks } from '@/shared/data/florist'
+import { floristData } from '@/shared/data/florist'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
-import axios from 'axios'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
 
 const FloristPage = () => {
@@ -25,10 +23,7 @@ const FloristPage = () => {
             <ServicePost key={service.id} {...service} />
           ))}
           {floristData.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.username} />
-          })}
-          {tarosiks.map((item, i) => {
-            return <UserCardMini {...item.user} key={item.user?.username} />
+            return <UserCardMini {...item} key={item?.username} />
           })}
         </div>
       </div>

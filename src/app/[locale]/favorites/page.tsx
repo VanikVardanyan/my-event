@@ -22,6 +22,7 @@ import { instrumentsRenalData } from '@/shared/data/instrument'
 import { musicianData } from '@/shared/data/musiciant'
 import { danceData } from '@/shared/data/dance'
 import { useTranslations } from 'next-intl'
+import { IInstagramProfile } from '../../../shared/data/types'
 
 const DirectUsers = [
   ...cakesData,
@@ -74,8 +75,8 @@ const FavoritesPage = () => {
     (favorites.direct as string[]).includes(user.id as string)
   )
 
-  const favoriteProviderInstagramUsers = DirectUsers.filter((item: any) =>
-    (favorites.instagram as string[]).includes(item.user.username as string)
+  const favoriteProviderInstagramUsers: IInstagramProfile[] = DirectUsers.filter((item: IInstagramProfile) =>
+    (favorites.instagram as string[]).includes(item.username as string)
   )
 
   if (!loading && !favoriteProviderDirectUsers.length && !favoriteProviderInstagramUsers.length) {
@@ -93,8 +94,8 @@ const FavoritesPage = () => {
           {favoriteProviderDirectUsers.map((service: any) => (
             <ServicePost key={service.id} {...service} />
           ))}
-          {favoriteProviderInstagramUsers.map((service: any) => (
-            <UserCardMini key={service.id} {...service.user} />
+          {favoriteProviderInstagramUsers.map((service: IInstagramProfile) => (
+            <UserCardMini key={service.username} {...service} />
           ))}
         </div>
       </div>
