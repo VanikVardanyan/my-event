@@ -59,6 +59,8 @@ export const YellowDarken35 = darken(chroma(YellowBase), 0.35).hex() // '#806500
 
 export const FacebookBase = '#3A78EA'
 
+export const darkSlateGray = '#3d464d'
+
 // GreyShades
 export const GreyBase = '#2E2E2E'
 

@@ -146,7 +146,6 @@ export default tss.withName('MainPage').create({
     },
     '& .slick-prev': {
       left: '-12px',
-      top: '34%',
       zIndex: 100,
       borderRadius: '50%',
       display: 'flex',
@@ -163,7 +162,6 @@ export default tss.withName('MainPage').create({
     },
     '& .slick-next': {
       right: '-12px',
-      top: '34%',
       zIndex: 100,
       borderRadius: '50%',
       display: 'flex',

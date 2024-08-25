@@ -4,6 +4,7 @@ import useStyles from './styles'
 interface ILink {
   title: string
   link: string
+  isDisabled?: boolean
 }
 
 interface IFooterLinksProps {
@@ -21,7 +22,12 @@ export const FooterLinks = (props: IFooterLinksProps) => {
       <div className={classes.linksWrapper}>
         {links.map((link, index) => {
           return (
-            <Link key={index} href={link.link} className={classes.link}>
+            <Link
+              key={index}
+              href={link.isDisabled ? '#' : link.link}
+              className={classes.link}
+              rel="nofollow noopener noreferrer"
+            >
               {link.title}
             </Link>
           )

@@ -1,26 +1,28 @@
 'use client'
 import useStyles, { Container, StartButton } from './styles'
 import { Link, useRouter } from '@/navigation'
-import { Routes } from '../../shared/routes'
+import { Routes } from '@/shared/routes'
 import { useTranslations } from 'next-intl'
-import { UserType } from '../../shared/types/user.types'
-import { ServiceCard } from '../../shared/ui/service-card'
+import { UserType } from '@/shared/types/user.types'
+import { ServiceCard } from '@/shared/ui/service-card'
 import { useRef } from 'react'
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
 import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@mui/material'
 import { useSelector } from 'react-redux'
-import { getProfile } from '../../store/selectors'
+import { getProfile } from '@/store/selectors'
 import Slider from 'react-slick'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { questions, serviceListMock, workSteps } from '../../shared/utils/main-helper'
+import { questions, serviceListMock, workSteps } from '@/shared/utils/main-helper'
 import cn from 'classnames'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import { WorkCard } from '../../shared/ui/home-work-card'
-import { SlateGreyBase } from '../../shared/consts/colors'
-import { VideoCard } from '../../shared/ui/videoCard'
+import { WorkCard } from '@/shared/ui/home-work-card'
+import { SlateGreyBase } from '@/shared/consts/colors'
+import { VideoCard } from '@/shared/ui/videoCard'
+import { sendGA4Event } from '@/shared/analytics/ga4'
+import { GA4_ACTIONS, GA4_PLACES } from '@/shared/analytics/types'
 
 const videoListMock = [
   {
@@ -119,6 +121,7 @@ export default function Home() {
 
   const handleStartClick = () => {
     const fixedElementHeight = 62
+    sendGA4Event({ action: GA4_ACTIONS.ACCOUNT_START_TO_CREATE, place: GA4_PLACES.MAIN })
 
     if (categoryRef.current) {
       const yOffset = -fixedElementHeight
@@ -199,7 +202,6 @@ export default function Home() {
       <div className={classes.titleWrapper}>
         <div className={classes.titleBorder} />
         <h2 className={classes.categories}>{t('how_it_works')}</h2>
-        {/* <div className={classes.subTitle}>{t('find_professionals')}</div> */}
       </div>
       <div className={classes.howWorkWrapper}>
         {workSteps.map((step, index) => (
@@ -222,7 +224,7 @@ export default function Home() {
         </div>
       </div>
       <div className={classes.titleWrapper}>
-        <div className={classes.titleBorder} ref={categoryRef} />
+        <div className={classes.titleBorder} />
         <h2 className={classes.categories}>{t('event_example')}</h2>
         <div className={classes.subTitle}>{t('find_professionals')}</div>
       </div>

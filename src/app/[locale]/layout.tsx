@@ -14,6 +14,8 @@ import Head from 'next/head'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Footer } from '@/shared/ui/footer'
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 interface RootLayoutProps {
   children: React.ReactNode
   params: {
@@ -66,7 +68,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
           </NextIntlClientProvider>
         </div>
       </body>
-      <GoogleAnalytics gaId="G-QGNT2T9GFM" />
+      {isProduction && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID || ''} />}
     </html>
   )
 }
