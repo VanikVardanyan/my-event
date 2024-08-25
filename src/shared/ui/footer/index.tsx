@@ -8,11 +8,20 @@ import { Link, usePathname, useRouter } from '../../../navigation'
 import cn from 'classnames'
 import { Routes } from '../../routes'
 
-const linksMock = [
+const linksCompany = [
   { title: 'About us', link: '/about' },
-  { title: 'Contact us', link: '/contact' },
+  // { title: 'Contact us', link: '/contact' },
   { title: 'Terms and conditions', link: '/terms' },
   { title: 'Privacy policy', link: '/privacy' },
+]
+
+const planners = [
+  { title: 'How it works', link: 'how-it-works' },
+  { title: 'Pricing (soon)', link: 'pricing', isDisabled: true },
+]
+const support = [
+  { title: 'Contact us', link: 'mailto:vanikvardanyandev@gmail.com' },
+  { title: 'Login', link: Routes.Signin },
 ]
 
 export const Footer = () => {
@@ -29,10 +38,9 @@ export const Footer = () => {
             <Image src="/logo/png/logo-no-background.png" alt="logo" width={150} height={50} />
           </div>
           <div className={classes.linksWrapper}>
-            <FooterLinks title="Company" links={linksMock} />
-            <FooterLinks title="Company" links={linksMock} />
-            <FooterLinks title="Company" links={linksMock} />
-            <FooterLinks title="Company" links={linksMock} />
+            <FooterLinks title="Company" links={linksCompany} />
+            <FooterLinks title="Event Planners" links={planners} />
+            <FooterLinks title="Support" links={support} />
           </div>
           <div></div>
         </div>
@@ -40,7 +48,7 @@ export const Footer = () => {
           <div>
             © EvnEasy 2024 <span className={classes.colorPeace}>❤ Peace, Love & EvnEasy ® </span>{' '}
           </div>
-          <div>
+          {/* <div>
             <Link href="/terms" className={classes.link}>
               Terms of Service
             </Link>{' '}
@@ -48,7 +56,7 @@ export const Footer = () => {
             <Link href="/privacy" className={classes.link}>
               Privacy Policy
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

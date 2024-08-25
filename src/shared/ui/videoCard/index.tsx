@@ -46,9 +46,6 @@ const VideoModal = ({ link }: any) => {
         aria-describedby="modal-modal-description"
       >
         <div className={classes.wrapper}>
-          {/* <IconButton onClick={handleCloseModal} sx={closeBtnStyle}>
-            <CloseIcon />
-          </IconButton> */}
           <iframe
             width="100%"
             height="100%"
@@ -64,14 +61,14 @@ const VideoModal = ({ link }: any) => {
   )
 }
 
-export const VideoCard = ({ link, title, description }: any) => {
+export const VideoCard = ({ link, title, description, bg }: any) => {
   const { classes } = useStyles()
   const videoId = link.split('v=')[1] || link.split('/embed/')[1]
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`
 
   return (
     <div className={classes.root}>
-      <div className={classes.img} style={{ backgroundImage: `url(${thumbnailUrl})` }}>
+      <div className={classes.img} style={{ backgroundImage: `url(${bg ? bg : thumbnailUrl})` }}>
         <VideoModal link={link} />
       </div>
       <div className={classes.info}></div>

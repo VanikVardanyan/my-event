@@ -23,7 +23,7 @@ export const ServiceCard = (props: IServiceProps) => {
       <div className={classes.img} style={{ backgroundImage: `url(${image})` }}></div>
       <div className={classes.info}>
         <h4 className={classes.title}>{professions(name)}</h4>
-        <div className={classes.description}>{mainT(description)}</div>
+        {/* <div className={classes.description}>{mainT(description)}</div> */}
       </div>
     </Link>
   )

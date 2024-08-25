@@ -10,10 +10,10 @@ export default tss.withName('VideoCard').create({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     maxWidth: '100%',
-    width: 'calc(90% - 10px)',
+    width: '100%',
     height: 233,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    borderRadius: 12,
+    borderRadius: 0,
     padding: 0,
     maxHeight: 'calc(100% - 10px)',
     overflowY: 'auto',
@@ -21,6 +21,7 @@ export default tss.withName('VideoCard').create({
     [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
       width: 'calc(90% - 10px)',
       height: 'calc(80% - 10px)',
+      borderRadius: 12,
     },
   },
   playBtn: {
