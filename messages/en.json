@@ -283,9 +283,9 @@
         "cake": "Cakes"
     },
     "Language": {
-        "ru": "Russian",
-        "en": "English",
-        "am": "Armenian"
+        "ru": "Rus",
+        "en": "Eng",
+        "hy": "Arm"
     },
     "Errors": {
         "invalid_email_or_password": "Invalid email or password",

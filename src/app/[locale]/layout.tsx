@@ -55,11 +55,7 @@ export default async function ({ children, params: { locale } }: Readonly<RootLa
                 <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
                   <LayoutHeader />
                   <Scroll />
-                  <LayoutRoot id="layout">
-                    {/* <LayoutContainer> */}
-                    {children}
-                    {/* </LayoutContainer> */}
-                  </LayoutRoot>
+                  <LayoutRoot id="layout">{children}</LayoutRoot>
                   <Footer />
                   <ToastContainer />
                 </NextAppDirEmotionCacheProvider>

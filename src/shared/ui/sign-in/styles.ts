@@ -125,12 +125,12 @@ export default tss.withName('SignInModal').create({
 })
 
 export const LoginButton = styled(Button)({
-  backgroundColor: DarkBlueDarken16,
+  backgroundColor: PinkBrownBase,
   color: White,
-  border: `1px solid ${White}`,
+  borderRadius: 16,
 
   '&:hover': {
-    backgroundColor: DarkBlueDarken4,
+    backgroundColor: PinkBrownLighten30,
     border: `1px solid ${TextSlateGreyLighten30}`,
   },
 })

@@ -13,21 +13,24 @@ export enum fontWeight {
 function getLanguageFromPath(pathname: string): Languages {
   const languages = [Languages.RU, Languages.HY, Languages.EN]
 
-  // Разбиваем путь на части
   const pathParts = pathname.split('/')
-  // Проверяем, является ли первый элемент после первого слэша допустимым языком
   if (pathParts.length > 1 && languages.includes(pathParts[1] as Languages)) {
     return pathParts[1] as Languages
   }
 
-  // По умолчанию возвращаем 'en', если язык не найден
   return Languages.HY
 }
 
 const currentLang = (typeof window !== 'undefined' && getLanguageFromPath(window.location.pathname)) || Languages.EN
 
+// export enum fontFamily {
+//   Base = '"RussianSans", Arial, sans-serif',
+//   LIBRE = '"Libre Baskerville", "sans-serif"',
+//   ArmenianDefault = '"ArmeniaSans", "sans-serif"',
+// }
+
 export enum fontFamily {
-  Base = '"RussianSans", Arial, sans-serif',
+  Base = '"Libre Baskerville", "sans-serif"',
   LIBRE = '"Libre Baskerville", "sans-serif"',
   ArmenianDefault = '"ArmeniaSans", "sans-serif"',
 }
@@ -82,7 +85,7 @@ export const FontBody1: IFont = {
   fontFamily: currentFontFamily,
   fontSize: '14px',
   fontWeight: Number(fontWeight.Regular),
-  lineHeight: '20px',
+  // lineHeight: '20px',
   letterSpacing: '0.1px',
 }
 

@@ -22,10 +22,10 @@ import { SwitchLanguage } from '../switch-language'
 import LogoutIcon from '@mui/icons-material/Logout'
 import Image from 'next/image'
 import PersonIcon from '@mui/icons-material/Person'
-import { HeartIcon } from '../../icons'
+import { HeartIcon, NavigateIcon } from '../../icons'
 import { UserType } from '../../types/user.types'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import { TextGreyLighten25 } from '../../consts/colors'
+import { Black, TextGreyLighten25 } from '../../consts/colors'
 import { clearSlice } from '../../../store/features/client-slice'
 import { SignIn } from '../sign-in'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
@@ -96,7 +96,7 @@ export const LayoutHeader = () => {
   return (
     <header className={classes.root}>
       <div className={classes.hamburgWrapper}>
-        {!profile && (
+        {/* {!profile && (
           <Link href={Routes.home} className={classes.logoLink}>
             <Image src="/logo/svg/logo-no-background.svg" alt="logo" width={100} height={40} />
           </Link>
@@ -105,12 +105,11 @@ export const LayoutHeader = () => {
           <Link href={Routes.home} className={classes.logoLink}>
             <Image src="/logo/svg/logo-no-background.svg" alt="logo" width={100} height={40} />
           </Link>
-        )}
+        )} */}
         <div className={classes.hamburg}>
           <button onClick={menuClickHandler} className={classes.hamburgerSection}>
-            <MenuIcon color="inherit" />
+            <NavigateIcon fill={Black} />
           </button>
-          <span className={classes.hamburgText}>{t('services')}</span>
         </div>
       </div>
 
@@ -120,9 +119,6 @@ export const LayoutHeader = () => {
         {!user && <SignIn />}
         {user && (
           <>
-            <button onClick={goToMessages} className={classes.messengerButton}>
-              <MarkunreadIcon style={{ width: 30, height: 30 }} />
-            </button>
             <IconButton
               style={{ width: 40, height: 40 }}
               id="basic-button"

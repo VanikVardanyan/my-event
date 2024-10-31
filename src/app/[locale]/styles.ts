@@ -16,8 +16,16 @@ export const Container = styled('div')(({ theme }) => ({
 }))
 
 import { tss } from 'tss-react/mui'
-import { DarkBlueBase, PinkBrownBase, PinkBrownDarken16, TextGreyBase } from '@/shared/consts/colors'
-import { FontBody2, FontH3, FontTitleBig } from '@/shared/consts/fontStyles'
+import { Black, DarkBlueBase, PinkBrownBase, PinkBrownDarken16, TextGreyBase } from '@/shared/consts/colors'
+import {
+  FontBody1,
+  FontBody1Accent,
+  FontBody2,
+  FontH3,
+  FontH4,
+  FontLandingBody2Accent,
+  FontTitleBig,
+} from '@/shared/consts/fontStyles'
 import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('MainPage').create({
@@ -31,54 +39,82 @@ export default tss.withName('MainPage').create({
     color: TextGreyBase,
   },
   root: {
+    position: 'relative',
     backgroundColor: DarkBlueBase,
-    padding: 20,
-    backgroundSize: 'cover',
-    backgroundPosition: 'right',
+    backgroundImage: 'url(/main/background.png)',
+    backgroundSize: '100%',
     backgroundRepeat: 'no-repeat',
-    marginBottom: 40,
     gap: 40,
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column-reverse',
+    flexDirection: 'column',
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      height: 630,
       gap: 80,
-
-      flexDirection: 'row',
     },
   },
-  layoutImage: {
-    backgroundImage: 'url(/main/background1.png)',
-    width: 700,
-    height: 700,
-    backgroundSize: 'contain',
-    backgroundRepeat: 'no-repeat',
+  professionSmallList: {
+    display: 'flex',
+    gap: 10,
+    marginBottom: '400px',
+  },
+  professionSmallListItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 10,
+  },
+  professionSmallListItemText: {
+    ...FontBody1,
+    color: '#8F8F8F',
+  },
+  professionSmallListCircle: {
+    width: 16,
+    height: 16,
+    border: '1px solid #8F8F8F',
+    borderRadius: '50%',
+    padding: 4,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerBottom: {
+    position: 'absolute',
+    height: 543,
+    bottom: '-191px',
+    width: '100%',
+    backgroundImage: 'url(/main/headersBottomBG.png)',
     backgroundPosition: 'center',
-    display: 'none',
-
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      display: 'block',
-    },
+    backgroundRepeat: 'none',
+    backgroundSize: 'cover',
+  },
+  professionSmallListCircleFill: {
+    width: 8,
+    height: 8,
+    border: '1px solid #8F8F8F',
+    borderRadius: '50%',
+    padding: 4,
   },
   headerActions: {
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: 15,
     marginTop: 20,
   },
   content: {
-    maxWidth: 540,
+    maxWidth: 845,
     display: 'flex',
     flexDirection: 'column',
     gap: 20,
-    marginTop: 0,
+    marginTop: 40,
     marginLeft: 0,
     borderRadius: 10,
     padding: 10,
-    textAlign: 'left',
+    textAlign: 'center',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      marginTop: 200,
+    },
   },
   title: {
     ...FontH3,
@@ -178,18 +214,42 @@ export default tss.withName('MainPage').create({
     },
   },
   howWorkWrapper: {
-    maxWidth: 1240,
-    margin: 'auto',
+    background: '#F00CA40F',
+    padding: '240px 20px 160px',
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 50,
     flexDirection: 'column',
-
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-    },
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    gap: 16,
+  },
+  howWorkSubTitle: {
+    ...FontBody1,
+    color: Black,
+    maxWidth: 432,
+  },
+  howWorkTitle: {
+    ...FontH3,
+    color: PinkBrownBase,
+  },
+  howWorkDescription: {
+    ...FontBody1,
+    color: TextGreyBase,
+    maxWidth: 900,
+  },
+  howWorkDescriptionBold: {
+    ...FontLandingBody2Accent,
+  },
+  planWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: '105px 20px 95px',
+  },
+  planWrapperBorder: {
+    width: 1,
+    height: 328,
+    background: PinkBrownBase,
   },
   questionsWrapper: {
     maxWidth: 1240,
