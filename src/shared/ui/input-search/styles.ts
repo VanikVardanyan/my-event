@@ -1,6 +1,7 @@
 import { tss } from 'tss-react'
 
 import {
+  Black,
   DarkBlueBase,
   GreyBase,
   PinkBrownBase,
@@ -19,7 +20,7 @@ import { FontBody1 } from '@/shared/consts/fontStyles'
 
 export default tss
   .withName('InputSearch')
-  .withNestedSelectors<'root' | 'channelsList'>()
+  .withNestedSelectors<'root' | 'channelsList' | 'input'>()
   .create(({ classes }) => ({
     root: {
       maxWidth: '100%',
@@ -30,7 +31,7 @@ export default tss
       gap: 8,
       zIndex: 1000,
       background: DarkBlueBase,
-      borderRadius: 10,
+      borderRadius: 59,
 
       [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         position: 'relative',
@@ -47,16 +48,25 @@ export default tss
     searchIcon: {
       lineHeight: 0,
     },
+    input: {
+      ...FontBody1,
+      color: GreyBase,
+      width: '100%',
+      background: DarkBlueBase,
+      border: 'none',
+      outline: 'none',
+      caretColor: PurpleBase,
+    },
     searchInput: {
       width: '100%',
-      background: SlateGreyLighten48,
+      background: DarkBlueBase,
       display: 'flex',
       alignItems: 'center',
       gap: 10,
       height: 40,
-      borderRadius: 10,
+      borderRadius: 59,
       padding: 10,
-      border: `1px solid transparent`,
+      border: `1px solid ${Black}`,
 
       '&:hover': {
         border: `1px solid ${PurpleLighten25}`,
@@ -64,16 +74,12 @@ export default tss
       '&:focus-within': {
         border: `1px solid ${PurpleLighten25}`,
         boxShadow: `0px 0px 0px 3px ${PurpleLighten40}`,
+        background: White,
+
+        [`.${classes.input}`]: {
+          background: White,
+        },
       },
-    },
-    input: {
-      ...FontBody1,
-      color: GreyBase,
-      width: '100%',
-      background: SlateGreyLighten48,
-      border: 'none',
-      outline: 'none',
-      caretColor: PurpleBase,
     },
     mobileInputButton: {
       width: 40,
@@ -85,7 +91,7 @@ export default tss
       outline: 'none',
       cursor: 'pointer',
       borderRadius: 10,
-      border: `1px solid ${White}`,
+      border: `1px solid ${Black}`,
 
       [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
         display: 'none',

@@ -4,7 +4,7 @@ import { debounce } from '@mui/material'
 import { AxiosError } from 'axios'
 import cn from 'classnames'
 import SearchIcon from '@mui/icons-material/Search'
-import { SlateGreyDarken7, SlateGreyLighten10, White } from '../../consts/colors'
+import { Black, SlateGreyDarken7, SlateGreyLighten10, White } from '../../consts/colors'
 import CloseIcon from '@mui/icons-material/Close'
 import { HTTPResponseStatusCodes } from '../../utils/error-message-by-code'
 import useStyles from './styles'
@@ -145,16 +145,9 @@ export const InputSearch = (props: InputSearchProps) => {
       <div className={cn(classes.root, { [classes.showInput]: isShowInput })}>
         <div className={classes.searchInput}>
           <div className={classes.searchIcon} onClick={showInputHandler}>
-            <SearchIcon style={{ width: 24, height: 24, fill: SlateGreyDarken7 }} />
+            <SearchIcon style={{ width: 24, height: 24, fill: Black }} />
           </div>
-          <input
-            type="text"
-            value={queryParams}
-            onChange={handleSearch}
-            placeholder={t('search')}
-            className={classes.input}
-            ref={inputRef}
-          />
+          <input type="text" value={queryParams} onChange={handleSearch} className={classes.input} ref={inputRef} />
           {queryParams.length > 0 && (
             <button className={classes.closeButton} onClick={closeInput}>
               <CloseIcon style={{ width: 16, height: 16, fill: SlateGreyLighten10 }} />

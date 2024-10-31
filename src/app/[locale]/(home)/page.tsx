@@ -1,12 +1,11 @@
 'use client'
-import useStyles, { Container, StartButton } from './styles'
+import useStyles, { Container, StartButton } from '../styles'
 import { Link, useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
 import { useTranslations } from 'next-intl'
 import { UserType } from '@/shared/types/user.types'
 import { ServiceCard } from '@/shared/ui/service-card'
 import { useRef } from 'react'
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown'
 import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
@@ -14,15 +13,18 @@ import Slider from 'react-slick'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { questions, serviceListMock, workSteps } from '@/shared/utils/main-helper'
-import cn from 'classnames'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { WorkCard } from '@/shared/ui/home-work-card'
-import { SlateGreyBase } from '@/shared/consts/colors'
+import { PinkBrownBase, SlateGreyBase } from '@/shared/consts/colors'
 import { VideoCard } from '@/shared/ui/videoCard'
 import { sendGA4Event } from '@/shared/analytics/ga4'
 import { GA4_ACTIONS, GA4_PLACES } from '@/shared/analytics/types'
+import { PinkButton } from '@/shared/ui/button'
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
+import { PlanItems, professionList } from './utils'
+import { PlanComponent } from './ui/plan-cpmponent'
 
 const videoListMock = [
   {
@@ -184,29 +186,50 @@ export default function Home() {
     <div>
       <div className={classes.root}>
         <div className={classes.content}>
-          <h3 className={classes.title}>{t('organize_your_events')}</h3>
           <p className={classes.description}>{t('organize_your_events_quickly')}</p>
+          <h3 className={classes.title}>
+            {t.rich('organize_your_events', {
+              highlight: (chunks) => <span style={{ color: PinkBrownBase }}>{chunks}</span>,
+            })}{' '}
+          </h3>
           <div className={classes.headerActions}>
             {profile?.role !== UserType.PROVIDER && (
-              <StartButton LinkComponent={Link} href={Routes.CreateEvent}>
+              <PinkButton LinkComponent={Link} href={Routes.CreateEvent} endIcon={<KeyboardDoubleArrowRightIcon />}>
                 {t('start')}
-              </StartButton>
+              </PinkButton>
             )}
-            <IconButton onClick={handleStartClick}>
-              <KeyboardDoubleArrowDownIcon />
-            </IconButton>
           </div>
         </div>
-        <div className={classes.layoutImage} />
-      </div>
-      <div className={classes.titleWrapper}>
-        <div className={classes.titleBorder} />
-        <h2 className={classes.categories}>{t('how_it_works')}</h2>
+        <div className={classes.professionSmallList}>
+          {professionList.map((item, index) => (
+            <div key={item} className={classes.professionSmallListItem}>
+              <div className={classes.professionSmallListItemText}>{item}</div>
+              {index !== professionList.length - 1 && (
+                <div className={classes.professionSmallListCircle}>
+                  <div className={classes.professionSmallListCircleFill} />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+        <div className={classes.headerBottom} />
       </div>
       <div className={classes.howWorkWrapper}>
-        {workSteps.map((step, index) => (
-          <WorkCard key={index} {...step} />
-        ))}
+        <div className={classes.howWorkSubTitle}>
+          Մեր հարթակը տրամադրում է գործիքներ, որոնք կօգնեն ձեզ կազմակերպել անմոռանալի միջոցառումներ
+        </div>
+        <h2 className={classes.howWorkTitle}>Ի՞նչ ենք մենք առաջարկում</h2>
+        <div className={classes.howWorkDescription}>
+          Մենք առաջարկում ենք ամբողջական միջոցառումների պլանավորում՝ սկսած սննդից մինչև վայրը և դեկորը: <br />{' '}
+          <span className={classes.howWorkDescriptionBold}>Մեր առաքելությունն</span> է օգնել ձեզ ստեղծել անմոռանալի
+          պահեր՝ օգտագործելով հարմար և հեշտ գործիքներ, որոնք նախատեսված են ինչպես հաճախորդների, այնպես էլ ոլորտի
+          մասնագետների համար։
+        </div>
+      </div>
+      <div className={classes.planWrapper}>
+        <PlanComponent {...PlanItems.plan} />
+        <div className={classes.planWrapperBorder} />
+        <PlanComponent {...PlanItems.event} />
       </div>
       <div className={classes.titleWrapper}>
         <div className={classes.titleBorder} ref={categoryRef} />

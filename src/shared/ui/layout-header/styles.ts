@@ -24,7 +24,7 @@ export default tss.withName('LayoutHeader').create({
     alignItems: 'center',
     padding: '11px 10px 11px 16px',
     background: DarkBlueBase,
-    // boxShadow: '0 3px 10px rgb(0 0 0 / 0.2)',
+    boxShadow: '1px 5px 15.6px 0px rgba(0, 0, 0, 0.25)',
     zIndex: 1100,
     minHeight: 62,
     position: 'sticky',
@@ -64,11 +64,10 @@ export default tss.withName('LayoutHeader').create({
     cursor: 'pointer',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 10,
     outline: 'none',
-    background: DarkBlueDarken16,
-    border: `1px solid ${White}`,
+    background: 'inherit',
     color: White,
+    border: 'none',
 
     '&:hover': {
       background: DarkBlueDarken4,
