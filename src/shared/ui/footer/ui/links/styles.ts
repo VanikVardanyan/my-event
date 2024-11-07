@@ -1,5 +1,5 @@
 import { tss } from 'tss-react/mui'
-import { TextSlateGreyLighten30, White } from '../../../../consts/colors'
+import { Black, GreyBase } from '../../../../consts/colors'
 import { FontBody1, FontBody2 } from '../../../../consts/fontStyles'
 
 export default tss.withName('FooterLink').create({
@@ -7,14 +7,15 @@ export default tss.withName('FooterLink').create({
   linksWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    gap: 5,
+    gap: 16,
   },
   link: {
     ...FontBody1,
-    color: White,
+    color: GreyBase,
   },
   title: {
     ...FontBody2,
-    color: White,
+    color: Black,
+    marginBottom: 10,
   },
 })

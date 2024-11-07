@@ -57,6 +57,8 @@ export default tss.withName('MainPage').create({
     display: 'flex',
     gap: 10,
     marginBottom: '400px',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
   professionSmallListItem: {
     display: 'flex',
@@ -245,11 +247,23 @@ export default tss.withName('MainPage').create({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '105px 20px 95px',
+    flexDirection: 'column',
+    gap: 20,
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      flexDirection: 'row',
+      gap: 0,
+    },
   },
   planWrapperBorder: {
     width: 1,
     height: 328,
     background: PinkBrownBase,
+    display: 'none',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      display: 'block',
+    },
   },
   questionsWrapper: {
     maxWidth: 1240,

@@ -4,6 +4,7 @@ export const BreakPoints = {
   EXTRA_SMALL: '480px',
   MEDIUM: '600px',
   LARGE: '900px',
+  EXTRA_LARGE: '1440px',
 }
 
 export const MaxContentWidth = '800px'

@@ -9,14 +9,17 @@ import cn from 'classnames'
 import { Routes } from '../../routes'
 
 const linksCompany = [
-  { title: 'About us', link: '/about' },
-  // { title: 'Contact us', link: '/contact' },
-  { title: 'Terms and conditions', link: '/terms' },
-  { title: 'Privacy policy', link: '/privacy' },
+  { title: 'Գլխավոր', link: '/contact' },
+  { title: 'Մեր մասին', link: '/about' },
+  { title: 'Կատեգորիաներ', link: '/about' },
+  { title: 'Պորտֆոլիո', link: '/terms' },
+  { title: 'Հետադարձ կապ', link: '/privacy' },
+  { title: 'ՀՏՀ', link: '/privacy' },
 ]
 
 const planners = [
-  { title: 'How it works', link: 'how-it-works' },
+  { title: 'Հաճախորդի իրավունքներ', link: '/terms' },
+  { title: 'Գաղտնիության քաղաքականությունր', link: '/privacy' },
   { title: 'Pricing (soon)', link: 'pricing', isDisabled: true },
 ]
 const support = [
@@ -35,12 +38,11 @@ export const Footer = () => {
       <div className={classes.root}>
         <div className={classes.footerTop}>
           <div>
-            <Image src="/logo/png/logo-no-background.png" alt="logo" width={150} height={50} />
+            <Image src="/logo/png/logo.png" alt="logo" width={253} height={253} />
           </div>
           <div className={classes.linksWrapper}>
-            <FooterLinks title="Company" links={linksCompany} />
-            <FooterLinks title="Event Planners" links={planners} />
-            <FooterLinks title="Support" links={support} />
+            <FooterLinks title="Ընկերության մասին" links={linksCompany} />
+            <FooterLinks title="Օգտակար հղումներ" links={planners} />
           </div>
           <div></div>
         </div>

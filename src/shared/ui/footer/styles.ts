@@ -1,12 +1,13 @@
 import { tss } from 'tss-react/mui'
 import { FontBody1 } from '../../consts/fontStyles'
-import { White } from '../../consts/colors'
+import { Black, SlateGreyBase, White } from '../../consts/colors'
 import { BreakPoints } from '../../consts/common'
 
 export default tss.withName('footer').create({
   root: {
+    borderTop: `1px solid ${SlateGreyBase}`,
     padding: '40px 12px',
-    background: '#21262C',
+    background: White,
     display: 'flex',
     flexDirection: 'column',
     gap: 40,
@@ -38,7 +39,7 @@ export default tss.withName('footer').create({
   },
   link: {
     ...FontBody1,
-    color: White,
+    color: Black,
   },
   colorPeace: {
     color: '#2690ff',

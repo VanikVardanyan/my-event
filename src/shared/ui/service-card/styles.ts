@@ -1,36 +1,38 @@
 import { tss } from 'tss-react/mui'
-import { FontBody1, FontBody2, fontFamily, FontH3, FontH4, FontSubtitle1 } from '../../consts/fontStyles'
+import {
+  FontBody1,
+  FontBody1Accent,
+  FontBody2,
+  fontFamily,
+  FontH3,
+  FontH4,
+  FontSubtitle1,
+} from '../../consts/fontStyles'
 import { Black, DarkPurpleBase, PinkBrownBase, TextGreyLighten25 } from '../../consts/colors'
 
 export default tss.withName('ServiceCard').create({
-  root: {
-    width: 261,
-    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-    borderRadius: 6,
-  },
+  root: {},
   img: {
     width: '100%',
-    height: 300,
+    height: 290,
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    borderTopLeftRadius: 6,
-    borderTopRightRadius: 6,
+    borderRadius: 8,
   },
   title: {
-    ...FontH4,
+    ...FontBody1Accent,
     color: Black,
-    paddingLeft: 10,
-    marginTop: 10,
+    marginTop: 7,
   },
   description: {
     ...FontBody2,
-    color: TextGreyLighten25,
-    padding: 10,
+    fontSize: 16,
+    color: '#4C4848',
   },
   info: {
     display: 'flex',
     flexDirection: 'column',
     gap: 5,
+    marginBottom: 10,
   },
 })
