@@ -4,9 +4,10 @@ import { Professions } from '../../types/user.types'
 import useStyles from './styles'
 import { Link } from '../../../navigation'
 import { useTranslations } from 'next-intl'
+import { BUTTON_SIZE, PinkButton } from '../button'
 
 interface IServiceProps {
-  name: Professions
+  name: string
   description: string
   image: string
   link: Routes
@@ -19,12 +20,15 @@ export const ServiceCard = (props: IServiceProps) => {
   const mainT = useTranslations('Main')
 
   return (
-    <Link href={link} className={classes.root}>
+    <div className={classes.root}>
       <div className={classes.img} style={{ backgroundImage: `url(${image})` }}></div>
       <div className={classes.info}>
-        <h4 className={classes.title}>{professions(name)}</h4>
-        {/* <div className={classes.description}>{mainT(description)}</div> */}
+        <div className={classes.title}>{name}</div>
+        <div className={classes.description}>{description}</div>
       </div>
-    </Link>
+      <PinkButton btn_size={BUTTON_SIZE.SMALL} fullWidth>
+        Իմանալ ավելին
+      </PinkButton>
+    </div>
   )
 }

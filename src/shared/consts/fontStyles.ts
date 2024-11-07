@@ -30,8 +30,8 @@ const currentLang = (typeof window !== 'undefined' && getLanguageFromPath(window
 // }
 
 export enum fontFamily {
-  Base = '"Libre Baskerville", "sans-serif"',
-  LIBRE = '"Libre Baskerville", "sans-serif"',
+  Base = '"ArmeniaSans", "sans-serif"',
+  LIBRE = '"ArmeniaSans", "sans-serif"',
   ArmenianDefault = '"ArmeniaSans", "sans-serif"',
 }
 

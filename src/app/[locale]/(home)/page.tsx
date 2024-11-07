@@ -9,14 +9,10 @@ import { useRef } from 'react'
 import { Accordion, AccordionDetails, AccordionSummary, IconButton } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
-import Slider from 'react-slick'
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { questions, serviceListMock, workSteps } from '@/shared/utils/main-helper'
+
+import { questions } from '@/shared/utils/main-helper'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { WorkCard } from '@/shared/ui/home-work-card'
+
 import { PinkBrownBase, SlateGreyBase } from '@/shared/consts/colors'
 import { VideoCard } from '@/shared/ui/videoCard'
 import { sendGA4Event } from '@/shared/analytics/ga4'
@@ -25,6 +21,8 @@ import { PinkButton } from '@/shared/ui/button'
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight'
 import { PlanItems, professionList } from './utils'
 import { PlanComponent } from './ui/plan-cpmponent'
+import { Categories } from './ui/categories'
+import { Blog } from './ui/blog'
 
 const videoListMock = [
   {
@@ -75,22 +73,6 @@ interface ArrowProps {
   onClick?: () => void
 }
 
-const NextArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
-  return (
-    <div className={className} onClick={onClick}>
-      <ArrowForwardIosIcon style={{ color: SlateGreyBase }} />
-    </div>
-  )
-}
-
-const PrevArrow: React.FC<ArrowProps> = ({ className, onClick }) => {
-  return (
-    <div className={className} onClick={onClick}>
-      <ArrowBackIosNewIcon style={{ color: SlateGreyBase }} />
-    </div>
-  )
-}
-
 // export const metadata: Metadata = {
 //   title: 'Van Event - Մասնագիտացված հարթակ միջոցառումների համար',
 //   description:
@@ -120,67 +102,6 @@ export default function Home() {
   const t = useTranslations('Main')
 
   const categoryRef = useRef<HTMLDivElement>(null)
-
-  const handleStartClick = () => {
-    const fixedElementHeight = 62
-    sendGA4Event({ action: GA4_ACTIONS.ACCOUNT_START_TO_CREATE, place: GA4_PLACES.MAIN })
-
-    if (categoryRef.current) {
-      const yOffset = -fixedElementHeight
-      const y = categoryRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    }
-  }
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    initialSlide: 0,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
-    responsive: [
-      {
-        breakpoint: 2000,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 4,
-          infinite: true,
-          dots: false,
-          arrows: true,
-        },
-      },
-      {
-        breakpoint: 1114,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true,
-          dots: false,
-          arrows: true,
-        },
-      },
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2,
-          arrows: true,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          arrows: true,
-        },
-      },
-    ],
-  }
 
   return (
     <div>
@@ -226,32 +147,13 @@ export default function Home() {
           մասնագետների համար։
         </div>
       </div>
-      <div className={classes.planWrapper}>
-        <PlanComponent {...PlanItems.plan} />
-        <div className={classes.planWrapperBorder} />
-        <PlanComponent {...PlanItems.event} />
-      </div>
-      <div className={classes.titleWrapper}>
-        <div className={classes.titleBorder} ref={categoryRef} />
-        <h2 className={classes.categories}>{t('categories')}</h2>
-        <div className={classes.subTitle}>{t('find_professionals')}</div>
-      </div>
-      <div className={classes.slickWrapper}>
-        {' '}
-        <div className={classes.slick}>
-          <Slider {...settings}>
-            {serviceListMock.map((service) => (
-              <ServiceCard {...service} key={service.link} />
-            ))}
-          </Slider>
-        </div>
-      </div>
-      <div className={classes.titleWrapper}>
+
+      {/* <div className={classes.titleWrapper}>
         <div className={classes.titleBorder} />
         <h2 className={classes.categories}>{t('event_example')}</h2>
         <div className={classes.subTitle}>{t('find_professionals')}</div>
-      </div>
-      <div className={classes.slickWrapper}>
+      </div> */}
+      {/* <div className={classes.slickWrapper}>
         {' '}
         <div className={classes.slick}>
           <Slider {...settings}>
@@ -260,24 +162,18 @@ export default function Home() {
             ))}
           </Slider>
         </div>
-      </div>
+      </div> */}
 
       <Container>
-        <div className={classes.titleWrapper}>
-          <div className={classes.titleBorder} />
-          <h2 className={classes.categories}>{t('have_questions_have_answers')}</h2>
+        <div className={classes.planWrapper}>
+          <PlanComponent {...PlanItems.plan} />
+          <div className={classes.planWrapperBorder} />
+          <PlanComponent {...PlanItems.event} />
         </div>
-        <div className={classes.questionsWrapper}>
-          {questions.map((question) => (
-            <Accordion key={question.question} sx={{ borderRadius: '6px' }}>
-              <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1-content" id="panel1-header">
-                {t(question.question)}
-              </AccordionSummary>
-              <AccordionDetails>{t(question.answer)}</AccordionDetails>
-            </Accordion>
-          ))}
-        </div>
+
+        <Categories />
       </Container>
+      <Blog />
     </div>
   )
 }

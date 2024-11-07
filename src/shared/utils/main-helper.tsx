@@ -8,7 +8,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { PurpleBase } from '../consts/colors'
 interface IService {
-  name: Professions
+  name: string
   description: string
   image: string
   link: Routes
@@ -16,76 +16,76 @@ interface IService {
 
 export const serviceListMock: IService[] = [
   {
-    name: Professions.Showman,
-    description: 'showman_description',
-    image: '/main/showman.jpg',
-    link: Routes.Showman,
-  },
-  {
-    name: Professions.Photographers,
-    description: 'photographers_description',
-    image: '/main/photographer.jpg',
+    name: 'Լուսանկարիչ',
+    description: 'Ստեղծագործ, պրոֆեսիոնալ և հմուտ',
+    image: '/professions/photographer.png',
     link: Routes.Photographer,
   },
   {
-    name: Professions.Musicians,
-    description: 'musicians_description',
-    image: '/main/musician.jpg',
-    link: Routes.Musicians,
+    name: 'Շոու ծրագիր',
+    description: 'Զվարճալի, դինամիկ և հետաքրքիր',
+    image: '/professions/show.png',
+    link: Routes.Show,
   },
   {
-    name: Professions.Djs,
-    description: 'djs_description',
-    image: '/main/dj.jpg',
-    link: Routes.Dj,
+    name: 'Տորթեր',
+    description: 'Համեղ, գեղեցիկ և յուրահատուկ',
+    image: '/professions/cake.png',
+    link: Routes.Cakes,
   },
   {
-    name: Professions.Restaurants,
-    description: 'restaurant_services_description',
-    image: '/main/restaurant.jpg',
-    link: Routes.Restaurants,
-  },
-  {
-    name: Professions.CostumeRental,
-    description: 'costume_rental_description',
-    image: '/main/dress.jpg',
-    link: Routes.CostumeRental,
-  },
-  {
-    name: Professions.EquipmentRental,
-    description: 'equipment_rental_description',
-    image: '/main/equipment.jpg',
-    link: Routes.EquipmentRental,
-  },
-  {
-    name: Professions.floristsDecorators,
-    description: 'florists_decorators_description',
-    image: '/main/florist.jpg',
-    link: Routes.FloristsDecorators,
-  },
-  {
-    name: Professions.DancersEntertainers,
-    description: 'dancers_entertainers_description',
-    image: '/main/dance.jpg',
+    name: 'Պար',
+    description: 'Ռիթմիկ, էներգետիկ և գրավիչ',
+    image: '/professions/dance.png',
     link: Routes.DancersEntertainers,
   },
   {
-    name: Professions.CarsRental,
-    description: 'car_rental_description',
-    image: '/main/car.jpg',
+    name: 'DJ',
+    description: 'Տպավորիչ, պրոֆեսիոնալ և զվարճալի',
+    image: '/professions/dj.png',
+    link: Routes.Dj,
+  },
+  {
+    name: 'Երգիչներ և երաժիշտներ',
+    description: 'Տաղանդավոր և պրոֆեսիոնալ',
+    image: '/professions/musician.png',
+    link: Routes.Musicians,
+  },
+  {
+    name: 'Ֆլորիստներ և դիզայներներ',
+    description: 'Ստեղծագործ, գեղեցիկ և վառ',
+    image: '/professions/designer.png',
+    link: Routes.FloristsDecorators,
+  },
+  {
+    name: 'Երեկոյան զգեստներ',
+    description: 'էլեգանտ, առանձնահատուկ և ժամանակակից',
+    image: '/professions/dress.png',
+    link: Routes.CostumeRental,
+  },
+  {
+    name: 'Ռեստորաններ',
+    description: 'Համեղ, հյուրընկալ և բազմազան',
+    image: '/professions/restaurant.png',
+    link: Routes.Restaurants,
+  },
+  {
+    name: 'Սարքավորումների և իրերի վարձույթ',
+    description: 'Բազմազան, հարմար և պրոֆեսիոնալ',
+    image: '/professions/party.png',
+    link: Routes.EquipmentRental,
+  },
+  {
+    name: 'Ավտոմեքենաների վարձույթ',
+    description: 'Հարմար, արագ և անվտանգ',
+    image: '/professions/car.png',
     link: Routes.CarsRental,
   },
   {
-    name: Professions.Cake,
-    description: 'cake_services_description',
-    image: '/main/cakes.jpg',
-    link: Routes.Cakes,
-  },
-  {
-    name: Professions.Show,
-    description: 'show_service_description',
-    image: '/main/show.jpeg',
-    link: Routes.Cakes,
+    name: 'Շոումեն',
+    description: 'Զվարճանք, էներգիա և շփում',
+    image: '/professions/showman.png',
+    link: Routes.Showman,
   },
 ]
 

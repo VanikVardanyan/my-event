@@ -1,6 +1,7 @@
 import { PinkButton } from '@/shared/ui/button'
 import styles from './styles.module.scss'
 import { IPlacComponentsProps } from './types'
+import LaunchIcon from '@mui/icons-material/Launch'
 
 export const PlanComponent = (props: IPlacComponentsProps) => {
   const { title, description, buttonText } = props
@@ -16,7 +17,7 @@ export const PlanComponent = (props: IPlacComponentsProps) => {
         ))}
       </div>
       <div className={styles.button}>
-        <PinkButton>{buttonText}</PinkButton>
+        <PinkButton endIcon={<LaunchIcon />}>{buttonText}</PinkButton>
       </div>
     </div>
   )

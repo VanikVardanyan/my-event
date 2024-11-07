@@ -2,14 +2,24 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 36px;
   font-weight: 700;
-  margin-bottom: 106px;
   color: #f00ca4;
+  margin-bottom: 106px;
+  text-align: center;
+
+  @media (max-width: 900px) {
+    margin-bottom: 36px;
+  }
 }
 
 .descriptions {
   display: flex;
   justify-content: space-between;
   margin-bottom: 56px;
+  flex-direction: row;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
 }
 
 .description {
