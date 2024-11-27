@@ -72,7 +72,6 @@ function CustomEditor(props: ICustomEditor) {
       data={descriptionValue}
       onChange={(event, editor) => {
         const data = editor.getData()
-        // Устанавливаем значение в форму
         setValue('description', data)
       }}
     />

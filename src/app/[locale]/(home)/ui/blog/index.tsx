@@ -1,4 +1,4 @@
-import { PinkButton } from '@/shared/ui/button'
+import { Button } from '@/shared/ui/button'
 import useStyles from './styles'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 
@@ -8,7 +8,7 @@ export const Blog = () => {
   return (
     <div className={classes.root}>
       <div className={classes.blog} />
-      <PinkButton endIcon={<DoubleArrowIcon />}>Ստեղծել միջոցառում</PinkButton>
+      <Button endIcon={<DoubleArrowIcon />}>Ստեղծել միջոցառում</Button>
     </div>
   )
 }

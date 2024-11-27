@@ -25,7 +25,7 @@ export const ServiceStatusItem = (props: IServiceStatusItem) => {
     setAnchorEl(null)
   }
 
-  const t = useTranslations('Request')
+  const t = useTranslations()
 
   const handleStatusChange = (status: ServiceSearchStatus) => () => {
     changeServiceStatus(id, status)

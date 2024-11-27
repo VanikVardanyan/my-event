@@ -1,4 +1,4 @@
-import { FontBody1Accent, FontBody1, FontBody2 } from '@/shared/consts/fontStyles'
+import { FontBody1Accent, FontBody1, FontBody2, FontCaptionAccent } from '@/shared/consts/fontStyles'
 import { tss } from 'tss-react/mui'
 import {
   Black,
@@ -50,6 +50,10 @@ export default tss.withName('SignIn').create({
       height: 'initial',
       display: 'block',
     },
+  },
+  logoName: {
+    ...FontCaptionAccent,
+    color: PinkBrownBase,
   },
   formTitle: {
     ...FontBody2,

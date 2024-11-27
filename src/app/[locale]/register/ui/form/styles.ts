@@ -11,6 +11,7 @@ import {
   PinkBrownBase,
   PinkBrownLighten30,
   PinkBrownDisabled,
+  SlateGreyLighten34,
 } from '@/shared/consts/colors'
 import { BreakPoints } from '@/shared/consts/common'
 import { styled } from '@mui/system'
@@ -19,7 +20,6 @@ import { Button } from '@mui/material'
 export default tss.withName('Register').create({
   root: {
     width: '100%',
-    height: 'calc(100vh - 62px)',
     display: 'flex',
   },
   bgSection: {
@@ -48,7 +48,7 @@ export default tss.withName('Register').create({
   formSection: {
     flex: 1,
     alignSelf: 'center',
-    padding: '0 10px',
+    padding: 10,
     height: '100%',
     display: 'flex',
 
@@ -58,31 +58,41 @@ export default tss.withName('Register').create({
       display: 'block',
     },
   },
+  fieldGroup: {
+    display: 'flex',
+    gap: 25,
+    flexDirection: 'column',
+
+    [`@media (min-width: ${BreakPoints.LARGE})`]: {
+      flexDirection: 'row',
+      gap: 14,
+    },
+  },
+
   formWrapper: {
     maxWidth: '100%',
     minWidth: 300,
     width: '100%',
-    padding: 25,
-    backgroundColor: White,
-    borderRadius: 10,
+    padding: 10,
     margin: '20px auto',
+    background: '#F7F7F7',
+    border: `1px solid #C8C8C8`,
+    borderRadius: 16,
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      padding: '0px',
-      borderRadius: '0px',
       margin: 'auto',
       maxWidth: 400,
+      padding: 25,
     },
   },
   formTitle: {
     ...FontBody2,
-    marginBottom: 25,
+    fontWeight: 700,
+    fontSize: 24,
+    margin: '25px 0',
     color: Black,
-    display: 'none',
-
-    [`@media (min-width: ${BreakPoints.LARGE})`]: {
-      display: 'block',
-    },
+    display: 'block',
+    textAlign: 'center',
   },
   googleBtn: {
     ...FontBody1Accent,
@@ -119,6 +129,12 @@ export default tss.withName('Register').create({
     '& input': {
       color: 'black',
     },
+
+    '& p': {
+      background: '#F7F7F7',
+      margin: 0,
+      width: '100%',
+    },
   },
   line: {
     height: 1,
@@ -139,12 +155,10 @@ export default tss.withName('Register').create({
     display: 'block',
   },
   registerContent: {
-    // ...FontBody1,
     color: White,
     marginTop: 10,
   },
   registerContentForm: {
-    // ...FontBody1,
     color: Black,
     marginTop: 10,
   },
@@ -155,17 +169,13 @@ export default tss.withName('Register').create({
   title: {
     ...FontBody1Accent,
   },
-})
-
-export const SignInButton = styled(Button)({
-  backgroundColor: PinkBrownBase,
-  color: 'white',
-
-  '&:hover': {
-    backgroundColor: PinkBrownLighten30,
-  },
-
-  '&:disabled': {
-    backgroundColor: PinkBrownDisabled,
+  toggleWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: 25,
+    background: SlateGreyLighten34,
+    padding: 4,
+    borderRadius: 8,
+    gap: 10,
   },
 })

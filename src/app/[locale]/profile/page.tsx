@@ -22,7 +22,7 @@ const Profile = () => {
   const { profile, loading } = useSelector(getProfile)
   const { loading: authLoading, user } = useAuth()
 
-  const t = useTranslations('Shared')
+  const t = useTranslations()
   const router = useRouter()
   const { classes } = useStyles()
   const isBusiness = profile?.role === UserType.PROVIDER

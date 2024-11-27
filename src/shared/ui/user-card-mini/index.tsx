@@ -47,7 +47,7 @@ export const UserCardMini = ({
   const { favorites } = useSelector(getClient)
   const dispatch = Dispatch()
 
-  const t = useTranslations('Shared')
+  const t = useTranslations()
 
   const handleFavorite = async () => {
     if (canHasFavorite) {

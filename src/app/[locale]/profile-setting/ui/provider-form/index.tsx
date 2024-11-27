@@ -25,23 +25,21 @@ export const ProviderForm = () => {
   const { profile } = useSelector(getProfile)
   const { user } = useAuth()
 
-  const t = useTranslations('ProfileSetting')
-  const m = useTranslations('Professions')
-  const countriesT = useTranslations('Countries')
+  const t = useTranslations()
 
   const professionsOptions = [
-    { value: Professions.Showman, label: m(Professions.Showman) },
-    { value: Professions.Photographers, label: m(Professions.Photographers) },
-    { value: Professions.Djs, label: m(Professions.Djs) },
-    { value: Professions.Musicians, label: m(Professions.Musicians) },
-    { value: Professions.EquipmentRental, label: m(Professions.EquipmentRental) },
-    { value: Professions.CarsRental, label: m(Professions.CarsRental) },
-    { value: Professions.CostumeRental, label: m(Professions.CostumeRental) },
-    { value: Professions.floristsDecorators, label: m(Professions.floristsDecorators) },
-    { value: Professions.DancersEntertainers, label: m(Professions.DancersEntertainers) },
-    { value: Professions.Cake, label: m(Professions.Cake) },
-    { value: Professions.Restaurants, label: m(Professions.Restaurants) },
-    { value: Professions.Show, label: m(Professions.Show) },
+    { value: Professions.Showman, label: t(Professions.Showman) },
+    { value: Professions.Photographers, label: t(Professions.Photographers) },
+    { value: Professions.Djs, label: t(Professions.Djs) },
+    { value: Professions.Musicians, label: t(Professions.Musicians) },
+    { value: Professions.EquipmentRental, label: t(Professions.EquipmentRental) },
+    { value: Professions.CarsRental, label: t(Professions.CarsRental) },
+    { value: Professions.CostumeRental, label: t(Professions.CostumeRental) },
+    { value: Professions.floristsDecorators, label: t(Professions.floristsDecorators) },
+    { value: Professions.DancersEntertainers, label: t(Professions.DancersEntertainers) },
+    { value: Professions.Cake, label: t(Professions.Cake) },
+    { value: Professions.Restaurants, label: t(Professions.Restaurants) },
+    { value: Professions.Show, label: t(Professions.Show) },
   ]
 
   const countryOptions = [
@@ -181,7 +179,7 @@ export const ProviderForm = () => {
               options={countryOptions}
               placeholder={t('country')}
               onChange={countrySelectHandler}
-              defaultValue={{ label: countriesT(Countries.Armenia), value: Countries.Armenia }}
+              defaultValue={{ label: t(Countries.Armenia), value: Countries.Armenia }}
               isDisabled
               isOptionDisabled={() => countryWatcher && countryWatcher.length >= 2}
             />
@@ -198,76 +196,14 @@ export const ProviderForm = () => {
           placeholder={t('select_profession')}
           onChange={professionsSelectHandler}
           isOptionDisabled={() => professionWatcher && professionWatcher.length >= 2}
-          value={professionWatcher?.map((item: any) => ({ label: m(item), value: item }))}
+          value={professionWatcher?.map((item: any) => ({ label: t(item), value: item }))}
         />
         <FormHelperText error>{errors?.profession?.message as string}</FormHelperText>
       </div>
-      {/* <TextField
-        fullWidth
-        autoCorrect="off"
-        {...register('description')}
-        label={t('describe_yourself')}
-        placeholder={t('enter_description')}
-        type="text"
-        autoComplete="off"
-        rows={4}
-        multiline
-      /> */}
-      <div className={classes.ckEditor}>
+      {/* <div className={classes.ckEditor}>
         <FormHelperText>{t('describe_yourself')}</FormHelperText>
         <CustomEditor descriptionValue={descriptionValue} setValue={setValue} />
-      </div>
-
-      <div className={classes.network}>
-        <TextField
-          fullWidth
-          autoCorrect="off"
-          {...register('facebook')}
-          label={t('facebook_link')}
-          placeholder={t('enter_facebook_link')}
-          type="text"
-          autoComplete="off"
-          size="small"
-          error={!!errors.facebook}
-          helperText={errors?.facebook?.message as string}
-        />
-        <TextField
-          fullWidth
-          autoCorrect="off"
-          {...register('instagram')}
-          label={t('instagram_link')}
-          placeholder={t('enter_instagram_link')}
-          type="text"
-          autoComplete="off"
-          size="small"
-          error={!!errors.instagram}
-          helperText={errors?.instagram?.message as string}
-        />
-        <TextField
-          fullWidth
-          autoCorrect="off"
-          {...register('youtube')}
-          label={t('youtube_link')}
-          placeholder={t('enter_youtube_link')}
-          type="text"
-          autoComplete="off"
-          size="small"
-          error={!!errors.youtube}
-          helperText={errors?.youtube?.message as string}
-        />
-        <TextField
-          fullWidth
-          autoCorrect="off"
-          {...register('tiktok')}
-          label={t('tiktok_link')}
-          placeholder={t('enter_tiktok_link')}
-          type="text"
-          autoComplete="off"
-          size="small"
-          error={!!errors.tiktok}
-          helperText={errors?.tiktok?.message as string}
-        />
-      </div>
+      </div> */}
     </div>
   )
 }

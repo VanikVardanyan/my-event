@@ -36,10 +36,7 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
   const { user } = useAuth()
   const btnRef = useRef(null)
 
-  const t = useTranslations('RequestList')
-
-  const cityT = useTranslations('Citys')
-  const eventTypesT = useTranslations('EventTypes')
+  const t = useTranslations()
 
   const [loading, setLoading] = useState(false)
   const [openInfoModal, setOpenInfoModal] = useState(false)
@@ -203,7 +200,7 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
         <div className={classes.content}>
           <div className={classes.label}>
             <span className={classes.infoTitle}> {t('event_types')}: </span>
-            <span className={classes.description}>{eventTypesT(type.toLocaleLowerCase())}</span>
+            <span className={classes.description}>{t(type.toLocaleLowerCase())}</span>
           </div>
         </div>
         <div className={classes.servicesTitle}>{t('services')}</div>
@@ -248,13 +245,13 @@ export const RequestCard = (props: IRequestTypes & { id: string; isMe?: boolean;
         <div className={classes.content}>
           <div className={classes.label}>
             <span className={classes.infoTitle}> {t('event_types')}: </span>
-            <span className={classes.description}>{eventTypesT(type.toLocaleLowerCase())}</span>
+            <span className={classes.description}>{t(type.toLocaleLowerCase())}</span>
           </div>
           {!isMe && (
             <>
               <div className={classes.label}>
                 <span className={classes.infoTitle}> {t('city')}: </span>
-                <span className={classes.description}>{cityT(city)}</span>
+                <span className={classes.description}>{t(city)}</span>
               </div>
               <div>
                 <span className={classes.infoTitle}>{t('date')}: </span>

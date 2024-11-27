@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 
 export const ProgressBar = (props: IProgressBarProps) => {
   const { classes } = useStyles()
-  const t = useTranslations('Shared')
+  const t = useTranslations()
 
   const { currentStep, totalStep } = props
 

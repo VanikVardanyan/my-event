@@ -1,7 +1,7 @@
 'use client'
 import { TextField } from '@mui/material'
 import { yupResolver } from '@hookform/resolvers/yup'
-import useStyles, { SignInButton } from './styles'
+import useStyles from './styles'
 import { GmailIcon } from '@/shared/icons'
 import { Link } from '@/navigation'
 import { Routes } from '@/shared/routes'
@@ -9,12 +9,17 @@ import { useForm, SubmitHandler } from 'react-hook-form'
 import * as yup from 'yup'
 import { useRouter } from '@/navigation'
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
-import { auth, provider } from '@/shared/lib/firebaseConfig'
+import { auth, db, provider } from '@/shared/lib/firebaseConfig'
 import { useTranslations } from 'next-intl'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import { SignIn } from '../../../../../shared/ui/sign-in'
+import { Button, BUTTON_SIZE } from '../../../../../shared/ui/button'
+import { Black, SlateGreyLighten32, SlateGreyLighten34, White } from '../../../../../shared/consts/colors'
+import { UserType } from '../../../../../shared/types/user.types'
+import { doc, setDoc } from 'firebase/firestore'
+import { useAuth } from '../../../../../shared/lib/auth-context'
 
 interface IFormValues {
   email: string
@@ -28,13 +33,15 @@ interface IFormValues {
 }
 
 const Register = () => {
-  const t = useTranslations('Register')
-  const err = useTranslations('Errors')
+  const t = useTranslations()
 
   const [loading, setLoading] = useState(false)
+  const [userType, setUserType] = useState(UserType.CLIENT)
 
   const schema = yup.object().shape({
     email: yup.string().email(t('invalid_email')).required(t('required_field')),
+    name: yup.string().required(t('required_field')),
+    lastName: yup.string().required(t('required_field')),
     password: yup.string().min(6, t('password_min_length')).required(t('required_field')),
     password_confirmation: yup
       .string()
@@ -49,6 +56,8 @@ const Register = () => {
     defaultValues: {
       email: '',
       password: '',
+      name: '',
+      lastName: '',
     },
     resolver: yupResolver(schema),
   })
@@ -57,12 +66,18 @@ const Register = () => {
     if (data) {
       setLoading(true)
       try {
-        await createUserWithEmailAndPassword(auth, data.email, data.password).then(() => {
+        await createUserWithEmailAndPassword(auth, data.email, data.password).then(async (res) => {
+          await setDoc(doc(db, 'profiles', res.user.uid), {
+            role: userType,
+            name: data.name,
+            lastName: data.lastName,
+            email: data.email,
+          })
           route.push(Routes.ProfileSetting)
         })
       } catch (error) {
         setLoading(false)
-        toast.error(err('unexpected_error'))
+        toast.error(t('unexpected_error'))
       }
     }
   }
@@ -77,10 +92,14 @@ const Register = () => {
       })
     } catch (e) {
       setLoading(false)
-      toast.error(err('invalid_email_or_password'))
+      toast.error(t('invalid_email_or_password'))
     } finally {
       setLoading(false)
     }
+  }
+
+  const changeUserType = (type: UserType) => () => {
+    setUserType(type)
   }
 
   return (
@@ -91,10 +110,6 @@ const Register = () => {
             <div className={classes.title}>“My Event”</div>
             <div className={classes.registerContent}>
               <div className={classes.registerContent}>
-                {/* {t('already_have_account')}{' '}
-                <Link href={Routes.Signin} className={classes.linkRegister}>
-                  {t('sign_in')}
-                </Link>{' '} */}
                 <SignIn withText content={t('already_have_account')} />
               </div>
             </div>
@@ -102,8 +117,52 @@ const Register = () => {
         </div>
         <div className={classes.formSection}>
           <div className={classes.formWrapper}>
-            <div className={classes.formTitle}>{t('register')}</div>
+            <div className={classes.formTitle}>Ստեղծեք նոր հաշիվ</div>
+            <div className={classes.toggleWrapper}>
+              <Button
+                btn_size={BUTTON_SIZE.SMALL}
+                bg_color={userType === UserType.CLIENT ? White : SlateGreyLighten34}
+                btn_color={Black}
+                shadow={false}
+                fullWidth
+                onClick={changeUserType(UserType.CLIENT)}
+              >
+                Պլանավորող
+              </Button>
+              <Button
+                btn_size={BUTTON_SIZE.SMALL}
+                bg_color={userType === UserType.PROVIDER ? White : SlateGreyLighten34}
+                btn_color={Black}
+                shadow={false}
+                fullWidth
+                onClick={changeUserType(UserType.PROVIDER)}
+              >
+                Մասնագետ
+              </Button>
+            </div>
             <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+              <div className={classes.fieldGroup}>
+                <TextField
+                  required
+                  {...register('name')}
+                  fullWidth
+                  variant="outlined"
+                  label={'Անուն'}
+                  error={!!errors.name}
+                  helperText={errors.name?.message}
+                  className={classes.textField}
+                />
+                <TextField
+                  required
+                  {...register('lastName')}
+                  fullWidth
+                  variant="outlined"
+                  label={'Ազգանուն'}
+                  error={!!errors.lastName}
+                  helperText={errors.lastName?.message}
+                  className={classes.textField}
+                />
+              </div>
               <TextField
                 required
                 {...register('email')}
@@ -134,17 +193,17 @@ const Register = () => {
                 helperText={errors.password_confirmation?.message}
                 className={classes.textField}
               />
-              <SignInButton
+              <Button
                 type="submit"
                 variant="contained"
                 fullWidth
-                size="large"
+                btn_size={BUTTON_SIZE.SMALL}
                 className={classes.signInButton}
                 onSubmit={handleSubmit(onSubmit)}
                 disabled={formState.isSubmitted && (loading || !formState.isValid)}
               >
                 {t('register')}
-              </SignInButton>
+              </Button>
             </form>
             <div className={classes.withEmail}>
               <div className={classes.line} />

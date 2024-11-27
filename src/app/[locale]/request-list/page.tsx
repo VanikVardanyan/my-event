@@ -12,7 +12,7 @@ import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
 
 const RequestsList = () => {
   const { loading } = useSelector(getProfile)
-  const t = useTranslations('RequestList')
+  const t = useTranslations()
 
   if (loading) return <LoadingOverlay loading />
 

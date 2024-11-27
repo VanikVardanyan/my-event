@@ -34,7 +34,7 @@ export const SideNav = (props: ISideNavProps) => {
   const { isOpen, setOpen, linkClickHandler } = props
   const pathname = usePathname()
 
-  const t = useTranslations('Menu')
+  const t = useTranslations()
   const { user } = useAuth()
 
   const initialLinks = [

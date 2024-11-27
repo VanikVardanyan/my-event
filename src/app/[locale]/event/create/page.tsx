@@ -42,11 +42,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
 const CreateEvent = () => {
-  const t = useTranslations('Request')
-  const m = useTranslations('Menu')
-  const shared = useTranslations('Shared')
-  const cityTranslate = useTranslations('Citys')
-  const eventTypeTranslate = useTranslations('EventTypes')
+  const t = useTranslations()
   const [loading, setLoading] = useState(false)
   const { classes } = useStyles()
   const router = useRouter()
@@ -58,12 +54,12 @@ const CreateEvent = () => {
 
   const categories = Object.values(Professions).map((item) => ({
     value: item,
-    label: m(item.toLowerCase()),
+    label: t(item.toLowerCase()),
   }))
 
   const eventTypes = Object.values(EventTypes).map((item) => ({
     value: item,
-    label: eventTypeTranslate(item.toLowerCase()),
+    label: t(item.toLowerCase()),
   }))
 
   const schema = yup.object().shape({
@@ -298,7 +294,7 @@ const CreateEvent = () => {
               >
                 {ArmenianCity.map((item) => (
                   <MenuItem key={item.label} value={item.value}>
-                    {cityTranslate(item.label)}
+                    {t(item.label)}
                   </MenuItem>
                 ))}
               </Select>
@@ -450,10 +446,10 @@ const CreateEvent = () => {
         </Grid>
         <div className={classes.actionBlock}>
           <AddRequestButton variant="contained" type="submit" startIcon={<AddCircleOutlineIcon />}>
-            <Typography variant="button">{searchId ? shared('save') : t('create_event')}</Typography>
+            <Typography variant="button">{searchId ? t('save') : t('create_event')}</Typography>
           </AddRequestButton>
           <Button variant="outlined" type="button" onClick={goToBack}>
-            <Typography variant="button">{searchId ? shared('come_back') : shared('cancel')}</Typography>
+            <Typography variant="button">{searchId ? t('come_back') : t('cancel')}</Typography>
           </Button>
         </div>
       </Box>

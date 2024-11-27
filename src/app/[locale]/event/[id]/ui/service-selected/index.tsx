@@ -19,7 +19,7 @@ export const ServiceSelected = (props: IServiceSelectedProps) => {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const t = useTranslations('RequestList')
+  const t = useTranslations()
 
   return (
     <div className={classes.root}>

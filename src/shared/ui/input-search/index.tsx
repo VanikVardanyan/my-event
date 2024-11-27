@@ -57,7 +57,7 @@ interface InputSearchProps {
 export const InputSearch = (props: InputSearchProps) => {
   const { classNameList } = props
 
-  const t = useTranslations('Shared')
+  const t = useTranslations()
   const [queryParams, setQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const history = useRouter()

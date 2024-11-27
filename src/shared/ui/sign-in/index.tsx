@@ -71,13 +71,11 @@ export const SignIn = (props: IProps) => {
   const { classes } = useStyle()
   const handleCloseModal = () => setOpenModal(false)
   const handleOpenModal = () => setOpenModal(true)
-  const tMenu = useTranslations('Menu')
-  const t = useTranslations('Signin')
+  const t = useTranslations()
 
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
 
-  const err = useTranslations('Errors')
   const dispatch = Dispatch()
 
   const schema = yup.object().shape({
@@ -107,7 +105,7 @@ export const SignIn = (props: IProps) => {
         })
       } catch (error) {
         setLoading(false)
-        toast.error(err('invalid_email_or_password'))
+        toast.error(t('invalid_email_or_password'))
       }
     }
   }
@@ -130,7 +128,7 @@ export const SignIn = (props: IProps) => {
       })
     } catch (e) {
       setLoading(false)
-      toast.error(err('invalid_email_or_password'))
+      toast.error(t('invalid_email_or_password'))
     } finally {
       setLoading(false)
     }
@@ -143,7 +141,7 @@ export const SignIn = (props: IProps) => {
     <div>
       {!withText &&
         (MdUp ? (
-          <LoginButton onClick={handleOpenModal}> {tMenu('login')}</LoginButton>
+          <LoginButton onClick={handleOpenModal}> {t('login')}</LoginButton>
         ) : (
           <IconButton onClick={handleOpenModal} style={{ height: 40 }}>
             <PersonIcon style={{ fill: 'white' }} />
@@ -154,7 +152,7 @@ export const SignIn = (props: IProps) => {
         <div>
           {content && content}{' '}
           <Button variant="text" onClick={handleOpenModal}>
-            {tMenu('login')}
+            {t('login')}
           </Button>
         </div>
       )}
@@ -172,7 +170,9 @@ export const SignIn = (props: IProps) => {
           <div className={classes.formSection}>
             <LoadingOverlay loading={loading} />
             <div className={classes.formWrapper}>
-              <div className={classes.formTitle}>{t('welcome')}</div>
+              <div className={classes.formTitle}>
+                {t('welcome')} <span className={classes.logoName}>EvnEasy</span>
+              </div>
               <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
                 <TextField
                   required

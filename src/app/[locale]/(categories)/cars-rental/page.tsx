@@ -2,14 +2,11 @@
 
 import { ServicePost } from '@/shared/ui/service-post'
 import useStyles from './styles'
-import { useEffect, useState } from 'react'
 import { Professions } from '@/shared/types/user.types'
-import { useTranslations } from 'next-intl'
 import { Container } from '../../styles'
 import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { rentCarData } from '@/shared/data/rent-car'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
-import axios from 'axios'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
 
 const ShowMan = () => {

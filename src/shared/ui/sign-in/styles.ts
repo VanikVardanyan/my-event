@@ -96,6 +96,10 @@ export default tss.withName('SignInModal').create({
     flexDirection: 'column',
     gap: 25,
   },
+  logoName: {
+    ...FontBody1Accent,
+    color: PinkBrownBase,
+  },
   linkForgot: {
     ...FontBody1,
     display: 'flex',

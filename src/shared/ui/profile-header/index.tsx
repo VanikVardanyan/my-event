@@ -34,8 +34,7 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean } & { thread?: 
   const [readMore, setReadMore] = useState(false)
   const [isDisabled, setIsDisabled] = useState(true)
 
-  const t = useTranslations('Profile')
-  const professionT = useTranslations('Professions')
+  const t = useTranslations()
 
   const iconStyle = { width: 18, height: 18 }
 
@@ -140,12 +139,12 @@ export const ProfileHeader = (props: IProfile & { isMe?: boolean } & { thread?: 
           <div className={classes.chips}>
             {props?.profession?.length && (
               <div className={classes.chipItem}>
-                {professionT(props.profession[0])}
+                {t(props.profession[0])}
                 {props?.profession?.length > 1 && ','}
               </div>
             )}
             {props?.profession && props?.profession?.length > 1 && (
-              <span className={classes.chipItem}>{professionT(props.profession[1])}</span>
+              <span className={classes.chipItem}>{t(props.profession[1])}</span>
             )}
           </div>
           {getNetworksContent() ? (

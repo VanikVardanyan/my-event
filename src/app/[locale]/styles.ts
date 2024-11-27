@@ -53,12 +53,13 @@ export default tss.withName('MainPage').create({
       gap: 80,
     },
   },
+
   professionSmallList: {
     display: 'flex',
     gap: 10,
     marginBottom: '400px',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    overflow: 'hidden',
+    maxWidth: '100%',
   },
   professionSmallListItem: {
     display: 'flex',
@@ -217,13 +218,17 @@ export default tss.withName('MainPage').create({
   },
   howWorkWrapper: {
     background: '#F00CA40F',
-    padding: '240px 20px 160px',
+    padding: '240px 20px 30px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
     gap: 16,
+
+    [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
+      padding: '240px 20px 160px',
+    },
   },
   howWorkSubTitle: {
     ...FontBody1,
@@ -246,12 +251,14 @@ export default tss.withName('MainPage').create({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '105px 20px 95px',
+    padding: '30px 20px 95px',
     flexDirection: 'column',
     gap: 20,
 
     [`@media (min-width: ${BreakPoints.LARGE})`]: {
       flexDirection: 'row',
+      padding: '105px 20px 95px',
+
       gap: 0,
     },
   },

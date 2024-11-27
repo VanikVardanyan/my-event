@@ -79,7 +79,7 @@ const MessagesPage = () => {
   const [participants, setParticipants] = useState<any[]>([])
   const [currentThread, setCurrentThread] = useState<any>(null)
   const [isNeedLoad, setIsNeedLoad] = useState(true)
-  const professionT = useTranslations('Professions')
+  const t = useTranslations()
 
   const { user } = useAuth()
 
@@ -160,9 +160,7 @@ const MessagesPage = () => {
             </ListItemAvatar>
             <ListItemText
               primary={participant.name}
-              secondary={
-                participant.profession ? participant.profession.map((item: string) => professionT(item)).join(', ') : ''
-              }
+              secondary={participant.profession ? participant.profession.map((item: string) => t(item)).join(', ') : ''}
             />
           </ListItemButton>
           <Divider />

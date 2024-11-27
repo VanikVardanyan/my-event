@@ -16,7 +16,7 @@ export const ServiceRespondents = (props: IServiceSelectedProps) => {
   const [open, setOpen] = useState(false)
   const handleOpen = () => setOpen(true)
 
-  const t = useTranslations('RequestList')
+  const t = useTranslations()
 
   return (
     <div className={classes.root}>

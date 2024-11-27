@@ -18,8 +18,7 @@ export const ServiceCard = (props: IServiceCardProps) => {
 
   const { classes } = useStyles()
 
-  const professionsT = useTranslations('Professions')
-  const t = useTranslations('RequestList')
+  const t = useTranslations()
 
   const handleOpenModal = (serviceId: string) => {
     setOpenRespondModal(true)
@@ -33,7 +32,7 @@ export const ServiceCard = (props: IServiceCardProps) => {
     <div className={classes.serviceWrapper}>
       <div className={classes.service}>
         <div>
-          <span className={classes.serviceTitle}>{t('service')}:</span> {professionsT(service.service)}
+          <span className={classes.serviceTitle}>{t('service')}:</span> {t(service.service)}
         </div>
         <div>
           <span className={classes.serviceTitle}>{t('budget')}:</span> {service.amount} AMD

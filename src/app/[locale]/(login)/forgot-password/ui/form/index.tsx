@@ -23,8 +23,7 @@ const ForgotPassword = () => {
 
   const { classes } = useStyles()
 
-  const t = useTranslations('Signin')
-  const err = useTranslations('Errors')
+  const t = useTranslations()
 
   const schema = yup.object().shape({
     email: yup.string().email(t('invalid_email')).required(t('required_field')),
@@ -48,7 +47,7 @@ const ForgotPassword = () => {
         })
       } catch (error) {
         setLoading(false)
-        toast.error(err('invalid_email_or_password'))
+        toast.error(t('invalid_email_or_password'))
       }
     }
   }

@@ -5,13 +5,12 @@ import useStyles from './styles'
 import UserTypeSelection from './ui/user-type-select'
 import { UserType } from '@/shared/types/user.types'
 import { useEffect, useState } from 'react'
-import { Button } from '@mui/material'
 import { ClientForm } from './ui/client-form'
 import { ProviderForm } from './ui/provider-form'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { db, storage } from '@/shared/lib/firebaseConfig'
+import { db } from '@/shared/lib/firebaseConfig'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useAuth } from '@/shared/lib/auth-context'
 import { useSelector } from 'react-redux'
@@ -28,6 +27,7 @@ import { Container } from '../styles'
 import { v4 as uuidv4 } from 'uuid'
 import { deleteImage, getPresignedUrl } from '@/shared/ui/image-uploader/lib/getPresignedUrl'
 import imageCompression from 'browser-image-compression'
+import { Button } from '@/shared/ui/button'
 
 const options = {
   maxSizeMB: 1,
@@ -44,24 +44,17 @@ function getFilePathFromUrl(url: string) {
 interface IFormValues {
   name: string
   role: string
-  profession?: string[] | [] | null
   country?: string | null
   avatar?: any
-  facebook?: string | null
-  instagram?: string | null
-  youtube?: string | null
-  tiktok?: string | null
   phone?: string | null
   email?: string | null
-  description?: string | null
 }
 
 const ProfileSetting = () => {
   const { classes } = useStyles()
   const router = useRouter()
   const [loadingRegister, setLoadingRegister] = useState(false)
-
-  const t = useTranslations('ProfileSetting')
+  const t = useTranslations()
 
   const userAuth = useAuth()
   const { profile, loading } = useSelector(getProfile)
@@ -83,27 +76,13 @@ const ProfileSetting = () => {
     email: yup.string().email(t('invalid_email')),
     phone: yup.string(),
     avatar: yup.mixed(),
-    facebook: yup.string().url(t('invalid_format')),
-    instagram: yup.string().url(t('invalid_format')),
-    youtube: yup.string().url(t('invalid_format')),
-    tiktok: yup.string().url(t('invalid_format')),
-    description: yup.string(),
   })
 
   const methods = useForm({
     defaultValues: {
-      name: '',
-      role: '',
       profession: undefined,
       country: '',
       avatar: undefined,
-      facebook: '',
-      instagram: '',
-      youtube: '',
-      tiktok: '',
-      phone: '',
-      email: '',
-      description: '',
     },
     resolver: yupResolver(schema),
   })

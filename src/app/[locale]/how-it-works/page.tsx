@@ -8,14 +8,13 @@ import { useTranslations } from 'next-intl'
 
 const HowItWorks = () => {
   const { classes } = useStyles()
-  const t = useTranslations('Main')
+  const t = useTranslations()
 
   return (
     <Container>
       <div className={classes.titleWrapper}>
         <div className={classes.titleBorder} />
         <h2 className={classes.categories}>{t('how_it_works')}</h2>
-        {/* <div className={classes.subTitle}>{t('find_professionals')}</div> */}
       </div>
       <div className={classes.howWorkWrapper}>
         {workSteps.map((step, index) => (

@@ -1,6 +1,6 @@
 import { styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
-import { SlateGreyBase } from '@/shared/consts/colors'
+import { SlateGreyBase, TextSlateGreyDarken12 } from '@/shared/consts/colors'
 import { BreakPoints } from '@/shared/consts/common'
 
 export default tss.withName('ProviderForm').create({
@@ -39,12 +39,7 @@ export default tss.withName('ProviderForm').create({
   },
   network: {
     display: 'grid',
-    gap: 15,
-    gridTemplateColumns: '1fr',
-
-    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
-      gridTemplateColumns: '1fr 1fr',
-    },
+    gap: 5,
   },
   avatarWrapper: {
     display: 'flex',
@@ -61,6 +56,32 @@ export default tss.withName('ProviderForm').create({
     '& .ck-content': {
       minHeight: 120,
     },
+  },
+  title: {
+    marginBottom: 32,
+    fontSize: 32,
+    fontWeight: 700,
+  },
+  prices: {
+    display: 'flex',
+    gap: 4,
+    alignItems: 'center',
+  },
+  fieldIconWrapper: {
+    width: '100%',
+    position: 'relative',
+  },
+  inputIcon: {
+    paddingRight: 40,
+  },
+  fieldIcon: {
+    width: 30,
+    borderLeft: `1px solid ${TextSlateGreyDarken12}`,
+    position: 'absolute',
+    display: 'flex',
+    justifyContent: 'center',
+    right: 0,
+    top: 12,
   },
 })
 
