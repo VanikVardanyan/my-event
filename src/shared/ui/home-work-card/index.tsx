@@ -10,7 +10,7 @@ interface IWorkCardProps {
 
 export const WorkCard = (props: IWorkCardProps) => {
   const { title, description, icon } = props
-  const t = useTranslations('Main')
+  const t = useTranslations()
 
   const { classes } = useStyles()
   return (

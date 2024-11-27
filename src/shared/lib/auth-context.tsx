@@ -49,6 +49,7 @@ export const AuthProvider = ({ children }: any) => {
         setUser(user)
         const fetchProfile = async () => {
           const profileDoc: any = await getDoc(doc(db, 'profiles', user.uid))
+
           if (profileDoc?.data()?.role) {
             setRole(profileDoc.data().role)
           }

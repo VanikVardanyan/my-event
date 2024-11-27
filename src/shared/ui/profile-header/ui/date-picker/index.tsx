@@ -38,7 +38,7 @@ export const Calendar = (props: ICalendarProps) => {
   const locale = useLocale()
   const { user } = useAuth()
   const dispatch = Dispatch()
-  const t = useTranslations('Profile')
+  const t = useTranslations()
 
   const [selectedDates, setSelectedDates] = useState(
     availableDates ? availableDates.map((dateStr) => new Date(dateStr)) : []

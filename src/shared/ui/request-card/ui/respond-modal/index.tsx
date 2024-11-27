@@ -38,7 +38,7 @@ export const RespondModal = (props: IRespondModal) => {
   const [message, setMessage] = useState('')
   const { classes } = useStyles()
 
-  const t = useTranslations('RequestList')
+  const t = useTranslations()
 
   const changeMessageHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value)

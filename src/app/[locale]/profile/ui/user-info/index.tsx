@@ -19,12 +19,10 @@ import { asyncSetEventsThunk } from '@/store/features/client-slice'
 
 export const UserInfo = () => {
   const { classes } = useStyles()
-  const t = useTranslations('Profile')
-  const requestT = useTranslations('Request')
+  const t = useTranslations()
 
   const [openModal, setOpenModal] = useState(false)
   const handleCloseModal = () => setOpenModal(false)
-  const handleOpenModal = () => setOpenModal(true)
   const [loading, setLoading] = useState(false)
 
   const { profile, userId } = useSelector(getProfile)
@@ -68,14 +66,14 @@ export const UserInfo = () => {
           href={Routes.CreateEvent}
           LinkComponent={Link}
         >
-          {requestT('create_event')}
+          {t('create_event')}
         </AddRequestButton>
       </div>
       <div className={classes.requestCards}>
-        <h3 className={classes.title}>{requestT('created_events')}</h3>
+        <h3 className={classes.title}>{t('created_events')}</h3>
         {!loading && events.length === 0 && (
           <Typography align="left" component={'h1'}>
-            {requestT('empty_list')}
+            {t('empty_list')}
           </Typography>
         )}
         {events.map((request) => (

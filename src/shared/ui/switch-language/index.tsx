@@ -57,7 +57,7 @@ export const SwitchLanguage = React.memo(() => {
     setAnchorEl(null)
   }
 
-  const t = useTranslations('Language')
+  const t = useTranslations()
 
   const createHandleMenuClick = (lng: string) => {
     return () => {

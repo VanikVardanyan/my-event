@@ -3,7 +3,7 @@ import useStyles from './styles'
 
 export const Empty = () => {
   const { classes } = useStyles()
-  const t = useTranslations('Shared')
+  const t = useTranslations()
 
   return (
     <div className={classes.root}>

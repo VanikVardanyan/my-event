@@ -51,7 +51,7 @@ export const SelectionModal = (props: ISelectionModal) => {
   const handleClose = () => setOpen(false)
   const handleOpen = () => setOpen(true)
   const { classes } = useStyles()
-  const requestT = useTranslations('Request')
+  const t = useTranslations()
 
   const { events } = useSelector(getClient)
   const { user } = useAuth()
@@ -88,18 +88,18 @@ export const SelectionModal = (props: ISelectionModal) => {
           <IconButton onClick={handleClose} style={closeBtnStyle}>
             <CloseIcon />
           </IconButton>
-          <h4 className={classes.title}>{requestT('add_in_event')}</h4>
+          <h4 className={classes.title}>{t('add_in_event')}</h4>
           {initLoading && <LinearProgress variant="query" />}
           {events.length === 0 && !loading && (
             <div className={classes.emptyBlock}>
-              <div className={classes.emptyBlockTitle}>{requestT('dont_have_created_events')}</div>
+              <div className={classes.emptyBlockTitle}>{t('dont_have_created_events')}</div>
               <AddRequestButton
                 variant="contained"
                 endIcon={<AddCircleOutlineIcon />}
                 href={Routes.CreateEvent}
                 LinkComponent={Link}
               >
-                {requestT('create_event')}
+                {t('create_event')}
               </AddRequestButton>
             </div>
           )}

@@ -34,7 +34,7 @@ export const ProfileCreatives = (props: IImages) => {
   const dispatch = Dispatch()
   const [loading, setLoading] = useState(false)
 
-  const t = useTranslations('Profile')
+  const t = useTranslations()
 
   const handleChangeMultipleFile = async (event: any) => {
     setLoading(true)

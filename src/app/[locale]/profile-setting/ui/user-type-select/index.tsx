@@ -33,7 +33,7 @@ const Card = (props: ICard) => {
 
 const UserTypeSelection = (props: IUserTypeSelection) => {
   const { onSelectUserType, currentUserType } = props
-  const t = useTranslations('ProfileSetting')
+  const t = useTranslations()
 
   const { classes } = useStyles()
 

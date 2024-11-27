@@ -92,7 +92,7 @@ export default tss.withName('Categories').create({
       height: 56,
       background: White,
       boxShadow: '6px 6px 11.2px 0px #00000040;',
-      right: '-12px',
+      right: '-2px',
       zIndex: 100,
       borderRadius: '50%',
       display: 'flex',
@@ -100,7 +100,7 @@ export default tss.withName('Categories').create({
       alignItems: 'center',
 
       [`@media (min-width: ${BreakPoints.EXTRA_SMALL})`]: {
-        right: '-15px',
+        right: '-7px',
       },
 
       '&:before': {

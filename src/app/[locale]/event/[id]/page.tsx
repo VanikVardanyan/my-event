@@ -20,17 +20,12 @@ import { ServiceRespondents } from './ui/service-respondents'
 
 const EventPage = () => {
   const { classes } = useStyles()
-  const t = useTranslations('Request')
-  const shared = useTranslations('Shared')
-  const requestListT = useTranslations('RequestList')
-  const cityTranslate = useTranslations('Citys')
-  const m = useTranslations('Menu')
+  const t = useTranslations()
 
   const [data, setData] = useState<null | IRequestTypes>(null)
   const [loading, setLoading] = useState(true)
   const router = useRouter()
 
-  const eventTypeTranslate = useTranslations('EventTypes')
   const { user } = useAuth()
   const { id }: { id: string } = useParams()
 
@@ -76,8 +71,6 @@ const EventPage = () => {
 
         await updateDoc(docRef, { services: updatedServices })
         fetchRequest()
-
-        // Update local state with new service status
       }
     } catch (error) {
       console.error('Error updating service status:', error)
@@ -148,11 +141,11 @@ const EventPage = () => {
           </div>
           <div className={classes.editableWrapper}>
             <div className={classes.editableTitle}>{t('event_types')}:</div>
-            <div className={classes.editableValue}>{eventTypeTranslate(data?.type.toLowerCase())}</div>
+            <div className={classes.editableValue}>{t(data?.type.toLowerCase())}</div>
           </div>
           <div className={classes.editableWrapper}>
             <div className={classes.editableTitle}>{t('city')}:</div>
-            <div className={classes.editableValue}>{cityTranslate(data?.city)}</div>
+            <div className={classes.editableValue}>{t(data?.city)}</div>
           </div>
           <div className={classes.editableWrapper}>
             <div className={classes.editableTitle}>{t('date')}:</div>
@@ -189,7 +182,7 @@ const EventPage = () => {
               <tbody>
                 {data?.services.map((service, index) => (
                   <tr key={index} className={classes.tableTr}>
-                    <td className={classes.tableTd}>{m(service.service)}</td>
+                    <td className={classes.tableTd}>{t(service.service)}</td>
                     <td className={classes.tableTd}>{service.amount}</td>
                     <td className={cn(classes.tableTd, classes[service.status])}>
                       <ServiceStatusItem
@@ -219,7 +212,7 @@ const EventPage = () => {
             <div>
               {totalBudget && (
                 <div className={classes.totalBudget}>
-                  {requestListT('total_budget')}:{' '}
+                  {t('total_budget')}:{' '}
                   <span className={classes.totalAmount}>{formatNumber(totalBudget.toString())} AMD </span>
                 </div>
               )}
@@ -231,7 +224,7 @@ const EventPage = () => {
             <Typography variant="button">{t('event_edit')}</Typography>
           </AddRequestButton>
           <Button variant="outlined" type="button" LinkComponent={Link} href={Routes.Profile}>
-            <Typography variant="button">{shared('come_back')}</Typography>
+            <Typography variant="button">{t('come_back')}</Typography>
           </Button>
         </div>
       </div>

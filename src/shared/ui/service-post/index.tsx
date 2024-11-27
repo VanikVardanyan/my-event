@@ -71,8 +71,7 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const [isDescriptionScroll, setDescriptionScroll] = useState(false)
 
   const { classes } = useStyles()
-  const p = useTranslations('Professions')
-  const t = useTranslations('Profile')
+  const t = useTranslations()
   const { user } = useAuth()
   const { profile } = useSelector(getProfile)
   const { favorites } = useSelector(getClient)
@@ -110,7 +109,7 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
         <Link href={`/user/${id}`} className={classes.headerName}>
           <Image src={avatar || '/default.jpg'} alt={'image'} width={42} height={42} className={classes.avatar} />
           <div className={classes.userName}>
-            {name} <span className={classes.profession}>({profession.map((item) => p(item)).join(', ')})</span>
+            {name} <span className={classes.profession}>({profession.map((item) => t(item)).join(', ')})</span>
           </div>
         </Link>
 

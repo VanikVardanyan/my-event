@@ -37,7 +37,7 @@ const closeBtnStyle = {
 const ResponsesModal = (props: IResponsesModal) => {
   const { open, handleClose, selections, removeSelection, serviceId } = props
   const router = useRouter()
-  const t = useTranslations('RequestList')
+  const t = useTranslations()
   const { classes } = useStyles()
 
   const handleUserClick = (userId: string, isInstagram?: boolean) => {

@@ -57,14 +57,11 @@ const style = {
 
 export const RequestCreateModal = (props: Iprops) => {
   const { handleClose } = props
-  const t = useTranslations('Request')
-  const m = useTranslations('Menu')
-  const shared = useTranslations('Shared')
-  const cityTranslate = useTranslations('Citys')
+  const t = useTranslations()
 
   const categories = Object.values(Professions).map((item) => ({
     value: item,
-    label: m(item.toLowerCase()),
+    label: t(item.toLowerCase()),
   }))
 
   const schema = yup.object().shape({
@@ -147,7 +144,7 @@ export const RequestCreateModal = (props: Iprops) => {
                 >
                   {ArmenianCity.map((item) => (
                     <MenuItem key={item.label} value={item.value}>
-                      {cityTranslate(item.label)}
+                      {t(item.label)}
                     </MenuItem>
                   ))}
                 </Select>
@@ -269,7 +266,7 @@ export const RequestCreateModal = (props: Iprops) => {
             <Typography variant="button">{t('create_request')}</Typography>
           </AddRequestButton>
           <AddRequestButton variant="contained" type="button" onClick={handleClose} fullWidth sx={{ mt: 1 }}>
-            <Typography variant="button">{shared('cancel')}</Typography>
+            <Typography variant="button">{t('cancel')}</Typography>
           </AddRequestButton>
         </Grid>
       </Box>

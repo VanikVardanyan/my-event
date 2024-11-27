@@ -11,7 +11,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   const { classes } = useStyles()
-  const t = useTranslations('Signin')
+  const t = useTranslations()
 
   return (
     <div className={classes.root}>

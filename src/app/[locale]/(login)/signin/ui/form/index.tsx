@@ -36,8 +36,7 @@ interface IFormValues {
 const SignIn = () => {
   const [loading, setLoading] = useState(false)
 
-  const t = useTranslations('Signin')
-  const err = useTranslations('Errors')
+  const t = useTranslations()
   const dispatch = Dispatch()
 
   const schema = yup.object().shape({
@@ -68,7 +67,7 @@ const SignIn = () => {
         })
       } catch (error) {
         setLoading(false)
-        toast.error(err('invalid_email_or_password'))
+        toast.error(t('invalid_email_or_password'))
       }
     }
   }
@@ -92,7 +91,7 @@ const SignIn = () => {
       })
     } catch (e) {
       setLoading(false)
-      toast.error(err('invalid_email_or_password'))
+      toast.error(t('invalid_email_or_password'))
     } finally {
       setLoading(false)
     }
@@ -102,7 +101,7 @@ const SignIn = () => {
     <div className={classes.formSection}>
       <LoadingOverlay loading={loading} />
       <div className={classes.formWrapper}>
-        <div className={classes.formTitle}>{t('welcome')}</div>
+        <div className={classes.formTitle}>{t('welcome')} </div>
         <form className={classes.form} onSubmit={handleSubmit(onSubmit)} noValidate>
           <TextField
             required

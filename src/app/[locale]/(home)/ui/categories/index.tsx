@@ -9,7 +9,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import useStyles from './useStyles'
-import { PinkButton } from '@/shared/ui/button'
+import { Button } from '@/shared/ui/button'
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow'
 
 interface ArrowProps {
@@ -116,9 +116,9 @@ export const Categories = () => {
           </div>
         </div>
       </div>
-      <PinkButton endIcon={<DoubleArrowIcon />} className={classes.btnAction}>
+      <Button endIcon={<DoubleArrowIcon />} className={classes.btnAction}>
         Դառնալ մատակարար
-      </PinkButton>
+      </Button>
     </div>
   )
 }

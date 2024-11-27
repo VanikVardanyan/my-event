@@ -20,7 +20,7 @@ export const SelectionItem = (props: IRequestTypesWithId) => {
   const [loading, setLoading] = useState(false)
 
   const { classes } = useStyles()
-  const menuT = useTranslations('Menu')
+  const t = useTranslations()
   const { user } = useAuth()
   const dispatch = Dispatch()
 
@@ -129,7 +129,7 @@ export const SelectionItem = (props: IRequestTypesWithId) => {
                   <DeleteIcon style={{ width: 18, height: 18 }} />
                 </button>
               )}
-              {menuT(service.service)}
+              {t(service.service)}
             </div>
           ))}
         </div>

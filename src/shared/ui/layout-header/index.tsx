@@ -34,7 +34,7 @@ import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer'
 
 export const LayoutHeader = () => {
   const { classes } = useStyles()
-  const t = useTranslations('Menu')
+  const t = useTranslations()
 
   const [isOpenMenu, setOpenMenu] = useState(false)
   const { user, setUser, loading, setLoading } = useAuth()

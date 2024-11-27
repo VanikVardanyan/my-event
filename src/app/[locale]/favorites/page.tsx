@@ -44,7 +44,7 @@ const FavoritesPage = () => {
   const [providerUsers, setProviderUsers] = useState<any>([])
   const [loading, setLoading] = useState(true)
   const { favorites } = useSelector(getClient)
-  const t = useTranslations('Favorites')
+  const t = useTranslations()
 
   const fetchProviderUsers = async () => {
     try {

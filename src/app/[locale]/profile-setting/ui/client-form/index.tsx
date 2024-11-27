@@ -14,13 +14,12 @@ import { useAuth } from '@/shared/lib/auth-context'
 export const ClientForm = () => {
   const { classes } = useStyles()
   const { profile } = useSelector(getProfile)
-  const t = useTranslations('ProfileSetting')
+  const t = useTranslations()
   const { user } = useAuth()
 
   const [avatarPreview, setAvatarPreview] = useState<string | null>(profile?.avatar || null)
 
   const { register, formState, reset, setValue } = useFormContext()
-
   useEffect(() => {
     reset()
     setValue('role', UserType.CLIENT)
