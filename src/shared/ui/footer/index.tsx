@@ -44,21 +44,9 @@ export const Footer = () => {
             <FooterLinks title="Ընկերության մասին" links={linksCompany} />
             <FooterLinks title="Օգտակար հղումներ" links={planners} />
           </div>
-          <div></div>
         </div>
-        <div className={classes.footerTop}>
-          <div>
-            © EvnEasy 2024 <span className={classes.colorPeace}>❤ Peace, Love & EvnEasy ® </span>{' '}
-          </div>
-          {/* <div>
-            <Link href="/terms" className={classes.link}>
-              Terms of Service
-            </Link>{' '}
-            |{' '}
-            <Link href="/privacy" className={classes.link}>
-              Privacy Policy
-            </Link>
-          </div> */}
+        <div className={classes.paymentWrapper}>
+          <div className={classes.payment} />
         </div>
       </div>
     </div>
