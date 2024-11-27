@@ -47,4 +47,16 @@ export default tss.withName('footer').create({
   hiddenFooter: {
     display: 'none',
   },
+  paymentWrapper: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  payment: {
+    backgroundImage: `url('/footer/payment.png')`,
+    backgroundRepeat: 'no-repeat',
+    width: 400,
+    height: 48,
+    backgroundSize: 'contain',
+  },
 })

@@ -1,13 +1,10 @@
 import { Routes } from '../routes'
-import { Professions } from '../types/user.types'
 
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 import SearchIcon from '@mui/icons-material/Search'
-import AssignmentIcon from '@mui/icons-material/Assignment'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import { PurpleBase } from '../consts/colors'
-interface IService {
+export interface IService {
   name: string
   description: string
   image: string

@@ -1,8 +1,6 @@
-import Image from 'next/image'
 import { Routes } from '../../routes'
-import { Professions } from '../../types/user.types'
 import useStyles from './styles'
-import { Link } from '../../../navigation'
+import { Link } from '@/navigation'
 import { BUTTON_SIZE, Button } from '../button'
 
 interface IServiceProps {
@@ -23,7 +21,7 @@ export const ServiceCard = (props: IServiceProps) => {
         <div className={classes.title}>{name}</div>
         <div className={classes.description}>{description}</div>
       </div>
-      <Button btn_size={BUTTON_SIZE.SMALL} fullWidth>
+      <Button btn_size={BUTTON_SIZE.SMALL} fullWidth LinkComponent={Link} href={link}>
         Իմանալ ավելին
       </Button>
     </div>
