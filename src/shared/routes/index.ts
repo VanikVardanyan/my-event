@@ -1,5 +1,6 @@
 export enum Routes {
   home = '/',
+  About = '/about',
   Main = '/main',
   Showman = '/showman',
   Show = '/show',
@@ -24,4 +25,5 @@ export enum Routes {
   Restaurants = '/restaurants',
   Cakes = '/cakes',
   Messages = '/messages',
+  Categories = '/categories',
 }

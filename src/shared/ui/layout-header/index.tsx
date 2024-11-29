@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { InputSearch } from '../input-search'
-
+import CloseIcon from '@mui/icons-material/Close'
 import useStyles, { LoginButton } from './styles'
 import { SideNav } from './ui/side-nav'
 import { Avatar, IconButton, Menu, MenuItem, Skeleton, useMediaQuery, useTheme } from '@mui/material'
@@ -108,7 +108,8 @@ export const LayoutHeader = () => {
         )} */}
         <div className={classes.hamburg}>
           <button onClick={menuClickHandler} className={classes.hamburgerSection}>
-            <NavigateIcon fill={Black} />
+            {!isOpenMenu && <NavigateIcon fill={Black} />}
+            {isOpenMenu && <CloseIcon style={{ width: 40, height: 40, fill: Black }} />}
           </button>
         </div>
       </div>

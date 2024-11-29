@@ -28,6 +28,7 @@ export const Button = styled(ButtonMui)<ButtonProps>(
     borderRadius: btn_size ? 8 : 40,
     boxShadow: shadow ? '3px 4px 10.1px 0px #00000040' : '',
     padding: btn_size ? buttonSize[btn_size] : buttonSize[BUTTON_SIZE.SMALL],
+    textTransform: 'none',
 
     '&:hover': {
       backgroundColor: bg_color,

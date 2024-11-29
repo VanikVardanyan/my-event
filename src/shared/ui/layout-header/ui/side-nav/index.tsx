@@ -12,6 +12,9 @@ import { useSelector } from 'react-redux'
 import { getProfile } from '@/store/selectors'
 import { UserType } from '../../../../types/user.types'
 import HomeIcon from '@mui/icons-material/Home'
+import InfoIcon from '@mui/icons-material/Info'
+import AutoStoriesIcon from '@mui/icons-material/AutoStories'
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact'
 import MonochromePhotosIcon from '@mui/icons-material/MonochromePhotos'
 import HeadsetMicIcon from '@mui/icons-material/HeadsetMic'
 import MusicNoteIcon from '@mui/icons-material/MusicNote'
@@ -19,6 +22,7 @@ import SpeakerIcon from '@mui/icons-material/Speaker'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar'
 import StorefrontIcon from '@mui/icons-material/Storefront'
 import CampaignIcon from '@mui/icons-material/Campaign'
+import CategoryIcon from '@mui/icons-material/Category'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 // import Image from 'next/image'
@@ -44,65 +48,85 @@ export const SideNav = (props: ISideNavProps) => {
       icon: <HomeIcon />,
     },
     {
-      title: t('showman'),
-      url: Routes.Showman,
-      icon: <CampaignIcon />,
+      title: 'Մեր մասին',
+      url: Routes.About,
+      icon: <InfoIcon />,
     },
     {
-      title: t('photographers'),
-      url: Routes.Photographer,
-      icon: <MonochromePhotosIcon />,
+      title: 'Բաժիններ',
+      url: Routes.Categories,
+      icon: <CategoryIcon />,
     },
     {
-      title: t('djs'),
-      url: Routes.Dj,
-      icon: <HeadsetMicIcon />,
+      title: 'Բլոգ',
+      url: '/blog',
+      icon: <AutoStoriesIcon />,
     },
     {
-      title: t('musicians'),
-      url: Routes.Musicians,
-      icon: <MusicNoteIcon />,
+      title: 'Հետադարձ կապ',
+      url: '/contact',
+      icon: <ConnectWithoutContactIcon />,
     },
-    {
-      title: t('equipment_rental'),
-      url: Routes.EquipmentRental,
-      icon: <SpeakerIcon />,
-    },
-    {
-      title: t('cars_rental'),
-      url: Routes.CarsRental,
-      icon: <DirectionsCarIcon />,
-    },
-    {
-      title: t('costume_rental'),
-      url: Routes.CostumeRental,
-      icon: <StorefrontIcon />,
-    },
-    {
-      title: t('florists_decorators'),
-      url: Routes.FloristsDecorators,
-      icon: <LocalFloristIcon />,
-    },
-    {
-      title: t('dancers_entertainers'),
-      url: Routes.DancersEntertainers,
-      icon: <AccessibilityNewIcon />,
-    },
-    {
-      title: t('restaurants'),
-      url: Routes.Restaurants,
-      icon: <RestaurantIcon />,
-    },
-    {
-      title: t('cake'),
-      url: Routes.Cakes,
-      icon: <CakeIcon />,
-    },
-    {
-      title: t('show'),
-      url: Routes.Show,
-      icon: <TheaterComedyIcon />,
-    },
+    // {
+    //   title: t('showman'),
+    //   url: Routes.Showman,
+    //   icon: <CampaignIcon />,
+    // },
+    // {
+    //   title: t('photographers'),
+    //   url: Routes.Photographer,
+    //   icon: <MonochromePhotosIcon />,
+    // },
+    // {
+    //   title: t('djs'),
+    //   url: Routes.Dj,
+    //   icon: <HeadsetMicIcon />,
+    // },
+    // {
+    //   title: t('musicians'),
+    //   url: Routes.Musicians,
+    //   icon: <MusicNoteIcon />,
+    // },
+    // {
+    //   title: t('equipment_rental'),
+    //   url: Routes.EquipmentRental,
+    //   icon: <SpeakerIcon />,
+    // },
+    // {
+    //   title: t('cars_rental'),
+    //   url: Routes.CarsRental,
+    //   icon: <DirectionsCarIcon />,
+    // },
+    // {
+    //   title: t('costume_rental'),
+    //   url: Routes.CostumeRental,
+    //   icon: <StorefrontIcon />,
+    // },
+    // {
+    //   title: t('florists_decorators'),
+    //   url: Routes.FloristsDecorators,
+    //   icon: <LocalFloristIcon />,
+    // },
+    // {
+    //   title: t('dancers_entertainers'),
+    //   url: Routes.DancersEntertainers,
+    //   icon: <AccessibilityNewIcon />,
+    // },
+    // {
+    //   title: t('restaurants'),
+    //   url: Routes.Restaurants,
+    //   icon: <RestaurantIcon />,
+    // },
+    // {
+    //   title: t('cake'),
+    //   url: Routes.Cakes,
+    //   icon: <CakeIcon />,
+    // },
+    // {
+    //   title: t('show'),
+    //   url: Routes.Show,
+    //   icon: <TheaterComedyIcon />,
+    // },
   ]
 
   const theme = useTheme()

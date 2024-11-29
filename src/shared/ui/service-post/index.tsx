@@ -5,7 +5,6 @@ import { IPostProps } from './types'
 import useStyles from './styles'
 import { Link } from '@/navigation'
 import { useTranslations } from 'next-intl'
-import Slider from 'react-slick'
 
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
@@ -15,6 +14,8 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { IconButton } from '@mui/material'
 import { HeartIcon } from '../../icons'
+import MailOutlineIcon from '@mui/icons-material/MailOutline'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { RedBase, TextGreyBase } from '../../consts/colors'
 import { toggleFavorite } from './lib'
 import { useAuth } from '../../lib/auth-context'
@@ -25,6 +26,7 @@ import { Dispatch } from '@/store/store'
 import { asyncSetFavoritesThunk } from '@/store/features/client-slice'
 import cn from 'classnames'
 import { SelectionModal } from './ui/selection-modal'
+import { Button, BUTTON_SIZE } from '../button'
 
 const SamplePrevArrow = (props: any) => {
   const { onClick, currentSlide } = props
@@ -79,10 +81,10 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
 
   const selectWrapperRef = createRef<HTMLDivElement>()
 
-  const canHasFavorite = user && profile && profile.role === UserType.CLIENT
+  const isClient = user && profile && profile.role === UserType.CLIENT
 
   const handleFavorite = async () => {
-    if (canHasFavorite) {
+    if (isClient) {
       await toggleFavorite(user.uid, { id })
       dispatch(asyncSetFavoritesThunk({ id: user.uid }))
     }
@@ -105,46 +107,37 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.header}>
-        <Link href={`/user/${id}`} className={classes.headerName}>
-          <Image src={avatar || '/default.jpg'} alt={'image'} width={42} height={42} className={classes.avatar} />
-          <div className={classes.userName}>
-            {name} <span className={classes.profession}>({profession.map((item) => t(item)).join(', ')})</span>
-          </div>
-        </Link>
-
-        {canHasFavorite && <SelectionModal profileId={id} profileName={name} isInstagram={false} />}
-      </div>
       <div className={classes.carouselWrapper}>
         {(images?.length === 0 || !images) && (
-          <Image src={'/default.jpg'} alt={'default'} width={468} height={468} className={classes.carouselImage} />
-        )}
-        {images && images.length > 0 && (
-          <Slider {...settings} className={classes.slider}>
-            {images.map((url) => (
-              <div key={url}>
-                <Image
-                  src={url || '/default.jpg'}
-                  alt={name}
-                  width={468}
-                  height={468}
-                  className={classes.carouselImage}
-                />
-              </div>
-            ))}
-          </Slider>
+          <Image
+            src={'/professions/showman.png'}
+            alt={'default'}
+            width={366}
+            height={292}
+            className={classes.carouselImage}
+          />
         )}
       </div>
-      {canHasFavorite && (
-        <IconButton onClick={handleFavorite} sx={{ marginTop: '20px' }}>
-          <HeartIcon
-            style={{ width: 24, height: 24 }}
-            fill={TextGreyBase}
-            fillBg={(favorites.direct as string[]).includes(id) ? RedBase : undefined}
-          />
-        </IconButton>
-      )}
-      {description && (
+      <div className={classes.info}>
+        <div className={classes.name}>{name}</div>
+        <div className={classes.actions}>
+          <div className={classes.profession}>{profession.map((item) => t(item)).join(', ')}</div>
+          <div className={classes.handlers}>
+            <IconButton>
+              <MailOutlineIcon style={{ fill: TextGreyBase }} />
+            </IconButton>
+            <IconButton onClick={handleFavorite}>
+              <HeartIcon
+                style={{ width: 24, height: 24 }}
+                fill={TextGreyBase}
+                fillBg={(favorites.direct as string[]).includes(id) ? RedBase : undefined}
+              />
+            </IconButton>
+          </div>
+        </div>
+      </div>
+
+      {/* {description && (
         <div className={classes.descriptionWrapper}>
           <div
             className={cn(classes.description, { [classes.fullText]: readMore })}
@@ -167,7 +160,10 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
             </IconButton>
           )}
         </div>
-      )}
+      )} */}
+      <Button href={`/user/${id}`} fullWidth btn_size={BUTTON_SIZE.SMALL}>
+        Իմանալ ավելին
+      </Button>
     </div>
   )
 }
