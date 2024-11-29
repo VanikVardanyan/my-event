@@ -7,6 +7,82 @@ import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { showmanData } from '@/shared/data/showman'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
+import { IPostProps } from '../../../../../shared/ui/service-post/types'
+
+const mockServicePost10Item: IPostProps[] = [
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '1',
+    likeCount: 3,
+  },
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '2',
+    likeCount: 3,
+  },
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '3',
+    likeCount: 3,
+  },
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '4',
+    likeCount: 3,
+  },
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '5',
+    likeCount: 3,
+  },
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '6',
+    likeCount: 3,
+  },
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '7',
+    likeCount: 3,
+  },
+  {
+    avatar: '/avatar.jpg',
+    name: 'test',
+    images: [],
+    description: 'test',
+    profession: [Professions.Showman],
+    id: '8',
+    likeCount: 3,
+  },
+]
 
 export const ShowManRoot = () => {
   const { classes } = useStyles()
@@ -17,7 +93,7 @@ export const ShowManRoot = () => {
   return (
     <div className={classes.root}>
       <div className={classes.servicesListWrapper}>
-        {usersList.map((service: any) => (
+        {[...usersList, ...mockServicePost10Item].map((service: any) => (
           <ServicePost key={service.id} {...service} />
         ))}
         {showmanData.map((item) => {

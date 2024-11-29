@@ -7,8 +7,8 @@ export default tss.withName('ShowMan').create({
   },
   servicesListWrapper: {
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 20,
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 10,
   },
 })

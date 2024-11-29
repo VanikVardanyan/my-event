@@ -15,12 +15,14 @@ import { tss } from 'tss-react/mui'
 
 export default tss.withName('ServicePost').create({
   root: {
-    maxWidth: 470,
+    maxWidth: 364,
+    maxHeight: 426,
     width: '100%',
     overflow: 'hidden',
-    paddingBottom: 20,
+    padding: 9,
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: 6,
+    background: '#9747FF2B',
   },
   header: {
     display: 'flex',
@@ -85,6 +87,7 @@ export default tss.withName('ServicePost').create({
   carouselImage: {
     objectFit: 'cover',
     width: '100%',
+    borderRadius: 8,
   },
   slider: {
     width: '100%',
@@ -117,6 +120,25 @@ export default tss.withName('ServicePost').create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  info: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 2,
+    marginTop: 8,
+  },
+  name: {
+    ...FontBody1,
+  },
+  handlers: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: 2,
+  },
+  actions: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 })
 

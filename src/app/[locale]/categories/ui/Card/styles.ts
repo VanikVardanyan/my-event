@@ -13,8 +13,12 @@ export default tss.withName('About').create({
     alignItems: 'center',
     borderRadius: 8,
     gap: 16,
-  },
+    transition: 'transform 200ms ease',
 
+    '&: hover': {
+      transform: 'scale(1.05)',
+    },
+  },
   title: {
     ...FontBody1Accent,
     alignSelf: 'flex-start',
