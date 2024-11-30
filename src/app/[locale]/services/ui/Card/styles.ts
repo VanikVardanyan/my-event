@@ -1,18 +1,23 @@
 import { tss } from 'tss-react/mui'
 import { FontBody1Accent, FontBody2, FontH3 } from '@/shared/consts/fontStyles'
 import { Black, PurpleLighten25 } from '@/shared/consts/colors'
+import { BreakPoints } from '../../../../../shared/consts/common'
 
-export default tss.withName('About').create({
+export default tss.withName('ServicesCard').create({
   root: {
     padding: '9px 9px 16px',
     background: '#9747FF30',
-    maxWidth: 300,
+    maxWidth: '100%',
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     borderRadius: 8,
     gap: 16,
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      maxWidth: 360,
+    },
   },
   titleWrapper: {
     alignSelf: 'flex-start',

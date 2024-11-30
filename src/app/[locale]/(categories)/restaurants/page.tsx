@@ -8,6 +8,20 @@ import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { restaurantData } from '@/shared/data/restaurant'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
+import { Routes } from '../../../../shared/routes'
+import { BreadcrumbsList } from '../../../../shared/ui/breadcrumbs'
+import { CategoryTitle } from '../../../../shared/ui/category-title'
+
+const breads = [
+  {
+    label: 'Բաժիններ',
+    href: Routes.Categories,
+  },
+  {
+    label: 'Ծառայություններ',
+    href: Routes.Services,
+  },
+]
 
 const RestaurantsPage = () => {
   const { classes } = useStyles()
@@ -17,6 +31,9 @@ const RestaurantsPage = () => {
 
   return (
     <Container>
+      <CategoryTitle title={Professions.Restaurants} />
+
+      <BreadcrumbsList className={classes.bread} currentLabel={Professions.Photographers} breads={breads} />
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
           {usersList.map((service: any) => (

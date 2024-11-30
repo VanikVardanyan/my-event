@@ -1,13 +1,18 @@
 import { tss } from 'tss-react/mui'
 import { FontBody2, FontH3 } from '@/shared/consts/fontStyles'
 import { darkSlateGray, PinkBrownBase, SlateGreyDarken7 } from '@/shared/consts/colors'
+import { BreakPoints } from '../../../shared/consts/common'
 
-export default tss.withName('About').create({
+export default tss.withName('Services').create({
   root: {
-    padding: '56px 53px',
+    padding: 16,
     display: 'flex',
     flexDirection: 'column',
     gap: 40,
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      padding: '56px 13px',
+    },
   },
   titleWrapper: {
     display: 'flex',
@@ -31,16 +36,9 @@ export default tss.withName('About').create({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
-  description: {
-    ...FontBody2,
-    color: SlateGreyDarken7,
+  bread: {
     display: 'flex',
-    flexDirection: 'column',
-    gap: 15,
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 20,
+    justifyContent: 'center',
+    marginBottom: 15,
   },
 })

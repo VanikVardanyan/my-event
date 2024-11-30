@@ -71,7 +71,7 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   const { profession, description, name, avatar, images, id } = props
   const [readMore, setReadMore] = useState(false)
   const [isDescriptionScroll, setDescriptionScroll] = useState(false)
-
+  console.log(images)
   const { classes } = useStyles()
   const t = useTranslations()
   const { user } = useAuth()
@@ -108,15 +108,13 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
   return (
     <div className={classes.root}>
       <div className={classes.carouselWrapper}>
-        {(images?.length === 0 || !images) && (
-          <Image
-            src={'/professions/showman.png'}
-            alt={'default'}
-            width={366}
-            height={292}
-            className={classes.carouselImage}
-          />
-        )}
+        <Image
+          src={images[0] || '/default.jpg'}
+          alt={'default'}
+          width={366}
+          height={292}
+          className={classes.carouselImage}
+        />
       </div>
       <div className={classes.info}>
         <div className={classes.name}>{name}</div>
@@ -161,7 +159,7 @@ export const ServicePost: React.FC<IPostProps> = (props: IPostProps) => {
           )}
         </div>
       )} */}
-      <Button href={`/user/${id}`} fullWidth btn_size={BUTTON_SIZE.SMALL}>
+      <Button href={`/user/${id}`} LinkComponent={Link} fullWidth btn_size={BUTTON_SIZE.SMALL}>
         Իմանալ ավելին
       </Button>
     </div>

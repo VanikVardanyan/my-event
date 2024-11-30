@@ -8,6 +8,23 @@ import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { cakesData } from '@/shared/data/cakes'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
+import { Breadcrumbs, Typography } from '@mui/material'
+import { Link } from '../../../../navigation'
+import { Routes } from '../../../../shared/routes'
+import { useTranslations } from 'next-intl'
+import { BreadcrumbsList } from '../../../../shared/ui/breadcrumbs'
+import { CategoryTitle } from '../../../../shared/ui/category-title'
+
+const breads = [
+  {
+    label: 'Բաժիններ',
+    href: Routes.Cakes,
+  },
+  {
+    label: 'Ծառայություններ',
+    href: Routes.Services,
+  },
+]
 
 const CakesPage = () => {
   const { classes } = useStyles()
@@ -18,6 +35,8 @@ const CakesPage = () => {
 
   return (
     <Container>
+      <CategoryTitle title={Professions.Cake} />
+      <BreadcrumbsList className={classes.bread} currentLabel={Professions.Cake} breads={breads} />
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
           {usersList.map((service: any) => (

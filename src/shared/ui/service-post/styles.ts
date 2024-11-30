@@ -12,10 +12,11 @@ import {
 import { FontBody1Accent, FontBody1, FontBody2 } from '@/shared/consts/fontStyles'
 import { Button, styled } from '@mui/material'
 import { tss } from 'tss-react/mui'
+import { BreakPoints } from '../../consts/common'
 
 export default tss.withName('ServicePost').create({
   root: {
-    maxWidth: 364,
+    maxWidth: '100%',
     maxHeight: 426,
     width: '100%',
     overflow: 'hidden',
@@ -23,6 +24,10 @@ export default tss.withName('ServicePost').create({
     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     borderRadius: 6,
     background: '#9747FF2B',
+
+    [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
+      maxWidth: 364,
+    },
   },
   header: {
     display: 'flex',
@@ -39,7 +44,7 @@ export default tss.withName('ServicePost').create({
   avatar: {
     borderRadius: '50%',
     flexShrink: 0,
-    objectFit: 'cover',
+    objectFit: 'contain',
   },
   userName: {
     ...FontBody1Accent,

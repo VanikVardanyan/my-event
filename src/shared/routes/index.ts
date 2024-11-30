@@ -3,6 +3,7 @@ export enum Routes {
   About = '/about',
   Main = '/main',
   Showman = '/showman',
+  Services = '/services',
   Show = '/show',
   Photographer = '/photographer',
   Dj = '/dj',
