@@ -3,7 +3,8 @@ import { initializeApp } from 'firebase/app'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getStorage } from 'firebase/storage'
 
-const isDev = process.env.NODE_ENV === 'development'
+// const isDev = process.env.NODE_ENV === 'development'
+const isDev = false
 
 const firebaseConfig = {
   apiKey: isDev ? process.env.NEXT_PUBLIC_FIREBASE_API_KEY_DEV : process.env.NEXT_PUBLIC_FIREBASE_API_KEY,

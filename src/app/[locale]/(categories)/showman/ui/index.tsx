@@ -8,6 +8,9 @@ import { showmanData } from '@/shared/data/showman'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
 import { IPostProps } from '../../../../../shared/ui/service-post/types'
+import { Routes } from '../../../../../shared/routes'
+import { BreadcrumbsList } from '../../../../../shared/ui/breadcrumbs'
+import { CategoryTitle } from '../../../../../shared/ui/category-title'
 
 const mockServicePost10Item: IPostProps[] = [
   {
@@ -84,6 +87,17 @@ const mockServicePost10Item: IPostProps[] = [
   },
 ]
 
+const breads = [
+  {
+    label: 'Բաժիններ',
+    href: Routes.Categories,
+  },
+  {
+    label: 'Ծառայություններ',
+    href: Routes.Services,
+  },
+]
+
 export const ShowManRoot = () => {
   const { classes } = useStyles()
   const { loading, usersList, error } = useFetchProviders(Professions.Showman)
@@ -91,14 +105,18 @@ export const ShowManRoot = () => {
   if (loading) return <LoadingOverlay loading />
 
   return (
-    <div className={classes.root}>
-      <div className={classes.servicesListWrapper}>
-        {[...usersList, ...mockServicePost10Item].map((service: any) => (
-          <ServicePost key={service.id} {...service} />
-        ))}
-        {showmanData.map((item) => {
-          return <UserCardMini key={item.username} {...item} />
-        })}
+    <div>
+      <CategoryTitle title={Professions.Showman} />
+      <BreadcrumbsList className={classes.bread} currentLabel={Professions.Cake} breads={breads} />
+      <div className={classes.root}>
+        <div className={classes.servicesListWrapper}>
+          {[...usersList, ...mockServicePost10Item].map((service: any) => (
+            <ServicePost key={service.id} {...service} />
+          ))}
+          {showmanData.map((item) => {
+            return <UserCardMini key={item.username} {...item} />
+          })}
+        </div>
       </div>
     </div>
   )

@@ -9,6 +9,9 @@ import { musicianData } from '@/shared/data/musiciant'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { Metadata } from 'next'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
+import { Routes } from '../../../../shared/routes'
+import { BreadcrumbsList } from '../../../../shared/ui/breadcrumbs'
+import { CategoryTitle } from '../../../../shared/ui/category-title'
 
 // export const metadata: Metadata = {
 //   title: 'Van Event - Երգիչներ',
@@ -31,7 +34,18 @@ import { useFetchProviders } from '@/shared/hook/useFetchProviders'
 //   },
 // }
 
-const ShowMan = () => {
+const breads = [
+  {
+    label: 'Բաժիններ',
+    href: Routes.Categories,
+  },
+  {
+    label: 'Ծառայություններ',
+    href: Routes.Services,
+  },
+]
+
+const Musicians = () => {
   const { classes } = useStyles()
   const { loading, usersList, error } = useFetchProviders(Professions.Musicians)
 
@@ -39,6 +53,9 @@ const ShowMan = () => {
 
   return (
     <Container>
+      <CategoryTitle title={Professions.Musicians} />
+
+      <BreadcrumbsList className={classes.bread} currentLabel={Professions.Musicians} breads={breads} />
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
           {usersList.map((service: any) => (
@@ -53,4 +70,4 @@ const ShowMan = () => {
   )
 }
 
-export default ShowMan
+export default Musicians

@@ -9,9 +9,9 @@ import { ProfileHeader } from '@/shared/ui/profile-header'
 import { ProfileCreatives } from '@/shared/ui/profile-creatives'
 import { Box } from '@mui/material'
 import useStyles from './styles'
-import { Loader } from '../../../../shared/ui/Loader'
+import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../../styles'
-import { LoadingOverlay } from '../../../../shared/ui/loading-overlay'
+import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 
 const UserPage = () => {
   const router: { slug: string } = useParams()

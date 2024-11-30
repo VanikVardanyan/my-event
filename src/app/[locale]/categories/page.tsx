@@ -3,6 +3,7 @@
 import { useTranslations } from 'next-intl'
 import useStyles from './styles'
 import { Card } from './ui/Card'
+import { Routes } from '../../../shared/routes'
 
 const CategoriesPage: React.FC = () => {
   const { classes } = useStyles()
@@ -12,22 +13,22 @@ const CategoriesPage: React.FC = () => {
     {
       title: 'Ծառայություններ',
       image: '/professions/showman.png',
-      link: '/services',
+      link: Routes.Services,
     },
     {
       title: 'Ապրանքներ',
       image: '/professions/party.png',
-      link: '/products',
+      link: Routes.EquipmentRental,
     },
     {
       title: 'Արտիստներ և խմբեր',
       image: '/professions/musician.png',
-      link: '/artists',
+      link: Routes.Musicians,
     },
     {
       title: 'Ռեստորաններ և Քաթերինգ',
       image: '/professions/restaurant.png',
-      link: '/restaurants',
+      link: Routes.Restaurants,
     },
   ]
 

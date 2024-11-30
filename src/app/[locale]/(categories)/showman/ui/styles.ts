@@ -11,4 +11,9 @@ export default tss.withName('ShowMan').create({
     justifyContent: 'center',
     gap: 10,
   },
+  bread: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: 15,
+  },
 })

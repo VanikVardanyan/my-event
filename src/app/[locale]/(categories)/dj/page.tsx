@@ -9,7 +9,10 @@ import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { djData } from '@/shared/data/dj'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { Metadata } from 'next'
-import { useFetchProviders } from '../../../../shared/hook/useFetchProviders'
+import { useFetchProviders } from '@/shared/hook/useFetchProviders'
+import { Routes } from '@/shared/routes'
+import { BreadcrumbsList } from '../../../../shared/ui/breadcrumbs'
+import { CategoryTitle } from '../../../../shared/ui/category-title'
 
 // export const metadata: Metadata = {
 //   title: 'Van Event - Դիջեյներ',
@@ -32,6 +35,17 @@ import { useFetchProviders } from '../../../../shared/hook/useFetchProviders'
 //   },
 // }
 
+const breads = [
+  {
+    label: 'Բաժիններ',
+    href: Routes.Cakes,
+  },
+  {
+    label: 'Ծառայություններ',
+    href: Routes.Services,
+  },
+]
+
 const ShowMan = () => {
   const { classes } = useStyles()
   const { loading, usersList, error } = useFetchProviders(Professions.Djs)
@@ -40,6 +54,8 @@ const ShowMan = () => {
 
   return (
     <Container>
+      <CategoryTitle title={Professions.Djs} />
+      <BreadcrumbsList className={classes.bread} currentLabel={Professions.Djs} breads={breads} />
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
           {usersList.map((service: any) => (

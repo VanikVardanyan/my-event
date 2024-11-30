@@ -9,6 +9,20 @@ import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { dress } from '@/shared/data/dress'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
+import { Routes } from '../../../../shared/routes'
+import { BreadcrumbsList } from '../../../../shared/ui/breadcrumbs'
+import { CategoryTitle } from '../../../../shared/ui/category-title'
+
+const breads = [
+  {
+    label: 'Բաժիններ',
+    href: Routes.Cakes,
+  },
+  {
+    label: 'Ծառայություններ',
+    href: Routes.Services,
+  },
+]
 
 const CostumeRental = () => {
   const { classes } = useStyles()
@@ -18,6 +32,8 @@ const CostumeRental = () => {
 
   return (
     <Container>
+      <CategoryTitle title={Professions.CostumeRental} />
+      <BreadcrumbsList className={classes.bread} currentLabel={Professions.CostumeRental} breads={breads} />
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
           {usersList.map((service: any) => (

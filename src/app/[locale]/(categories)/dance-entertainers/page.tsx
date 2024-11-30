@@ -8,6 +8,20 @@ import { LoadingOverlay } from '@/shared/ui/loading-overlay'
 import { danceData } from '@/shared/data/dance'
 import { UserCardMini } from '@/shared/ui/user-card-mini'
 import { useFetchProviders } from '@/shared/hook/useFetchProviders'
+import { Routes } from '@/shared/routes'
+import { BreadcrumbsList } from '../../../../shared/ui/breadcrumbs'
+import { CategoryTitle } from '../../../../shared/ui/category-title'
+
+const breads = [
+  {
+    label: 'Բաժիններ',
+    href: Routes.Cakes,
+  },
+  {
+    label: 'Ծառայություններ',
+    href: Routes.Services,
+  },
+]
 
 const DancePage = () => {
   const { classes } = useStyles()
@@ -17,6 +31,8 @@ const DancePage = () => {
 
   return (
     <Container>
+      <CategoryTitle title={Professions.DancersEntertainers} />
+      <BreadcrumbsList className={classes.bread} currentLabel={Professions.DancersEntertainers} breads={breads} />
       <div className={classes.root}>
         <div className={classes.servicesListWrapper}>
           {usersList.map((service: any) => (
