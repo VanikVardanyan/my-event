@@ -12,7 +12,6 @@ import { useTranslations } from 'next-intl'
 import { useAuth } from '@/shared/lib/auth-context'
 import { useRouter } from '@/navigation'
 import { Routes } from '@/shared/routes'
-import { Loader } from '@/shared/ui/Loader'
 import { Container } from '../styles'
 import { useEffect } from 'react'
 import { LoadingOverlay } from '../../../shared/ui/loading-overlay'
@@ -31,9 +30,6 @@ const Profile = () => {
   useEffect(() => {
     if (loadingProfile) {
       return
-    }
-    if (user && !profile?.role) {
-      router.push(Routes.ProfileSetting)
     }
     if (profile?.role === UserType.CLIENT && localStorage.getItem('prevData')) {
       router.push(Routes.CreateEvent)

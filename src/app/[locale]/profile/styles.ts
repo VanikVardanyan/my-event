@@ -9,4 +9,10 @@ export default tss.withName('Profile').create({
     justifyContent: 'center',
     gap: 44,
   },
+  container: {
+    minHeight: 900,
+  },
+  layout: {
+    display: 'flex',
+  },
 })

@@ -28,3 +28,13 @@ export enum Routes {
   Messages = '/messages',
   Categories = '/categories',
 }
+
+export enum ProfileRoutes {
+  Profile = '/profile',
+  Messages = '/profile/messages',
+  Notification = '/profile/notifications',
+  Events = '/profile/events',
+  Favorites = '/profile/favorites',
+  Payments = '/profile/payments',
+  Professions = '/profile/professions',
+}
