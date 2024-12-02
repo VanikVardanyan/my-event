@@ -11,7 +11,6 @@ export default tss.withName('footer').create({
     display: 'flex',
     flexDirection: 'column',
     gap: 40,
-    marginTop: 40,
 
     [`@media (min-width: ${BreakPoints.MEDIUM})`]: {
       padding: '70px 24px',
