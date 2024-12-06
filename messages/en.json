@@ -226,5 +226,11 @@
     "en": "Eng",
     "hy": "Arm",
     "invalid_email_or_password": "Invalid email or password",
-    "unexpected_error": "An error occurred"
+    "unexpected_error": "An error occurred",
+    "status_pending": "pending",
+    "status_approve": "approve",
+    "status_cancel": "cancel",
+    "status_event_pending": "Pending",
+    "status_event_approve": "Approve",
+    "status_event_cancel": "Cancel"
 }

@@ -25,24 +25,24 @@ export enum Countries {
 }
 
 export enum EventTypes {
-  Wedding = 'Wedding', // Свадьба
-  Birthday = 'Birthday', // День рождения
-  Corporate = 'Corporate', // Корпоративное мероприятие
-  Conference = 'Conference', // Конференция
-  Concert = 'Concert', // Концерт
-  Festival = 'Festival', // Фестиваль
-  Workshop = 'Workshop', // Мастер-класс / Семинар
-  Meetup = 'Meetup', // Встреча / Meetup
-  Charity = 'Charity', // Благотворительное мероприятие
-  Sports = 'Sports', // Спортивное мероприятие
-  Exhibition = 'Exhibition', // Выставка
-  TradeShow = 'TradeShow', // Торговая выставка
-  PrivateParty = 'PrivateParty', // Частная вечеринка
-  FashionShow = 'FashionShow', // Показ мод
-  ProductLaunch = 'ProductLaunch', // Презентация продукта
-  BabyShower = 'BabyShower', // Baby Shower (вечеринка в честь будущего рождения ребенка)
-  Engagement = 'Engagement', // Помолвка
-  Graduation = 'Graduation', // Выпускной
-  Networking = 'Networking', // Сетевое мероприятие
-  Other = 'Other', // Другое
+  Wedding = 'wedding', // Свадьба
+  Birthday = 'birthday', // День рождения
+  Corporate = 'corporate', // Корпоративное мероприятие
+  Conference = 'conference', // Конференция
+  Concert = 'concert', // Концерт
+  Festival = 'festival', // Фестиваль
+  Workshop = 'workshop', // Мастер-класс / Семинар
+  Meetup = 'meetup', // Встреча / Meetup
+  Charity = 'charity', // Благотворительное мероприятие
+  Sports = 'sports', // Спортивное мероприятие
+  Exhibition = 'exhibition', // Выставка
+  TradeShow = 'tradeShow', // Торговая выставка
+  PrivateParty = 'privateParty', // Частная вечеринка
+  FashionShow = 'fashionShow', // Показ мод
+  ProductLaunch = 'productLaunch', // Презентация продукта
+  BabyShower = 'babyShower', // Baby Shower (вечеринка в честь будущего рождения ребенка)
+  Engagement = 'engagement', // Помолвка
+  Graduation = 'graduation', // Выпускной
+  Networking = 'networking', // Сетевое мероприятие
+  Other = 'other', // Другое
 }

@@ -226,5 +226,11 @@
     "en": "Анг",
     "hy": "Арм",
     "invalid_email_or_password": "Неверный email или пароль",
-    "unexpected_error": "Произошла ошибка"
+    "unexpected_error": "Произошла ошибка",
+    "status_pending": "проверяем",
+    "status_approve": "одобрен",
+    "status_cancel": "не закончен",
+    "status_event_pending": "в процессе",
+    "status_event_approve": "запланированно",
+    "status_event_cancel": "не закончен"
 }

@@ -226,5 +226,11 @@
     "en": "Անգլ",
     "hy": "Հայ",
     "invalid_email_or_password": "Սխալ էլ. հասցե կամ գաղտնաբառ",
-    "unexpected_error": "Սխալ է տեղի ունեցել"
+    "unexpected_error": "Սխալ է տեղի ունեցել",
+    "status_pending": "Ընթացքի մեջ",
+    "status_approve": "Վերիֆիկացված",
+    "status_cancel": "Անավարտ",
+    "status_event_pending": "Ընթացքի մեջ",
+    "status_event_approve": "Պլանավորված",
+    "status_event_cancel": "Անավարտ"
 }
