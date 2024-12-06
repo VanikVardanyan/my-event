@@ -34,6 +34,11 @@ export const LayoutProfile = () => {
       icon: <HomeIcon />,
     },
     {
+      title: 'Մասնագետի պրոֆիլը',
+      url: ProfileRoutes.Professions,
+      icon: <WorkIcon />,
+    },
+    {
       title: 'Հաղորդագրություններ',
       url: ProfileRoutes.Messages,
       icon: <MessageIcon />,
@@ -41,6 +46,11 @@ export const LayoutProfile = () => {
     {
       title: 'Ծանուցումներ',
       url: ProfileRoutes.Notification,
+      icon: <NotificationsIcon />,
+    },
+    {
+      title: 'Հարցումներ',
+      url: ProfileRoutes.Requests,
       icon: <NotificationsIcon />,
     },
     {
@@ -57,11 +67,6 @@ export const LayoutProfile = () => {
       title: 'Վճարումներ',
       url: ProfileRoutes.Payments,
       icon: <PaymentIcon />,
-    },
-    {
-      title: 'Մասնագիտություններ',
-      url: ProfileRoutes.Professions,
-      icon: <WorkIcon />,
     },
   ]
 

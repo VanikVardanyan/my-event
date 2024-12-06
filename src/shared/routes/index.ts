@@ -33,6 +33,7 @@ export enum ProfileRoutes {
   Profile = '/profile',
   Messages = '/profile/messages',
   Notification = '/profile/notifications',
+  Requests = '/profile/requests',
   Events = '/profile/events',
   Favorites = '/profile/favorites',
   Payments = '/profile/payments',
